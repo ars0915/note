@@ -13,7 +13,16 @@
 	  ```
 	- Logseq enable auto commit (Optional)
 	  logseq.order-list-type:: number
-	- Push logseq folders to git
+	- Firebase 設定 CLI
 	  logseq.order-list-type:: number
+		- `sudo npm install -g firebase-tools`
+		  logseq.order-list-type:: number
+		- `firebase login`
+		  logseq.order-list-type:: number
+		- `firebase init hosting`
+		  logseq.order-list-type:: number
+		- logseq.order-list-type:: number
+		- logseq.order-list-type:: number
+		- logseq.order-list-type:: number
 	-
 -
