@@ -20,28 +20,26 @@
 		  firebase target:apply hosting note-e3304 note-e3304
 		  ```
 	- 6. edit `firebase.json`，設定 target, public, destination
-		- logseq.order-list-type:: number
-		  ```
-		  {
-		    "hosting": {
-		      "target": "note-e3304",
-		      "public": "www",
-		      "ignore": [
-		        "firebase.json",
-		        "**/.*",
-		        "**/node_modules/**"
-		      ],
-		      "rewrites": [
-		        {
-		          "source": "**",
-		          "destination": "www/index.html"
-		        }
-		      ]
-		    }
-		  }
-		  ```
-	- 建立 `.github/workflows/publish.yml` replace firebaseServiceAccount and projectId from `.github/workflows/firebase-hosting-pull-request.yml`
-	  logseq.order-list-type:: number
+	  ```
+	  {
+	    "hosting": {
+	      "target": "note-e3304",
+	      "public": "www",
+	      "ignore": [
+	        "firebase.json",
+	        "**/.*",
+	        "**/node_modules/**"
+	      ],
+	      "rewrites": [
+	        {
+	          "source": "**",
+	          "destination": "www/index.html"
+	        }
+	      ]
+	    }
+	  }
+	  ```
+	- 7. 建立 `.github/workflows/publish.yml` replace firebaseServiceAccount and projectId from `.github/workflows/firebase-hosting-pull-request.yml`
 	  ```
 	  # This is a basic workflow to help you get started with Actions
 	  name: Logseq Deploy
@@ -93,11 +91,8 @@
 	            projectId: note-e3304
 	            channelId: live
 	  ```
-	- remove `.github/workflows/firebase-hosting-pull-request.yml`
-	  logseq.order-list-type:: number
-	- push `.firebaserc`, `firebase.json` and `.github/workflows/publish.yml`
-	  logseq.order-list-type:: number
-	- 看 Github action 有沒有成功
-	  logseq.order-list-type:: number
+	- 8. remove `.github/workflows/firebase-hosting-pull-request.yml`
+	- 9. push `.firebaserc`, `firebase.json` and `.github/workflows/publish.yml`
+	- 10. 看 Github action 有沒有成功
 	  ![image.png](../assets/image_1719213052775_0.png)
 	- logseq.order-list-type:: number
