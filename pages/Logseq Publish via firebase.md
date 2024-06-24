@@ -7,7 +7,13 @@
 	  logseq.order-list-type:: number
 	- Logseq setting
 	  logseq.order-list-type:: number
-	      3-1. :editor/preferred-pasting-file? true
-	      3-2. publishing/all-pages-public? true
+	  ```
+	  :editor/preferred-pasting-file? true
+	  :publishing/all-pages-public? true
+	  ```
+	- Logseq enable auto commit (Optional)
+	  logseq.order-list-type:: number
+	- Push logseq folders to git
+	  logseq.order-list-type:: number
 	-
 -
