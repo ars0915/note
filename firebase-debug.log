@@ -40,3 +40,16 @@ You're about to initialize a Firebase project in this directory:
 [info] will contain Hosting assets to be uploaded with firebase deploy. If you
 [info] have a build process for your assets, use your build's output directory.
 [info] 
+[info] ✔  Wrote www/404.html 
+[debug] [2024-06-24T03:30:35.250Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2024-06-24T03:30:35.328Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2024-06-24T03:30:35.328Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.12.2","browserURL":"https://www.gstatic.com/firebasejs/10.12.2/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.12.2/firebase.tgz"},"live":{"version":"10.12","browserURL":"https://www.gstatic.com/firebasejs/live/10.12/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.12/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.12.2/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.12.2/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.12.2/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js","vertexai-preview":"https://www.gstatic.com/firebasejs/10.12.2/firebase-vertexai-preview.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.memory.js"}}
+[info] ✔  Wrote www/index.html 
+[info] 
+[info] i  Detected a .git folder at /Users/vladka.huang/note 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=537036068&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
