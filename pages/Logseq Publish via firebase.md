@@ -12,18 +12,14 @@
 	- 5. Firebase 設定，透過 CLI 建立 hosting
 		- 5-1. `sudo npm install -g firebase-tools`
 		- 5-2. `firebase login`
-		- `firebase init hosting`
-		  logseq.order-list-type:: number
+		- 5-3. `firebase init hosting`
 		  ![image.png](../assets/image_1719212096536_0.png)
-		  ![image.png](../assets/image_1719212150032_0.png)
-		- modify `.firebaserc` by command 
-		  logseq.order-list-type:: number
+		  ![image.png](../assets/image_1719212150032_0.png)modify `.firebaserc` by command 
 		  ```
 		  // firebase target:apply hosting <target> <resources...>
 		  firebase target:apply hosting note-e3304 note-e3304
 		  ```
-		- edit `firebase.json`，設定 target, public, destination
-		  logseq.order-list-type:: number
+	- 6. edit `firebase.json`，設定 target, public, destination
 		- logseq.order-list-type:: number
 		  ```
 		  {
