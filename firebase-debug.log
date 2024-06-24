@@ -1,13 +1,13 @@
-[debug] [2024-06-24T03:24:47.262Z] ----------------------------------------------------------------------
-[debug] [2024-06-24T03:24:47.267Z] Command:       /opt/homebrew/Cellar/node/21.7.3/bin/node /opt/homebrew/bin/firebase init
-[debug] [2024-06-24T03:24:47.267Z] CLI Version:   13.11.4
-[debug] [2024-06-24T03:24:47.267Z] Platform:      darwin
-[debug] [2024-06-24T03:24:47.267Z] Node Version:  v21.7.3
-[debug] [2024-06-24T03:24:47.267Z] Time:          Mon Jun 24 2024 11:24:47 GMT+0800 (台北標準時間)
-[debug] [2024-06-24T03:24:47.267Z] ----------------------------------------------------------------------
+[debug] [2024-06-24T03:26:22.462Z] ----------------------------------------------------------------------
+[debug] [2024-06-24T03:26:22.466Z] Command:       /opt/homebrew/Cellar/node/21.7.3/bin/node /opt/homebrew/bin/firebase init hosting
+[debug] [2024-06-24T03:26:22.466Z] CLI Version:   13.11.4
+[debug] [2024-06-24T03:26:22.466Z] Platform:      darwin
+[debug] [2024-06-24T03:26:22.466Z] Node Version:  v21.7.3
+[debug] [2024-06-24T03:26:22.467Z] Time:          Mon Jun 24 2024 11:26:22 GMT+0800 (台北標準時間)
+[debug] [2024-06-24T03:26:22.467Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2024-06-24T03:24:47.273Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2024-06-24T03:24:47.273Z] > authorizing via signed-in user (phoenix11881@gmail.com)
+[debug] [2024-06-24T03:26:22.472Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-24T03:26:22.472Z] > authorizing via signed-in user (phoenix11881@gmail.com)
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -19,3 +19,24 @@ You're about to initialize a Firebase project in this directory:
 
   /Users/vladka.huang/note
 
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-06-24T03:26:26.809Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2024-06-24T03:26:27.350Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2024-06-24T03:26:27.350Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project note-e3304 (note) 
+[info] 
+=== Hosting Setup
+[debug] [2024-06-24T03:26:28.681Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/note-e3304 [none]
+[debug] [2024-06-24T03:26:28.909Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/note-e3304 200
+[debug] [2024-06-24T03:26:28.909Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/note-e3304 {"projectId":"note-e3304","projectNumber":"292633631390","displayName":"note","name":"projects/note-e3304","resources":{"hostingSite":"note-e3304"},"state":"ACTIVE","etag":"1_1c5e18fd-e552-4b8b-9c8f-69ce48b17c86"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
