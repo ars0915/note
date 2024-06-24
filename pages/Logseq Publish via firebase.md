@@ -29,7 +29,7 @@
 		  // firebase target:apply hosting <target> <resources...>
 		  firebase target:apply hosting note-e3304 note-e3304
 		  ```
-		- edit `firebase.json`, 設定 target,
+		- edit `firebase.json`，設定 target, public, destination
 		  logseq.order-list-type:: number
 		- logseq.order-list-type:: number
 		  ```
@@ -105,5 +105,7 @@
 	            channelId: live
 	  ```
 	- remove `.github/workflows/firebase-hosting-pull-request.yml`
+	  logseq.order-list-type:: number
+	- push `.firebaserc`, `firebase.json` and `.github/workflows/publish.yml`
 	  logseq.order-list-type:: number
 	- logseq.order-list-type:: number
