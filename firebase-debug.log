@@ -1,13 +1,21 @@
-[debug] [2024-06-24T03:23:02.714Z] ----------------------------------------------------------------------
-[debug] [2024-06-24T03:23:02.719Z] Command:       /opt/homebrew/Cellar/node/21.7.3/bin/node /opt/homebrew/bin/firebase login
-[debug] [2024-06-24T03:23:02.719Z] CLI Version:   13.11.4
-[debug] [2024-06-24T03:23:02.719Z] Platform:      darwin
-[debug] [2024-06-24T03:23:02.719Z] Node Version:  v21.7.3
-[debug] [2024-06-24T03:23:02.719Z] Time:          Mon Jun 24 2024 11:23:02 GMT+0800 (台北標準時間)
-[debug] [2024-06-24T03:23:02.720Z] ----------------------------------------------------------------------
+[debug] [2024-06-24T03:24:47.262Z] ----------------------------------------------------------------------
+[debug] [2024-06-24T03:24:47.267Z] Command:       /opt/homebrew/Cellar/node/21.7.3/bin/node /opt/homebrew/bin/firebase init
+[debug] [2024-06-24T03:24:47.267Z] CLI Version:   13.11.4
+[debug] [2024-06-24T03:24:47.267Z] Platform:      darwin
+[debug] [2024-06-24T03:24:47.267Z] Node Version:  v21.7.3
+[debug] [2024-06-24T03:24:47.267Z] Time:          Mon Jun 24 2024 11:24:47 GMT+0800 (台北標準時間)
+[debug] [2024-06-24T03:24:47.267Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2024-06-24T03:23:02.721Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
-[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
- 
-[debug] [2024-06-24T03:23:03.111Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
-[debug] [2024-06-24T03:23:03.112Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-06-24T03:24:47.273Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-24T03:24:47.273Z] > authorizing via signed-in user (phoenix11881@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/vladka.huang/note
+
