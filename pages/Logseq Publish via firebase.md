@@ -95,4 +95,3 @@
 	- 9. push `.firebaserc`, `firebase.json` and `.github/workflows/publish.yml`
 	- 10. 看 Github action 有沒有成功
 	  ![image.png](../assets/image_1719213052775_0.png)
-	- logseq.order-list-type:: number
