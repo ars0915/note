@@ -1,5 +1,14 @@
 {
-  "projects": {
-    "default": "note-e3304"
-  }
+	"projects": {
+		"default": "note-e3304"
+	},
+	"targets": {
+		"note-e3304": {
+			"hosting": {
+				"note-e3304": [ "note-e3304" ]
+			}
+		}
+	},
+	"etags": {},
+	"dataconnectEmulatorConfig": {}
 }
