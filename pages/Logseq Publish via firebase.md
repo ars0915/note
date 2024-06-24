@@ -108,4 +108,7 @@
 	  logseq.order-list-type:: number
 	- push `.firebaserc`, `firebase.json` and `.github/workflows/publish.yml`
 	  logseq.order-list-type:: number
+	- 看 Github action 有沒有成功
+	  logseq.order-list-type:: number
+	  ![image.png](../assets/image_1719213052775_0.png)
 	- logseq.order-list-type:: number
