@@ -53,3 +53,13 @@ You're about to initialize a Firebase project in this directory:
 [info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=537036068&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
 [info] 
 [info] Waiting for authentication...
+[debug] [2024-06-24T03:30:49.401Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2024-06-24T03:30:49.406Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2024-06-24T03:30:49.906Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2024-06-24T03:30:49.907Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2024-06-24T03:30:49.928Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2024-06-24T03:30:50.307Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2024-06-24T03:30:50.308Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"ars0915","id":36331958,"node_id":"MDQ6VXNlcjM2MzMxOTU4","avatar_url":"https://avatars.githubusercontent.com/u/36331958?v=4","gravatar_id":"","url":"https://api.github.com/users/ars0915","html_url":"https://github.com/ars0915","followers_url":"https://api.github.com/users/ars0915/followers","following_url":"https://api.github.com/users/ars0915/following{/other_user}","gists_url":"https://api.github.com/users/ars0915/gists{/gist_id}","starred_url":"https://api.github.com/users/ars0915/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/ars0915/subscriptions","organizations_url":"https://api.github.com/users/ars0915/orgs","repos_url":"https://api.github.com/users/ars0915/repos","events_url":"https://api.github.com/users/ars0915/events{/privacy}","received_events_url":"https://api.github.com/users/ars0915/received_events","type":"User","site_admin":false,"name":null,"company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":10,"public_gists":0,"followers":1,"following":0,"created_at":"2018-02-10T13:15:35Z","updated_at":"2024-06-24T03:04:10Z","private_gists":43,"total_private_repos":5,"owned_private_repos":5,"disk_usage":62974,"collaborators":1,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] ✔  Success! Logged into GitHub as ars0915 
+[info] 
