@@ -25,9 +25,8 @@
 		  logseq.order-list-type:: number
 		- ![image.png](../assets/image_1719212150032_0.png)
 		  logseq.order-list-type:: number
-		- 建立 `.github/workflows/publish.yml`
+		- 建立 `.github/workflows/publish.yml` replace firebaseServiceAccount and projectId from `.github/workflows/firebase-hosting-pull-request.yml`
 		  logseq.order-list-type:: number
-		- logseq.order-list-type:: number
 		  ```
 		  # This is a basic workflow to help you get started with Actions
 		  name: Logseq Deploy
@@ -79,8 +78,29 @@
 		            projectId: note-e3304
 		            channelId: live
 		  ```
-		- logseq.order-list-type:: number
-		- logseq.order-list-type:: number
+		- remove `.github/workflows/firebase-hosting-pull-request.yml`
+		  logseq.order-list-type:: number
+		- edit `firebase.json`
+		  logseq.order-list-type:: number
+		  ```
+		  {
+		    "hosting": {
+		      "target": "note-e3304",
+		      "public": "www",
+		      "ignore": [
+		        "firebase.json",
+		        "**/.*",
+		        "**/node_modules/**"
+		      ],
+		      "rewrites": [
+		        {
+		          "source": "**",
+		          "destination": "www/index.html"
+		        }
+		      ]
+		    }
+		  }
+		  ```
 		- logseq.order-list-type:: number
 		- logseq.order-list-type:: number
 	-
