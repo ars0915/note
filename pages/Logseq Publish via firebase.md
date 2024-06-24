@@ -23,8 +23,15 @@
 		  logseq.order-list-type:: number
 		  ![image.png](../assets/image_1719212096536_0.png)
 		  ![image.png](../assets/image_1719212150032_0.png)
-		- edit `firebase.json`
+		- modify `.firebaserc` by command 
 		  logseq.order-list-type:: number
+		  ```
+		  // firebase target:apply hosting <target> <resources...>
+		  firebase target:apply hosting note-e3304 note-e3304
+		  ```
+		- edit `firebase.json`, 設定 target,
+		  logseq.order-list-type:: number
+		- logseq.order-list-type:: number
 		  ```
 		  {
 		    "hosting": {
@@ -43,11 +50,6 @@
 		      ]
 		    }
 		  }
-		  ```
-		- modify `.firebaserc` by command 
-		  logseq.order-list-type:: number
-		  ```
-		  firebase target:apply hosting note-e3304 note-e3304
 		  ```
 	- 建立 `.github/workflows/publish.yml` replace firebaseServiceAccount and projectId from `.github/workflows/firebase-hosting-pull-request.yml`
 	  logseq.order-list-type:: number
