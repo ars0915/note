@@ -11,8 +11,9 @@
 			- source
 			- destination
 			- departure_time
-			- seat
-			- oversell_number
+			- seat_number 總座位數
+			- oversell_number 可超賣數
+			- 各艙等的座位數
 		- output
 			- id
 	- 班機清單 API
