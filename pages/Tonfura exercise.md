@@ -11,6 +11,9 @@
 			- source
 			- destination
 			- departure_time
+			-
+		- output
+			- id
 	- 班機清單 API
 	- 班機訂票 API
 	- 出票（超賣調整機制）
