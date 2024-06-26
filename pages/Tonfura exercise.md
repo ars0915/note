@@ -13,4 +13,4 @@
 			- departure_time
 	- 班機清單 API
 	- 班機訂票 API
-	- 出票 API （超賣調整機制）
+	- 出票（超賣調整機制）
