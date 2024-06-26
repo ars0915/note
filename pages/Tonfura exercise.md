@@ -12,31 +12,31 @@
 			- 起點
 			- 目的地
 			- 起飛時間
-			- 狀態：
+			- 狀態：`可購買`、`完售`
 			- 艙等：
 				- 類型：`頭等`、`商務`、`經濟`
 				- 座位
 				- 價格（先固定價格）
 				- 可超賣數量
-		- b. 訂單：
+		- b. 訂單：訂購後產生，不代表一定有座位
 			- 班機編號
 			- 乘客資訊
 			- 艙等
 			- 價格
 			- 狀態
-			- 機位（出票時才指定）
-	-
+			- 座位（出票時才指定）
+	- 2.
 		-
-	- 需實作
-		- 班機寫入 API
-			- input
-				- source
-				- destination
-				- departure_time
-				- oversell_number 可超賣數
-				- 各艙等的座位
-			- output
-				- id
-		- 班機清單 API
-		- 班機訂票 API
-		- 出票（超賣調整機制）
+- ## 需實作
+	- 班機寫入 API
+		- input
+			- source
+			- destination
+			- departure_time
+			- oversell_number 可超賣數
+			- 各艙等的座位
+		- output
+			- id
+	- 班機清單 API
+	- 班機訂票 API
+	- 出票（超賣調整機制）
