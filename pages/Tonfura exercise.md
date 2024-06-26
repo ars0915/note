@@ -11,7 +11,7 @@
 			- source
 			- destination
 			- departure_time
-			-
+			- seat
 		- output
 			- id
 	- 班機清單 API
