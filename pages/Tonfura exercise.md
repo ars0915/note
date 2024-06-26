@@ -12,7 +12,7 @@
 			- destination
 			- departure_time
 			- seat
-			-
+			- oversell_number
 		- output
 			- id
 	- 班機清單 API
