@@ -32,7 +32,6 @@
 				- `待確認`：訂購後預設狀態，尚未保證登機
 				- `安排中`：出票過程發現超賣，尚未選擇處理方案
 				- `已出票`：確認可登機
-				- `放棄座位`：旅客選擇放棄座位，會另外安排
 	- ## 情境
 		- 1. 當使用者訂購機票時
 			- a. 只能選擇狀態為`可購買`的班機及艙等，當選擇`完售`的艙等會回傳錯誤
@@ -52,7 +51,7 @@
 				- ii. 當 c.i. 沒有符合，選擇較低艙等**未超賣**的座位
 				- iii. 當 c.ii 也無空位，安排至相同艙等
 				- iv. 當相同艙等出票數 >= 該艙等座位數時，再根據 c. 順序檢查下一班是否符合
-			- [![](https://mermaid.ink/img/pako:eNqlVFtrE0EU_ivLPEgKadjLTC6L-FQf9UVflAVZkq0NNtmyu0HrEohRiUtMWyuGphELlmqqpJW20hBS_DFmZzdP_QtO9jLREOmSZh9yOPN935wz52KCrJpTgAiWV9Wn2RVZM5j7S1KRIT-djcV0g3gWFnxHljXxzrG99cWtddxf79yf56P9Nm5VR833ZakYYDgTf_uM9w7srbfOZhcf7rmDl6PvO67VcrqWT8cfLeewP7xoXA7euKf7dq2PP_SYm4zd_0qcxL4cWOVAjp8hN7zYmEMuEBTMYa8-7FV8tbFs15o3OPiP1vUSRdNa82XpaSWvyJEhbOegMyUweSP2UYQq_lckkIhQuSvi0LmY3ag5Z7tup2o3j3zm78oL3D7DzR9OvYJf151qn7HPT3yhoE91PjZqNcZ3RecFTCHmg3ymH3eUG-FsXhB-5MDRbJkgm-h5aGH9aO_QhvBFgzIp5IXbn-zqKT7ZJiB789g-svDGtrP7yi_H5GVYZnHxFqkr-bvrWRy1-NDSuPB64nngnQkUBamFqJX8mxl2DuWSNqRI0k8zsBxzI4R5FJ0L14Z_wNMDPhx_6hHCIaYeGI4i9aBwoKZZGo1M8aKZfCAOCopWkPM5slTNMVoCxopSUCQgEjMna08kIBXLBFday8mGcjuXN1QNiMvyqq7EgVwy1HvrxSwQDa2khKClvPxYkwsUpXikO_7q9jZ4HKzJRSCa4BkQkZCAPAcRyyXZZDqdSsXBOhAXYSbBQp5HCEKYEViYSpbj4LmqElk-gSDi0lBICWmEUIbz5B56Z-M4yn8AbCQKVQ?type=png)](https://mermaid.live/edit#pako:eNqlVFtrE0EU_ivLPEgKadjLTC6L-FQf9UVflAVZkq0NNtmyu0HrEohRiUtMWyuGphELlmqqpJW20hBS_DFmZzdP_QtO9jLREOmSZh9yOPN935wz52KCrJpTgAiWV9Wn2RVZM5j7S1KRIT-djcV0g3gWFnxHljXxzrG99cWtddxf79yf56P9Nm5VR833ZakYYDgTf_uM9w7srbfOZhcf7rmDl6PvO67VcrqWT8cfLeewP7xoXA7euKf7dq2PP_SYm4zd_0qcxL4cWOVAjp8hN7zYmEMuEBTMYa8-7FV8tbFs15o3OPiP1vUSRdNa82XpaSWvyJEhbOegMyUweSP2UYQq_lckkIhQuSvi0LmY3ag5Z7tup2o3j3zm78oL3D7DzR9OvYJf151qn7HPT3yhoE91PjZqNcZ3RecFTCHmg3ymH3eUG-FsXhB-5MDRbJkgm-h5aGH9aO_QhvBFgzIp5IXbn-zqKT7ZJiB789g-svDGtrP7yi_H5GVYZnHxFqkr-bvrWRy1-NDSuPB64nngnQkUBamFqJX8mxl2DuWSNqRI0k8zsBxzI4R5FJ0L14Z_wNMDPhx_6hHCIaYeGI4i9aBwoKZZGo1M8aKZfCAOCopWkPM5slTNMVoCxopSUCQgEjMna08kIBXLBFday8mGcjuXN1QNiMvyqq7EgVwy1HvrxSwQDa2khKClvPxYkwsUpXikO_7q9jZ4HKzJRSCa4BkQkZCAPAcRyyXZZDqdSsXBOhAXYSbBQp5HCEKYEViYSpbj4LmqElk-gSDi0lBICWmEUIbz5B56Z-M4yn8AbCQKVQ)
+			- [mermaid source](https://mermaid.live/edit#pako:eNqlVN1r01AU_1fCfZAO2pKPe_sRxKf5qC_6ogQktNlaXJuRpOgMhVqVGmq3ObGsqzhwTDulm2yTldLhH2Pz0af9C97mJrdaKis1ecjJub_f755zzznXBBk1qwARrKypTzI5WTOY-8tSkcGPzkYiuoE9S0vEkWFNZ_fE3v7s1Trez7fej4vRQdtpVUfNd2WpGGA40_n6ydk_tLffuFtd52jfG7wYfdv1rJbbtQjd-WC5R_3hZeNq8No7O7Brfed9j7nJ2P0v2Intq4FVDuT4GXLDy80F5AJBwRz26sNehaiNZbvWosHBv7T-L1E0rbVYlr5W4pocGcx2DztTApMzYh_NUcV_igQSc1Tumjh0LmI3au75ntep2s1jwvxVee60z53md7decV7V3WqfsS9OiVDQpzofGbUa473m5wVMIUJAhEninmdHOJsXhD934Gi2TJDN_HloYf1o79CGIKJBmRR8wu2PdvXMOd3BIHvrxD62nM0dd-8lKcfkZFgmFruF64o_d32LoxYfWhoXbo89D_w1gaIgtRC1En8yw86hXNyGFIn7aQaWY26EMJ-ic-G1QRZ4usCH4089QjjE1APDUaQeFA7UNEujkSl-NJMXREFB0QpyPosvVXOMloCRUwqKBERsZmXtsQSkYhnj5JKh3tsoZoBoaCUlCjS1tJoD4oq8puO_0npWNpTlvLyqyYUQQpy3s3lD1ShS8X_vkHvcv86jYF0uAtEET4GIhDjkOYhYLsEmUqlkMgo2gBiD6TgLeR4hCGFaYGEyUY6CZ6qKt-LjCCIuBYWkkEIIpTlf7qG_Ng6j_BuFmA7k)
 		- 4. 放棄座位的訂單會以 3.c. 的順序被安排下一班
 		- 5. 當有人放棄訂單時，**不主動**重新安排`安排中`的訂單，需經過乘客同意（此系統不實作通知功能
 	- ## Known Issue
@@ -60,15 +59,106 @@
 			- 目前先以進入超賣流程處理
 			- 可考慮是否以購買時的價格或艙等安排優先順序，可能會需要把已升艙旅客重新安排
 - # 需實作
-	- 班機寫入 API
+	- 考量系統複雜度先不實現使用者驗證及詳細乘客資訊
+	- 班機清單 API
 		- input
 			- source
 			- destination
-			- departure_time
-			- oversell_number 可超賣數
-			- 各艙等的座位
+			- departure_date
+			- sort_by
+			- page
+			- page_size
 		- output
-			- id
-	- 班機清單 API
+			- pagination
+				- total_record
+				- total_page
+				- current_page
+				- page_size
+			- data: array
+				- id
+				- source
+				- destination
+				- departure_time
+				- status
+				- class
+					- type
+					- seat_amount
+					- oversell_amount
+					- price
+					- status
 	- 班機訂票 API
-	- 出票（超賣調整機制）
+		- input
+			- booking
+				- flight_id
+				- class_type
+				- price
+				- user_id
+				- amount
+		- output
+			- data: struct
+				- booking_id
+				- flight_id
+				- user_id
+				- class_type
+				- price
+				- status
+				- amount
+	- 出票（包含超賣調整建議）
+		- input
+			- booking_id
+		- output
+			- data: struct
+				- check_in_status (`success` or `failure`)
+				- suggestion (may be null if `check_in_status` =  success)
+					- flight_id
+					- class_type
+	- 放棄訂單 API (自動調整班機)
+		- input
+			- booking_id
+		- output
+			- data: struct
+				- booking_id
+				- flight_id
+				- user_id
+				- class_type
+				- price
+				- status
+				- amount
+	- 修改訂單 API
+		- input
+			- booking_id
+			- flight_id  (optional)
+			- class_type (optional)
+			- status (optional)
+		- output
+			- data: struct
+				- booking_id
+				- flight_id
+				- user_id
+				- class_type
+				- price
+				- status
+				- amount
+- # Design
+	- ## DB schema
+		- ![image.png](../assets/image_1719647329470_0.png)
+		- [mermaid source](https://mermaid.live/edit#pako:eNqdU01rwzAM_SvG5_YP-Lz1MgaD3UagqLGamCZSsOVCSfLf5zjtNtLQjflkvSdbT1-9LtmiNhr9k4PKQ1uQSufYuKoW1c_WdKIjUc6qt5dvLIh3VKnA0Zd4B1sM4gjEMd0_EZAYZngsrnzZQAi_xczYLG-fqN29HLl0uPAPCLKHliPJguEz-oBNs8523q0ktir-wHyayP_Lz1SuwSoTA_pVYiEyY8tsHimfPv5jpwlaXLy-TsowqO1WDf2cgFElk4CjsOLE_a1YRtVwxp_Nf-Rxq3Bip1BDFm7UARumKgXSG92ib8HZNM85n0JLjUmxNulqwZ8KXdCY_CAKv1-o1EZ8xI32HKtamyM0IVmxsyB43YcF-mydsP8CMZuv8w7lVdroDuiDuZ3_Hj8BnEEOAQ)
+	- ## Architecture
+		- ```
+		                                                        
+		             +----------------+                         
+		             |                |      +------+           
+		             |   application  |+---->|  DB  |           
+		             |                |      +------+           
+		             +--------^-------+                         
+		                      |                                 
+		                      |mutex lock                       
+		                      |                                 
+		                      |                                 
+		              +-------v------+                          
+		              |              |                          
+		              |redis-cluster |                          
+		              |              |                          
+		              +--------- ----+                          
+		                                                        
+		  ```
