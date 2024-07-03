@@ -7,9 +7,10 @@
 -
 -
 - Quota Template
-  💬 "<%setinput: QuoteText%>"
-  author::  <%setinput: Author%>
+- 💬 "<%setinput: QuoteText%>"
+  author:: <%setinput: Author%>
   topic:: "<%setinput: Topic%>"
+  template:: Quote Template
 -
 -
 -
