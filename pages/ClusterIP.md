@@ -1,7 +1,7 @@
 tags:: Kubernetes, Kubernetes Service
 
 - {{renderer :tocgen2}}
-- ## Access By FQDN (透過 FQDN 存取Endpoints)
+- ## 透過 FQDN 存取Endpoints
 	- 只有`kube-dns`能夠理解`Service`對應的FQDN
 	  ```
 	  vortex-dev:05:36:40 [~/go/src/github.com/hwchiu/kubeDemo](master)vagrant
@@ -24,7 +24,7 @@ tags:: Kubernetes, Kubernetes Service
 	  NAME                ENDPOINTS                                      AGE
 	  k8s-nginx-cluster   10.244.0.88:80,10.244.0.89:80,10.244.0.90:80   1d
 	  ```
-- ## Cluster Only
+- ## 只有`Cluster`內的應用程式/節點才可以存取
 	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PREROUTING`來達成
 	  OUTPUT: 本地節點送出的封包會先到這
 	  PREROUTING: 本地網卡收到封包後會到這，包含`Container`出來的封包
