@@ -30,6 +30,13 @@ tags:: Kubernetes, Kubernetes Service
 	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PREROUTING`來達成
 	  OUTPUT: 本地節點送出的封包會先到這
 	  PREROUTING: 本地網卡收到封包後會到這，包含`Container`出來的封包
+	  ```
+	  $sudo iptables-save -c | grep KUBE-SERVICES
+	  :KUBE-SERVICES - [0:0]
+	  [2376:171145] -A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+	  [3706:223392] -A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+	  ...
+	  ```
 	- 透過 `iptables`查看規則
 	  上面顯示 `ClusterIP` 的 IP 是`10.98.51.150`
 	  ```
@@ -47,10 +54,5 @@ tags:: Kubernetes, Kubernetes Service
 	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
 	- 看在什麼情況會進到`KUBE-SERVICES`這個 custom chain
 	  ```
-	  $sudo iptables-save -c | grep KUBE-SERVICES
-	  :KUBE-SERVICES - [0:0]
-	  [2376:171145] -A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
-	  [3706:223392] -A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
-	  ...
 	  ```
 -
