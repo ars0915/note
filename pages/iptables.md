@@ -1,1 +1,3 @@
-- 當封包有 Match 規則
+- 當封包有 Match 規則條件，即執行 Action(Target)
+- 每條規則都屬於一個`chain`，一個`chain`可以有多條規則
+- Pre
