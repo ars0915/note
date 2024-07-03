@@ -39,5 +39,10 @@ tags:: Kubernetes, Kubernetes Service
 	  -A KUBE-SERVICES -d 10.98.51.150/32 -p tcp -m comment --comment "default/k8s-nginx-cluster: cluster IP" -m tcp --dport 80 -j KUBE-SVC-3FL7SSXCKTCXAYCR
 	  ....
 	  ```
-	  -A KUBE-SERVICES:
-	- 這是一個 `Custom Chain`, 所有跟 `Kubernetes Service` 有關的第一到防線規則都在這邊
+	  -A KUBE-SERVICES: 這是一個 Custom Chain, 所有跟 Kubernetes Service 有關的第一到防線規則都在這邊
+	  -d 10.98.51.150/32: 目標位置是 ClusterIP 的話
+	  -p tcp: 目標是 TCP 協定
+	  -m comment: 就是註解
+	  -m tcp --dport 80: 使用外掛模組來解析TCP裡面的資訊，希望 TCP port 是80
+	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
+	-
