@@ -5,6 +5,9 @@
 	  author:: <%setinput: Author%>
 	  tags:: <%setinput: Tags%>
 -
+- Chapter Template
+	- book:: <%setinput: BookTitle%>
+	  tags:: <%setinput: Tags%>
 -
 - Quota Template
   template:: Quote Template
