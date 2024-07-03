@@ -37,8 +37,7 @@ tags:: Kubernetes, Kubernetes Service
 	  [3706:223392] -A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
 	  ...
 	  ```
-	- 透過 `iptables`查看規則
-	  上面顯示 `ClusterIP` 的 IP 是`10.98.51.150`
+	- 透過 `iptables`查看規則，上面顯示 `ClusterIP` 的 IP 是`10.98.51.150`
 	  ```
 	  vortex-dev:04:24:49 [~/go/src/github.com/hwchiu/kubeDemo](master)vagrant
 	  $sudo iptables-save | grep k8s-nginx-cluster
@@ -52,7 +51,3 @@ tags:: Kubernetes, Kubernetes Service
 	  -m comment: 就是註解
 	  -m tcp --dport 80: 使用外掛模組來解析TCP裡面的資訊，希望 TCP port 是80
 	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
-	- 看在什麼情況會進到`KUBE-SERVICES`這個 custom chain
-	  ```
-	  ```
--
