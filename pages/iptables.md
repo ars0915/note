@@ -17,4 +17,5 @@ tags:: Kubernetes
 	  kubernetes          172.17.8.100:6443                              11d
 	  ```
 	  當 cluster 中的容器 `IP`更動時，這裡都會自動更新
+	  遇到`service`不通時，可以先檢查`service`是否有對應的`endpoints`，可能`selector`寫錯或目標沒跑起來
 -
