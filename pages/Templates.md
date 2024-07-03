@@ -1,9 +1,8 @@
 - Read Template
   template:: Read Template
   template-including-parent:: false
-	- 📕"<%setinput: BookTitle%>"
+	- 📕<%setinput: BookTitle%>
 	  author:: <%setinput: Author%>
-	  topic:: "<%setinput: Topic%>"
 	  tags:: "<%setinput: Tags%>"
 	-
 	-
