@@ -6,4 +6,6 @@
 	  tags:: <%setinput: Tags%>
 -
 - Quote Template
-  💬
+  💬 "<%setinput: QuoteText%>"
+  author:: <%setinput: Author%>
+  topic::
