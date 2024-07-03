@@ -1,3 +1,3 @@
-tag:: Kubernetes
+tags:: Kubernetes
 
 -
