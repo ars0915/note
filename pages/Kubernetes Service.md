@@ -7,3 +7,5 @@ tags:: Kubernetes
 		- [[NodePort]]
 		- [[LoadBalancer]]
 		- [[External]]
+	- ##
+-
