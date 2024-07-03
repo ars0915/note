@@ -1,4 +1,4 @@
-tags:: Kubernetes, Kubernetes Service
+tags:: Kubernetes, Kubernetes Service, iptables
 
 - {{renderer :tocgen2}}
 - ## 透過 FQDN 存取Endpoints
@@ -57,4 +57,5 @@ tags:: Kubernetes, Kubernetes Service
 	  -A KUBE-SVC-3FL7SSXCKTCXAYCR -m comment --comment "default/k8s-nginx-cluster:" -j KUBE-SEP-XPSDT7KEI65EZ2WI
 	  ```
 	  看到`-m statistic`, `random`, `probability`發現是根據機率選擇接下來的 custom chain，當找到要使用的 **Endpoints** 的時候，就會跳到對應的 **KUBE-SEP-XXXX** 去進行 **DNAT** 的轉換
--
+- ## Summary
+  ![image.png](../assets/image_1720010779066_0.png)
