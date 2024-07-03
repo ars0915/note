@@ -4,6 +4,7 @@
 	- book:: <%setinput: BookTitle%>
 	  author:: <%setinput: Author%>
 	  tags:: <%setinput: Tags%>
+	  status:: <%setinput: Status%>
 -
 - Chapter Template
   template:: Chapter Template
