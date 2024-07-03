@@ -30,4 +30,14 @@ tags:: Kubernetes, Kubernetes Service
 	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PREROUTING`來達成
 	  OUTPUT: 本地節點送出的封包會先到這
 	  PREROUTING: 本地網卡收到封包後會到這，包含`Container`出來的封包
+	- 透過 `iptables`查看規則
+	  上面顯示 `ClusterIP` 的 IP 是`10.98.51.150`
+	  ```
+	  vortex-dev:04:24:49 [~/go/src/github.com/hwchiu/kubeDemo](master)vagrant
+	  $sudo iptables-save | grep k8s-nginx-cluster
+	  ....
+	  -A KUBE-SERVICES -d 10.98.51.150/32 -p tcp -m comment --comment "default/k8s-nginx-cluster: cluster IP" -m tcp --dport 80 -j KUBE-SVC-3FL7SSXCKTCXAYCR
+	  ....
+	  ```
+	  - -A
 	-
