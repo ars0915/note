@@ -5,3 +5,5 @@
 	  author:: <%setinput: Author%>
 	  tags:: <%setinput: Tags%>
 -
+- Quote Template
+  💬
