@@ -45,4 +45,12 @@ tags:: Kubernetes, Kubernetes Service
 	  -m comment: 就是註解
 	  -m tcp --dport 80: 使用外掛模組來解析TCP裡面的資訊，希望 TCP port 是80
 	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
-	-
+	- 看在什麼情況會進到`KUBE-SERVICES`這個 custom chain
+	  ```
+	  $sudo iptables-save -c | grep KUBE-SERVICES
+	  :KUBE-SERVICES - [0:0]
+	  [2376:171145] -A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+	  [3706:223392] -A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+	  ...
+	  ```
+-
