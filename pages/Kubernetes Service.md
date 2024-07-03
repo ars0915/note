@@ -1,3 +1,4 @@
+public:: true
 tags:: Kubernetes
 
 - ## 用途

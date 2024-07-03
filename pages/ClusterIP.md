@@ -1,3 +1,4 @@
+public:: true
 tags:: Kubernetes, Kubernetes Service, iptables
 
 - {{renderer :tocgen2}}
