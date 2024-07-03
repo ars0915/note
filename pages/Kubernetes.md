@@ -1,2 +1,2 @@
-- {{query }}
+- {{query (and page-tags Kubernetes)}}
 -
