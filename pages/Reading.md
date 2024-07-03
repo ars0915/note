@@ -4,3 +4,5 @@ public:: true
   query-table:: true
   query-properties:: [:page :public :author :tags]
 -
+- {{function }}
+-
