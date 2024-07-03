@@ -29,5 +29,5 @@ tags:: Kubernetes, Kubernetes Service
 - ## Cluster Only
 	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PREROUTING`來達成
 	  OUTPUT: 本地節點送出的封包會先到這
-	  PREROUTING: 本地
+	  PREROUTING: 本地網卡收到封包後會到這，包含`Container`出來的封包
 	-
