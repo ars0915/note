@@ -8,4 +8,6 @@ tags:: Kubernetes
 	- [[LoadBalancer]]
 	- [[External]]
 - ## Kube-Proxy Mode
-	-
+	- kube-proxy
+	- iptables
+	- ipvs
