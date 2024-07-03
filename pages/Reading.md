@@ -1,3 +1,5 @@
 public:: true
 
-- {{query }}
+- {{query (property tags book)}}
+  query-table:: true
+-
