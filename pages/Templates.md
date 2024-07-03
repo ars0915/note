@@ -1,2 +1,4 @@
 - Read Template
-	- 📕"<%setinput: Title%>"
+	- 📕"<%setinput: BookTitle%>"
+	  author: <%setinput: Author%>
+	  topic:
