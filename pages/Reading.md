@@ -1,5 +1,6 @@
 public:: true
 
-- query-table:: true
-  query-properties:: [:status :page :public :tags :author]
+- {{query (property tags book)}}
+  query-table:: true
+  query-properties:: [:page :public :author :tags]
 -
