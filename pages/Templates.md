@@ -1,1 +1,2 @@
-- R
+- Read Template
+	- 📕"<%setinput"
