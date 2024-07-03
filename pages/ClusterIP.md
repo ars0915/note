@@ -1,3 +1,3 @@
-tags:: Kubernetes
+tags:: Kubernetes, Kubernetes Service
 
 -
