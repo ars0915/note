@@ -13,4 +13,5 @@
 	  author:: <%setinput: Author%>
 	  topic:: "<%setinput: Topic%>"
 -
-- {{query (and "💬") (not []) }}
+- {{query (and "💬" (not (page [[Templates]])))}}
+-
