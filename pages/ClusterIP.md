@@ -27,4 +27,4 @@ tags:: Kubernetes, Kubernetes Service
 	  k8s-nginx-cluster   10.244.0.88:80,10.244.0.89:80,10.244.0.90:80   1d
 	  ```
 - ## Cluster Only
-	- 上面提到的特定條件就是****
+	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PRE`
