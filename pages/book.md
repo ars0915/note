@@ -1,3 +1,3 @@
-filters:: {"templates" false}
+public:: true
 
 -
