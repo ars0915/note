@@ -1,7 +1,7 @@
 tags:: Kubernetes, Kubernetes Service
 
 - {{renderer :tocgen2}}
-- ## Access By FQDN
+- ## Access By FQDN (透過 FQDN 存取Endpoints)
 	- 只有`kube-dns`能夠理解`Service`對應的FQDN
 	  ```
 	  vortex-dev:05:36:40 [~/go/src/github.com/hwchiu/kubeDemo](master)vagrant
