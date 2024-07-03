@@ -6,4 +6,4 @@ tag:: Kubernetes
 		- [[ClusterIP]]
 		- [[NodePort]]
 		- [[LoadBalancer]]
-		-
+		- [[External]]
