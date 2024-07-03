@@ -1,2 +1,2 @@
 - Read Template
-	- 📕"<%setinput"
+	- 📕"<%setinput: Title%>"
