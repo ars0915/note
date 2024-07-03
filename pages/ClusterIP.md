@@ -1,6 +1,6 @@
 tags:: Kubernetes, Kubernetes Service
 
--
+- {{renderer :tocgen2}}
 - ## Access By FQDN
 	- 只有`kube-dns`能夠理解`Service`對應的FQDN
 	  ```
@@ -49,3 +49,5 @@ tags:: Kubernetes, Kubernetes Service
 	  -m comment: 就是註解
 	  -m tcp --dport 80: 使用外掛模組來解析TCP裡面的資訊，希望 TCP port 是80
 	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
+- ## Load Balancing
+	-
