@@ -2,7 +2,7 @@ public:: true
 
 - {{query (property tags book)}}
   query-table:: true
-  query-properties:: [:page :public :author :tags]
+  query-properties:: [:page :public :author :tags :status]
 -
 -
 -
