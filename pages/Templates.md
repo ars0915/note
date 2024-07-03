@@ -7,6 +7,7 @@
 -
 -
 - Quote Template
-  📕 "<%setinput: QuoteText%>"
+  💬 "<%setinput: QuoteText%>"
   author:: <%setinput: Author%>
   topic:: <%setinput: Topic%>
+  template:: Quote Template
