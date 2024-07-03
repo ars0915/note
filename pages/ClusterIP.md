@@ -13,4 +13,5 @@ tags:: Kubernetes, Kubernetes Service
 	  k8s-nginx-cluster   ClusterIP   10.98.51.150   <none>        80/TCP         1d
 	  k8s-nginx-node      NodePort    10.99.157.45   <none>        80:32293/TCP   1d
 	  ```
+	  `Cluster-IP`是一個虛擬IP，針對該IP發送的封包會透過DNAT轉換到其中
 -
