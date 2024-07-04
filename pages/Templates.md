@@ -1,11 +1,12 @@
 - Read Template
   template:: Read Template
   template-including-parent:: false
-	- author:: <%setinput: Author%>
+	- public:: true
+	  author:: <%setinput: Author%>
 	  tags:: <%setinput: Tags%>
 	  status:: <%setinput: Status%>
 	- ## Chapter
-		-
+		- {{query (property book <%setinput: BookTitle%>)}}
 -
 - Chapter Template
   template:: Chapter Template
