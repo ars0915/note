@@ -13,7 +13,7 @@
   template-including-parent:: false
 	- book:: <%setinput: BookTitle%>
 	  tags:: <%setinput: Tags%>
-	  chapter:: <%setinput: Chapter
+	  chapter:: <%setinput: Chapter%>
 -
 - Quota Template
   template:: Quote Template
