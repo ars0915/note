@@ -30,5 +30,6 @@
 	  type:: [[Paper]]
 - Web Page Template
   template:: Reference/WebPage Template
+  template-including-parent:: false
 	- <%setinput: Author%>, "<%setinput: Title%>," *<%setinput: WebPageName%>*, Available: [link_to_page](<%setinput: Link%>). 
 	  type:: [[Web Page]]
