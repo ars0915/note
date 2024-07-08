@@ -27,3 +27,4 @@
   template:: Paper Template
   template-including-parent:: false
 	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
+	  type:: [[Paper]]
