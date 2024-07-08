@@ -23,4 +23,6 @@
 	  topic:: "<%setinput: Topic%>"
 -
 - ## Reference Template
-- Paper
+- Paper Reference Template
+  author: <%setinput: Author%>
+  titile
