@@ -24,4 +24,8 @@
 -
 - ## Reference Template
 -
+-
 - Paper Template
+  template:: Paper Template
+  template-including-parent:: false
+  aaaaa
