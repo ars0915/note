@@ -23,6 +23,7 @@
 	  topic:: "<%setinput: Topic%>"
 -
 - ## Reference Template
-- Paper Ref Template
-  template:: Paper Ref Template
-  <%setinput: Author%> "<%setinput: Title%>," in <%setinput: ConfName%>, <%setinput: Time%>, pp.
+- Paper Template
+  template:: Paper Template
+  template-including-parent:: false
+	- <%setinput: Author%> "<%setinput: Title%>," in <%setinput: ConfName%>, <%setinput: Time%>, pp.
