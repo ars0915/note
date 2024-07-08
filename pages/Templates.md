@@ -22,4 +22,5 @@
 	  author:: <%setinput: Author%>
 	  topic:: "<%setinput: Topic%>"
 -
--
+- ## Reference Template
+- Paper
