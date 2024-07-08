@@ -23,9 +23,6 @@
 	  topic:: "<%setinput: Topic%>"
 -
 - ## Reference Template
--
--
-- Paper Template
-  template:: Paper Template
-  template-including-parent:: false
+- Paper Ref Template
+  template:: Paper Ref Template
   aaaaa
