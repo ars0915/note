@@ -26,5 +26,5 @@
 - Paper Reference Template
   template:: Paper Reference Template
   template-including-parent:: false
-  <%setinput: Author%> "<%setinput: Title%>," in <%setinput: ConfName%>, <%setinput: Time%>, pp.
-  type:: [[Paper]]
+  <%setinput: Author%>
+-
