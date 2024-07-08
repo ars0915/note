@@ -25,4 +25,4 @@
 - ## Reference Template
 - Paper Ref Template
   template:: Paper Ref Template
-  aaaaa
+  <%setinput: Author%> "<%setinput: Title%>," in <%setinput: ConfName%>, <%setinput: Time%>, pp.
