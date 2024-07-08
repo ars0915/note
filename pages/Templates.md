@@ -23,13 +23,5 @@
 	  topic:: "<%setinput: Topic%>"
 -
 - ## Reference Template
-- Paper Reference Template
-  template:: Paper Template
-  template-including-parent:: false
-  <%setinput: Author%>
-  <%setinput: Title%>
-  <%setinput: ConfName%>
-  <%setinput: Time%>
-  <%getinput: Author%> "<%getinput: Title%>," in <%getinput: ConfName%>, <%getinput: Time%>, pp.
-  aaaaa
 -
+- Paper Template
