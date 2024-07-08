@@ -24,7 +24,11 @@
 -
 - ## Reference Template
 - Paper Template
-  template:: Paper Template
+  template:: Reference/Paper Template
   template-including-parent:: false
 	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
 	  type:: [[Paper]]
+- Web Page Template
+	- <%setinput: Author%>, "Document title," *Webpage name*, Source/production information, [[Date of internet publication]]. [Format: Online]. Available: [link_to_page](link_to_page). [Accessed: [[Date of access]]].
+	  	  template:: Reference/Web Page 
+	  	  type:: [[Web Page]]
