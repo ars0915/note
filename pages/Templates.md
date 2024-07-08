@@ -24,4 +24,5 @@
 -
 - ## Reference Template
 - Paper Reference Template
-  <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>
+  template:: Paper Reference Template
+  <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
