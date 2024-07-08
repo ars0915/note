@@ -26,4 +26,4 @@
 - Paper Template
   template:: Paper Template
   template-including-parent:: false
-	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>, <%setinput: Time%>, pp.
+	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
