@@ -25,4 +25,4 @@
 - ## Reference Template
 - Paper Reference Template
   author: <%setinput: Author%>
-  titile
+  title: <%setinput: Title%>
