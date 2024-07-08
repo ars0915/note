@@ -29,6 +29,6 @@
 	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
 	  type:: [[Paper]]
 - Web Page Template
-	- <%setinput: Author%>, "<%setinput: Title%>," *<%setinput: WebPageName%>*, Source/production information, [[Date of internet publication]]. [Format: Online]. Available: [link_to_page](link_to_page). [Accessed: [[Date of access]]].
-	  	  template:: Reference/Web Page 
-	  	  type:: [[Web Page]]
+  template:: Reference/WebPage Template
+	- <%setinput: Author%>, "<%setinput: Title%>," *<%setinput: WebPageName%>*, Available: [link_to_page](<%setinput: Link%>). 
+	  type:: [[Web Page]]
