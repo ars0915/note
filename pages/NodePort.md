@@ -6,4 +6,4 @@ tags:: Kubernetes, Kubernetes Service, iptables
   根據 [[ClusterIP]]的流程中得知，要支援`NodePort`只需要修改前面的條件
   1. 封包若來自叢集上的應用程式/節點，則跳到 `KUBE-SVC`
   2. 如果封包的目標IP地址是 ClusterIP 所提供的虛擬IP地址, 則跳到 KUBE-SVC-XXXX
--
+- 先部屬一個 `k8s-nginx-node`service 在 `default`namespace中
