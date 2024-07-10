@@ -35,3 +35,4 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  -A KUBE-NODEPORTS -p tcp -m comment --comment "default/k8s-nginx-node:" -m tcp --dport 30136 -j KUBE-MARK-MASQ
 	  -A KUBE-NODEPORTS -p tcp -m comment --comment "default/k8s-nginx-node:" -m tcp --dport 30136 -j KUBE-SVC-RD5DSC6PXE26GCYZ
 	  ```
+	  1.`-j KUBE-MARK-MASQ`, 這部份是跟 `SNAT` 有關的
