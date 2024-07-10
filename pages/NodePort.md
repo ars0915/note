@@ -24,4 +24,10 @@ tags:: Kubernetes, Kubernetes Service, iptables
   -A KUBE-SVC-RD5DSC6PXE26GCYZ -m comment --comment "default/k8s-nginx-node:" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-ZGMDZ7UNNV74OV5B
   -A KUBE-SVC-RD5DSC6PXE26GCYZ -m comment --comment "default/k8s-nginx-node:" -j KUBE-SEP-VRKO3GZ2XUCPVWY5
   ```
+  根據 custom chain 來看有四個部份
+  1. KUBE-NODEPORTS
+  2. KUBE-SEP-XXXX
+  3. KUBE-SERVICES
+  4. KUBE-SVC-XXXX
+  只有 `KUBE-NODEPORTS`和[]
 -
