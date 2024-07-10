@@ -26,6 +26,7 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  k8s-nginx-cluster   10.244.0.88:80,10.244.0.89:80,10.244.0.90:80   1d
 	  ```
 - ## 只有`Cluster`內的應用程式/節點才可以存取
+  id:: 668bcac4-7bd2-4dc8-b23c-af01fd76aaf3
 	- 上面提到的特定條件就是**只有``Cluster``內的應用程式/節點可以存取**，使用`iptables build-in chain`的 `OUTPUT/PREROUTING`來達成
 	  OUTPUT: 本地節點送出的封包會先到這
 	  PREROUTING: 本地網卡收到封包後會到這，包含`Container`出來的封包

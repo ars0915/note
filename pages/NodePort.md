@@ -3,4 +3,4 @@ tags:: Kubernetes, Kubernetes Service, iptables
 
 - `NodePort` 本身包含了 [[ClusterIP]] 的能力，也可以讓`Cluster`外部透過指定的Port存取`Cluster`內的應用程式。
 - ## 實現方式
-  根據
+  根據 [[ClusterIP]]的流程中得知，要支Q
