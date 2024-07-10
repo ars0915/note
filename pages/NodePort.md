@@ -50,4 +50,5 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  $sudo iptables-save  | grep "\-j KUBE-NODEPORTS"
 	  -A KUBE-SERVICES -m comment --comment "kubernetes service nodeports; NOTE: this must be the last rule in this chain" -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
 	  ```
-	  只要封包的目標IP地址是屬於本節點上的任何網卡IP
+	  條件：只要封包的目標IP地址是屬於本節點上的任何網卡IP
+-
