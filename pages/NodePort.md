@@ -52,4 +52,5 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  ```
 	  條件：只要封包的目標IP地址是屬於本節點上的任何網卡IP
 - ## PortBinding
-  所有的 `kubernetes NodePort service` 都會共用同一個 `KUBE-NODEPORT`，因此所有的 `NodePort` 使用的 `Port` 都不能一樣，也不能讓任何應用程式使用到同一個 port，
+  所有的 `kubernetes NodePort service` 都會共用同一個 `KUBE-NODEPORT`，因此所有的 `NodePort` 使用的 `Port` 都不能一樣，也不能讓任何應用程式使用到同一個 port
+  當 `NodePort`建立後 `kube-proxy`就會佔用那個 Port，避免其他
