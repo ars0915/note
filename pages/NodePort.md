@@ -29,5 +29,9 @@ tags:: Kubernetes, Kubernetes Service, iptables
   2. KUBE-SEP-XXXX
   3. KUBE-SERVICES
   4. KUBE-SVC-XXXX
-  只有 `KUBE-NODEPORTS`和[]
--
+  只有 `KUBE-NODEPORTS`和 [[ClusterIP]]不一樣
+- ## KUBE-NODEPORTS
+	- ```
+	  -A KUBE-NODEPORTS -p tcp -m comment --comment "default/k8s-nginx-node:" -m tcp --dport 30136 -j KUBE-MARK-MASQ
+	  -A KUBE-NODEPORTS -p tcp -m comment --comment "default/k8s-nginx-node:" -m tcp --dport 30136 -j KUBE-SVC-RD5DSC6PXE26GCYZ
+	  ```
