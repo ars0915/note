@@ -36,4 +36,5 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  -A KUBE-NODEPORTS -p tcp -m comment --comment "default/k8s-nginx-node:" -m tcp --dport 30136 -j KUBE-SVC-RD5DSC6PXE26GCYZ
 	  ```
 	  1.`-j KUBE-MARK-MASQ`, 這部份是跟[[SNAT]]有關的，修改封包的來源IP
-	  2. `-j KUBE-SVC-XXXXX` 的條件是存取`30136/TCP`，就會
+	  2. `-j KUBE-SVC-XXXXX` 的條件是存取`30136/TCP`，就會跳到 [KUBE-SVC-XXXXX]((668bcac4-b9fe-4452-aabc-6ab9118d3d9f))
+	  這邊的 port 也可以通過 `kubectl get svc `

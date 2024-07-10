@@ -52,6 +52,7 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  -m tcp --dport 80: 使用外掛模組來解析TCP裡面的資訊，希望 TCP port 是80
 	  -j KUBE-SVC-3FL7SSXCKTCXAYCR: 上述所有條件都符合，就會跳入另外一個custom chain來執行後續任務
 - ## 從多個 `Endpoints` 中選擇
+  id:: 668bcac4-b9fe-4452-aabc-6ab9118d3d9f
 	- 檢視剛剛的 custom chain 內容
 	  ```
 	  -A KUBE-SVC-3FL7SSXCKTCXAYCR -m comment --comment "default/k8s-nginx-cluster:" -m statistic --mode random --probability 0.33332999982 -j KUBE-SEP-POVAFWTN5ECIRK7J
