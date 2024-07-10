@@ -44,4 +44,10 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
 	  k8s-nginx-node   NodePort    10.98.128.179   <none>        80:30136/TCP   1d
 	  ```
-	-
+	- 什麼時候會跳到 `KUBE-NODEPORTS`?
+	  ```
+	  vortex-dev:03:43:42 [~]vagrant
+	  $sudo iptables-save  | grep "\-j KUBE-NODEPORTS"
+	  -A KUBE-SERVICES -m comment --comment "kubernetes service nodeports; NOTE: this must be the last rule in this chain" -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
+	  ```
+	  只要封包的目標IP地址是屬於本節點上的任何網卡IP
