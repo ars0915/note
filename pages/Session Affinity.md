@@ -23,5 +23,5 @@ tags:: Kubernetes, Kubernetes Service, iptables
 		  --name KUBE-SEP-XXXXXXXX: 這邊對應的就是存到 cache 內的 Value.
 		  --mask 255.255.255.255: 這個搭配下一個參數使用
 		  --rsource: 這邊代表是的我要用什麼當做 key, 這邊使用的是 source 就是所謂的封包來源IP地址,既然有IP地址，就可以搭配前面的mask來調整IP位址的範圍，這個範例中就是/32的設定，意味IP要完全一樣才行。
-			- 2. 針對每一條 `KUBE-SVC-XXX` 裡面的規則，依序每個 `EndPoints` 執行下列操作
+			- 2. 針對每一條 `KUBE-SVC-XXX` 裡面的規則，依序每個 Endpoints 執行下列操作
 -
