@@ -14,4 +14,3 @@ tags:: Kubernetes
 	- ipvs: (IP virtual switch) 與`iptables`類似，只是在 `kernel-space` 裡面採用 `ipvs` 的方式來轉送封包，相對於 `iptables` 本身效率更高，同時也不會受限於`iptables` 的使用規則
 	- 可以藉由設定 `kube-proxy` 裡面的 `--proxy-mode` 這個參數來決定要使用哪一種實現方式，kube-proxy 本身會透過 `daemonset` 的方式部屬到每一個節點上
 -
--
