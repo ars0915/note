@@ -15,7 +15,7 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  
 	  -A KUBE-SVC-UBXGHWUUHMMRNNE6 -m comment --comment "default/k8s-nginx-affinity:" -m recent --rcheck --seconds 10800 --reap --name KUBE-SEP-HDMJEKA4BFKBU6OK --mask 255.255.255.255 --rsource -j KUBE-SEP-HDMJEKA4BFKBU6OK
 	  ```
-	  ![image.png](../assets/image_1720010779066_0.png)
+	  ![image.png](../assets/image_1720718209819_0.png)
 		- 1. `KUBE-SEP`為執行`DNAT`的 custom chain，當選出要使用的 Endpoints 時，將結果記錄到 Cache 中。
 		  **[來源IP地址] => KUBE-SEP-HDMJEKA4BFKBU6OK**
 		  -m recent: 使用擴充模組 recent
@@ -30,4 +30,3 @@ tags:: Kubernetes, Kubernetes Service, iptables
 		  --rsouce/--mask: key, 封包的來源 IP
 		  --seconds: 每個 cache 內的記錄都會有一個過期的時間，這個時間的意思是只有上次設定該 ket/value 的時間距離現在N秒內的才算數，已這個範例來說就是 10800秒 內的 cache 記錄才算數，如果是超過 10800秒 前記錄的，就當失效。
 		  --reap: 這個是指每次查詢的時候，會將已經超過有效時間 的規則一併清除。
--
