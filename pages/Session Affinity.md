@@ -7,4 +7,8 @@ tags:: Kubernetes, Kubernetes Service, iptables
   1. None: 不作用
   2. ClientIP: 當 Client IP 相同時導到同一個 EndPoints
   如果使用 [[NodePort]] 或 [[Ingress]] 可能會拿到都是 load-balancer 或 [[Ingress]] controller 的 IP
-- ## How
+- ## How It Works
+	- ```
+	  $sudo iptables-save | grep k8s-nginx-affinity
+	  
+	  ```
