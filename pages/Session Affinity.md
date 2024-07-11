@@ -17,4 +17,9 @@ tags:: Kubernetes, Kubernetes Service, iptables
 	  ```
 	  ![image.png](../assets/image_1720010779066_0.png)
 	  1. `KUBE-SEP`為執行`DNAT`的 custom chain，當選出要使用的 Endpoints 時，將結果記錄到 Cache 中。
+	  -m recent: 使用擴充模組 recent
+	  --set: 這次的行為想要進行儲存的動作，將某些 key/value 寫進到 recent cache 內
+	  --name KUBE-SEP-XXXXXXXX: 這邊對應的就是存到 cache 內的 Value.
+	  --mask 255.255.255.255: 這個搭配下一個參數使用
+	  --rsource: 這邊代表是的我要用什麼當做 key, 這邊使用的是 souruce 就是所謂的封包來源IP地址,既然有IP地址，就可以搭配前面的mask來調整IP位址的範圍，這個範例中就是/32的設定，意味IP要完全一樣才行。
 -
