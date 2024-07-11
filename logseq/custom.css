@@ -32,3 +32,15 @@
 	border-left-color: #f15bf74f;}
 /* ==== fix spacing - TWEAK VALUES ! ===*/
 .ls-block { margin:-2px 0px -2px -1px !important; padding: 4px 1px !important;}
+
+.kef-tocgen-page {
+  cursor: pointer;
+  line-height: 2;
+}
+.kef-tocgen-block {
+  line-height: 1.7;
+}
+.kef-tocgen-active-block {
+  font-size: 1.1em;
+  font-weight: 600;
+}
