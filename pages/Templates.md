@@ -5,6 +5,7 @@
 	  author:: <%setinput: Author%>
 	  tags:: <%setinput: Tags%>
 	  status:: <%setinput: Status%>
+	- {{query (and (property chapter) (and <% current page %>))}}
 -
 id:: 668bcac4-0497-4ea8-8e15-05190313d1a5
 - Chapter Template
