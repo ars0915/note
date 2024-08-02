@@ -1,1 +1,1 @@
-- 需搭配雲端 LoadBalancer 使用
+- 需搭配雲端 LoadBalancer 使用，將 L4 的
