@@ -246,4 +246,9 @@ tags:: Kubernetes, Kubernetes Node
 			  tolerationSeconds 的設定是 k8s 自動給進去的，若要更改預設值 300，可以透過 DefaultTolerationSeconds admission controller
 		- 此外，要讓 taint based eviction 運作，必須要開啟 `TaintBasedEvictions` feature gate (預設是關閉的)
 		- 設定這功能需要注意 node controller 中的 `--node-eviction-rate`(預設 0.1，表示 10 秒驅離一個 pod) 設定，必須很小心的設定這個值，避免大規模驅離 pod 時造成整個 cluster 崩潰的連鎖效應 (特別是當 master node 發生崩潰的時候)
-	- ###
+	- ### Taint Nodes by Condition
+		- 希望當 node 發生特定問題的時候，不要自動被加上 taint，避免 pod 無法被分派到該 node
+		- 在 v1.12 後，`TaintNodesByCondition` feature 已經變成 beta 功能且預設開啟，管理者可以透過這個功能選擇性的忽略某些 node 的狀況，而 `TaintNodesByCondition` 實際運作狀況是這樣的：
+		  
+		  1. 若 node 發生狀況時，k8s 會自動加上 Effect=NoSchedule 的 taint 到該 node 上
+		  2. 若 `TaintNodesByCondition` 有設定忽略特定狀況，就不會加上 taint
