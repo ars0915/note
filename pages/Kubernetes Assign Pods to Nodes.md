@@ -197,4 +197,7 @@ tags:: Kubernetes, Kubernetes Node
 		  1. Key
 		  2. Value
 		  3. Effect：共有三種，分別是 **NoSchedule**, **PreferNoSchedule** & **NoExecute**
--
+		- 設定 node taint
+		  ```
+		  kubectl taint nodes node1 key=value:Effect
+		  ```
