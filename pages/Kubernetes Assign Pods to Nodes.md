@@ -197,6 +197,10 @@ tags:: Kubernetes, Kubernetes Node
 		  1. Key
 		  2. Value
 		  3. Effect：共有三種，分別是 **NoSchedule**, **PreferNoSchedule** & **NoExecute**
+			- #### NoSchedule
+			  假設最後某個 node 上留下的 taint 的 effect 為 `NoSchedule`，那 k8s 就不會把該 pod 分派到該 node 上，但不影響正在運作中的 pod。
+			- #### PreferNoSchedule
+			- #### NoExecute
 		- 設定 node taint
 		  ```
 		  kubectl taint nodes node1 key=value:NoSchedule
@@ -224,4 +228,3 @@ tags:: Kubernetes, Kubernetes Node
 		    operator: "Exists"
 		    effect: "NoSchedule"
 		  ```
-	- ### Effect
