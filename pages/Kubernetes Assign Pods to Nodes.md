@@ -44,6 +44,44 @@ tags:: Kubernetes, Kubernetes Node
 			  1. `requiredDuringScheduling`：一定要 node 符合條件，scheduler 才會把 pod 分派到上面去跑，一旦發現不再滿足調度條件，會被驅除
 			  2. `preferredDuringScheduling`：會儘量嘗試找尋合適條件的 node，但不強制
 			  3. `IgnoredDuringExecution`：表示當 pod 已經正在運作中了，即使 node 的 label 在之後遭到變更，也不會影響正在運作中的 pod
-		-
+		- 範例：
+		  
+		  ```yaml
+		  apiVersion: v1
+		  kind: Pod
+		  metadata:
+		    name: with-node-affinity
+		  spec:
+		    affinity:
+		      nodeAffinity:
+		        # 一定要滿足以下條件才可作 pod scheduling
+		        requiredDuringSchedulingIgnoredDuringExecution:
+		          # nodeSelector 的條件定義
+		          nodeSelectorTerms:
+		          - matchExpressions:
+		            # node 一定有帶有 以下任何一種 label 才可以
+		            # "kubernetes.io/e2e-az-name=e2e-az1"
+		            # "kubernetes.io/e2e-az-name=e2e-az2"
+		            - key: kubernetes.io/e2e-az-name
+		              operator: In
+		              values:
+		              - e2e-az1
+		              - e2e-az2
+		        # 儘量滿足以下條件即可作 pod scheduling
+		        preferredDuringSchedulingIgnoredDuringExecution:
+		        # 這是屬於 prefer 的權重設定(1-100)，符合條件就會得到此權重值
+		        # pod 會被分配到最後加總數值最高的 node
+		        - weight: 1
+		          preference:
+		            matchExpressions:
+		            # 儘量尋找帶有 label "another-node-label-key=another-node-label-value" 的 node
+		            - key: another-node-label-key
+		              operator: In
+		              values:
+		              - another-node-label-value
+		    containers:
+		    - name: with-node-affinity
+		      image: k8s.gcr.io/pause:2.0
+		  ```
 	- ### inter-pod affinity/anti-affinity
 - ## Taints & Tolerations
