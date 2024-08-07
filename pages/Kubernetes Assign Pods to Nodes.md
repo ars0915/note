@@ -31,6 +31,7 @@ tags:: Kubernetes, Kubernetes Node
 	      disk_type: ssd
 	  ```
 	- ### Built-in Node Labels
+	  id:: 66b3944a-73aa-4ab5-a17e-6bd3caa5df69
 		- 每個 node 都會有一些內建的 label set，像是：
 		  beta.kubernetes.io/arch
 		  beta.kubernetes.io/os
@@ -102,7 +103,7 @@ tags:: Kubernetes, Kubernetes Node
 		  2. **preferredDuringSchedulingIgnoredDuringExecution**
 		- 當實際要設定 pod affinity/anti-affinity，有兩個條件可以用來進行設定：
 		  **pod label set**：這個部份其實很清楚，跟 node label set 其實是一樣的東西
-		  **node topology key**：這個部份通常就是 k8s 的 build-in node label (表示希望檢查 worker node 是否也符合條件)
+		  **node topology key**((66b3944a-73aa-4ab5-a17e-6bd3caa5df69))：這個部份通常就是 k8s 的 build-in node label (表示希望檢查 worker node 是否也符合條件)
 		  topologyKey 的設定用意在於，如果有多個 pod 需要分配，並指定了 topologyKey，那 scheduler 在分配時就**不可以**多個 pod 放到帶有相同 value 的topologyKey(Label) 的 node 上
 		-
 - ## Taints & Tolerations
