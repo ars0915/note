@@ -200,7 +200,11 @@ tags:: Kubernetes, Kubernetes Node
 			- #### NoSchedule
 			  假設最後某個 node 上留下的 taint 的 effect 為 `NoSchedule`，那 k8s 就不會把該 pod 分派到該 node 上，但不影響正在運作中的 pod。
 			- #### PreferNoSchedule
+			  假設最後某個 node 上留下的 taint 的 effect 為 PreferNoSchedule，那 k8s 就儘量不會把該 pod 分派到該 node 上(最後要是沒辦法的時候還是會破功)，但不影響正在運作中的 pod。
 			- #### NoExecute
+			  假設某個 node 被設定了 effect 為 NoExecute 的 taint，那 k8s 還會把已經存在該 node 上的 pod 趕走，也不會把該 pod 分派到該 node 上。
+			  
+			  設定 tolerationSeconds 可以表示在 taint 被增加之後，帶有相對應 toleration 的 pod 還可以在該 node 上存在多久
 		- 設定 node taint
 		  ```
 		  kubectl taint nodes node1 key=value:NoSchedule
