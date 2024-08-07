@@ -244,4 +244,6 @@ tags:: Kubernetes, Kubernetes Node
 			  `node.cloudprovider.kubernetes.io/uninitialized`: 若透過kubectl指定了一個"外部" 雲平台驅動， 它將給當前節點添加一個污點將其標誌為不可用。在cloud-controller-manager 的一個控制器初始化這個節點後，kubelet 將刪除這個污點。
 			- 除了在該 node 上增加一個 taint 的設定外，還會在該 node 上的每個 pod 加上相對應的 toleration 設定，並設定 tolerationSeconds=300，這表示每個 pod 都還可以留在該 node 上 5 分鐘。
 			  tolerationSeconds 的設定是 k8s 自動給進去的，若要更改預設值 300，可以透過 DefaultTolerationSeconds admission controller
-			-
+		- 此外，要讓 taint based eviction 運作，必須要開啟 `TaintBasedEvictions` feature gate (預設是關閉的)
+		- 設定這功能需要注意 node controller 中的 `--node-eviction-rate`(預設 0.1，表示 10 秒驅離一個 pod) 設定，必須很小心的設定這個值，避免大規模驅離 pod 時造成整個 cluster 崩潰的連鎖效應 (特別是當 master node 發生崩潰的時候)
+	- ###
