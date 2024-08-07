@@ -6,6 +6,8 @@ tags:: Kubernetes, Kubernetes Node
 	  1. 讓 pod 被分配到特定的 nodes (例如有特定硬體、node綁IP)
 	  2. 希望某些 pod 可以被固定放在一起
 	  3. 分散 pod 所屬的 node
-	  這些都建立在 **
+	  這些都建立在 **label select** 的基礎上完成
+- ## nodeSelector
+	-
 - ## Affinity & Anti-Affinity
 - ## Taints & Tolerations
