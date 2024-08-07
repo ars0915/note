@@ -189,4 +189,7 @@ tags:: Kubernetes, Kubernetes Node
 			          image: nginx:1.12-alpine
 			  ```
 - ## Taints & Tolerations
+	- `taint`：設計讓 pod 如何不要被分派到某個 worker node
+	  與 `toleration` 共同搭配使用，目的就是要避免讓 pod 被分派到不正確 or 不合適的 worker node 上，運作原理大概如下：
+	  如果有特定的 node 被加上了 taint(汙點)，pod 就不會被分派到上面，除非 pod spec 有設定 toleration(容忍) 來接受這些 taint (必須全部 taint 都接受才行)
 	-
