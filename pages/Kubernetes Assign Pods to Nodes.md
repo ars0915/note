@@ -188,5 +188,5 @@ tags:: Kubernetes, Kubernetes Node
 			        - name: web-app
 			          image: nginx:1.12-alpine
 			  ```
-		- 對於親和性和requiredDuringSchedulingIgnoredDuringExecution的Pod反親和性，topologyKey不能為空
 - ## Taints & Tolerations
+	-
