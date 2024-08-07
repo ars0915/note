@@ -9,6 +9,9 @@ tags:: Kubernetes, Kubernetes Node
 	  這些都建立在 **label select** 的基礎上完成
 - ## nodeSelector
 	- ### 為 worker node 指定 label
-		-
+		- ```shell
+		  kubectl label nodes/<node-name> <label-key>=<label-value>
+		  ```
+	-
 - ## Affinity & Anti-Affinity
 - ## Taints & Tolerations
