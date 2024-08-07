@@ -8,6 +8,7 @@ tags:: Kubernetes, Kubernetes Node
 	  3. 分散 pod 所屬的 node
 	  這些都建立在 **label select** 的基礎上完成
 - ## nodeSelector
-	-
+	- ### 為 worker node 指定 label
+		-
 - ## Affinity & Anti-Affinity
 - ## Taints & Tolerations
