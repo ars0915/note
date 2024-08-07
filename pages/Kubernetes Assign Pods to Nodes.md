@@ -90,6 +90,7 @@ tags:: Kubernetes, Kubernetes Node
 		- 為什麼需要 pod affinity/anti-affinity?
 		  跟 ReplicaSets, StatefulSets 或是 Deployments 一起搭配的時候；例如：希望把 workload 分派到特定的 topology 的運行(例如：同一個 node)
 		- 有以下兩種設定類型可以使用：
-		  1. `requiredDuringSchedulingIgnoredDuringExecution`
-		- `preferredDuringSchedulingIgnoredDuringExecution`
+		  1. **requiredDuringSchedulingIgnoredDuringExecution**
+		  2. **preferredDuringSchedulingIgnoredDuringExecution**
+		-
 - ## Taints & Tolerations
