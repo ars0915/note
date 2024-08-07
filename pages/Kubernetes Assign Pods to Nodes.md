@@ -111,7 +111,6 @@ tags:: Kubernetes, Kubernetes Node
 		  node04: redis + web-app
 		  node05: redis + web-app
 			- 佈署 redis，並確保分散在不同的 node
-			  
 			  ```yaml
 			  apiVersion: apps/v1
 			  kind: Deployment
@@ -144,4 +143,50 @@ tags:: Kubernetes, Kubernetes Node
 			        - name: redis-server
 			          image: redis:3.2-alpine
 			  ```
+			- 佈署 web app，並跟 redis 放一起
+			  ```yaml
+			  apiVersion: apps/v1
+			  kind: Deployment
+			  metadata:
+			    name: web-server
+			  spec:
+			    selector:
+			      matchLabels:
+			        app: web-store
+			    replicas: 3
+			    template:
+			      metadata:
+			        labels:
+			          app: web-store
+			      spec:
+			        affinity:
+			          # 跟佈署 redis 相同，不要讓 web app 分派到同樣的 worker node 上
+			          podAntiAffinity:
+			            requiredDuringSchedulingIgnoredDuringExecution:
+			            - labelSelector:
+			                matchExpressions:
+			                - key: app
+			                  operator: In
+			                  values:
+			                  - web-store
+			              topologyKey: "kubernetes.io/hostname"
+			          # 這是跟 redis cache 可以一對一放在一起並分散到不同 worker node 的關鍵
+			          podAffinity:
+			            requiredDuringSchedulingIgnoredDuringExecution:
+			            # 在這裡設定 redis cache 的 label set
+			            # 指定要找到 redis 所在的 worker node 來放 web app pod
+			            - labelSelector:
+			                matchExpressions:
+			                - key: app
+			                  operator: In
+			                  values:
+			                  - store
+			              # 但是要分散到不同的 worker node 上
+			              # (需要帶有 kubernetes.io/hostname label 的 worker node，但 value 不能相同)
+			              topologyKey: "kubernetes.io/hostname"
+			        containers:
+			        - name: web-app
+			          image: nginx:1.12-alpine
+			  ```
+			-
 - ## Taints & Tolerations
