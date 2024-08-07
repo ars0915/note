@@ -30,7 +30,8 @@ tags:: Kubernetes, Kubernetes Node
 	    nodeSelector:
 	      disk_type: ssd
 	  ```
-	-
+	- ### Built-in Node Labels
+		- 每個 node 都會有一些內建的 label set
 - ## Affinity & Anti-Affinity
 	- [nodeSelector](((66b38f32-d3a4-4919-86eb-9f22044b23f5))) 有時無法滿足複雜的需求
 	  **affinity/anti-affinity** 加強了幾個地方：
