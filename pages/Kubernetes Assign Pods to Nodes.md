@@ -12,6 +12,24 @@ tags:: Kubernetes, Kubernetes Node
 		- ```shell
 		  kubectl label nodes/<node-name> <label-key>=<label-value>
 		  ```
-	-
+	- ### 為 pod spec 設定 nodeSelector
+		- ```yaml
+		  apiVersion: v1
+		  kind: Pod
+		  metadata:
+		    name: nginx
+		    labels:
+		      env: test
+		  spec:
+		    containers:
+		    - name: nginx
+		      image: nginx
+		      imagePullPolicy: IfNotPresent
+		    # 設定的地方在 pod.nodeSelector
+		    nodeSelector:
+		      disk_type: ssd
+		  ```
 - ## Affinity & Anti-Affinity
+	- ###
+	- # Node Affinity & anti-affinity
 - ## Taints & Tolerations
