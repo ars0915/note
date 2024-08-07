@@ -232,4 +232,13 @@ tags:: Kubernetes, Kubernetes Node
 		    operator: "Exists"
 		    effect: "NoSchedule"
 		  ```
-	-
+	- ### Taint based Evictions
+		- k8s 中有 node controller 會持續監控每個 node 的狀態並回報，因此當它發現某些 node 有狀況時，可以透過為這個 node 增加 taint 的方式，將上面正在運作的 pod 驅離到其他 node 上去執行
+			- node.kubernetes.io/not-read: Node尚未準備好，相當於Node status Ready為False。
+			  node.kubernetes.io/unreachable: Node Controller訪問不到Node，相當於Node status Ready為Unknown。
+			  node.kubernetes.io/out-of-disk: Node的Storage耗盡。
+			  node.kubernetes.io/memory-pressure: Node的內存面臨壓力。
+			  node.kubernetes.io/disk-pressure: Node的Storage面臨壓力。
+			  node.kubernetes.io/network-unavailable: Node的network無法使用。
+			  node.kubernetes.io/unschedulable: Node無法被調度。
+			  node.cloudprovider.kubernetes.io/uninitialized: 若透過kubectl指定了一個"外部" 雲平台驅動， 它將給當前節點添加一個污點將其標誌為不可用。在cloud-controller-manager 的一個控制器初始化這個節點後，kubelet 將刪除這個污點。
