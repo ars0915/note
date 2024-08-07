@@ -45,7 +45,6 @@ tags:: Kubernetes, Kubernetes Node
 			  2. `preferredDuringScheduling`：會儘量嘗試找尋合適條件的 node，但不強制
 			  3. `IgnoredDuringExecution`：表示當 pod 已經正在運作中了，即使 node 的 label 在之後遭到變更，也不會影響正在運作中的 pod
 		- 範例：
-		  
 		  ```yaml
 		  apiVersion: v1
 		  kind: Pod
@@ -83,5 +82,9 @@ tags:: Kubernetes, Kubernetes Node
 		    - name: with-node-affinity
 		      image: k8s.gcr.io/pause:2.0
 		  ```
+		- 若同時設定 `nodeSelector` & `nodeAffinity`，那 scheduler 就會尋找同時滿足兩個條件要求的 node
+		- 如果在 `nodeAffinity` 中設定多個 `nodeSelectorTerms`，那就只要滿足任何一個 **nodeSelectorTerms** 的要求即可
+		- node affinity 目前只有在 pod scheduling 的時候會有用途，當 pod 已經在 node 上運行後，即使 node label 變更了也不會影響正在上面運行中的 pod，除非之後 `requiredDuringSchedulingRequiredDuringExecution` 的功能有推出
+		- 在 prefer 的設定中，有個 `weight` 的權重值(1-100)可以設定，而 scheduler 在決定前，還會加上其他 node priority function 來進行綜合考量，最後 pod 會被分配到數值計算結果最高的 node 上去
 	- ### inter-pod affinity/anti-affinity
 - ## Taints & Tolerations
