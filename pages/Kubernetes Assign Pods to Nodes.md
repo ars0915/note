@@ -204,7 +204,7 @@ tags:: Kubernetes, Kubernetes Node
 			- #### NoExecute
 			  假設某個 node 被設定了 effect 為 NoExecute 的 taint，那 k8s 還會把已經存在該 node 上的 pod 趕走，也不會把該 pod 分派到該 node 上。
 			  
-			  設定 tolerationSeconds 可以表示在 taint 被增加之後，帶有相對應 toleration 的 pod 還可以在該 node 上存在多久
+			  設定 `tolerationSeconds` 可以表示在 taint 被增加之後，帶有相對應 toleration 的 pod 還可以在該 node 上存在多久
 		- 設定 node taint
 		  ```
 		  kubectl taint nodes node1 key=value:NoSchedule
