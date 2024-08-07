@@ -38,5 +38,9 @@ tags:: Kubernetes, Kubernetes Node
 	  3. 可以指定跟帶有某些 label 的 `pod` 放在一起(or 不要放在一起)，而不是只能指定 worker node label：這樣有助於讓某些 pod 可以被放在同一個 worker node(或不被放在一起)
 	- ### Node affinity/anti-affinity
 		- node affinity 有以下兩種類型
+		  1. **requiredDuringSchedulingIgnoredDuringExecution**
+		  2. **preferredDuringSchedulingIgnoredDuringExecution**
+			- 上面設定
+		-
 	- ### inter-pod affinity/anti-affinity
 - ## Taints & Tolerations
