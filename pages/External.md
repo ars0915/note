@@ -1,4 +1,5 @@
 public:: true
+tags:: Kubernetes, Kubernetes Service
 
 - ## External Name
 	- 把 Service 導向指定的 DNS name，而不是 service 中 label selector 所設定的 pod
