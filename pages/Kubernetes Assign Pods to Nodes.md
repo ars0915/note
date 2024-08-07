@@ -31,7 +31,11 @@ tags:: Kubernetes, Kubernetes Node
 		      disk_type: ssd
 		  ```
 - ## Affinity & Anti-Affinity
-	- ### Node Affinity & anti-affinity
-		- [nodeSelector](((66b38f32-d3a4-4919-86eb-9f22044b23f5))) 有時
+	- [nodeSelector](((66b38f32-d3a4-4919-86eb-9f22044b23f5))) 有時無法滿足複雜的需求
+	  affinity/anti-affinity 加強了幾個地方：
+	  1
+		- 可用更彈性的方法來指定多個 label 時的組合，而不再只能用 **AND**
+		- 以往只能設定是否完全符合條件，現在可以用 `preference(希望可以有，但沒有也沒關係)` 的方式來設定
+		- 可以指定跟帶有某些 label 的 `pod` 放在一起(or 不要放在一起)，而不是只能指定 worker node label：這樣有助於讓某些 pod 可以被放在同一個 worker node(或不被放在一起)
 		-
 - ## Taints & Tolerations
