@@ -105,10 +105,43 @@ tags:: Kubernetes, Kubernetes Node
 		  **pod label set**：這個部份其實很清楚，跟 node label set 其實是一樣的東西
 		  **node topology key**((66b3944a-73aa-4ab5-a17e-6bd3caa5df69))：這個部份通常就是 k8s 的 build-in node label (表示希望檢查 worker node 是否也符合條件)
 		  topologyKey 的設定用意在於，如果有多個 pod 需要分配，並指定了 topologyKey，那 scheduler 在分配時就**不可以**多個 pod 放到帶有相同 value 的topologyKey(Label) 的 node 上
-		- 範例：
+		- #### 範例：
 		  假設 k8s cluster 中有 3 個 worker node(node03, node04, node05)，且要在裡面安裝一個三份 replica 的 web application，而這個 web application 使用到 redis 作為 cache，為了平均的分散 work load，希望可以將 pod 佈署成：
-		  - node03: redis + web-app
-		  - node04: redis + web-app
-		  - node05: redis + web-app
-		-
+		  node03: redis + web-app
+		  node04: redis + web-app
+		  node05: redis + web-app
+			- 佈署 redis，並確保分散在不同的 node
+			  
+			  ```yaml
+			  apiVersion: apps/v1
+			  kind: Deployment
+			  metadata:
+			    name: redis-cache
+			  spec:
+			    selector:
+			      matchLabels:
+			        app: store
+			    replicas: 3
+			    template:
+			      metadata:
+			        labels:
+			          app: store
+			      spec:
+			        affinity:
+			          # 確保 pod 不會落在帶有 app in "store" label 的 pod 所在的 worker node 上
+			          podAntiAffinity:
+			            requiredDuringSchedulingIgnoredDuringExecution:
+			            - labelSelector:
+			                matchExpressions:
+			                - key: app
+			                  operator: In
+			                  values:
+			                  - store
+			              # pod 在分配時要確保 worker node 帶有名稱為 "kubernetes.io/hostname" 的 label
+			              # 但不能有相同的 value
+			              topologyKey: "kubernetes.io/hostname"
+			        containers:
+			        - name: redis-server
+			          image: redis:3.2-alpine
+			  ```
 - ## Taints & Tolerations
