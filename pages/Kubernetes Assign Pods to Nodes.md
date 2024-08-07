@@ -215,3 +215,13 @@ tags:: Kubernetes, Kubernetes Node
 		    value: "value"
 		    effect: "NoSchedule"
 		  ```
+		  也可以不設定 value
+		  
+		  ```yaml
+		  # 表示可以接受"存在 key(不論 value 為何) & effect=NoSchedule" 的 taint
+		  tolerations:
+		  - key: "key"
+		    operator: "Exists"
+		    effect: "NoSchedule"
+		  ```
+	- ### Effect
