@@ -87,4 +87,9 @@ tags:: Kubernetes, Kubernetes Node
 		- node affinity 目前只有在 pod scheduling 的時候會有用途，當 pod 已經在 node 上運行後，即使 node label 變更了也不會影響正在上面運行中的 pod，除非之後 `requiredDuringSchedulingRequiredDuringExecution` 的功能有推出
 		- 在 prefer 的設定中，有個 `weight` 的權重值(1-100)可以設定，而 scheduler 在決定前，還會加上其他 node priority function 來進行綜合考量，最後 pod 會被分配到數值計算結果最高的 node 上去
 	- ### inter-pod affinity/anti-affinity
+		- 為什麼需要 pod affinity/anti-affinity?
+		  跟 ReplicaSets, StatefulSets 或是 Deployments 一起搭配的時候；例如：希望把 workload 分派到特定的 topology 的運行(例如：同一個 node)
+		- 有以下兩種設定類型可以使用：
+		  1. `requiredDuringSchedulingIgnoredDuringExecution`
+		- `preferredDuringSchedulingIgnoredDuringExecution`
 - ## Taints & Tolerations
