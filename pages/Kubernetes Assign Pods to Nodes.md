@@ -206,4 +206,12 @@ tags:: Kubernetes, Kubernetes Node
 		  ```
 		  kubectl taint nodes node1 key:NoSchedule-
 		  ```
-	- ###
+	- ### 設定 pod toleration
+		- ```yaml
+		  # 表示可以接受"帶有 key=value & effect=NoSchedule" 的 taint
+		  tolerations:
+		  - key: "key"
+		    operator: "Equal"
+		    value: "value"
+		    effect: "NoSchedule"
+		  ```
