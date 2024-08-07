@@ -40,7 +40,10 @@ tags:: Kubernetes, Kubernetes Node
 		- node affinity 有以下兩種類型
 		  1. **requiredDuringSchedulingIgnoredDuringExecution**
 		  2. **preferredDuringSchedulingIgnoredDuringExecution**
-			- 上面設定
+			- 上面設定可以拆成三個部份`
+			  1. requiredDuringScheduling`：一定要 node 符合條件，scheduler 才會把 pod 分派到上面去跑
+			  2. `preferredDuringScheduling`：會儘量嘗試找尋合適條件的 node，但不強制
+			  3. `IgnoredDuringExecution`：表示當 pod 已經正在運作中了，即使 node 的 label 在之後遭到變更，也不會影響正在運作中的 pod
 		-
 	- ### inter-pod affinity/anti-affinity
 - ## Taints & Tolerations
