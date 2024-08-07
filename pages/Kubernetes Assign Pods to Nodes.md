@@ -8,6 +8,7 @@ tags:: Kubernetes, Kubernetes Node
 	  3. 分散 pod 所屬的 node
 	  這些都建立在 **label select** 的基礎上完成
 - ## nodeSelector
+  id:: 66b38f32-d3a4-4919-86eb-9f22044b23f5
 	- ### 為 worker node 指定 label
 		- ```shell
 		  kubectl label nodes/<node-name> <label-key>=<label-value>
@@ -30,6 +31,7 @@ tags:: Kubernetes, Kubernetes Node
 		      disk_type: ssd
 		  ```
 - ## Affinity & Anti-Affinity
-	- ###
-	- # Node Affinity & anti-affinity
+	- ### Node Affinity & anti-affinity
+		- [nodeSelector](((66b38f32-d3a4-4919-86eb-9f22044b23f5))) 有時
+		-
 - ## Taints & Tolerations
