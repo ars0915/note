@@ -98,5 +98,4 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。外部的 client 可以透過 IP + port 的型式直接存取 pod。
 		- **DNS**：可以跟 [[StatefulSet]] 一樣，建立一個 `Headless Service` 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
 		- **Service**：創建具有相同Pod選擇算符的服務，並使用該服務隨機訪問到某個節點上的守護進程（沒有辦法訪問到特定節點）。
-- ## Headless Service
 	-
