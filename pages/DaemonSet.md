@@ -62,11 +62,10 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	            path: /var/lib/docker/containers
 	  ```
 	  **注意**
-	  .spec.selector 一旦定義後就不建議再修改，若是修改可能會造成某些 pod 變成孤兒(因為 DaemonSet controller 無法管理到正確的 pod)
-	  
-	  .spec.selector 的定義必須與 .spec.template.metadata.labels 相同，否則會被 API server 拒絕套用
-	  
-	  不可以再建立(或是透過其他 controller 建立，例如：Deployment)帶有與 DaemonSet 相同 label 組合的 pod，否則會被 DaemonSet 認為是自己所產生的
+	  1. `.spec.selector` 一旦定義後就不建議再修改，若是修改可能會造成某些 pod 變成孤兒(因為 DaemonSet controller 無法管理到正確的 pod)
+	  2. `.spec.selector` 的定義必須與 .spec.template.metadata.labels 相同，否則會被 API server 拒絕套用
+	  3. 不可以再建立(或是透過其他 controller 建立，例如： [[Deployment]] )帶有與 DaemonSet 相同 label 組合的 pod，否則會被 DaemonSet 認為是自己所產生的
 - ## How Daemon Pods are scheduled?
+	-
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
