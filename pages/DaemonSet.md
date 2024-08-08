@@ -106,4 +106,5 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- Delete DaemonSet 並保留 DaemonSet pod：
 	  使用`kubectl`並指定`--cascade=false`，則原有正在運行的Pod並不會被刪除。
 	  接下來如果創建另一個相同 label selector 不同 template 的新DaemonSet，原有現存的 pod 不會被修改，但也不會產生新的 pod，此時就必須要手動將原有的 pod 刪除，讓新的 pod 可以自動被產生。
-	-
+	- RollingUpdate：
+	  在 spec 加入 `RollingUpdate`，會自動刪除舊的 Daemon
