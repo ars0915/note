@@ -88,8 +88,12 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  ```
 		  若是原有的 DaemonSet pod 已經有 node affinity 的設定，上面新增的設定則會會覆蓋掉原本舊有的部份。
 - ## Taints and Tolerations with DaemonSet
-- scheduling 由 DaemonSet controller 回到了 k8s scheduler 身上，Taint & Toleration 這兩個機制就會對 DaemonSet 就顯得相對重要了，因為 Noschedule 的設定會影響 DaemonSet pod 的分派。
-  
-  原本由 DaemonSet controller 負責 scheduling 的情況下，若是 node 被設定為 unschedulable，也是同樣會被忽略的，但回到 k8s scheduler 之後，就必須額外增加 Toleration 的設定來達到相同的效果，以下是會被自動加入到 DaemonSet pod 中的 toleration 清單
-  ![image.png](../assets/image_1723085024141_0.png)
+	- scheduling 由 DaemonSet controller 回到了 k8s scheduler 身上，[Taint & Toleration](((66b42b6b-71d0-47af-b499-7c719b63b5ed))) 這兩個機制就會對 DaemonSet 顯得相對重要了，因為 Noschedule 的設定會影響 DaemonSet pod 的分派。
+	  
+	  原本由 DaemonSet controller 負責 scheduling 的情況下，若是 node 被設定為 unschedulable，也是同樣會被忽略的，但回到 k8s scheduler 之後，就必須額外增加 Toleration 的設定來達到相同的效果，以下是會被自動加入到 DaemonSet pod 中的 toleration 清單
+	  ![image.png](../assets/image_1723085024141_0.png)
 - ## Communicating with Daemon Pods
+	- **Push**：配置DaemonSet中的Pod，將更新發送到另一個服務，例如統計數據庫。這些服務沒有客戶端。
+	- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。客戶端能通過某種方法獲取節點IP列表，並且基於此也可以獲取到相應的端口。
+	- **DNS**：創建具有相同Pod選擇算符的Headless Service，通過使用`endpoints`資源或從DNS中檢索到多個A記錄來發現DaemonSet。
+	- **Service**：創建具有相同Pod選擇算符的服務，並使用該服務隨機訪問到某個節點上的守護進程（沒有辦法訪問到特定節點）。
