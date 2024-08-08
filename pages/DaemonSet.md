@@ -75,6 +75,17 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 			- Pod的搶佔優先序：啟用搶佔後，DaemonSet Controller將在不考慮Pod的優先序情況下制定搶佔決策。
 	- ### default scheduler (v1.12 之後)
 		- 在 v1.12 之後，DaemonSet pod 預設是回到由 k8s scheduler 統一來處理分派的工作
-		  使用方法：移除在 DaemonSet 中的 `spec.nodeName` 的部份
+		  使用方法：移除在 DaemonSet 中的 `spec.nodeName` 的部份，透過nodeAffinity來做調度。
+		  
+		  ```yaml
+		  nodeAffinity:
+		    requiredDuringSchedulingIgnoredDuringExecution:
+		      nodeSelectorTerms:
+		      - matchFields:
+		        - key: metadata.name
+		          operator: In
+		          values:
+		          - target-host-name
+		  ```
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
