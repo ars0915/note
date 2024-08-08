@@ -67,7 +67,9 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  3. 不可以再建立(或是透過其他 controller 建立，例如： [[Deployment]] )帶有與 DaemonSet 相同 label 組合的 pod，否則會被 DaemonSet 認為是自己所產生的
 - ## How Daemon Pods are scheduled?
 	- ### DaemonSet controller (v1.12 之前)
-		-
+		- 一般來說決定 pod 要在哪個 node 上運行是 k8s scheduler 的工作，但其實 DaemonSet controller 跟 k8s schedule 之間的運作有時就是會有矛盾之處，因為：
+			- 若是使用者為特定的 node 設定 unschedulable，這通常就會跟 DaemonSet controller 的規則衝突
+			- DaemonSet controller 可以在 k8s scheduler 還沒啟動前就佈署 pod，有時對於 k8s cluster bootstrap 是很有用途的
 	- ### default scheduler (v1.12 之後)
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
