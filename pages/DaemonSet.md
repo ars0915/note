@@ -76,7 +76,6 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ### default scheduler (v1.12 之後)
 		- 在 v1.12 之後，DaemonSet pod 預設是回到由 k8s scheduler 統一來處理分派的工作
 		  使用方法：移除在 DaemonSet 中的 `spec.nodeName` 的部份，透過nodeAffinity來做調度。
-		  
 		  ```yaml
 		  nodeAffinity:
 		    requiredDuringSchedulingIgnoredDuringExecution:
@@ -87,5 +86,6 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		          values:
 		          - target-host-name
 		  ```
+		  若是原有的 DaemonSet pod 已經有 node affinity 的設定，上面新增的設定則會會覆蓋掉原本舊有的部份。
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
