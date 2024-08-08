@@ -70,7 +70,10 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 一般來說決定 pod 要在哪個 node 上運行是 k8s scheduler 的工作，但其實 DaemonSet controller 跟 k8s schedule 之間的運作有時就是會有矛盾之處，因為：
 			- 若是使用者為特定的 node 設定 unschedulable，這通常就會跟 DaemonSet controller 的規則衝突
 			- DaemonSet controller 可以在 k8s scheduler 還沒啟動前就佈署 pod，有時對於 k8s cluster bootstrap 是很有用途的
-		- 由 DaemonSet問題
+		- 由 DaemonSet controller 調度產生的問題
+			- Pod行為的不一致性：一般的Pod在剛創立時status為`Pending`，但DaemonSet所創立的Pod並無`Pending`這狀態，這也讓使用者感到困惑。
+			- Pod的搶佔優先序：啟用搶佔後，DaemonSet Controller將在不考慮Pod的優先序情況下制定搶佔決策。
 	- ### default scheduler (v1.12 之後)
+		- 在 v1.12 之後，DaemonSet pod 預設是回到由 k8s scheduler 統一來處理分派的工作
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
