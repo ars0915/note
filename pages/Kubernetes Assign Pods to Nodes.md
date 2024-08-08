@@ -1,19 +1,19 @@
 public:: true
 tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 
-- ## 需求
+- # 需求
 	- 有時會需要介入 pod scheduling，像是
 	  1. 讓 pod 被分配到特定的 nodes (例如有特定硬體、node綁IP)
 	  2. 希望某些 pod 可以被固定放在一起
 	  3. 分散 pod 所屬的 node
 	  這些都建立在 **label select** 的基礎上完成
-- ## nodeSelector
+- # nodeSelector
   id:: 66b38f32-d3a4-4919-86eb-9f22044b23f5
-	- ### 為 worker node 指定 label
+	- ## 為 worker node 指定 label
 		- ```shell
 		  kubectl label nodes/<node-name> <label-key>=<label-value>
 		  ```
-	- ### 為 pod spec 設定 nodeSelector
+	- ## 為 pod spec 設定 nodeSelector
 	  ```yaml
 	  apiVersion: v1
 	  kind: Pod
@@ -30,7 +30,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	    nodeSelector:
 	      disk_type: ssd
 	  ```
-	- ### Built-in Node Labels
+	- ## Built-in Node Labels
 	  id:: 66b3944a-73aa-4ab5-a17e-6bd3caa5df69
 		- 每個 node 都會有一些內建的 label set，像是：
 		  beta.kubernetes.io/arch
@@ -39,13 +39,13 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  node-role.kubernetes.io/master
 		  node-role.kubernetes.io/node
 		  這些內建的 node label 被稱為 `topologyKey`
-- ## Affinity & Anti-Affinity
+- # Affinity & Anti-Affinity
 	- [nodeSelector](((66b38f32-d3a4-4919-86eb-9f22044b23f5))) 有時無法滿足複雜的需求
 	  **affinity/anti-affinity** 加強了幾個地方：
 	  1. 可用更彈性的方法來指定多個 label 時的組合，而不再只能用 **AND**
 	  2. 以往只能設定是否完全符合條件，現在可以用 `preference(希望可以有，但沒有也沒關係)` 的方式來設定
 	  3. 可以指定跟帶有某些 label 的 `pod` 放在一起(or 不要放在一起)，而不是只能指定 worker node label：這樣有助於讓某些 pod 可以被放在同一個 worker node(或不被放在一起)
-	- ### Node affinity/anti-affinity
+	- ## Node affinity/anti-affinity
 		- node affinity 有以下兩種類型
 		  1. **requiredDuringSchedulingIgnoredDuringExecution**
 		  2. **preferredDuringSchedulingIgnoredDuringExecution**
