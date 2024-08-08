@@ -88,5 +88,8 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  ```
 		  若是原有的 DaemonSet pod 已經有 node affinity 的設定，上面新增的設定則會會覆蓋掉原本舊有的部份。
 - ## Taints and Tolerations with DaemonSet
-- ![image.png](../assets/image_1723085024141_0.png)
+- scheduling 由 DaemonSet controller 回到了 k8s scheduler 身上，Taint & Toleration 這兩個機制就會對 DaemonSet 就顯得相對重要了，因為 Noschedule 的設定會影響 DaemonSet pod 的分派。
+  
+  原本由 DaemonSet controller 負責 scheduling 的情況下，若是 node 被設定為 unschedulable，也是同樣會被忽略的，但回到 k8s scheduler 之後，就必須額外增加 Toleration 的設定來達到相同的效果，以下是會被自動加入到 DaemonSet pod 中的 toleration 清單
+  ![image.png](../assets/image_1723085024141_0.png)
 - ## Communicating with Daemon Pods
