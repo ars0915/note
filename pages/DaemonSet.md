@@ -1,4 +1,6 @@
 public:: true
 tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 
-- ## What
+- ## What is DaemonSet?
+- ### When to use?
+-
