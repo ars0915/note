@@ -1,5 +1,5 @@
 public:: true
-tags:: Kubernetes, Kubernetes Node
+tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 
 - ## 需求
 	- 有時會需要介入 pod scheduling，像是
