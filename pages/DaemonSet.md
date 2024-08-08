@@ -105,4 +105,4 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  當你直接修改DaemonSet的Pod時，並不影響 DaemonSet Pod template，因此新產生的DaemonSet Pod還是會依照舊template產生。
 	- Delete DaemonSet 並保留 DaemonSet pod：
 	  使用`kubectl`並指定`--cascade=false`，則原有正在運行的Pod並不會被刪除。
-	  接下來如果創建另一個相同 label selector 不同 template 的新DaemonSet，新的DaemonSet會收養已有的Pod。如果有Pod需要被替換，DaemonSet會根據其updateStrategy來替換。
+	  接下來如果創建另一個相同 label selector 不同 template 的新DaemonSet，原有現存的 pod 不會被修改，但也不會產生新的 pod，此時就必須要手動將原有的 pod 刪除，讓新的 pod 可以自動被產生。
