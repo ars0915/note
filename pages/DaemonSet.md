@@ -9,7 +9,59 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 分佈式存儲：當你需要在每個節點上運行分佈式存儲代理，以實現數據持久性和可用性。例如 glusterd, ceph 要部署在每個節點上以提供持久性儲存。
 		- 應用程式資料庫：對於某些應用程式，每個節點可能需要本地存儲或快取資料庫的副本。
 		- Node-Level操作：當你需要執行僅涉及單個節點的操作時，如特定節點的升級或清理。
-		-
+	- ### 範例
+	  
+	  ```yaml
+	  apiVersion: apps/v1
+	  kind: DaemonSet
+	  metadata:
+	    name: fluentd-elasticsearch
+	    namespace: kube-system
+	    labels:
+	      k8s-app: fluentd-logging
+	  spec:
+	    # .spec.selector 一旦定義後就無法再變更了
+	    # 必須與 .spec.template.metadata.labels 的定義相同
+	    # 這裡可以使用 matchLabels 或是 matchExpressions(用來處理較為複雜的 label 組合)
+	    selector:
+	      matchLabels:
+	        name: fluentd-elasticsearch
+	    # 此為必要欄位，與 pod template 相同
+	    # 用來定義 DaemonSet 的內容應該要長什麼樣子
+	    template:
+	      metadata:
+	        labels:
+	          name: fluentd-elasticsearch
+	      # 由於是 DaemonSet 的關係，因此 .spec.template.spec.restartPolicy 永遠是 "Always"
+	      # 預設值為 "Always"
+	      spec:
+	        tolerations:
+	        - key: node-role.kubernetes.io/master
+	          effect: NoSchedule
+	        containers:
+	        - name: fluentd-elasticsearch
+	          image: k8s.gcr.io/fluentd-elasticsearch:1.20
+	          resources:
+	            limits:
+	              memory: 200Mi
+	            requests:
+	              cpu: 100m
+	              memory: 200Mi
+	          volumeMounts:
+	          - name: varlog
+	            mountPath: /var/log
+	          - name: varlibdockercontainers
+	            mountPath: /var/lib/docker/containers
+	            readOnly: true
+	        terminationGracePeriodSeconds: 30
+	        volumes:
+	        - name: varlog
+	          hostPath:
+	            path: /var/log
+	        - name: varlibdockercontainers
+	          hostPath:
+	            path: /var/lib/docker/containers
+	  ```
 - ## How Daemon Pods are scheduled?
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
