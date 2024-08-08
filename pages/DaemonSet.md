@@ -94,6 +94,6 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  ![image.png](../assets/image_1723085024141_0.png)
 - ## Communicating with Daemon Pods
 	- **Push**：配置DaemonSet中的Pod，將更新發送到另一個服務，例如統計數據庫。這些服務沒有客戶端。
-	- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。客戶端能通過某種方法獲取節點IP列表，並且基於此也可以獲取到相應的端口。
-	- **DNS**：創建具有相同Pod選擇算符的Headless Service，通過使用`endpoints`資源或從DNS中檢索到多個A記錄來發現DaemonSet。
+	- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。外部的 client 可以透過 IP + port 的型式直接存取 pod。
+	- **DNS**：可以跟 StatefulSet 一樣，建立一個 Headless Service 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
 	- **Service**：創建具有相同Pod選擇算符的服務，並使用該服務隨機訪問到某個節點上的守護進程（沒有辦法訪問到特定節點）。
