@@ -93,6 +93,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  原本由 DaemonSet controller 負責 scheduling 的情況下，若是 node 被設定為 unschedulable，也是同樣會被忽略的，但回到 k8s scheduler 之後，就必須額外增加 Toleration 的設定來達到相同的效果，以下是會被自動加入到 DaemonSet pod 中的 toleration 清單
 	  ![image.png](../assets/image_1723085024141_0.png)
 - ## Communicating with Daemon Pods
+	-
 	- **Push**：配置DaemonSet中的Pod，將更新發送到另一個服務，例如統計數據庫。這些服務沒有客戶端。
 	- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。外部的 client 可以透過 IP + port 的型式直接存取 pod。
 	- **DNS**：可以跟 StatefulSet 一樣，建立一個 Headless Service 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
