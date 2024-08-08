@@ -95,7 +95,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 如果在 `nodeAffinity` 中設定多個 `nodeSelectorTerms`，那就只要滿足任何一個 **nodeSelectorTerms** 的要求即可
 		- node affinity 目前只有在 pod scheduling 的時候會有用途，當 pod 已經在 node 上運行後，即使 node label 變更了也不會影響正在上面運行中的 pod，除非之後 `requiredDuringSchedulingRequiredDuringExecution` 的功能有推出
 		- 在 prefer 的設定中，有個 `weight` 的權重值(1-100)可以設定，而 scheduler 在決定前，還會加上其他 node priority function 來進行綜合考量，最後 pod 會被分配到數值計算結果最高的 node 上去
-	- ### inter-pod affinity/anti-affinity
+	- ## inter-pod affinity/anti-affinity
 		- 為什麼需要 pod affinity/anti-affinity?
 		  跟 ReplicaSets, StatefulSets 或是 Deployments 一起搭配的時候；例如：希望把 workload 分派到特定的 topology 的運行(例如：同一個 node)
 		- 有以下兩種設定類型可以使用：
@@ -188,12 +188,12 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 			        - name: web-app
 			          image: nginx:1.12-alpine
 			  ```
-- ## Taints & Tolerations
+- # Taints & Tolerations
   id:: 66b42b6b-71d0-47af-b499-7c719b63b5ed
 	- `taint`：設計讓 pod 如何不要被分派到某個 worker node
 	  與 `toleration` 共同搭配使用，目的就是要避免讓 pod 被分派到不正確 or 不合適的 worker node 上，運作原理大概如下：
 	  如果有特定的 node 被加上了 taint(汙點)，pod 就不會被分派到上面，除非 pod spec 有設定 toleration(容忍) 來接受這些 taint (必須全部 taint 都接受才行)
-	- ### 如何設定 node taint
+	- ## 如何設定 node taint
 		- 每個 taint 都有以下 3 個屬性：
 		  1. Key
 		  2. Value
@@ -215,7 +215,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  ```
 		  kubectl taint nodes node1 key:NoSchedule-
 		  ```
-	- ### 設定 pod toleration
+	- ## 設定 pod toleration
 		- ```yaml
 		  # 表示可以接受"帶有 key=value & effect=NoSchedule" 的 taint
 		  tolerations:
@@ -233,7 +233,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		    operator: "Exists"
 		    effect: "NoSchedule"
 		  ```
-	- ### Taint based Evictions
+	- ## Taint based Evictions
 		- k8s 中有 node controller 會持續監控每個 node 的狀態並回報，因此當它發現某些 node 有狀況時，可以透過為這個 node 增加 taint 的方式，將上面正在運作的 pod 驅離到其他 node 上去執行
 			- `node.kubernetes.io/not-read`: Node尚未準備好，相當於Node status Ready為False。
 			  `node.kubernetes.io/unreachable`: Node Controller訪問不到Node，相當於Node status Ready為Unknown。
@@ -247,7 +247,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 			  tolerationSeconds 的設定是 k8s 自動給進去的，若要更改預設值 300，可以透過 DefaultTolerationSeconds admission controller
 		- 此外，要讓 taint based eviction 運作，必須要開啟 `TaintBasedEvictions` feature gate (預設是關閉的)
 		- 設定這功能需要注意 node controller 中的 `--node-eviction-rate`(預設 0.1，表示 10 秒驅離一個 pod) 設定，必須很小心的設定這個值，避免大規模驅離 pod 時造成整個 cluster 崩潰的連鎖效應 (特別是當 master node 發生崩潰的時候)
-	- ### Taint Nodes by Condition
+	- ## Taint Nodes by Condition
 		- 希望當 node 發生特定問題的時候，不要自動被加上 taint，避免 pod 無法被分派到該 node
 		- 在 v1.12 後，`TaintNodesByCondition` feature 已經變成 beta 功能且預設開啟，管理者可以透過這個功能選擇性的忽略某些 node 的狀況，而 `TaintNodesByCondition` 實際運作狀況是這樣的：
 		  
