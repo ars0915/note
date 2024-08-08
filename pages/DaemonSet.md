@@ -99,7 +99,10 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- **DNS**：可以跟 [[StatefulSet]] 一樣，建立一個 `Headless Service` 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
 		- **Service**：創建具有相同Pod選擇算符的服務，並使用該服務隨機訪問到某個節點上的守護進程（沒有辦法訪問到特定節點）。
 - # Update DaemonSet
-	- Node labels update: 當節點標籤有更新時，DaemonSet會向上匹配符合標籤的pod，並移除不符合標籤的pod。
-	- Update DaemonSet Pod: 當你直接修改DaemonSet的Pod時，並不影響DaemonSet Pod template，因此新產生的DaemonSet Pod還是會依照舊template產生。
-	  Delete DaemonSet: 當你刪除Daemonset時，使用kubectl並指定--cascade=false，
+	- Node labels update：
+	  當節點標籤有更新時，DaemonSet會向上匹配符合標籤的pod，並移除不符合標籤的pod。
+	- Update DaemonSet Pod：
+	  當你直接修改DaemonSet的Pod時，並不影響 DaemonSet Pod template，因此新產生的DaemonSet Pod還是會依照舊template產生。
+	- Delete DaemonSet：
+	  當你刪除Daemonset時，使用`kubectl`並指定`--cascade=false`，
 	  則原有正在運行的Pod並不會被刪除，接下來如果創建使用相同選擇算符的新DaemonSet，新的DaemonSet會收養已有的Pod。如果有Pod需要被替換，DaemonSet會根據其updateStrategy來替換。
