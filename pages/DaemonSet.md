@@ -103,5 +103,6 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  當節點標籤有更新時，DaemonSet會向上匹配符合標籤的pod，並移除不符合標籤的pod。
 	- Update DaemonSet Pod：
 	  當你直接修改DaemonSet的Pod時，並不影響 DaemonSet Pod template，因此新產生的DaemonSet Pod還是會依照舊template產生。
-	- Delete DaemonSet：
-	  當你刪除Daemonset時，使用`kubectl`並指定`--cascade=false`，則原有正在運行的Pod並不會被刪除，接下來如果創建另一個相同 label selector 不同 template 的新DaemonSet，新的DaemonSet會收養已有的Pod。如果有Pod需要被替換，DaemonSet會根據其updateStrategy來替換。
+	- Delete DaemonSet 並保留 DaemonSet pod：
+	  使用`kubectl`並指定`--cascade=false`，則原有正在運行的Pod並不會被刪除。
+	  接下來如果創建另一個相同 label selector 不同 template 的新DaemonSet，新的DaemonSet會收養已有的Pod。如果有Pod需要被替換，DaemonSet會根據其updateStrategy來替換。
