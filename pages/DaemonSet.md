@@ -9,6 +9,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 分佈式存儲：當你需要在每個節點上運行分佈式存儲代理，以實現數據持久性和可用性。例如 glusterd, ceph 要部署在每個節點上以提供持久性儲存。
 		- 應用程式資料庫：對於某些應用程式，每個節點可能需要本地存儲或快取資料庫的副本。
 		- Node-Level操作：當你需要執行僅涉及單個節點的操作時，如特定節點的升級或清理。
+		-
 - ## How Daemon Pods are scheduled?
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
