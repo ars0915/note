@@ -10,7 +10,6 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 應用程式資料庫：對於某些應用程式，每個節點可能需要本地存儲或快取資料庫的副本。
 		- Node-Level操作：當你需要執行僅涉及單個節點的操作時，如特定節點的升級或清理。
 	- ### 範例
-	  
 	  ```yaml
 	  apiVersion: apps/v1
 	  kind: DaemonSet
@@ -62,6 +61,12 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	          hostPath:
 	            path: /var/lib/docker/containers
 	  ```
+	  **注意**
+	  .spec.selector 一旦定義後就不建議再修改，若是修改可能會造成某些 pod 變成孤兒(因為 DaemonSet controller 無法管理到正確的 pod)
+	  
+	  .spec.selector 的定義必須與 .spec.template.metadata.labels 相同，否則會被 API server 拒絕套用
+	  
+	  不可以再建立(或是透過其他 controller 建立，例如：Deployment)帶有與 DaemonSet 相同 label 組合的 pod，否則會被 DaemonSet 認為是自己所產生的
 - ## How Daemon Pods are scheduled?
 - ## Taints and Tolerations with DaemonSet
 - ## Communicating with Daemon Pods
