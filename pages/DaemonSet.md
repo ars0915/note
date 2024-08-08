@@ -88,5 +88,5 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  ```
 		  若是原有的 DaemonSet pod 已經有 node affinity 的設定，上面新增的設定則會會覆蓋掉原本舊有的部份。
 - ## Taints and Tolerations with DaemonSet
-	-
+- ![image.png](../assets/image_1723085024141_0.png)
 - ## Communicating with Daemon Pods
