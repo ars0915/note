@@ -13,4 +13,9 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ## Example
 - # 如何識別 StatefulSet 產生的 Pod?
 	- ## Ordinal Index
+	- ## Stable Network ID
+	- ## Stable Storage
+	- ## Pod Name Label
+- # Deployment & Scaling 流程說明
+	- ## 佈署 & Scale out
 	-
