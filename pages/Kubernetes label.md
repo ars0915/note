@@ -24,5 +24,6 @@ tags:: Kubernetes
               - name: my-app-container
                 image: my-app-image
   ```
-	- deployment name: `my-deployment`
-	-
+	- Deployment name: `my-deployment`
+	- Deployment labels: `{app: "my-app"}`
+	- Deployment 管理的 Pod:
