@@ -18,4 +18,10 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ## Pod Name Label
 - # Deployment & Scaling 流程說明
 	- ## 佈署 & Scale out
+	- ## 刪除 & Scale in
+	- ## Pod Management Policy
+- # 更新(update)要如何進行?
+	- ## On Delete
+	- ## Rolling Update
+		- ### Partition
 	-
