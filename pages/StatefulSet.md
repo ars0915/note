@@ -60,6 +60,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	  ```
 - # 如何識別 StatefulSet 產生的 Pod?
 	- ## Ordinal Index
+		- 若一個 statefulset 包含了 N 個 replica，那每一個 pod 都會被分配到一個獨一無二的索引，從 `0` ~ `N-1`，即使 pod reschedule 也不會改變。
 	- ## Stable Network ID
 	- ## Stable Storage
 	- ## Pod Name Label
