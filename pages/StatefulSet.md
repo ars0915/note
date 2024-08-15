@@ -88,14 +88,11 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		  ```
 		  
 		  透過以上的設定，statefulset 中每個 pod 副本產生時，k8s 會自動執行以下工作：
-		- StorageClass “my-gfs-storageclass“ 會負責對特定的 storage 要求 1GB 的空間
-		- StorageClass “my-gfs-storageclass“ 動態產生 persistent volume(PV)，並與上面的空間綁定
-		- 透過 volumeClaimTemplates 為每個 pod 產生一個 persistent volume claim(PVC)，並與步驟 2 的 PV 綁定
-		  
-		  pod 使用 PVC 並掛載到指定的目錄上
-		  
-		  透過 StorageClass，可以根據 resource 的需求，產生 persistent volume 並與特定的 storage 綁定
-		  
+			- 1. StorageClass “my-gfs-storageclass“ 會負責對特定的 storage 要求 1GB 的空間
+			- 2. StorageClass “my-gfs-storageclass“ 動態產生 persistent volume(PV)，並與上面的空間綁定
+			- 透過 volumeClaimTemplates 為每個 pod 產生一個 persistent volume claim(PVC)，並與步驟 2 的 PV 綁定
+			- pod 使用 PVC 並掛載到指定的目錄上
+		- 透過 StorageClass，可以根據 resource 的需求，產生 persistent volume 並與特定的 storage 綁定
 		  PV 不會因為 pod 被刪除 or reschedule 而消失(只能手動刪除)，如此才能達成 statefulset 對 storage 的要求。
 	- ## Pod Name Label
 - # Deployment & Scaling 流程說明
