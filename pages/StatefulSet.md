@@ -107,7 +107,12 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 			- 當要終止一個 pod 時，所有的 successor 都必須完成 shutdown 才行
 			  例如要終止三份 replica(web-0 + web-1 + web-2) 中的 web-1 時，web-2 必須要完全終止才行
 	- ## Pod Management Policy
+		- 在 v1.7 版之後，就可以透過修改 `.spec.podManagementPolicy` 欄位來改變佈署 & scale 的行為：
+			- **OrderedReady**：此為預設值
+			- **Parallel**：整體的行為會跟 Deployment 相同，同時產生(or 刪除) pod，不考慮順序問題
 - # 更新(update)要如何進行?
-	- ## On Delete
-	- ## Rolling Update
-		- ### Partition
+	- 預設情況下，k8s 自有一套進行 update 的準則(預設為 rolling update)，而 update 的過程會把 pod 中的 container, label, resource request/limit, annotation … 等資訊進行變更；而在 v1.7 版之後，就可以透過 `.spec.updateStrategy` 的設定，停止上面那些自動化的行為。
+	- 目前 `.spec.updateStrategy` 支援兩種設定：
+		- ## On Delete
+		- ## Rolling Update
+			- ### Partition
