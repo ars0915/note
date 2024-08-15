@@ -11,6 +11,52 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- storage 的部份一定要綁定 PVC，並綁定到特定的 StorageClass or 預先配置好的 PersistentVolume，確保 pod 被刪除後資料依然存在
 		- 需要額外定義一個 [[Headless Service]] 與 StatefulSet 搭配，確保 pod 有固定的 network identity
 	- ## Example
+	  ![image.png](../assets/image_1723717561080_0.png)
+	  
+	  ```yaml
+	  ---
+	  # v1.9 版本之前必須使用 "apps/v1beta2"
+	  apiVersion: apps/v1
+	  kind: StatefulSet
+	  metadata:
+	    name: web
+	  spec:
+	    selector:
+	      # 必須與 ".spec.template.metadata.labels" 相同
+	      matchLabels:
+	        app: nginx
+	    serviceName: "nginx"
+	    replicas: 3
+	    template:
+	      metadata:
+	        # 必須與 ".spec.selector.matchLabels" 相同
+	        labels:
+	          app: nginx
+	      spec:
+	        terminationGracePeriodSeconds: 10
+	        containers:
+	        - name: nginx
+	          image: k8s.gcr.io/nginx-slim:0.8
+	          ports:
+	          - containerPort: 80
+	            name: web
+	          # 指定將 pvc 掛載到特定的目錄上
+	          volumeMounts:
+	          - name: www
+	            mountPath: /usr/share/nginx/html
+	    # 使用 persistent volume 來確保資料不會因為 pod reschedule 而消失
+	    # 以下是使用 volumeClaimTemplates + StorageClass 來完成
+	    volumeClaimTemplates:
+	    - metadata:
+	        name: www
+	      spec:
+	        accessModes: [ "ReadWriteOnce" ]
+	        # 在本實驗環境中已經架設好一個 GlusterFS cluster + Heketi，並設定好 StorageClass
+	        storageClassName: "my-gfs-storageclass"
+	        resources:
+	          requests:
+	            storage: 1Gi
+	  ```
 - # 如何識別 StatefulSet 產生的 Pod?
 	- ## Ordinal Index
 	- ## Stable Network ID
