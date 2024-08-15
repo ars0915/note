@@ -26,4 +26,5 @@ tags:: Kubernetes
   ```
 	- Deployment name: `my-deployment`
 	- Deployment labels: `{app: "my-app"}`
-	- Deployment 管理的 Pod:
+	- Deployment 管理 label 為 `{app: "my-app"}` 的 Pod (`spec.selector.matchLabels`)
+	-
