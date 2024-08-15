@@ -33,6 +33,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	        labels:
 	          app: nginx
 	      spec:
+	        # 每個pod依順序性刪除時間隔時間
 	        terminationGracePeriodSeconds: 10
 	        containers:
 	        - name: nginx
@@ -51,7 +52,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	        name: www
 	      spec:
 	        accessModes: [ "ReadWriteOnce" ]
-	        # 在本實驗環境中已經架設好一個 GlusterFS cluster + Heketi，並設定好 StorageClass
+	        # 透過動態方式自動產生PVC，這裡需要指定一個已經存在並且合法的storageClass
 	        storageClassName: "my-gfs-storageclass"
 	        resources:
 	          requests:
