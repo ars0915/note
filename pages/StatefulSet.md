@@ -63,6 +63,10 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 若一個 statefulset 包含了 N 個 replica，那每一個 pod 都會被分配到一個獨一無二的索引，從 `0` ~ `N-1`，即使 pod reschedule 也不會改變。
 	- ## Stable Network ID
 		- 每個在 statefulset 中的 pod 都會有自己獨一無二的 hostname，命名的規則為 `$(statefulset name)-$(ordinal index)`
+		  statefulset 還會透過 Headless Service 來維持 pod domain name 是固定指到 pod IP，並使用以下的標準格式存取 domain name：(以下稱為 governing service domain)
+		  
+		  `$(service name).$(namespace).svc.cluster.local`
+		  其中 `cluster.local` 是當初安裝 k8s 所設定的 cluster domain，若安裝時有修改的話，上面的 domain name 也必須跟著調整。
 	- ## Stable Storage
 	- ## Pod Name Label
 - # Deployment & Scaling 流程說明
