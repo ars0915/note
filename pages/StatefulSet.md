@@ -9,7 +9,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- 佈署 & scale out 的時後，每個 pod 的產生都是有其順序且逐一慢慢完成的
 	- ## 限制
 		- storage 的部份一定要綁定 PVC，並綁定到特定的 StorageClass or 預先配置好的 PersistentVolume，確保 pod 被刪除後資料依然存在
-		- 需要額外定義一個 Headless Service 與 StatefulSet 搭配，確保 pod 有固定的 network identity
+		- 需要額外定義一個 [Headless Service](((66b43337-c249-4e8d-92a9-4b59eaae68a9))) 與 StatefulSet 搭配，確保 pod 有固定的 network identity
 - ## Headless Service
   id:: 66b43337-c249-4e8d-92a9-4b59eaae68a9
   https://ithelp.ithome.com.tw/articles/10251596
