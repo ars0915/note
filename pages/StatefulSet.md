@@ -98,7 +98,14 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 		- statefulset 產生每個 pod 時，都會自動幫 pod 加上名稱為 `statefulset.kubernetes.io/pod-name` 的 label，而 label value 就是上面提到的 pod name
 - # Deployment & Scaling 流程說明
 	- ## 佈署 & Scale out
+		- 當replica數目大於1時，statefulSet會與deployment不同，statefulSet中的pod會同步且有順序的逐一產生。產生的流程如下：
+			- pod-0 —> pod-1 —> pod-2....etc，在每個pod後面都會加上sequence number並且按照順序產生。
+			- 當要對 pod 進行 scale 時，predecessor 的狀態必須是 Running & Ready，舉例來說：若pod要從1個scale up成2個時，pod-0的狀態必須是Running & Ready，pod-1才會開始create。
 	- ## 刪除 & Scale in
+		- 若是要刪除 pod，或是進行 scale in 的時候，整個流程發生的過程如下：
+			- 以反向 {N-1 –> 0} 的順序逐一刪除，以上面的例子來說則是 web-2 >> web-1 >> web-0 (可想而知，web-1 不會在 web-2 完成刪除之前就被刪除)
+			- 當要終止一個 pod 時，所有的 successor 都必須完成 shutdown 才行
+			  例如要終止三份 replica(web-0 + web-1 + web-2) 中的 web-1 時，web-2 必須要完全終止才行
 	- ## Pod Management Policy
 - # 更新(update)要如何進行?
 	- ## On Delete
