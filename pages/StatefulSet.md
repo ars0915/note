@@ -10,4 +10,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ## 限制
 		- storage 的部份一定要綁定 PVC，並綁定到特定的 StorageClass or 預先配置好的 PersistentVolume，確保 pod 被刪除後資料依然存在
 		- 需要額外定義一個 [[Headless Service]] 與 StatefulSet 搭配，確保 pod 有固定的 network identity
-	- ## h
+	- ## Example
+- # 如何識別 StatefulSet 產生的 Pod?
+	- ## Ordinal Index
+	-
