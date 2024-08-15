@@ -111,8 +111,9 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 			- **OrderedReady**：此為預設值
 			- **Parallel**：整體的行為會跟 Deployment 相同，同時產生(or 刪除) pod，不考慮順序問題
 - # 更新(update)要如何進行?
-	- 預設情況下，k8s 自有一套進行 update 的準則(預設為 rolling update)，而 update 的過程會把 pod 中的 container, label, resource request/limit, annotation … 等資訊進行變更；而在 v1.7 版之後，就可以透過 `.spec.updateStrategy` 的設定，停止上面那些自動化的行為。
+	- 預設情況下，k8s 自有一套進行 update 的準則(預設為 rolling update)，而 update 的過程會把 pod 中的 container, label, resource request/limit, annotation … 等資訊進行變更；而在 v1.7 版之後，就可以透過  `.spec.updateStrategy` 的設定，停止上面那些自動化的行為。
 	- 目前 `.spec.updateStrategy` 支援兩種設定：
 		- ## On Delete
+		  這其實是 v1.6 版之前的預設行為，只是在 v1.7 版後實作成 OnDelete；當設定 `.spec.updateStrategy.type: "OnDelete"` 時，對於 sprc template 的變更不會有任何反應，除非使用者手動刪除 pod，讓 replication controller 重新產生 pod，才會套用新的 spec template 設定。
 		- ## Rolling Update
 			- ### Partition
