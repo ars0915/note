@@ -24,4 +24,3 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ## On Delete
 	- ## Rolling Update
 		- ### Partition
-	-
