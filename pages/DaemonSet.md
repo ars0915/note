@@ -96,7 +96,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- 與DaemonSet 中的Pod 進行通信的幾種可能模式如下：
 		- **Push**：配置DaemonSet中的Pod，將更新發送到另一個服務，例如統計數據庫。這些服務沒有客戶端。
 		- **NodeIP和已知端口**：DaemonSet中的Pod可以使用`hostPort`，從而可以通過節點IP訪問到Pod。外部的 client 可以透過 IP + port 的型式直接存取 pod。
-		- **DNS**：可以跟 [[StatefulSet]] 一樣，建立一個 `Headless Service` 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
+		- **DNS**：可以跟 [[StatefulSet]] 一樣，建立一個 [[Headless Service]] 搭配 pod selector，讓特定的 domain name 在 k8s cluster 內部可以直接被解析為 pod IP。
 		- **Service**：創建具有相同Pod選擇算符的服務，並使用該服務隨機訪問到某個節點上的守護進程（沒有辦法訪問到特定節點）。
 - # Update DaemonSet
 	- Node labels update：
