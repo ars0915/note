@@ -62,6 +62,7 @@ tags:: Kubernetes, Kubernetes Node, Kubernetes Pod
 	- ## Ordinal Index
 		- 若一個 statefulset 包含了 N 個 replica，那每一個 pod 都會被分配到一個獨一無二的索引，從 `0` ~ `N-1`，即使 pod reschedule 也不會改變。
 	- ## Stable Network ID
+		- 每個在 statefulset 中的 pod 都會有自己獨一無二的 hostname，命名的規則為 `$(statefulset name)-$(ordinal index)`
 	- ## Stable Storage
 	- ## Pod Name Label
 - # Deployment & Scaling 流程說明
