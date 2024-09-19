@@ -13,7 +13,13 @@ tags:: Algorithm, Graph
 	- **Graph Representation**: The graph is described by two arrays `A` and `B`, where each pair `(A[K], B[K])` represents an edge between vertices `A[K]` and `B[K]`.
 	- **Objective**: Assign distinct values from 1 to N to the vertices in such a way that the sum of the values at the endpoints of all edges is maximized.
 - ## Approach
-	- **Degree Calculation**: Calculate the degree of each vertex (i.e., the number of edges connected to that vertex). The degree of a vertex is important because vertices with higher degrees will contribute more to the total sum if they are assigned higher values.
+	- **Degree Calculation**: 
+	  Calculate the degree of each vertex (i.e., the number of edges connected to that vertex). The degree of a vertex is important because vertices with higher degrees will contribute more to the total sum if they are assigned higher values.
 	- **Greedy Assignment**:
-		- Assign higher values to vertices with higher degrees to maximize their contribution to the sum of edge weights.
--
+	  Assign higher values to vertices with higher degrees to maximize their contribution to the sum of edge weights.
+- ### Steps
+	- **Compute Degrees**: Calculate the degree of each vertex.
+	- **Sort Vertices**: Sort vertices based on their degrees in descending order.
+	- **Assign Values**: Assign the highest available value to the vertex with the highest degree, the second highest value to the vertex with the second highest degree, and so on.
+- ## Code
+	-
