@@ -26,24 +26,22 @@ jobs:
 
       # Publish action by other contributor
       - name: Logseq Publish
-        uses: pengx17/logseq-publish@0.1.8
-        with:
-          version: latest
+        uses: logseq/publish-spa@v0.3.0
 
       - name: add a nojekyll file
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
 
-      # - name: Deploy to GitHub pages
-      #   uses: JamesIves/github-pages-deploy-action@v4
-      #   with:
-      #     branch: gh-pages # The branch the action should deploy to.
-      #     folder: www # The folder the action should deploy.
-      #     clean: true
+      - name: Deploy to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: www # The folder the action should deploy.
+          clean: true
 
-      # - name: deploy to firebase hosting live channel
-      #   uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
-      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_NOTE_E3304 }}"
-      #     projectId: note-e3304
-      #     channelId: live
+      - name: deploy to firebase hosting live channel
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_NOTE_E3304 }}"
+          projectId: note-e3304
+          channelId: live
