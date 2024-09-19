@@ -29,7 +29,10 @@ id:: 668bcac4-0497-4ea8-8e15-05190313d1a5
 	- public:: true
 	  tags:: <%setinput: Tags%>
 	- ## 題目
-	- ##
+	- ## Problem Breakdown
+	- ## Approach
+	- ## Code
+	- ## Complexity:
 -
 - ## Reference Template
 - Paper Template
