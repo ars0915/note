@@ -26,9 +26,10 @@ id:: 668bcac4-0497-4ea8-8e15-05190313d1a5
 - Algorithm Template
   template:: Algorithm Template
   template-including-parent:: false
-	- <%setinput: Author%> "<%setinput: Title%>," in *<%setinput: ConfName%>*, <%setinput: Time%>, pp.
-	  type:: [[Paper]]
--
+	- public:: true
+	  tags:: <%setinput: Tags%>
+	- ## 題目
+	- ##
 -
 - ## Reference Template
 - Paper Template
