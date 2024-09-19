@@ -8,7 +8,6 @@ tags:: Algorithm, string, recursive
 	  "ba?bb" return "baabb"
 	  "??abb" return "baabb" or "ababb" or "bbabb"
 	  "a?b?aa" return "aabbaa"
-- ## Approach
 - ## Code
   
   ```go
@@ -69,3 +68,4 @@ tags:: Algorithm, string, recursive
   **backtrack 函數：**用於遞迴地處理每個 ? 字符。對於每個 ?，嘗試用 'a' 或 'b' 替換，並檢查替換後的字串是否有效。
   **isValid 函數：**檢查當前字串是否滿足條件，即不會有三個連續相同的字符。
 - ## Complexity:
+  最壞情況下，時間複雜度是 **O(2^m)**，其中 **m** 是 `?` 的數量。這是由於每個 `?` 都有兩個選擇，回溯的可能路徑是指數級的。
