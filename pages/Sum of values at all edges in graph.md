@@ -22,9 +22,7 @@ tags:: Algorithm, Graph
 	- **Sort Vertices**: Sort vertices based on their degrees in descending order.
 	- **Assign Values**: Assign the highest available value to the vertex with the highest degree, the second highest value to the vertex with the second highest degree, and so on.
 - ## Code
-	- aaa
-	  
-	  ```go
+	- ```go
 	  package main
 	  
 	  import (
@@ -81,8 +79,8 @@ tags:: Algorithm, Graph
 	      fmt.Println(Solution(N, A, B)) // Output: 31
 	  }
 	  ```
-	  aaa**
-	  Degree Calculation**: We calculate the degree of each vertex and store it in a map.
-	- **Sorting**: We sort the vertices based on their degrees in descending order.
-	- **Value Assignment**: We assign the highest available values to vertices with the highest degrees.
-	- **Sum Calculation**: We compute the total sum of values at the endpoints of all edges.
+	  
+	  **Degree Calculation**: We calculate the degree of each vertex and store it in a map.
+	  **Sorting**: We sort the vertices based on their degrees in descending order.
+	  **Value Assignment**: We assign the highest available values to vertices with the highest degrees.
+	  **Sum Calculation**: We compute the total sum of values at the endpoints of all edges.
