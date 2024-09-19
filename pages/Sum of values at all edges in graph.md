@@ -84,3 +84,4 @@ tags:: Algorithm, Graph
 	  **Sorting**: We sort the vertices based on their degrees in descending order.
 	  **Value Assignment**: We assign the highest available values to vertices with the highest degrees.
 	  **Sum Calculation**: We compute the total sum of values at the endpoints of all edges.
+-
