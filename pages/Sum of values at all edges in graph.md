@@ -22,4 +22,67 @@ tags:: Algorithm, Graph
 	- **Sort Vertices**: Sort vertices based on their degrees in descending order.
 	- **Assign Values**: Assign the highest available value to the vertex with the highest degree, the second highest value to the vertex with the second highest degree, and so on.
 - ## Code
-	-
+	- aaa
+	  
+	  ```go
+	  package main
+	  
+	  import (
+	      "fmt"
+	      "sort"
+	  )
+	  
+	  type Vertex struct {
+	      id    int
+	      degree int
+	  }
+	  
+	  // Function to calculate the maximum sum of values at the endpoints of all edges
+	  func Solution(N int, A []int, B []int) int {
+	      // Step 1: Compute the degree of each vertex
+	      degrees := make(map[int]int)
+	      for i := 0; i < len(A); i++ {
+	          degrees[A[i]]++
+	          degrees[B[i]]++
+	      }
+	      
+	      // Convert degrees to a slice of Vertex
+	      vertices := make([]Vertex, 0, N)
+	      for i := 1; i <= N; i++ {
+	          vertices = append(vertices, Vertex{id: i, degree: degrees[i]})
+	      }
+	      
+	      // Step 2: Sort vertices by degree in descending order
+	      sort.Slice(vertices, func(i, j int) bool {
+	          return vertices[i].degree > vertices[j].degree
+	      })
+	      
+	      // Step 3: Assign values from N down to 1
+	      vertexValue := make(map[int]int)
+	      value := N
+	      for _, vertex := range vertices {
+	          vertexValue[vertex.id] = value
+	          value--
+	      }
+	      
+	      // Step 4: Calculate the total sum of values at the endpoints of all edges
+	      totalSum := 0
+	      for i := 0; i < len(A); i++ {
+	          totalSum += vertexValue[A[i]] + vertexValue[B[i]]
+	      }
+	      
+	      return totalSum
+	  }
+	  
+	  func main() {
+	      N := 5
+	      A := []int{2, 2, 1, 2}
+	      B := []int{1, 3, 4, 4}
+	      fmt.Println(Solution(N, A, B)) // Output: 31
+	  }
+	  ```
+	  aaa**
+	  Degree Calculation**: We calculate the degree of each vertex and store it in a map.
+	- **Sorting**: We sort the vertices based on their degrees in descending order.
+	- **Value Assignment**: We assign the highest available values to vertices with the highest degrees.
+	- **Sum Calculation**: We compute the total sum of values at the endpoints of all edges.
