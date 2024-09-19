@@ -1,5 +1,5 @@
 public:: true
-tags:: Algorithm
+tags:: Algorithm, Binary Tree
 
 -
 - ## 方法
