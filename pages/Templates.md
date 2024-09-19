@@ -22,6 +22,10 @@ id:: 668bcac4-0497-4ea8-8e15-05190313d1a5
 	  author:: <%setinput: Author%>
 	  topic:: "<%setinput: Topic%>"
 -
+- Algorithm Template
+-
+-
+-
 - ## Reference Template
 - Paper Template
   template:: Reference/Paper Template
@@ -33,3 +37,5 @@ id:: 668bcac4-0497-4ea8-8e15-05190313d1a5
   template-including-parent:: false
 	- <%setinput: Author%>, "<%setinput: Title%>," *<%setinput: WebPageName%>*, Available: [link_to_page](<%setinput: Link%>). 
 	  type:: [[Web Page]]
+-
+-
