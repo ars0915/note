@@ -9,4 +9,11 @@ tags:: Algorithm, Graph
 	- i.e.
 	  N=5, A=[2,2,1,2],B=[1,3,4,4]n the graph has for edges: (2,1),(2,3),(1,4),(2,4). in order to obtain the maximum sum of weight, you can assign the following values to the vertices : 3,5,2,4,1
 	  This way we obtain the sum of values at all edges' endpoints equal to 7+8+7+9=31
+- ## Problem Breakdown
+	- **Graph Representation**: The graph is described by two arrays `A` and `B`, where each pair `(A[K], B[K])` represents an edge between vertices `A[K]` and `B[K]`.
+	- **Objective**: Assign distinct values from 1 to N to the vertices in such a way that the sum of the values at the endpoints of all edges is maximized.
 - ## Approach
+	- **Degree Calculation**: Calculate the degree of each vertex (i.e., the number of edges connected to that vertex). The degree of a vertex is important because vertices with higher degrees will contribute more to the total sum if they are assigned higher values.
+	- **Greedy Assignment**:
+		- Assign higher values to vertices with higher degrees to maximize their contribution to the sum of edge weights.
+-
