@@ -64,7 +64,8 @@ tags:: Algorithm, Graph
               if graph[u][v] && !visited[v] {
                   visited[v] = true
                 	// match[v] == -1 => 當前時段 v 是否已經被分配給其他病人
-                	// 
+                	// 如果 match[v] != -1，則表示這個時段已經被另一個病人佔用
+                	// 這時候我們需要看是否可以通過 DFS 尋找一個新的時段給這個已經佔用時段 v 的病人
                   if match[v] == -1 || dfs(match[v], visited) {
                       match[v] = u
                       return true
