@@ -63,6 +63,8 @@ tags:: Algorithm, Graph
           for v := 0; v < S; v++ {
               if graph[u][v] && !visited[v] {
                   visited[v] = true
+                	// match[v] == -1 => 當前時段 v 是否已經被分配給其他病人
+                	// 
                   if match[v] == -1 || dfs(match[v], visited) {
                       match[v] = u
                       return true
