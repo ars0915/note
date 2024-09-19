@@ -1,6 +1,6 @@
--
-- public:: true
-  tags:: Algorithm, string
+public:: true
+tags:: Algorithm, string
+
 - ## 題目
 	- 求最少刪除幾個字元使字串不是回文，並且只能從兩側刪除
 - ## Approach
