@@ -4,4 +4,28 @@ tags:: Algorithm
 -
 - ## 方法
 	- 透過遞迴找到左右子樹的高度最大值，然後再加上目前的節點 (+1)
-	-
+- ## Code
+	- ```go
+	  func Solution(T *Tree) int {
+	      if T == nil {
+	          return -1 // The height of an empty tree is typically -1 (or 0 in some cases)
+	      }
+	      
+	      // Recursively find the height of the left and right subtrees
+	      leftHeight := Solution(T.L)
+	      rightHeight := Solution(T.R)
+	      
+	      // The height of the tree is the maximum of the two subtrees' heights, plus 1
+	      return max(leftHeight, rightHeight) + 1
+	  }
+	  
+	  // Helper function to get the maximum of two integers
+	  func max(a, b int) int {
+	      if a > b {
+	          return a
+	      }
+	      return b
+	  }
+	  
+	  ```
+- ## Example
