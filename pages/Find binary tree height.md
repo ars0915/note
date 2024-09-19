@@ -2,7 +2,7 @@ public:: true
 tags:: Algorithm, Binary Tree
 
 -
-- ## 方法
+- ## Approach
 	- 透過遞迴找到左右子樹的高度最大值，然後再加上目前的節點 (+1)
 - ## Code
 	- ```go
