@@ -85,5 +85,5 @@ tags:: Algorithm, Graph
 	  **Value Assignment**: We assign the highest available values to vertices with the highest degrees.
 	  **Sum Calculation**: We compute the total sum of values at the endpoints of all edges.
 - ## Complexity:
-	- **Time Complexity**: The algorithm primarily involves calculating degrees, sorting the vertices, and summing up the values. The overall time complexity is O(M+Nlog⁡N)O(M + N \log N)O(M+NlogN), where MMM is the number of edges and NNN is the number of vertices.
-	- **Space Complexity**: The space complexity is O(N)O(N)O(N) for storing degrees and vertex values.
+	- **Time Complexity**: The algorithm primarily involves calculating degrees, sorting the vertices, and summing up the values. The overall time complexity is `O(M+Nlog⁡N)O(M + N \log N)O(M+NlogN)`, where MMM is the number of edges and NNN is the number of vertices.
+	- **Space Complexity**: The space complexity is `O(N)O(N)O(N)` for storing degrees and vertex values.
