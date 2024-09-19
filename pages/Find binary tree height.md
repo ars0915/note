@@ -37,6 +37,8 @@ tags:: Algorithm
 	    4   5
 	  
 	  ```
-	  高度為2，因為從根到葉最長的距離
-	-
-	-
+	  高度為2，因為從根到葉最長的距離有兩個邊
+- ## Time Complexity
+  **O(n)**: The algorithm visits each node once.
+- ## Space Complexity
+  **O(h)**: The recursion depth is equal to the height of the tree, so in the worst case, the space complexity is proportional to the height `h` of the tree, which is O(log n) for a balanced tree and O(n) for a skewed tree.
