@@ -1,5 +1,5 @@
 public:: true
-tag:: Kubernetes
+tags:: Kubernetes
 
 - ## Rolling Deployment
 	- rolling upgrade 在更新 pod 時，會先確定部份新的 pod 可以正常運作後才把舊的 pod 停止，讓服務不中斷。
