@@ -12,4 +12,10 @@ tags:: Kafka
   所以，`Topic` 就是具體的事件流，也可以理解爲一個 `Topic` 就是一個靜止的 `Stream`。
   `Topic` 把相關的 `Event` 組織在一起，並且保存。一個 `Topic` 就像數據庫中的一張表。
 - ## Partition 分區
+	- ![image.png](../assets/image_1726931835692_0.png)
+	  [[Kafka]] 中 `Topic` 被分成多個 `Partition` 分區。
+	  `Topic` 是一個邏輯概念，`Partition` 是最小的存儲單元，掌握着一個 `Topic` 的部分數據。
+	  每個 `Partition` 都是一個單獨的 log 文件，每條記錄都以追加的形式寫入。
+	  ![image.png](../assets/image_1726931865401_0.png)
+	  `Record`（記錄） 和 `Message`（消息）是一個概念。
 	-
