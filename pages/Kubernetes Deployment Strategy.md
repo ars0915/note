@@ -18,7 +18,25 @@ tag:: Kubernetes
 	  ![image.png](../assets/image_1726930805610_0.png)
 - ## Canary Deployment
 	- 金絲雀部署與藍綠部署最大的不同是，它不是非黑即白的部署方式，而是介在於黑與白之間，能夠平滑過渡到下一個版本的方法。它能夠緩辦的將修改推送給小部分的使用者，確定沒問題後才正式迭代到下一個版本，以降低值接引入新功能的風險。
-	- 使用
+	- 使用 [[Ingress]] 實現請求依權重分流到新版本
+	  
+	  ```yaml
+	  # canary-ingress.yaml
+	  apiVersion: networking.k8s.io/v1
+	  kind: Ingress
+	  metadata:
+	    annotations:
+	      nginx.ingress.kubernetes.io/canary: "true"
+	      nginx.ingress.kubernetes.io/canary-weight: "10"
+	    name: canary-ingress
+	  spec:
+	    ingressClassName: nginx
+	    defaultBackend:
+	      service:
+	        name: bar-service
+	        port:
+	          number: 8080
+	  ```
 	- ![image.png](../assets/image_1726930914728_0.png)
 	  ![image.png](../assets/image_1726930920932_0.png)
 -
