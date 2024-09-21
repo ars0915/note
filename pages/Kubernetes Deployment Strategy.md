@@ -39,4 +39,5 @@ tag:: Kubernetes
 	  ```
 	- ![image.png](../assets/image_1726930914728_0.png)
 	  ![image.png](../assets/image_1726930920932_0.png)
-- ## Shadow Deve
+- ## Shadow Deployment
+	- 在生產環境中建立一個副本，接收與 Prod 環境相同的真實流量，但不會對外服務，在不影響用戶體驗下測試新版本
