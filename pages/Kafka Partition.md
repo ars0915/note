@@ -44,3 +44,12 @@ tags:: Kafka
   一個 Topic 有多個 Partition，那麼，向一個 Topic 中發送消息的時候，具體是寫入哪個 Partition 呢？有 3 種寫入方式。
 	- ### 使用 Partition Key 寫入特定 Partition
 		- ![image.png](../assets/image_1726932179698_0.png)
+		  `Producer` 發送消息的時候，可以指定一個 `Partition Key`，這樣就可以寫入特定 `Partition` 了。
+		  `Partition Key` 可以使用任意值，例如設備 ID、User ID。
+		  `Partition Key` 會傳遞給一個 Hash 函數，由計算結果決定寫入哪個 `Partition`。
+		  所以，有相同 `Partition Key` 的消息，會被放到相同的 `Partition`。
+		  例如使用 User ID 作爲 `Partition Key`，那麼此 ID 的消息就都在同一個 `Partition`，這樣可以保證此類消息的有序性。
+		  這種方式需要注意 `Partition` 熱點問題。
+		  例如使用 User ID 作爲 `Partition Key`，如果某一個 User 產生的消息特別多，是一個頭部活躍用戶，那麼此用戶的消息都進入同一個 `Partition` 就會產生熱點問題，導致某個 `Partition` 極其繁忙。
+	- ###
+	- ### **由 kafka 決定**
