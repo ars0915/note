@@ -12,5 +12,5 @@ tag:: Kubernetes
 - ## Recreate Deployment
 	- recreate 會先把舊的 pods 都停掉後才建立新的，因此不會有新舊服務同時在線上的問題。
 	- ![image.png](../assets/image_1726930582734_0.png)
-- ## Ramped Slow Rollout
+- ## Blue/Green
 -
