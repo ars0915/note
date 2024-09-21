@@ -51,5 +51,12 @@ tags:: Kafka
 		  例如使用 User ID 作爲 `Partition Key`，那麼此 ID 的消息就都在同一個 `Partition`，這樣可以保證此類消息的有序性。
 		  這種方式需要注意 `Partition` 熱點問題。
 		  例如使用 User ID 作爲 `Partition Key`，如果某一個 User 產生的消息特別多，是一個頭部活躍用戶，那麼此用戶的消息都進入同一個 `Partition` 就會產生熱點問題，導致某個 `Partition` 極其繁忙。
-	- ###
-	- ### **由 kafka 決定**
+	- ### 由 kafka 決定
+		- 如果沒有使用 `Partition Key`，[[Kafka]] 就會使用輪詢的方式來決定寫入哪個 `Partition`。
+		  這樣，消息會均衡的寫入各個 `Partition`。
+		  但這樣無法確保消息的有序性。
+	- ### 自定義規則
+- ## 讀取 Partition
+	- [[Kafka]] 不像普通消息隊列具有發佈 / 訂閱功能，[[Kafka]] 不會向 `Consumer` 推送消息。
+	  `Consumer` 必須自己從 `Topic` 的 `Partition` 拉取消息。
+	  一個 `Consumer` 連接到一個 `Broker` 的 `Partition`，從中依次讀取消息。
