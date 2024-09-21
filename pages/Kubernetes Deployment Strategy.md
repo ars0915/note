@@ -8,4 +8,6 @@ tag:: Kubernetes
 		- maxUnavailable: 最多有幾個 pod 在無法服務的狀態
 	- readiness probe 用來檢查應用程式是否可以接收流量，在 rolling upgrade 的過程會等到新的 pod 通過 readiness probe 檢查才停止舊的 pod。
 - ## Recreate Deployment
-	-
+	- recreate 會先把舊的 pods 都停掉後才建立新的，因此不會有新舊服務同時在線上的問題。
+- ## Ramped Slow Rollout
+-
