@@ -23,8 +23,10 @@ tags:: Kafka
 	  `Offset` 是一個遞增的、不可變的數字，由 [[Kafka]] 自動維護。
 	  當一條記錄寫入 `Partition` 的時候，它就被追加到 log 文件的末尾，並被分配一個序號，作爲 `Offset`。
 	  ![image.png](../assets/image_1726931922172_0.png)
-	  如上圖，這個 `Topic` 有 3 個 `Partition` 分區，向 Topic 發送消息的時候，實際上是被寫入某一個 Partition，並賦予 Offset。
-	  消息的順序性需要注意，一個 Topic 如果有多個 Partition 的話，那麼從 Topic 這個層面來看，消息是無序的。
-	  但單獨看 Partition 的話，Partition 內部消息是有序的。
-	  所以，一個 Partition 內部消息有序，一個 Topic 跨 Partition 是無序的。
-	  如果強制要求 Topic 整體有序，就只能讓 Topic 只有一個 Partition。
+	  如上圖，這個 `Topic` 有 3 個 `Partition` 分區，向 `Topic` 發送消息的時候，實際上是被寫入某一個 `Partition`，並賦予 `Offset`。
+	  消息的順序性需要注意，一個 `Topic` 如果有多個 `Partition` 的話，那麼從 `Topic` 這個層面來看，消息是無序的。
+	  但單獨看 `Partition` 的話，`Partition` 內部消息是有序的。
+	  所以，一個 `Partition` 內部消息有序，一個 `Topic` 跨 `Partition` 是無序的。
+	  如果強制要求 `Topic` 整體有序，就只能讓 `Topic` 只有一個 `Partition`或是另外在 Application 處理。
+- ## Partition 爲 Kafka 提供了擴展能力
+	-
