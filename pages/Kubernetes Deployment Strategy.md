@@ -14,4 +14,7 @@ tag:: Kubernetes
 	- ![image.png](../assets/image_1726930582734_0.png)
 - ## Blue/Green Deployment
 	- 藍綠部署是最常見的一種 `Zero Downtime` 部署的方式，是相對簡單穩定且不會有多版本同時存在線上的問題，需要注意的是會有一段系統承受兩倍的資源負載的時間，如果資源不吃緊的話的確是值得使用該策略以換取穩定性與時間成本。
+	- ![image.png](../assets/image_1726930799986_0.png)
+	  ![image.png](../assets/image_1726930805610_0.png)
+- ## Canary Deployment
 	-
