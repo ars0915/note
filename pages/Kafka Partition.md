@@ -71,5 +71,4 @@ tags:: Kafka
 	  消費組這種方式可以讓多個 `Partition` 並行消費，大大提高了消息的消費能力，最大並行度爲 `Topic` 的 `Partition` 數量。
 	  ![image.png](../assets/image_1726932393389_0.png)
 	  可以透過增加 `Consumer` 數量提升消化速度，但當 `Consumer` 的數量超過 `Partition` 數時，會有空閒的 `Consumer`，且增加或移除 `Consumer` 時會進行 `rebalance` 重新分配 `Partition` 造成 delay。
-- ## Partition 分配策略
-	-
+-
