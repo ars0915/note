@@ -39,4 +39,4 @@ tag:: Kubernetes
 	  ```
 	- ![image.png](../assets/image_1726930914728_0.png)
 	  ![image.png](../assets/image_1726930920932_0.png)
--
+- ## Shadow Deve
