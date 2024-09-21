@@ -60,3 +60,12 @@ tags:: Kafka
 	- [[Kafka]] 不像普通消息隊列具有發佈 / 訂閱功能，[[Kafka]] 不會向 `Consumer` 推送消息。
 	  `Consumer` 必須自己從 `Topic` 的 `Partition` 拉取消息。
 	  一個 `Consumer` 連接到一個 `Broker` 的 `Partition`，從中依次讀取消息。
+	  ![image.png](../assets/image_1726932300713_0.png)
+	  消息的 `Offset` 就是 `Consumer` 的遊標，根據 `Offset` 來記錄消息的消費情況。
+	  讀完一條消息之後，`Consumer` 會推進到 `Partition` 中的下一個 `Offset`，繼續讀取消息。
+	  `Offset` 的推進和記錄都是 `Consumer` 的責任，[[Kafka]] 是不管的。
+	- ![image.png](../assets/image_1726932336041_0.png)
+	  [[Kafka]] 中有一個 Consumer Group（消費組）的概念，多個 Consumer 組團去消費一個 Topic。
+	  同組的 Consumer 有相同的 Group ID。
+	  Consumer Group 機制會保障一條消息只被組內唯一一個 Consumer 消費，不會重複消費。
+	  消費組這種方式可以讓多個 Partition 並行消費，大大提高了消息的消費能力，最大並行度爲 Topic 的 Partition 數量。
