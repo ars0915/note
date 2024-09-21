@@ -29,4 +29,12 @@ tags:: Kafka
 	  所以，一個 `Partition` 內部消息有序，一個 `Topic` 跨 `Partition` 是無序的。
 	  如果強制要求 `Topic` 整體有序，就只能讓 `Topic` 只有一個 `Partition`或是另外在 Application 處理。
 - ## Partition 爲 Kafka 提供了擴展能力
-	-
+	- ![image.png](../assets/image_1726932000561_0.png)
+	  一個 [[Kafka]] 集羣由多個 `Broker`（就是 Server） 構成，每個 `Broker` 中含有集羣的部分數據。
+	  [[Kafka]] 把 `Topic` 的多個 `Partition` 分佈在多個 `Broker` 中。
+	  
+	  這樣會有多種好處：
+		- 如果把 `Topic` 的所有 `Partition` 都放在一個 `Broker` 上，那麼這個 `Topic` 的可擴展性就大大降低了，會受限於這個 `Broker` 的 IO 能力。把 `Partition` 分散開之後，`Topic` 就可以水平擴展 。
+		- 一個 `Topic` 可以被多個 Consumer 並行消費。如果 Topic 的所有 Partition 都在一個 Broker，那麼支持的 Consumer 數量就有限，而分散之後，可以支持更多的 Consumer。
+		  
+		  一個 Consumer 可以有多個實例，Partition 分佈在多個 Broker 的話，Consumer 的多個實例就可以連接不同的 Broker，大大提升了消息處理能力。可以讓一個 Consumer 實例負責一個 Partition，這樣消息處理既清晰又高效。
