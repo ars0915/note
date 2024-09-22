@@ -17,5 +17,7 @@ tags:: Kafka, Kafka Partition
 	  主要功能是確保客戶端，例如 `Consumer` 消費者在重平衡後能夠維持原本的分配方案，可惜的是這個分配策略依舊是在`eager` 協議的框架之下，重平衡仍然需要每個 `Consumer` 都先放棄當前持有的資源（分區）
 	  ![image.png](../assets/image_1727015050936_0.png)
 - ## Incremental Cooperative Rebalancing
-  `cooperative` 協定將一次全域重平衡，改成每次小規模重平衡，直到最終收斂平衡的過程
-	- Eager
+  `Cooperative` 協定將一次全域重平衡，改成每次小規模重平衡，直到最終收斂平衡的過程
+	- Eager 協定
+	  ![image.png](../assets/image_1727015811894_0.png){:height 348, :width 837}
+	- Cooperative 協定
