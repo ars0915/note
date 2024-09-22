@@ -12,4 +12,5 @@ tags:: Kafka, Kafka Partition
 	  當 `Comsumer` 有變動時，需要重新分配的 `Partition` 會影響蠻大的
 	  ![image.png](../assets/image_1727014942717_0.png)
 - ## StickyAssignor
-	- 和 [RoundRobin](((66f02700-7a4d-495f-a0b9-3d5da538f47c)))
+	- 和 [RoundRobin](((66f02700-7a4d-495f-a0b9-3d5da538f47c))) 的分配方式相似，但減少 rebalance 的變動
+	  ![image.png](../assets/image_1727015050936_0.png)
