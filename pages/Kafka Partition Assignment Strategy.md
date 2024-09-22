@@ -7,5 +7,6 @@ tags:: Kafka, Kafka Partition
 - ## RoundRobin
 	- 比 range 更能完全分配，最大化的使用 `Consumer`
 	  ![image.png](../assets/image_1727014799185_0.png)
+	  當
 - ## StickyAssignor
 -
