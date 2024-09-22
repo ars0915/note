@@ -35,3 +35,8 @@ tags:: Kafka, Kafka Partition
 	- 其中成員加入或成員離組是最常見的觸發 `rebalance` 的情況。新成員加入這個場景必然發生 `rebalance`，沒辦法優化（針對初始化多個消費者的情況有其他優化，即延遲進行重平衡），但消費者崩潰離組卻可以優化。因為一個消費者崩潰離組通常不會影響到其他 {partition - consumer} 的分配情況。
 	- `Static Membership`功能和一個 `Consumer` 端的設定參數 `group.instance.id`。一旦配置了該參數，成員將自動成為靜態成員，否則的話和以前一樣仍然被視為是動態成員。
 	- 靜態成員的好處在於，其靜態成員ID值是不變的，因此先前分配給該成員的所有分區也是不變的。**即假設一個成員掛掉，在沒有超時前靜態成員重啟回來是不會觸發 `Rebalance` 的**（超時時間為 `session.timeout.ms`，預設為10 sec）。在靜態成員掛掉這段時間，`broker` 會一直為該消費者保存狀態（offset），直到逾時或靜態成員重新連接。
+	- 如果使用了 `static membership` 功能後，觸發 `rebalance` 的條件如下：
+		- 新成員加入組：這個條件依然不變。當有新成員加入時肯定會觸發 `Rebalance` 重新分配分區
+		- Leader 成員重新加入群組：例如主題分配方案發生變更
+		- 現有成員離組時間超過了 `session.timeout.ms` 逾時時間：即使它是靜態成員，`Coordinator` 也不會無限期地等待它。一旦超過了 session 逾時時間依然會觸發 `Rebalance`
+		- `Coordinator` 接收 `LeaveGroup` 要求：會員主動通知 `Coordinator` 永久離組。
