@@ -18,4 +18,4 @@ tags:: Kafka, Kafka Partition
 	  ![image.png](../assets/image_1727015050936_0.png)
 - ## Incremental Cooperative Rebalancing
   `cooperative` 協定將一次全域重平衡，改成每次小規模重平衡，直到最終收斂平衡的過程
-	-
+	- Eager
