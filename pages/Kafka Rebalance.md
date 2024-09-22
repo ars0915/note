@@ -42,4 +42,4 @@ tags:: Kafka, Kafka Partition
 		- `Coordinator` 接收 `LeaveGroup` 要求：會員主動通知 `Coordinator` 永久離組。
 	- 使用 `static membership` 的兩個條件是：
 		- `Consumer` 客戶端新增設定：**props.put("group.instance.id", "con1")**
-		- 設定 `session.timeout.ms` 為一個合理的時間，這個參數受限於 `group.min.session.timeout.ms`（6 sec）和`group.max.session.timeout.ms`（30 min），即大小不能超過這個上下限。但是調的過大也可能造成 `broker`不斷等待掛掉的消費者客戶端的情況，個人建議根據使用場景，設定合理的參數。
+		- 設定 `session.timeout.ms` 為一個合理的時間，這個參數受限於 `group.min.session.timeout.ms`（6 sec）和`group.max.session.timeout.ms`（30 min），即大小不能超過這個上下限。但是調的過大也可能造成 `broker` 不斷等待掛掉的消費者客戶端的情況。
