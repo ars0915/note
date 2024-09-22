@@ -19,5 +19,7 @@ tags:: Kafka, Kafka Partition
 - ## Incremental Cooperative Rebalancing
   `Cooperative` 協定將一次全域重平衡，改成每次小規模重平衡，直到最終收斂平衡的過程
 	- Eager 協定
-	  ![image.png](../assets/image_1727015811894_0.png){:height 348, :width 837}
+	  ![image.png](../assets/image_1727015811894_0.png)
 	- Cooperative 協定
+	  ![image.png](../assets/image_1727015889283_0.png)
+	  c1 和c2發送joingroup的request給group coordinator，但不需要revoke其所擁有的partition，而是將其擁有的分區編碼後一併發送給group coordinator，即{c1->p1, p2}，{c2- >p3}
