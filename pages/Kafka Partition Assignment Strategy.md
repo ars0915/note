@@ -14,5 +14,6 @@ tags:: Kafka, Kafka Partition
 	  ![image.png](../assets/image_1727014942717_0.png)
 - ## StickyAssignor
 	- 和 [RoundRobin](((66f02700-7a4d-495f-a0b9-3d5da538f47c))) 的分配方式相似，但減少 rebalance 的變動
+	  主要功能是確保客戶端，例如consumer消費者在重平衡後能夠維持原本的分配方案，可惜的是這個分配策略依舊是在eager協議的框架之下，重平衡仍然需要每個 Consumer都先放棄當前持有的資源（分區）
 	  ![image.png](../assets/image_1727015050936_0.png)
 -
