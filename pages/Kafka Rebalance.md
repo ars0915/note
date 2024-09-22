@@ -7,16 +7,16 @@ tags:: Kafka, Kafka Partition
 	  id:: 66f0267f-0f03-48bf-91e4-5702b44311df
 		- 以 member_id 的順序分配 `Partition`
 		  ![image.png](../assets/image_1727014729534_0.png)
-- ## RoundRobin
-  id:: 66f02700-7a4d-495f-a0b9-3d5da538f47c
-	- 比 [Range](((66f0267f-0f03-48bf-91e4-5702b44311df))) 更能完全分配，最大化的使用 `Consumer`
-	  ![image.png](../assets/image_1727014799185_0.png)
-	  當 `Comsumer` 有變動時，需要重新分配的 `Partition` 會影響蠻大的
-	  ![image.png](../assets/image_1727014942717_0.png)
-- ## StickyAssignor
-	- 和 [RoundRobin](((66f02700-7a4d-495f-a0b9-3d5da538f47c))) 的分配方式相似，但減少 rebalance 的變動
-	  主要功能是確保客戶端，例如 `Consumer` 消費者在重平衡後能夠維持原本的分配方案，可惜的是這個分配策略依舊是在`eager` 協議的框架之下，重平衡仍然需要每個 `Consumer` 都先放棄當前持有的資源（分區）
-	  ![image.png](../assets/image_1727015050936_0.png)
+	- ### RoundRobin
+	  id:: 66f02700-7a4d-495f-a0b9-3d5da538f47c
+		- 比 [Range](((66f0267f-0f03-48bf-91e4-5702b44311df))) 更能完全分配，最大化的使用 `Consumer`
+		  ![image.png](../assets/image_1727014799185_0.png)
+		  當 `Comsumer` 有變動時，需要重新分配的 `Partition` 會影響蠻大的
+		  ![image.png](../assets/image_1727014942717_0.png)
+	- ### StickyAssignor
+		- 和 [RoundRobin](((66f02700-7a4d-495f-a0b9-3d5da538f47c))) 的分配方式相似，但減少 rebalance 的變動
+		  主要功能是確保客戶端，例如 `Consumer` 消費者在重平衡後能夠維持原本的分配方案，可惜的是這個分配策略依舊是在`eager` 協議的框架之下，重平衡仍然需要每個 `Consumer` 都先放棄當前持有的資源（分區）
+		  ![image.png](../assets/image_1727015050936_0.png)
 - ## Incremental Cooperative Rebalancing
   `Cooperative` 協定將一次全域重平衡，改成每次小規模重平衡，直到最終收斂平衡的過程
 	- Eager 協定
@@ -27,4 +27,8 @@ tags:: Kafka, Kafka Partition
 		- `group coordinator` 從元資料取得目前的分割資料（這個稱為 `assigned-partitions`），再從c1 c2 的 joingroup request 中取得所指派的分割區（這個稱為 `owned-partitions`），透過 `assigned-partitions` 和 `owned-partitions` 知曉目前分配情況，決定取消 c1 一個分區 p2 的消費權，然後發送 sync group request（**{c1->p1}**，**{c2->p3}**）給c1 c2，讓它們繼續消費p1 p2
 		- c1 c2 接收到分配方案後，重新開始消費，一次 `rebalance` 完成，當然這時候 **p2處於無人消費狀態**
 		- 再次觸發 `rebalance`，重複上述流程，不過這次的目的是把p2分配給c3（透過 `assigned-partitions` 和 `owned-partitions` 取得分區分配狀態）
--
+- ## Static Membership
+	- 目前重平衡發生的條件有三：
+		- 成員數量發生變化，即有新成員加入或現有成員離組（包括主動離組和崩潰被動離組）
+		- 訂閱主題數量發生變化
+		- 訂閱主題分區數量發生變化
