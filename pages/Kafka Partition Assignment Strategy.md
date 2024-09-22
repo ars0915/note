@@ -1,6 +1,7 @@
 public:: true
 tags:: Kafka, Kafka Partition
 
+- apache Kafka的重平衡（rebalance），一直以來都是人詬病。因為重平衡過程會觸發stop-the-world（STW），此時對應topic的資源都會處於不可用的狀態。小規模的集群還好，如果是大規模的集群，例如幾百個節點的consumer或kafka connect等，那麼重平衡就是一場災難
 - ## Range
   id:: 66f0267f-0f03-48bf-91e4-5702b44311df
 	- 以 member_id 的順序分配 `Partition`
