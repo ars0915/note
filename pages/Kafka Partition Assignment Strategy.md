@@ -22,4 +22,6 @@ tags:: Kafka, Kafka Partition
 	  ![image.png](../assets/image_1727015811894_0.png)
 	- Cooperative 協定
 	  ![image.png](../assets/image_1727015889283_0.png)
-	  c1 和c2發送joingroup的request給group coordinator，但不需要revoke其所擁有的partition，而是將其擁有的分區編碼後一併發送給group coordinator，即{c1->p1, p2}，{c2- >p3}
+		- c1 和c2發送 joingroup 的request給 `group coordinator` ，但不需要 revoke 其所擁有的 `partition`，而是將其擁有的分區編碼後一併發送給 `group coordinator`，即 **{c1->p1, p2}**，**{c2- >p3}**
+		- group coordinator 從元資料取得目前的分割資料（這個稱為assigned-partitions），再從c1 c2 的joingroup request中取得所指派的分割區（這個稱為owned-partitions），透過assigned-partitions和owned-partitions知曉目前分配情況，決定取消c1一個分區p2的消費權，然後發送sync group request（{c1->p1}，{c2->p3}）給c1 c2，讓它們繼續消費p1 p2
+-
