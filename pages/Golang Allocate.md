@@ -108,5 +108,5 @@ tags:: golang, allocate
 		  $ go test -bench . -benchmem
 		  BenchmarkStackIt3-8  705347884  1.62 ns/op  0 B/op  0 allocs/op
 		  ```
-		-
+	- 我們可以從中推斷出一個一般規則：共享堆疊上的指標會導致分配，而共享堆疊下的指標則不會。但是，這並不能保證，因此您仍然需要使用 gcflags 或基準進行驗證才能確定。我們可以肯定地說，任何減少分配/操作的嘗試都將涉及尋找任性的指標。
 -
