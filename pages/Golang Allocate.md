@@ -23,4 +23,6 @@ tags:: golang, allocate
 		  在下圖中，convert() 函數可以在目前堆疊大小的限制內執行（SP 不會超出 stackguard0）。
 		  ![image.png](../assets/image_1727526407993_0.png)
 		- 如果不是這種情況，運行時會在執行 Convert() 之前將目前 heap 複製到新的更大的連續記憶體空間。這意味著 Go 中的 heap 是動態調整大小的，並且只要有足夠的可用記憶體來填充它們，通常就可以不斷增長。
-		  Go heap 在概念上再次類似於上述執行緒模型。所有 `goroutine` 共享一個公共 heap，任何無法儲存在 stack 中的內容都將最終存放在那裡。當正在進行 benchmark 測試的 function 中發生 heap allocation 時，我們將看到 `allocs/ops` 增加一。GC 的工作是稍後釋放不再引用的堆變數。
+		  Go heap 在概念上再次類似於上述執行緒模型。所有 `goroutine` 共享一個公共 heap，任何無法儲存在 stack 中的內容都將最終存放在那裡。當正在進行 benchmark 測試的 function 中發生 heap allocation 時，我們將看到 `allocs/ops` 增加一。GC 的工作是稍後釋放不再引用的 heap 變數。
+- ## When a variable is allocated to the heap
+	-
