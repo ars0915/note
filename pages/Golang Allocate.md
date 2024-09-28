@@ -29,5 +29,5 @@ tags:: golang, allocate
 	  如果一個變數的位址已被獲取，那麼該變數就是在 heap 上分配的候選變數。基本的 `escape analysis` 可以識別某些情況，像是這些變數在 function return 之後不會存在，就可以駐留在 stack 上。
 	- 可以透過編譯器的輸出看到轉義分析的結果，透過 `go build` 加上 `gcflags` 來實現
 	- 透過 `-m`(`print optimization decisions`) 看以下程式的 `escape analysis` 結果
-		- 加上 `noinline`
+		- 加上 `noinline` pragma 避免編譯時 `inlining`(如果編譯
 -
