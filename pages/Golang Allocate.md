@@ -25,5 +25,5 @@ tags:: golang, allocate
 		- 如果不是這種情況，運行時會在執行 Convert() 之前將目前 heap 複製到新的更大的連續記憶體空間。這意味著 Go 中的 heap 是動態調整大小的，並且只要有足夠的可用記憶體來填充它們，通常就可以不斷增長。
 		  Go heap 在概念上再次類似於上述執行緒模型。所有 `goroutine` 共享一個公共 heap，任何無法儲存在 stack 中的內容都將最終存放在那裡。當正在進行 benchmark 測試的 function 中發生 heap allocation 時，我們將看到 `allocs/ops` 增加一。GC 的工作是稍後釋放不再引用的 heap 變數。
 - ## When a variable is allocated to the heap
-	- Go 編譯器將在 function 的 stack frame 中分配 function 的 local variable。但是，如果編譯器無法證明 function 在 return 後該變數未被引用，則編譯器必須在 GC heap 分配該變數以避免 dangling pointer error。此外，如果局部變數非常大，將其儲存在堆疊上而不是堆疊上可能更有意義。
-	  如果一個變數的位址已被獲取，那麼該變數就是在堆上分配的候選變數。然而，基本的逃逸分析可以識別某些情況，這些變數在函數返回之後不會存在，並且可以駐留在堆疊上。
+	- Go 編譯器將在 function 的 stack frame 中分配 function 的 local variable。但是，如果編譯器無法證明 function 在 return 後該變數未被引用，則編譯器必須在 GC heap 分配該變數以避免 dangling pointer error。此外，如果 local variable 非常大，將其儲存在 heap 上可能比 stack 好。
+	  如果一個變數的位址已被獲取，那麼該變數就是在 heap 上分配的候選變數。然而，基本的 `escape analysis` 可以識別某些情況，這些變數在函數返回之後不會存在，並且可以駐留在堆疊上。
