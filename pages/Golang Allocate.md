@@ -18,4 +18,4 @@ tags:: golang, allocate
 	- ### Heap
 		- 我們可以使用 heap 來儲存程式中所需的資料。此處分配的記憶體不能在 function return 時簡單地釋放，需要仔細管理以避免 leak 和 fragmentation。heap 通常會比任何 thread stack 大許多倍，大部分最佳化工作將花在研究 heap 的使用上。
 		- Go 運行時將 OS 管理的 thread 完全從我們手中抽象化出來，取而代之的是我們使用一個新的抽象：`goroutines`。 
-		  `Goroutine` 在概念上與執行緒非常相似，但它們存在於使用者空間中。這意味著運行時（而不是作業系統）設定了堆疊行為的規則。
+		  `Goroutine` 在概念上與 thread 非常相似，但它們存在於 user space 中。這意味著運行時不是 OS 設定了 stack 行為的規則。
