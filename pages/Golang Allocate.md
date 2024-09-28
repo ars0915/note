@@ -45,4 +45,6 @@ tags:: golang, allocate
 		  ```
 		  加上 `noinline` pragma 避免編譯時 `inlining`(如果編譯器移除 function calls 就看不到 stack 的行為
 		  `-l` omit inlining decision
+		  可以看到 `escape analysis` 沒有要把變數放到 heap 中，代表 `y` 還在 stack 上
+		  使用 bench
 -
