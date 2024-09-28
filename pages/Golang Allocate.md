@@ -100,7 +100,7 @@ tags:: golang, allocate
 		  # github.com/Jimeux/go-samples/allocations
 		  ./main.go:10:14: y does not escape
 		  ```
-		  ``
+		  `stackIt3`
 		  
 		  benchmark
 		  ```shell
