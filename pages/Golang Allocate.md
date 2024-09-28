@@ -119,4 +119,5 @@ tags:: golang, allocate
 - ## Reference
 	- James Kirk, "Understanding Allocations in Go," *[Eureka Engineering](https://medium.com/eureka-engineering?source=post_page-----9a2631b5035d--------------------------------)*, Available: [link_to_page](https://medium.com/eureka-engineering/understanding-allocations-in-go-stack-heap-memory-9a2631b5035d). 
 	  type:: [[Web Page]]
-	-
+	- Harvey, "GO学习笔记之（一） Stack Or heap? 这是一个问题," *Harvey's Zatan*, Available: [link_to_page](http://harveyli.me/go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B1/). 
+	  type:: [[Web Page]]
