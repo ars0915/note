@@ -1,4 +1,4 @@
 public:: true
-t
+tags:: golang, allocate
 
 -
