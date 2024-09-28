@@ -19,3 +19,6 @@ tags:: golang, allocate
 		- 我們可以使用 heap 來儲存程式中所需的資料。此處分配的記憶體不能在 function return 時簡單地釋放，需要仔細管理以避免 leak 和 fragmentation。heap 通常會比任何 thread stack 大許多倍，大部分最佳化工作將花在研究 heap 的使用上。
 		- Go 運行時將 OS 管理的 thread 完全從我們手中抽象化出來，取而代之的是我們使用一個新的抽象：`goroutines`。 
 		  `Goroutine` 在概念上與 thread 非常相似，但它們存在於 user space 中。這意味著運行時不是 OS 設定了 stack 行為的規則。
+		  Goroutine stack 沒有由 OS 設定硬限制，而是以少量記憶體（目前為 2KB）開始。在執行每個函數呼叫之前，會在函數序言中執行檢查，以驗證不會發生 stack overflow。
+		  在下圖中，convert() 函數可以在目前堆疊大小的限制內執行（SP 不會超出 stackguard0）。
+		  ![image.png](../assets/image_1727526407993_0.png)
