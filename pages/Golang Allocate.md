@@ -69,5 +69,10 @@ tags:: golang, allocate
 		  ```
 		  
 		  ```shell
+		  go build -gcflags '-m -l'
+		  # github.com/Jimeux/go-samples/allocations
+		  ./main.go:10:2: moved to heap: res
 		  ```
+		  編譯器表示把 pointer `res` 放到 heap
+		  看看 ben
 -
