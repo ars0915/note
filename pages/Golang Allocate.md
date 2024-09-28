@@ -7,3 +7,6 @@ tags:: golang, allocate
 		- 變數的大小在編譯時未知
 	- 可以使用 `-benchmem`看 `alloc/op` 知道目前程式的記憶體分配狀況
 	- GC 的時候會 STW
+- ## Stack and Heap
+	- ### Stack
+		-
