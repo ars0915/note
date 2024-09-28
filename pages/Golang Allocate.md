@@ -74,5 +74,14 @@ tags:: golang, allocate
 		  ./main.go:10:2: moved to heap: res
 		  ```
 		  編譯器表示把 pointer `res` 放到 heap
-		  看看 ben
+		  
+		  看看 benchmark
+		  ```shell
+		  $ go test -bench . -benchmem
+		  BenchmarkStackIt2-8  70922517  16.0 ns/op  8 B/op  1 allocs/op
+		  ```
+		- ### 使用 pointer 但沒有 return pointer
+		  
+		  ```go
+		  ```
 -
