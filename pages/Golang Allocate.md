@@ -7,6 +7,9 @@ tags:: golang, allocate
 		- 變數的大小在編譯時未知
 	- 可以使用 `-benchmem`看 `alloc/op` 知道目前程式的記憶體分配狀況
 	- GC 的時候會 STW
+	  掃描所有對象
+	  標記所有在heap中的對象
+	  找出那些不會再被使用的物件並在背景清除它們
 - ## Stack and Heap
 	- ### Stack
 		- ![image.png](../assets/image_1727526133129_0.png) 
