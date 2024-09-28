@@ -113,6 +113,7 @@ tags:: golang, allocate
 		  ```
 	- **我們可以從中推斷出一個一般規則：共享 stack 上的 pointer 會導致 `allocation`，而共享 stack 下的 pointer 則不會**。但是，這並不能保證，因此您仍然需要使用 `gcflags` 或 `benchmark` 驗證才能確定。我們可以肯定地說，任何減少`allocs/op` 的嘗試都將涉及尋找任性的指標。
 - ## Why do we care about heap allocations?
-	- 儘管 Go 的 GC 越來越高效，但這個過程 有時完全停止。 CreateCopy 的情況並非如此，因為我們所有的 BigStruct 實例都保留在堆疊上，並且 GC 幾乎沒有什麼可做的。
+	- 儘管 Go 的 GC 越來越高效，但這個過程 process 有時會完全停止。 
+	  copy value 時因為所有的 BigStruct 實例都保留在 stack 上， GC 幾乎沒有什麼可做的，就不會有上面的情況發生。
 	- 比較兩組追蹤數據的 goroutine 分析可以更深入地了解這一點。 CreatePointer（底部）花了超過 15% 的執行時間來清理或暫停 (GC) 以及調度 goroutine。
 	- 請記住，儘管本節的標題如此，但 CreateCopy 測試的條件在典型程式中是非常不切實際的。 GC 使用一致數量的 CPU 是很正常的，並且指標是任何實際程式的功能。然而，這與先前的火焰圖一起讓我們深入了解為什麼我們可能想要追蹤分配/操作統計數據，並盡可能避免不必要的堆分配。
