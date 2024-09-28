@@ -83,5 +83,29 @@ tags:: golang, allocate
 		- ### 使用 pointer 但沒有 return pointer
 		  
 		  ```go
+		  func main3() {
+		     y := 2
+		     _ = stackIt3(&y) // pass y down the stack as a pointer
+		  }
+		  
+		  //go:noinline
+		  func stackIt3(y *int) int {
+		     res := *y * 2
+		     return res
+		  }
 		  ```
+		  
+		  ```shell
+		  $ go build -gcflags '-m -l'
+		  # github.com/Jimeux/go-samples/allocations
+		  ./main.go:10:14: y does not escape
+		  ```
+		  ``
+		  
+		  benchmark
+		  ```shell
+		  $ go test -bench . -benchmem
+		  BenchmarkStackIt3-8  705347884  1.62 ns/op  0 B/op  0 allocs/op
+		  ```
+		-
 -
