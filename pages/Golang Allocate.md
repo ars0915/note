@@ -16,4 +16,4 @@ tags:: golang, allocate
 		  由於 thread 由 OS 管理，因此 thread stack 可用的記憶體量通常是固定的，例如在許多 Linux 環境中預設值為 8MB。這意味著我們還需要注意 stack 上最終有多少數據，特別是在 deeply-nested recursive functions 的情況下。
 		  如果上圖中的 stack pointer 超過 stack guard，程式將因 stack overflow 錯誤而 crash。
 	- ### Heap
-		-
+		- 我們可以使用 heap 來儲存程式中所需的資料。此處分配的記憶體不能在 function return 時簡單地釋放，需要仔細管理以避免洩漏和碎片。堆通常會比任何執行緒堆疊大許多倍，大部分最佳化工作將花在研究堆的使用上。
