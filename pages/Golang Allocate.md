@@ -100,7 +100,7 @@ tags:: golang, allocate
 		  # github.com/Jimeux/go-samples/allocations
 		  ./main.go:10:14: y does not escape
 		  ```
-		  `stackIt3` 把 `res` 傳到 `main`，`y`在 `stackIt3` 的 `stack frame`被釋放後才被引用，因此編譯器判斷 `y`必
+		  `stackIt3` 把 `res` 傳到 `main`，`y`在 `stackIt3` 的 `stack frame`被釋放後才被引用，因此編譯器判斷 `y`必須被放到 heap 中在能保持活著，不然在 `main` 中被引用時 `y` 已經不存在
 		  
 		  benchmark
 		  ```shell
