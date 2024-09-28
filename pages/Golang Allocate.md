@@ -116,3 +116,6 @@ tags:: golang, allocate
 	- 儘管 Go 的 GC 越來越高效，但這個過程 process 有時會完全停止。 
 	  copy value 時因為所有的 BigStruct 實例都保留在 stack 上， GC 幾乎沒有什麼可做的，就不會有上面的情況發生。
 -
+- ## Reference
+	- James Kirk, "Understanding Allocations in Go," **, Available: [link_to_page](https://medium.com/eureka-engineering/understanding-allocations-in-go-stack-heap-memory-9a2631b5035d). 
+	  type:: [[Web Page]]
