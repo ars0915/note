@@ -28,5 +28,6 @@ tags:: golang, allocate
 	- Go 編譯器將在 function 的 stack frame 中分配 function 的 local variable。但是，如果編譯器無法證明 function 在 return 後該變數未被引用，則編譯器必須在 GC heap 分配該變數以避免 dangling pointer error。此外，如果 local variable 非常大，將其儲存在 heap 上可能比 stack 好。
 	  如果一個變數的位址已被獲取，那麼該變數就是在 heap 上分配的候選變數。基本的 `escape analysis` 可以識別某些情況，像是這些變數在 function return 之後不會存在，就可以駐留在 stack 上。
 	- 可以透過編譯器的輸出看到轉義分析的結果，透過 `go build` 加上 `gcflags` 來實現
-	- 透過 `-m`(`print optimization decisions`) 看
+	- 透過 `-m`(`print optimization decisions`) 看以下程式的 `escape analysis` 結果
+		- 加上 `noinline`
 -
