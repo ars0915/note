@@ -8,4 +8,5 @@
 	- `a=msid-semantic: WMS lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS`: 
 	  表示這個 SDP 用 Media Stream Identification (MSID) semantic
 	  The **WMS** keyword refers to "WebRTC Media Streams," a concept in WebRTC where media tracks are grouped into a single logical stream for easier handling.
-	  `lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS` 為 ID，讓 application 管理 media stream
+	  `lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS` 為 ID，讓 application 管理 WebRTC MediaStream object
+	-
