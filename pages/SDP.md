@@ -35,3 +35,4 @@
 	- ## ICE Parameters
 		- `a=ice-ufrag:Oyef7uvBlwafI3hT`: ICE username fragment.
 		  It is paired with the **ICE password** (`a=ice-pwd`) to authenticate and match connectivity checks between peers.
+		- `a=ice-pwd:T0teqPLNQQOf+5W+ls+P2p16`
