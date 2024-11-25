@@ -13,5 +13,6 @@
 	- `m=audio 54321 UDP/TLS/RTP/SAVPF 111 103 104`: media type, including port, protocol, supported codec
 	- `c=IN IP4 217.130.243.155`: net type, address type, connection address
 	  定義在 top-level 的 `c=` 會 apply 到所有 media section (`m=` lines)，當 media section 有定義自己的 `c=` line 會 override global `c=` line
-	-
+	  address 可能的值
+	  1. initial SDP off
 	-
