@@ -101,5 +101,8 @@
 			  
 			  // Send the local description (SDP) to the remote peer via signaling
 			  sendToSignalingServer(pc.localDescription);
+			  ```
+			- Example code Receiver:
 			  
+			  ```javascript
 			  ```
