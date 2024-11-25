@@ -45,7 +45,6 @@
 				      /* handle the error */
 				    }
 				  }
-				  
 				  ```
 				  收到 `"sendonly"` 的 SDP offer 後執行
 				  1. Set the remote description to the specified `offer` by calling `RTCPeerConnection.setRemoteDescription()`
@@ -55,10 +54,27 @@
 		- ### 關閉 hold mode
 			- #### Local
 				- ```javascript
+				  async function disableHold(micStream) {
+				    await audioTransceiver.sender.replaceTrack(micStream.getAudioTracks()[0]);
+				    audioTransceiver.receiver.track.enabled = true;
+				    audioTransceiver.direction = "sendrecv";
+				  }
 				  ```
 				  1. The audio transceiver's `RTCRtpSender`'s track is replaced with the specified stream's first audio track.
 				  2. The transceiver's incoming audio track is re-enabled.
 				  3. The audio transceiver's direction is set to `"sendrecv"`, indicating that it should return to both sending and receiving streamed audio, instead of only sending.
 				- 這也會觸發 renegotiation
 			- #### Remote
-			-
+				- ```javascript
+				  async function holdEnded(offer, micStream) {
+				    try {
+				      await peerConnection.setRemoteDescription(offer);
+				      await audioTransceiver.sender.replaceTrack(micStream.getAudioTracks()[0]);
+				      audioTransceiver.direction = "sendrecv";
+				      await sendAnswer();
+				    } catch (err) {
+				      /* handle the error */
+				    }
+				  }
+				  ```
+				  收到 `"sendrecv"` 的 SDP offer 後執行
