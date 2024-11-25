@@ -81,4 +81,6 @@
 				  收到 `"sendrecv"` 的 SDP offer 後執行
 - # Connectivity
 	- ## Signaling
-		- ### Session des
+		- ### Session descriptions
+		  The configuration of an endpoint on a WebRTC connection.
+		  透過 [[SDP]]
