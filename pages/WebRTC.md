@@ -30,7 +30,9 @@
 			    }
 			  }
 			  ```
-			  1.
+			  1. Replace their outgoing audio track with a `MediaStreamTrack` containing hold music.
+			  2. Disable the incoming audio track.
+			  3. Switch the audio transceiver into send-only mode.
 			- #### Remote peer
 			-
 		- ### 關閉 hold mode
