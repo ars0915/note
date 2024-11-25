@@ -23,6 +23,7 @@
 			- RTCP Multiplexing:
 			  1. WebRTC frequently uses RTCP multiplexing (rtcp-mux), which combines RTP and RTCP packets on the same port to simplify the connection and reduce resource usage.
 			  2. If rtcp-mux is used, you may see a line like a=rtcp-mux, and the a=rtcp line might be omitted or ignored.
+	- `a=rtpmap:111 opus/48000/2`: Codec details (payload type 111 is Opus with 48 kHz sampling rate and 2 channels).
 	- ## ICE Candidates
 		- `a=candidate:1467250027 1 udp 2122260223 192.168.0.196 46243 typ host generation 0`:
 		  
