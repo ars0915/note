@@ -54,7 +54,8 @@
 				  4. The SDP answer is generated and sent using a method called `sendAnswer()`, which generates the answer using `createAnswer()` then sends the resulting SDP to the other peer over the signaling service.
 		- ### 關閉 hold mode
 			- #### Local
-				- /code
+				- ```javascript
+				  ```
 				  1. The audio transceiver's `RTCRtpSender`'s track is replaced with the specified stream's first audio track.
 				  2. The transceiver's incoming audio track is re-enabled.
 				  3. The audio transceiver's direction is set to `"sendrecv"`, indicating that it should return to both sending and receiving streamed audio, instead of only sending.
