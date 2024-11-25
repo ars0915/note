@@ -32,7 +32,7 @@
 				  1. Replace their outgoing audio track with a `MediaStreamTrack` containing hold music.
 				  2. Disable the incoming audio track.
 				  3. Switch the audio transceiver into send-only mode.
-				- 這會透過向 RTCPeerConnection 發送 `negotiationneeded` event 來觸發 RTCPeerConnection 的重新協商，您的程式碼會回應該事件，使用 RTCPeerConnection.createOffer 產生 SDP offer，並透過 sig將其傳送到遠端對等點。
+				- 這會透過向 RTCPeerConnection 發送 `negotiationneeded` event 來觸發 RTCPeerConnection 的renegotiation，您的程式碼會回應該事件，使用 RTCPeerConnection.createOffer 產生 SDP offer，並透過 signaling server 將其傳送到 remote peer。
 				  包含要播放的音訊而不是本地對等點的麥克風音訊的音訊串流可以來自任何地方。一種可能性是擁有隱藏的 <audio> 元素並使用 HTMLAudioElement.captureStream() 來取得其音訊串流。
 			- #### Remote peer
 			-
