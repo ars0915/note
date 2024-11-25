@@ -9,32 +9,31 @@
 		  不處理可能需要的資源的分配或保留。
 	- ## RTCPeerConnection
 	  每個 RTCPeerConnection 都有方法提供對服務對等連線的 RTP 傳輸清單的存取。這些對應於 RTCPeerConnection 支援的以下三種傳輸類型：
-		- ### RTCRtpSender
-		  RTCRtpSender 處理 MediaStreamTrack 資料到遠端對等點的編碼和傳輸。
-		- ### RTCRtpReceiver
-		  RTCRtpReceivers 提供檢查和獲取有關傳入 MediaStreamTrack 資料的資訊的能力。
-		- ### RTCRtpTransceiver
-		  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP media m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
-	- ### How to establish a RTCPeerConnection object in JavaScript.
-		- **Basic Setup**
-		  The `RTCPeerConnection` is created using its constructor, which can take an optional configuration object to define connection settings.
-		  ```javascript
-		  const configuration = {
-		    iceServers: [
-		        { urls: "stun:stun.l.google.com:19302" }, // Google's public STUN server
-		        // Add TURN servers here if needed
-		    ],
-		  };
-		  
-		  // Create the RTCPeerConnection object
-		  const peerConnection = new RTCPeerConnection(configuration);
-		  
-		  console.log("RTCPeerConnection created:", peerConnection);
-		  
-		  // You can also create an `RTCPeerConnection` without any configuration:
-		  const peerConnection = new RTCPeerConnection();
-		  ```
-		-
+	  **RTCRtpSender**
+	  RTCRtpSender 處理 MediaStreamTrack 資料到遠端對等點的編碼和傳輸。
+	  **RTCRtpReceiver**
+	  RTCRtpReceivers 提供檢查和獲取有關傳入 MediaStreamTrack 資料的資訊的能力。
+	  **RTCRtpTransceiver**
+	  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP media m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
+		- ### How to establish a RTCPeerConnection object in JavaScript.
+			- **Basic Setup**
+			  The `RTCPeerConnection` is created using its constructor, which can take an optional configuration object to define connection settings.
+			  ```javascript
+			  const configuration = {
+			    iceServers: [
+			        { urls: "stun:stun.l.google.com:19302" }, // Google's public STUN server
+			        // Add TURN servers here if needed
+			    ],
+			  };
+			  
+			  // Create the RTCPeerConnection object
+			  const peerConnection = new RTCPeerConnection(configuration);
+			  
+			  console.log("RTCPeerConnection created:", peerConnection);
+			  
+			  // You can also create an `RTCPeerConnection` without any configuration:
+			  const peerConnection = new RTCPeerConnection();
+			  ```
 	- ## RTP 實作 hold 功能
 	  collapsed:: true
 		- ### 開啟 hold mode
