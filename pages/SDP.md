@@ -4,4 +4,5 @@
 	- `s=-`: session name (often unused)
 	- `t=0 0`: start and end time (often unused)
 - # Group Attributes
-	- `a=group:BUNDLE audio video`:
+	- `a=group:BUNDLE audio video`: The BUNDLE mechanism allows multiple media streams to share the same network connection (port and transport), which reduces resource usage.
+	-
