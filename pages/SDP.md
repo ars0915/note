@@ -23,4 +23,5 @@
 	  RTCP Multiplexing:
 	  2. WebRTC frequently uses RTCP multiplexing (rtcp-mux), which combines RTP and RTCP packets on the same port to simplify the connection and reduce resource usage.
 	  3. If rtcp-mux is used, you may see a line like a=rtcp-mux, and the a=rtcp line might be omitted or ignored.
-	-
+	- ## ICE Candidates
+		-
