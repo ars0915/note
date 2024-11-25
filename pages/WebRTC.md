@@ -18,7 +18,6 @@
 	- ### How to establish a RTCPeerConnection object in JavaScript.
 		- **Basic Setup**
 		  The `RTCPeerConnection` is created using its constructor, which can take an optional configuration object to define connection settings.
-		  **Code Example**
 		  ```javascript
 		  const configuration = {
 		    iceServers: [
@@ -32,10 +31,9 @@
 		  
 		  console.log("RTCPeerConnection created:", peerConnection);
 		  ```
-		- **Empty Configuration:** You can also create an `RTCPeerConnection` without any configuration:
-		  ```javascript
-		  const peerConnection = new RTCPeerConnection();
-		  ```
+			- ```javascript
+			  const peerConnection = new RTCPeerConnection();
+			  ```
 		-
 		- ###
 	- ## RTP 實作 hold 功能
