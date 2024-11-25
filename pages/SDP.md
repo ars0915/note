@@ -18,9 +18,9 @@
 	  2. 直連時會是 media 交換的 IP
 	- `a=rtcp:51472 IN IP4 217.130.243.155`: rtcp port, net type, addr type, connection address
 	  **RTCP** 與 RTP 一起使用來監控 、報告統計資料以及管理音訊和視訊之間的同步。
-	  In modern WebRTC, this line is often superseded or supplemented by:ICE (Interactive Connectivity Establishment):
-	- ICE candidates provide the actual transport addresses for RTP and RTCP after negotiation, including NAT traversal.
+	  In modern WebRTC, this line is often superseded or supplemented by:
+	  1. ICE candidates provide the actual transport addresses for RTP and RTCP after negotiation, including NAT traversal.
 	  RTCP Multiplexing:
-	- WebRTC frequently uses RTCP multiplexing (rtcp-mux), which combines RTP and RTCP packets on the same port to simplify the connection and reduce resource usage.
-	  If rtcp-mux is used, you may see a line like a=rtcp-mux, and the a=rtcp line might be omitted or ignored.
+	  2. WebRTC frequently uses RTCP multiplexing (rtcp-mux), which combines RTP and RTCP packets on the same port to simplify the connection and reduce resource usage.
+	  3. If rtcp-mux is used, you may see a line like a=rtcp-mux, and the a=rtcp line might be omitted or ignored.
 	-
