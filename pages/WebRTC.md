@@ -34,5 +34,6 @@
 				  3. Switch the audio transceiver into send-only mode.
 				- 這會透過向 RTCPeerConnection 發送 `negotiationneeded` event 來觸發 RTCPeerConnection 的renegotiation，您的程式碼會回應該事件，使用 RTCPeerConnection.createOffer 產生 SDP offer，並透過 signaling server 將其傳送到 remote peer。
 			- #### Remote peer
+				-
 			-
 		- ### 關閉 hold mode
