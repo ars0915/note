@@ -126,5 +126,6 @@
 		  Trickle ICE is a feature in WebRTC that allows ICE candidates (potential network paths) to be sent incrementally to the remote peer as they are discovered, rather than waiting for the entire list of candidates to be gathered. This helps establish the connection faster and makes the process more efficient.
 		- ### Candidate Pair
 		  id:: 674449f6-4fb3-4a89-a5c9-507b51322e81
-			-
+		  兩個 Peer 各自的 Candidate 組合
+		-
 -
