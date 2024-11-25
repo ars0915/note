@@ -8,12 +8,11 @@
 		  它僅提供允許在堆疊中的其他位置實現 QoS 所需的資訊。
 		  不處理可能需要的資源的分配或保留。
 	- ## RTCPeerConnection
-		- 每個 RTCPeerConnection 都有方法提供對服務對等連線的 RTP 傳輸清單的存取。這些對應於 RTCPeerConnection 支援的以下三種傳輸類型：
-			- ### RTCRtpSender
-			  RTCRtpSender 處理 MediaStreamTrack 資料到遠端對等點的編碼和傳輸。
-			- ### RTCRtpReceiver
-			  RTCRtpReceivers 提供檢查和獲取有關傳入 MediaStreamTrack 資料的資訊的能力。連線的接收者可以透過呼叫 RTCPeerConnection.getReceivers() 來取得。
-			- ### RTCRtpTransceiver
-			  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP 媒體 m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
-		-
+	  每個 RTCPeerConnection 都有方法提供對服務對等連線的 RTP 傳輸清單的存取。這些對應於 RTCPeerConnection 支援的以下三種傳輸類型：
+		- ### RTCRtpSender
+		  RTCRtpSender 處理 MediaStreamTrack 資料到遠端對等點的編碼和傳輸。
+		- ### RTCRtpReceiver
+		  RTCRtpReceivers 提供檢查和獲取有關傳入 MediaStreamTrack 資料的資訊的能力。
+		- ### RTCRtpTransceiver
+		  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP 媒體 m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
 -
