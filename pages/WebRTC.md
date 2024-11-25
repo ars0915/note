@@ -18,6 +18,18 @@
 	- ## RTP 實作 hold 功能
 		- ### 開啟 hold mode
 			- #### Local peer
+			  
+			  ```javascript
+			  async function enableHold(audioStream) {
+			    try {
+			      await audioTransceiver.sender.replaceTrack(audioStream.getAudioTracks()[0]);
+			      audioTransceiver.receiver.track.enabled = false;
+			      audioTransceiver.direction = "sendonly";
+			    } catch (err) {
+			      /* handle the error */
+			    }
+			  }
+			  ```
 			- #### Remote peer
 			-
 		- ### 關閉 hold mode
