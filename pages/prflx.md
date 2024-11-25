@@ -1,10 +1,11 @@
 # **Key Features of `prflx` (Peer Reflexive Candidates)**
-- **Dynamic Discovery:**
-	- Unlike host, server reflexive (`srflx`), or relay candidates, a `prflx` candidate is not provided by the signaling process or STUN/TURN servers. It is discovered during the ICE connectivity checks when one peer sends a binding request to the other.
-- **Observed Address:**
-	- A `prflx` candidate reflects the public-facing IP and port of a peer as seen by the other peer during the ICE process.
-	- It typically occurs when NAT devices alter the source address and port of outgoing packets, and the receiving peer observes a different address/port combination than what was advertised in the host candidate.
-- **Higher Priority:**
-	- Once discovered, a `prflx` candidate can take precedence over other candidates if it provides a better or more direct path for communication.
-- **Temporary Binding:**
-	- These candidates are often transient and used only during the session. They don't require explicit signaling or external server interaction.
+	- **Dynamic Discovery:**
+		- Unlike host, server reflexive (`srflx`), or relay candidates, a `prflx` candidate is not provided by the signaling process or STUN/TURN servers. It is discovered during the ICE connectivity checks when one peer sends a binding request to the other.
+	- **Observed Address:**
+		- A `prflx` candidate reflects the public-facing IP and port of a peer as seen by the other peer during the ICE process.
+		- It typically occurs when NAT devices alter the source address and port of outgoing packets, and the receiving peer observes a different address/port combination than what was advertised in the host candidate.
+	- **Higher Priority:**
+		- Once discovered, a `prflx` candidate can take precedence over other candidates if it provides a better or more direct path for communication.
+	- **Temporary Binding:**
+		- These candidates are often transient and used only during the session. They don't require explicit signaling or external server interaction.
+-
