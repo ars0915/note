@@ -17,5 +17,5 @@
 	  1. SDP offer 初始化時可能會帶個 private IP 或 default 值
 	  2. 直連時會是 media 交換的 IP
 	- `a=rtcp:51472 IN IP4 217.130.243.155`: rtcp port, net type, addr type, connection address
-	  RTCP
+	  **RTCP** 與 RTP 一起使用來監控 、報告統計資料以及管理音訊和視訊之間的同步。
 	-
