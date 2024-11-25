@@ -35,7 +35,6 @@
 			  const peerConnection = new RTCPeerConnection();
 			  ```
 	- ## RTP 實作 hold 功能
-	  collapsed:: true
 		- ### 開啟 hold mode
 			- #### Local peer
 				- ```javascript
