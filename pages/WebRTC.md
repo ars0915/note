@@ -36,7 +36,20 @@
 		- ### Lifecycle
 			- #### **Initialization**:
 				- Create `RTCPeerConnection` objects on both sides.
-			- Add media tracks or data channels.
+				  ```javascript
+				  const configuration = {
+				  iceServers: [
+				      { urls: "stun:stun.l.google.com:19302" }, // Google's public STUN server
+				      // Add TURN servers here if needed
+				  ],
+				  };
+				  - // Create the RTCPeerConnection object
+				  const peerConnection = new RTCPeerConnection(configuration);
+				  - console.log("RTCPeerConnection created:", peerConnection);
+				  - // You can also create an `RTCPeerConnection` without any configuration:
+				  const peerConnection = new RTCPeerConnection();
+				  ```
+				- Add media tracks or data channels.
 			- **Signaling**:
 			- Exchange SDP offers/answers and ICE candidates via a signaling server.
 			- **ICE Gathering**:
