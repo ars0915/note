@@ -102,9 +102,19 @@
 			  // Send the local description (SDP) to the remote peer via signaling
 			  sendToSignalingServer(pc.localDescription);
 			  
+			  // Event: Handle incoming ICE candidates from the signaling server
+			  signalingServer.on("iceCandidate", candidate => {
+			      pc.addIceCandidate(candidate).catch(e => console.error("Error adding ICE candidate:", e));
+			  });
 			  
-			  ```
-			- Example code Receiver:
-			  
-			  ```javascript
+			  // Step: Receive the answer from the remote peer
+			  signalingServer.on("answer", async answer => {
+			      try {
+			          // Set the received answer as the remote description
+			          await pc.setRemoteDescription(new RTCSessionDescription(answer));
+			          console.log("Remote description set successfully.");
+			      } catch (e) {
+			          console.error("Error setting remote description:", e);
+			      }
+			  });
 			  ```
