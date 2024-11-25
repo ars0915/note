@@ -33,4 +33,5 @@
 			- priority: 值愈大代表 priority 愈高，is determined by factors such as type (e.g., host vs. relay), network reachability, and other ICE-specific metrics
 			- typ: `host`: directly with local network interface (e.g. private IP), `srflx`: server reflexive, 經過 STUN 拿到的 public IP, `relay`: TURN server, [[prflx]]: peer reflexive, Discovered during ICE connectivity checks.
 	- ## ICE Parameters
-		- `a=ice-ufrag:Oyef7uvBlwafI3hT`: ICE username fragment
+		- `a=ice-ufrag:Oyef7uvBlwafI3hT`: ICE username fragment.
+		  It is paired with the **ICE password** (`a=ice-pwd`) to authenticate and match connectivity checks between peers.
