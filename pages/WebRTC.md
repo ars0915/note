@@ -84,6 +84,22 @@
 		- ### Session descriptions
 		  The configuration of an endpoint on a WebRTC connection.
 		  透過 [[SDP]] 交換資訊
-			- Create `RTCPeerConnection`
-			- Create offer: `RTCPeerConnection.createOffer()`
-			-
+			- Example code Caller:
+			  
+			  ```javascript
+			  const pc = new RTCPeerConnection();
+			  
+			  // Add local media tracks
+			  const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+			  stream.getTracks().forEach(track => pc.addTrack(track, stream));
+			  
+			  // Create an offer
+			  const offer = await pc.createOffer();
+			  
+			  // Set the local description
+			  await pc.setLocalDescription(offer);
+			  
+			  // Send the local description (SDP) to the remote peer via signaling
+			  sendToSignalingServer(pc.localDescription);
+			  
+			  ```
