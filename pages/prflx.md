@@ -8,4 +8,14 @@
 		- Once discovered, a `prflx` candidate can take precedence over other candidates if it provides a better or more direct path for communication.
 	- **Temporary Binding:**
 		- These candidates are often transient and used only during the session. They don't require explicit signaling or external server interaction.
--
+- # **How `prflx` Works**
+	- **Initial Candidate Exchange:**
+		- During ICE negotiation, each peer exchanges its gathered candidates (host, server reflexive, relay) through the signaling process.
+	- **Connectivity Checks:**
+		- Peers send ICE connectivity checks to each other. These are STUN binding requests sent over the network.
+	- **Discovery:**
+		- When a peer sends a binding request, the receiving peer may observe an unexpected source IP and port for the request (different from the advertised host or server reflexive candidate).
+	- **Creation of `prflx`:**
+		- The receiving peer generates a `prflx` candidate for the observed source address and port, associating it with the original host or server reflexive candidate.
+	- **Pair Testing:**
+		- The newly created `prflx` candidate is added to the list of potential candidate pairs for testing. If it works better than other candidates, it might be selected for the session.
