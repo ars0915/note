@@ -29,3 +29,5 @@
 		  ```shell
 		  a=candidate:<foundation> <component-id> <transport> <priority> <address> <port> typ <type> [<related-address> <related-port>] [<extensions>]
 		  ```
+		  component ID: `1`: RTP, `2`: RTCP
+		  priority: 值愈大代表 pr
