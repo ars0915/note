@@ -50,12 +50,13 @@
 				  const peerConnection = new RTCPeerConnection();
 				  ```
 				- Add media tracks or data channels.
-			- #### **Signaling**:
-				- ((67441318-7be3-4c5f-b921-e393ac007fb0)) Exchange SDP offers/answers and ICE candidates via a signaling server.
-			- #### **ICE Gathering**:
-				- Gather local candidates and send them incrementally (Trickle ICE).
-			- **ICE Connectivity Checks**:
-			- Test candidate pairs and select the best working path.
+			- ((67441318-7be3-4c5f-b921-e393ac007fb0))
+				- **Signaling**:
+					- Exchange SDP offers/answers and ICE candidates via a signaling server.
+				- **ICE Gathering**:
+					- Gather local candidates and send them incrementally (Trickle ICE).
+				- **ICE Connectivity Checks**:
+					- Test candidate pairs and select the best working path.
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
