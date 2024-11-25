@@ -17,6 +17,7 @@
 		- ### RTCRtpTransceiver
 		  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP media m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
 	- ## RTP 實作 hold 功能
+	  collapsed:: true
 		- ### 開啟 hold mode
 			- #### Local peer
 				- ```javascript
