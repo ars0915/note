@@ -10,4 +10,5 @@
 	  The **WMS** keyword refers to "WebRTC Media Streams," a concept in WebRTC where media tracks are grouped into a single logical stream for easier handling.
 	  `lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS` 為 ID，讓 application 管理 WebRTC MediaStream object
 - # Media Descriptions
-	- `m=audio 54321 UDP/TLS/RTP/SAVPF 111 103 104`:
+	- `m=audio 54321 UDP/TLS/RTP/SAVPF 111 103 104`: media type, including port, protocol, supported codec
+	- `c=IN IP4 217.130.243.155`
