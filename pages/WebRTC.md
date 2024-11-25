@@ -48,9 +48,9 @@
 				  
 				  ```
 				  收到 `"sendonly"` 的 SDP offer 後執行
-				- Set the remote description to the specified `offer` by calling [`RTCPeerConnection.setRemoteDescription()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setRemoteDescription).
-				- Replace the audio transceiver's [`RTCRtpSender`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender)'s track with `null`, meaning no track. This stops sending audio on the transceiver.
-				- Set the audio transceiver's [`direction`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpTransceiver/direction) property to `"recvonly"`, instructing the transceiver to only accept audio and not to send any.
-				- The SDP answer is generated and sent using a method called `sendAnswer()`, which generates the answer using [`createAnswer()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createAnswer) then sends the resulting SDP to the other peer over the signaling service.
+				  1. Set the remote description to the specified `offer` by calling `RTCPeerConnection.setRemoteDescription()`
+				  2. Replace the audio transceiver's `RTCRtpSender`'s track with `null`, meaning no track. This stops sending audio on the transceiver.
+				  3. Set the audio transceiver's `direction` property to `"recvonly"`, instructing the transceiver to only accept audio and not to send any.
+				  4. The SDP answer is generated and sent using a method called `sendAnswer()`, which generates the answer using `createAnswer()` then sends the resulting SDP to the other peer over the signaling service.
 			-
 		- ### 關閉 hold mode
