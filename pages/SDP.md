@@ -15,5 +15,6 @@
 	  定義在 top-level 的 `c=` 會 apply 到所有 media section (`m=` lines)，當 media section 有定義自己的 `c=` line 會 override global `c=` line
 	  address 可能的值
 	  1. SDP offer 初始化時可能會帶個 private IP 或 default 值
-	  2. 直連時會是
+	  2. 直連時會是 media 交換的 IP
+	- `a=rtcp:51472 IN IP4 217.130.243.155`
 	-
