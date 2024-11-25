@@ -24,4 +24,8 @@
 	  2. WebRTC frequently uses RTCP multiplexing (rtcp-mux), which combines RTP and RTCP packets on the same port to simplify the connection and reduce resource usage.
 	  3. If rtcp-mux is used, you may see a line like a=rtcp-mux, and the a=rtcp line might be omitted or ignored.
 	- ## ICE Candidates
-		-
+		- `a=candidate:1467250027 1 udp 2122260223 192.168.0.196 46243 typ host generation 0`:
+		  
+		  ```shell
+		  a=candidate:<foundation> <component-id> <transport> <priority> <address> <port> typ <type> [<related-address> <related-port>] [<extensions>]
+		  ```
