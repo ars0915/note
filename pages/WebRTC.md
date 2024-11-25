@@ -18,10 +18,8 @@
 	- ### How to establish a RTCPeerConnection object in JavaScript.
 		- **Basic Setup**
 		  The `RTCPeerConnection` is created using its constructor, which can take an optional configuration object to define connection settings.
-		  #### **Code Example**
+		  **Code Example**
 		  ```javascript
-		  Copy code
-		  
 		  const configuration = {
 		    iceServers: [
 		        { urls: "stun:stun.l.google.com:19302" }, // Google's public STUN server
@@ -34,21 +32,11 @@
 		  
 		  console.log("RTCPeerConnection created:", peerConnection);
 		  ```
-		- #### **Explanation:**
-		- **`iceServers`:** A list of STUN/TURN servers used for NAT traversal.
-			- **STUN** (Session Traversal Utilities for NAT): Helps discover public IPs.
-			- **TURN** (Traversal Using Relays around NAT): Relays media when direct connections fail.
 		- **Empty Configuration:** You can also create an `RTCPeerConnection` without any configuration:
-		  
-		  ```
-		  javascript
-		  
-		  Copy code
-		  
+		  ```javascript
 		  const peerConnection = new RTCPeerConnection();
 		  ```
-		  
-		  ---
+		-
 		- ###
 	- ## RTP 實作 hold 功能
 	  collapsed:: true
