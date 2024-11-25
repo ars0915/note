@@ -128,4 +128,5 @@
 		  id:: 674449f6-4fb3-4a89-a5c9-507b51322e81
 		  兩個 Peer 各自的 Candidate 組合
 		- ### ICE rollbacks
+		  A rollback restores the SDP offer (and the connection configuration by extension) to the configuration it had the last time the connection's `signalingState` was `stable`.
 -
