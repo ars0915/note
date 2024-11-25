@@ -53,3 +53,7 @@
 				  3. Set the audio transceiver's `direction` property to `"recvonly"`, instructing the transceiver to only accept audio and not to send any.
 				  4. The SDP answer is generated and sent using a method called `sendAnswer()`, which generates the answer using `createAnswer()` then sends the resulting SDP to the other peer over the signaling service.
 		- ### 關閉 hold mode
+			- #### Local
+				-
+			- #### Remote
+			-
