@@ -18,21 +18,22 @@
 	- ## RTP 實作 hold 功能
 		- ### 開啟 hold mode
 			- #### Local peer
-			  
-			  ```javascript
-			  async function enableHold(audioStream) {
-			    try {
-			      await audioTransceiver.sender.replaceTrack(audioStream.getAudioTracks()[0]);
-			      audioTransceiver.receiver.track.enabled = false;
-			      audioTransceiver.direction = "sendonly";
-			    } catch (err) {
-			      /* handle the error */
-			    }
-			  }
-			  ```
-			  1. Replace their outgoing audio track with a `MediaStreamTrack` containing hold music.
-			  2. Disable the incoming audio track.
-			  3. Switch the audio transceiver into send-only mode.
+				- ```javascript
+				  async function enableHold(audioStream) {
+				    try {
+				      await audioTransceiver.sender.replaceTrack(audioStream.getAudioTracks()[0]);
+				      audioTransceiver.receiver.track.enabled = false;
+				      audioTransceiver.direction = "sendonly";
+				    } catch (err) {
+				      /* handle the error */
+				    }
+				  }
+				  ```
+				  1. Replace their outgoing audio track with a `MediaStreamTrack` containing hold music.
+				  2. Disable the incoming audio track.
+				  3. Switch the audio transceiver into send-only mode.
+				- 這會透過向 RTCPeerConnection 發送協商所需事件來觸發 RTCPeerConnection 的重新協商，您的程式碼會回應該事件，使用 RTCPeerConnection.createOffer 產生 SDP 報價，並透過信令伺服器將其傳送到遠端對等點。
+				  包含要播放的音訊而不是本地對等點的麥克風音訊的音訊串流可以來自任何地方。一種可能性是擁有隱藏的 <audio> 元素並使用 HTMLAudioElement.captureStream() 來取得其音訊串流。
 			- #### Remote peer
 			-
 		- ### 關閉 hold mode
