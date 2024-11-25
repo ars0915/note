@@ -5,6 +5,7 @@
 	- `t=0 0`: start and end time (often unused)
 - # Group Attributes
 	- `a=group:BUNDLE audio video`: The BUNDLE mechanism allows multiple media streams to share the same network connection (port and transport), which reduces resource usage.
-	- `*a=msid-semantic: WMS lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS*`: 
+	- `a=msid-semantic: WMS lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS`: 
 	  表示這個 SDP 用 Media Stream Identification (MSID) semantic
 	  The **WMS** keyword refers to "WebRTC Media Streams," a concept in WebRTC where media tracks are grouped into a single logical stream for easier handling.
+	  `lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS` 為 ID，讓 application 管理 media stream
