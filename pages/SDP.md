@@ -31,4 +31,4 @@
 		  ```
 		  component ID: `1`: RTP, `2`: RTCP
 		  priority: 值愈大代表 priority 愈高，is determined by factors such as type (e.g., host vs. relay), network reachability, and other ICE-specific metrics
-		  typ:
+		  typ: `host`: directly with local network interface (e.g. private IP), `srflx`: server reflexive
