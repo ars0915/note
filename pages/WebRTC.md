@@ -50,10 +50,10 @@
 				  const peerConnection = new RTCPeerConnection();
 				  ```
 				- Add media tracks or data channels.
-			- **Signaling**:
-			- Exchange SDP offers/answers and ICE candidates via a signaling server.
-			- **ICE Gathering**:
-			- Gather local candidates and send them incrementally (Trickle ICE).
+			- #### **Signaling**:
+				- ((67441318-7be3-4c5f-b921-e393ac007fb0)) Exchange SDP offers/answers and ICE candidates via a signaling server.
+			- #### **ICE Gathering**:
+				- Gather local candidates and send them incrementally (Trickle ICE).
 			- **ICE Connectivity Checks**:
 			- Test candidate pairs and select the best working path.
 			- **Connection Established**:
@@ -126,6 +126,7 @@
 				  ```
 				  收到 `"sendrecv"` 的 SDP offer 後執行
 - # Connectivity
+  id:: 67441318-7be3-4c5f-b921-e393ac007fb0
 	- ## Signaling
 		- ### Session descriptions
 		  The configuration of an endpoint on a WebRTC connection.
