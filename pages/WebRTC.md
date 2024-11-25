@@ -34,8 +34,8 @@
 			  const peerConnection = new RTCPeerConnection();
 			  ```
 		- ### Lifecycle
-			- **Initialization**:
-			- Create `RTCPeerConnection` objects on both sides.
+			- #### **Initialization**:
+				- Create `RTCPeerConnection` objects on both sides.
 			- Add media tracks or data channels.
 			- **Signaling**:
 			- Exchange SDP offers/answers and ICE candidates via a signaling server.
