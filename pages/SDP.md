@@ -5,4 +5,6 @@
 	- `s=-`
 	  session name (often unused)
 	- `t=0 0`
-	  start
+	  start and end time (often unused)
+- # Group Attributes
+	- `a=group:BUNDLE audio video`
