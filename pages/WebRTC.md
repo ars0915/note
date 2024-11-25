@@ -34,7 +34,7 @@
 		  // You can also create an `RTCPeerConnection` without any configuration:
 		  const peerConnection = new RTCPeerConnection();
 		  ```
-			- ###
+		-
 	- ## RTP 實作 hold 功能
 	  collapsed:: true
 		- ### 開啟 hold mode
