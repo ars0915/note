@@ -33,7 +33,22 @@
 			  // You can also create an `RTCPeerConnection` without any configuration:
 			  const peerConnection = new RTCPeerConnection();
 			  ```
-		-
+		- ### Lifecycle
+			- **Initialization**:
+			- Create `RTCPeerConnection` objects on both sides.
+			- Add media tracks or data channels.
+			- **Signaling**:
+			- Exchange SDP offers/answers and ICE candidates via a signaling server.
+			- **ICE Gathering**:
+			- Gather local candidates and send them incrementally (Trickle ICE).
+			- **ICE Connectivity Checks**:
+			- Test candidate pairs and select the best working path.
+			- **Connection Established**:
+			- Media starts flowing between peers.
+			- **Renegotiation (Optional)**:
+			- Triggered if media configuration changes (e.g., adding a track).
+			- **Connection Termination**:
+			- Close the PeerConnection when done.
 	- ## RTP 實作 hold 功能
 		- ### 開啟 hold mode
 			- #### Local peer
