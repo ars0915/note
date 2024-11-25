@@ -118,3 +118,5 @@
 			      }
 			  });
 			  ```
+		- ### Pending and current descriptions
+			- The **current description** (which is returned by the [`RTCPeerConnection.currentLocalDescription`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/currentLocalDescription) and [`RTCPeerConnection.currentRemoteDescription`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/currentRemoteDescription) properties) represents the description currently in actual use by the connection. This is the most recent connection that both sides have fully agreed to use.
