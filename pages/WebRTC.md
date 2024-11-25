@@ -8,6 +8,7 @@
 		  它僅提供允許在堆疊中的其他位置實現 QoS 所需的資訊。
 		  不處理可能需要的資源的分配或保留。
 	- ## RTCPeerConnection
+	  collapsed:: true
 	  每個 RTCPeerConnection 都有方法提供對服務對等連線的 RTP 傳輸清單的存取。這些對應於 RTCPeerConnection 支援的以下三種傳輸類型：
 		- ### RTCRtpSender
 		  RTCRtpSender 處理 MediaStreamTrack 資料到遠端對等點的編碼和傳輸。
@@ -16,6 +17,7 @@
 		- ### RTCRtpTransceiver
 		  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP media m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
 	- ## RTP 實作 hold 功能
+	  collapsed:: true
 		- ### 開啟 hold mode
 			- #### Local peer
 				- ```javascript
@@ -78,3 +80,5 @@
 				  }
 				  ```
 				  收到 `"sendrecv"` 的 SDP offer 後執行
+- # Connectivity
+	-
