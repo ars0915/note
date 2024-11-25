@@ -9,7 +9,7 @@
 	  表示這個 SDP 用 Media Stream Identification (MSID) semantic
 	  The **WMS** keyword refers to "WebRTC Media Streams," a concept in WebRTC where media tracks are grouped into a single logical stream for easier handling.
 	  `lgsCFqt9kN2fVKw5wg3NKqGdATQoltEwOdMS` 為 ID，讓 application 管理 WebRTC MediaStream object
-- # Media Descriptions
+- # Audio Lines
 	- `m=audio 54321 UDP/TLS/RTP/SAVPF 111 103 104`: media type, including port, protocol, supported codec
 	- `c=IN IP4 217.130.243.155`: net type, address type, connection address
 	  定義在 top-level 的 `c=` 會 apply 到所有 media section (`m=` lines)，當 media section 有定義自己的 `c=` line 會 override global `c=` line
