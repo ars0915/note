@@ -54,6 +54,7 @@ public:: true
 				- From **`stable`** to **`have-remote-offer`** if the connection is stable.
 				- From other states to indicate that an offer has been processed.
 	- #### **ICE Connection State Changes**:
+	  id:: 67452611-1a7c-4e90-bedc-ec30d6ea011b
 		- The `iceConnectionState` property reflects the progress of the ICE connection:
 			- **`new`**: ICE agent is gathering candidates.
 			- **`checking`**: Performing connectivity checks.
