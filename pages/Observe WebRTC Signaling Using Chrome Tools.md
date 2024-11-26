@@ -32,51 +32,10 @@
 		  - 11/26/2024, 3:43:18 PM icecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		  ...
 		  
+		  - 11/26/2024, 3:43:18 PMsetRemoteDescription (type: "answer", 4 sections)
 		  ```
 		- ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: srflx, url: stun:turn.stage.airsync.net:3478)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
-		  - ```
-		  sdpMid: 2, sdpMLineIndex: 2
-		  candidate: candidate:3845669066 1 udp 33563135 35.201.196.47 57130 typ relay raddr 60.250.73.76 rport 59153 generation 0 ufrag n4Fy network-cost 999
-		  url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp
-		  ```
-		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
-		- ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
-		  - ```
-		  - ```
+		  
 		  - 11/26/2024, 3:43:18 PMsetRemoteDescription (type: "answer", 4 sections)
 		  - ```
 		  - ```
