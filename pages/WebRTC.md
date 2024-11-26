@@ -224,4 +224,7 @@
 		- ### ICE rollbacks
 		  A rollback restores the SDP offer (and the connection configuration by extension) to the configuration it had the last time the connection's `signalingState` was `stable`.
 	- ## Perfect negotiation pattern
-		-
+		- ### Concept
+			- Perfect negotiation makes it possible to seamlessly and completely separate the negotiation process from the rest of your application's logic
+			- The best thing about perfect negotiation is that the same code is used for both the caller and the callee, so there's no repetition or otherwise added levels of negotiation code to write.
+			-
