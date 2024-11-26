@@ -56,10 +56,20 @@
 				  await pc.setLocalDescription(offer);
 				  ```
 				- Exchange ICE Candidates
-				  
+				  Both peers gather and exchange ICE candidates incrementally (Trickle ICE) or after all candidates are collected (Full ICE).
 				  ```javascript
+				  pc.onicecandidate = (event) => {
+				      if (event.candidate) {
+				          signalingServer.send({ candidate: event.candidate });
+				      }
+				  };
 				  ```
-				-
+				- #### **Signaling States**
+				  The `signalingState` property reflects the SDP exchange's progress:
+					- **`stable`**: No ongoing SDP exchange.
+					- **`have-local-offer`**: Local SDP offer created and set.
+					- **`have-remote-offer`**: Remote SDP offer received.
+					- **`closed`**: PeerConnection is closed.
 			- ((67441318-7be3-4c5f-b921-e393ac007fb0))
 				- **Signaling**:
 					- Exchange SDP offers/answers and ICE candidates via a signaling server.
