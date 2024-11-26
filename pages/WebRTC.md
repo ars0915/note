@@ -273,6 +273,7 @@
 			  
 			  signaler.onmessage = async ({ data: { description, candidate } }) => {
 			    try {
+			      // It's either an offer or an answer sent by the other peer.
 			      if (description) {
 			        const offerCollision =
 			          description.type === "offer" &&
@@ -288,6 +289,7 @@
 			          await pc.setLocalDescription();
 			          signaler.send({ description: pc.localDescription });
 			        }
+			      // It's an ICE candidate received from the remote peer as part of trickle ICE
 			      } else if (candidate) {
 			        try {
 			          await pc.addIceCandidate(candidate);
@@ -303,7 +305,6 @@
 			  };
 			  ```
 			  Each time a message arrives from the signaling server invokes `onmessage` event.
-			  If the incoming message has a `description`, it's either an offer or an answer sent by the other peer.
-			  If the message has a `candidate`, it's an ICE candidate received from the remote peer as part of trickle ICE The candidate is destined to be delivered to the local ICE layer by passing it into `addIceCandidate()`.
+			  The candidate is destined to be delivered to the local ICE layer by passing it into `addIceCandidate()`.
 			-
 	-
