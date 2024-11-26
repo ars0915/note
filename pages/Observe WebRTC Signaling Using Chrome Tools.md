@@ -36,7 +36,7 @@
 		  - 11/26/2024, 3:43:18 PM setRemoteDescriptionOnSuccess
 		  - 11/26/2024, 3:43:18 PM signalingstatechange ==> stable
 		  - 11/26/2024, 3:43:19 PM addIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange ==> checking
+		  - 11/26/2024, 3:43:19 PM iceconnectionstatechange ==> checking
 		  - 11/26/2024, 3:43:19 PM connectionstatechange ==> connecting
 		  - 11/26/2024, 3:43:19 PM addIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		  ...
@@ -45,27 +45,7 @@
 		  11/26/2024, 3:43:19 PM connectionstatechange ==> connected
 		  ```
 		- ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:48 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:48 PMicecandidateerror
-		  - ```
+		  
 		  - ```
 		  - 11/26/2024, 3:47:38 PMsetLocalDescription (munged) (type: "offer", 4 sections)
 		  - ```
