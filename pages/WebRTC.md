@@ -79,9 +79,14 @@
 					- **`disconnected`**: Temporary disconnection (e.g., network issues).
 					- **`failed`**: No valid candidate pair found.
 					- **`closed`**: ICE connection is closed.
-				- #### **Event Listener**
-				  
+				- Event Listener
 				  You can monitor ICE state changes:
+				  ```javascript
+				  pc.oniceconnectionstatechange = () => {
+				      console.log("ICE connection state:", pc.iceConnectionState);
+				  };
+				  ```
+			-
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
