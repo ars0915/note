@@ -71,7 +71,17 @@
 					- **`have-remote-offer`**: Remote SDP offer received.
 					- **`closed`**: PeerConnection is closed.
 			- #### **ICE Connection State Changes**:
-				-
+				- The `iceConnectionState` property reflects the progress of the ICE connection:
+					- **`new`**: ICE agent is gathering candidates.
+					- **`checking`**: Performing connectivity checks.
+					- **`connected`**: At least one working candidate pair is found.
+					- **`completed`**: All connectivity checks are complete.
+					- **`disconnected`**: Temporary disconnection (e.g., network issues).
+					- **`failed`**: No valid candidate pair found.
+					- **`closed`**: ICE connection is closed.
+				- #### **Event Listener**
+				  
+				  You can monitor ICE state changes:
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
