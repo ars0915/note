@@ -247,4 +247,5 @@
 			    }
 			  };
 			  ```
+			  The set description is either an answer to the most recent offer from the remote peer or a freshly-created offer if there's no negotiation underway. Here, it will always be an `offer`, because t**he negotiationneeded event is only fired in `stable` state**.
 			-
