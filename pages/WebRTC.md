@@ -69,7 +69,17 @@ public:: true
 	- ## Create a data channel
 	  
 	  ```javascript
+	  let dataChannel = pc.createDataChannel("MyApp Channel");
+	  
+	  dataChannel.addEventListener("open", (event) => {
+	    beginTransmission(dataChannel);
+	  });
 	  ```
 	  Call `createDataChannel()`without specifying a value for the `negotiated` property, or specifying the property with a value of `false`. This will automatically trigger the `RTCPeerConnection` to handle the negotiations for you, causing the remote peer to create a data channel and linking the two together across the network.
+	  
+	  
+	  ```javascript
+	  ```
+	  specifying in the options a `negotiated` property set to `true`. This signals to the peer connection to not attempt to negotiate the channel on your behalf.
 	-
 	-
