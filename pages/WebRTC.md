@@ -50,10 +50,11 @@
 				  ```
 				- Signaling States
 					- The `signalingState` property reflects the SDP exchange's progress:
-					- **`stable`**: No ongoing SDP exchange.
-					- **`have-local-offer`**: Local SDP offer created and set.
-					- **`have-remote-offer`**: Remote SDP offer received.
-					- **`closed`**: PeerConnection is closed.
+						- **`stable`**: No ongoing SDP exchange.
+						- **`have-local-offer`**: Local SDP offer created and set.
+						- **`have-remote-offer`**: Remote SDP offer received.
+						- **`closed`**: PeerConnection is closed.
+					- The `signalingState` in a WebRTC connection doesn't immediately transition to `have-remote-offer` when a remote SDP offer is received
 			- #### **ICE Connection State Changes**:
 				- The `iceConnectionState` property reflects the progress of the ICE connection:
 					- **`new`**: ICE agent is gathering candidates.
