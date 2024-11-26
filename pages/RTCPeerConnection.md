@@ -69,6 +69,7 @@ public:: true
 		      console.log("ICE connection state:", pc.iceConnectionState);
 		  };
 		  ```
+	-
 	- #### **Media Stream Negotiation**:
 	  Media stream negotiation defines how media (audio, video) is sent between peers.
 		- **Step**
