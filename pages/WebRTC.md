@@ -94,8 +94,11 @@ public:: true
 	- ## Media capture and constraints
 	  Media capture in WebRTC is facilitated by the `getUserMedia()` method, which prompts the user for permission to access their camera and microphone. Upon consent, it returns a `MediaStream` object containing `MediaStreamTrack` objects for each media type (audio and video)
 		- ### MediaStream
+		  Represents a stream of media content, which may include multiple tracks such as audio and video.
 		- ### MediaStreamTrack
+		  Represents a single media track within a `MediaStream`, such as an individual audio or video track. Each track can be controlled independently, allowing for operations like muting or replacing the track's source.
 		- ### Constraints
+		  Constraints are used to specify desired properties for media capture, such as resolution for video or sample rate for audio.
 	- ## Encoding
 	- ## Transmission
 	- ## Rendering
