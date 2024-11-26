@@ -18,13 +18,13 @@
 		  url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp
 		  ```
 	- ## Connection States
-		- 11/26/2024, 3:43:14 PMcreateDataChannel
 		- ```
 		  - ```
-		  - 11/26/2024, 3:43:14 PMcreateDataChannel
+		  - 11/26/2024, 3:43:14 PM createDataChannel
 		  - ```
 		  - ```
-		  - 11/26/2024, 3:43:14 PMnegotiationneeded11/26/2024, 3:43:18 PMtransceiverAdded [0], audio
+		  - 11/26/2024, 3:43:14 PM negotiationneeded
+		  11/26/2024, 3:43:18 PMtransceiverAdded [0], audio
 		  - ```
 		  - ```
 		  - 11/26/2024, 3:43:18 PMtransceiverAdded [1], video
