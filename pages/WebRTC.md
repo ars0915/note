@@ -13,7 +13,6 @@ public:: true
 	- ## [[RTP 實作 hold 功能]]
 - # Connectivity
   id:: 67441318-7be3-4c5f-b921-e393ac007fb0
-  collapsed:: true
 	- ## Signaling
 		- ### Session descriptions
 		  The configuration of an endpoint on a WebRTC connection.
@@ -92,6 +91,7 @@ public:: true
 		- All data transferred using WebRTC is encrypted. In the case of `RTCDataChannel`, the encryption used is Datagram Transport Layer Security (DTLS)
 - # [[Observe WebRTC Signaling Using Chrome Tools]]
 - # Media Flow
+-
 -
 -
 - # Reference
