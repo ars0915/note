@@ -91,10 +91,12 @@ public:: true
 		- All data transferred using WebRTC is encrypted. In the case of `RTCDataChannel`, the encryption used is Datagram Transport Layer Security (DTLS)
 - # [[Observe WebRTC Signaling Using Chrome Tools]]
 - # Media Flow
-	- ## Media Capture
-	- ## MediaStream and MediaStreamTrack
+	- ## Media capture and constraints
+		- ### MediaStream and MediaStreamTrack
+		- ### Constraints
+	- ## Encoding
+	- ## Transmission
 	-
--
 -
 -
 - # Reference
