@@ -31,7 +31,7 @@
 	  The `RTCPeerConnection` event `icecandidate`, which is how the local ICE layer passes candidates to us for delivery to the remote peer over the signaling channel.
 	  
 	  This takes the `candidate` member of this ICE event and passes it through to the signaling channel's `send()` method to be sent over the signaling server to the remote peer.
-	- #### **Handling incoming messages on the signaling channel**
+	- ## **Handling incoming messages on the signaling channel**
 	  
 	  ```javascript
 	  let ignoreOffer = false;
