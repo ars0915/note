@@ -1,6 +1,126 @@
 # WebSocket Message
 	- ## Local SDP offer
 	  ![image.png](../assets/image_1732606209368_0.png)
+	  ```
+	  v=0
+	  o=- 2178718206776319700 2 IN IP4 127.0.0.1
+	  s=-
+	  t=0 0
+	  a=extmap-allow-mixed
+	  a=msid-semantic: WMS 705fd8a1-7389-4afb-8a03-c3a1839261ef
+	  a=group:BUNDLE 0 1 2
+	  m=audio 9 UDP/TLS/RTP/SAVPF 111
+	  c=IN IP4 0.0.0.0
+	  a=rtpmap:111 opus/48000/2
+	  a=fmtp:111 minptime=10;useinbandfec=1
+	  a=rtcp:9 IN IP4 0.0.0.0
+	  a=rtcp-fb:111 transport-cc
+	  a=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level
+	  a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+	  a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+	  a=extmap:4 urn:ietf:params:rtp-hdrext:sdes:mid
+	  a=setup:actpass
+	  a=mid:0
+	  a=msid:705fd8a1-7389-4afb-8a03-c3a1839261ef 2590715d-ddbf-42aa-8b77-52a9eeb29ff4
+	  a=sendrecv
+	  a=ice-ufrag:wzpp
+	  a=ice-pwd:xZEDDVo5V5rc3g9GTLBwV2e4
+	  a=fingerprint:sha-256 CF:07:32:EE:26:25:CB:47:D0:EA:AA:4D:BC:0B:4D:06:96:51:C0:97:B4:03:E0:C5:7A:2B:33:9D:F8:5B:BB:6C
+	  a=ice-options:trickle
+	  a=ssrc:3944246763 cname:MFlsMRKYJG+g8Mmv
+	  a=ssrc:3944246763 msid:705fd8a1-7389-4afb-8a03-c3a1839261ef 2590715d-ddbf-42aa-8b77-52a9eeb29ff4
+	  a=rtcp-mux
+	  a=rtcp-rsize
+	  m=video 9 UDP/TLS/RTP/SAVPF 102 104 106 108 127 39 112
+	  c=IN IP4 0.0.0.0
+	  a=rtpmap:102 H264/90000
+	  a=rtpmap:104 H264/90000
+	  a=rtpmap:106 H264/90000
+	  a=rtpmap:108 H264/90000
+	  a=rtpmap:127 H264/90000
+	  a=rtpmap:39 H264/90000
+	  a=rtpmap:112 H264/90000
+	  a=fmtp:102 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f
+	  a=fmtp:104 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f
+	  a=fmtp:106 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f
+	  a=fmtp:108 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f
+	  a=fmtp:127 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f
+	  a=fmtp:39 level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f
+	  a=fmtp:112 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f
+	  a=rtcp:9 IN IP4 0.0.0.0
+	  a=rtcp-fb:102 goog-remb
+	  a=rtcp-fb:102 transport-cc
+	  a=rtcp-fb:102 ccm fir
+	  a=rtcp-fb:102 nack
+	  a=rtcp-fb:102 nack pli
+	  a=rtcp-fb:104 goog-remb
+	  a=rtcp-fb:104 transport-cc
+	  a=rtcp-fb:104 ccm fir
+	  a=rtcp-fb:104 nack
+	  a=rtcp-fb:104 nack pli
+	  a=rtcp-fb:106 goog-remb
+	  a=rtcp-fb:106 transport-cc
+	  a=rtcp-fb:106 ccm fir
+	  a=rtcp-fb:106 nack
+	  a=rtcp-fb:106 nack pli
+	  a=rtcp-fb:108 goog-remb
+	  a=rtcp-fb:108 transport-cc
+	  a=rtcp-fb:108 ccm fir
+	  a=rtcp-fb:108 nack
+	  a=rtcp-fb:108 nack pli
+	  a=rtcp-fb:127 goog-remb
+	  a=rtcp-fb:127 transport-cc
+	  a=rtcp-fb:127 ccm fir
+	  a=rtcp-fb:127 nack
+	  a=rtcp-fb:127 nack pli
+	  a=rtcp-fb:39 goog-remb
+	  a=rtcp-fb:39 transport-cc
+	  a=rtcp-fb:39 ccm fir
+	  a=rtcp-fb:39 nack
+	  a=rtcp-fb:39 nack pli
+	  a=rtcp-fb:112 goog-remb
+	  a=rtcp-fb:112 transport-cc
+	  a=rtcp-fb:112 ccm fir
+	  a=rtcp-fb:112 nack
+	  a=rtcp-fb:112 nack pli
+	  a=extmap:14 urn:ietf:params:rtp-hdrext:toffset
+	  a=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time
+	  a=extmap:13 urn:3gpp:video-orientation
+	  a=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01
+	  a=extmap:5 http://www.webrtc.org/experiments/rtp-hdrext/playout-delay
+	  a=extmap:6 http://www.webrtc.org/experiments/rtp-hdrext/video-content-type
+	  a=extmap:7 http://www.webrtc.org/experiments/rtp-hdrext/video-timing
+	  a=extmap:8 http://www.webrtc.org/experiments/rtp-hdrext/color-space
+	  a=extmap:4 urn:ietf:params:rtp-hdrext:sdes:mid
+	  a=extmap:10 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id
+	  a=extmap:11 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id
+	  a=setup:actpass
+	  a=mid:1
+	  a=msid:705fd8a1-7389-4afb-8a03-c3a1839261ef f63909b6-a05d-435b-9bb3-d1709ac4b207
+	  a=sendrecv
+	  a=ice-ufrag:wzpp
+	  a=ice-pwd:xZEDDVo5V5rc3g9GTLBwV2e4
+	  a=fingerprint:sha-256 CF:07:32:EE:26:25:CB:47:D0:EA:AA:4D:BC:0B:4D:06:96:51:C0:97:B4:03:E0:C5:7A:2B:33:9D:F8:5B:BB:6C
+	  a=ice-options:trickle
+	  a=ssrc:3660306254 cname:MFlsMRKYJG+g8Mmv
+	  a=ssrc:3660306254 msid:705fd8a1-7389-4afb-8a03-c3a1839261ef f63909b6-a05d-435b-9bb3-d1709ac4b207
+	  a=ssrc:1871602834 cname:MFlsMRKYJG+g8Mmv
+	  a=ssrc:1871602834 msid:705fd8a1-7389-4afb-8a03-c3a1839261ef f63909b6-a05d-435b-9bb3-d1709ac4b207
+	  a=ssrc-group:FID 3660306254 1871602834
+	  a=rtcp-mux
+	  a=rtcp-rsize
+	  m=application 9 UDP/DTLS/SCTP webrtc-datachannel
+	  c=IN IP4 0.0.0.0
+	  a=setup:actpass
+	  a=mid:2
+	  a=ice-ufrag:wzpp
+	  a=ice-pwd:xZEDDVo5V5rc3g9GTLBwV2e4
+	  a=fingerprint:sha-256 CF:07:32:EE:26:25:CB:47:D0:EA:AA:4D:BC:0B:4D:06:96:51:C0:97:B4:03:E0:C5:7A:2B:33:9D:F8:5B:BB:6C
+	  a=ice-options:trickle
+	  a=sctp-port:5000
+	  a=max-message-size:262144
+	  ```
+	-
 	- ## Remote SDP answer
 	  ![image.png](../assets/image_1732606328076_0.png)
 	  ```
