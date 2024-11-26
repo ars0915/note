@@ -18,7 +18,240 @@
 		  url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp
 		  ```
 	- ## Connection States
-		-
+		- 11/26/2024, 3:43:14 PMcreateDataChannel
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:14 PMcreateDataChannel
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:14 PMnegotiationneeded11/26/2024, 3:43:18 PMtransceiverAdded [0], audio
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMtransceiverAdded [1], video
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMcreateOffer
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMcreateOfferOnSuccess (type: "offer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMsetLocalDescription (munged) (type: "offer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMsetLocalDescriptionOnSuccess11/26/2024, 3:43:18 PMsignalingstatechange
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMtransceiverModified [0], audio
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMtransceiverModified [1], video
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicegatheringstatechange
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  sdpMid: 0, sdpMLineIndex: 0
+		  candidate: candidate:1345223362 1 udp 2113937151 4aea1f26-95f2-41a5-a9f1-f18a2be8f58b.local 51366 typ host generation 0 ufrag n4Fy network-cost 999
+		  ```
+		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: host)
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: srflx, url: stun:turn.stage.airsync.net:3478)
+		  - ```
+		  sdpMid: 2, sdpMLineIndex: 2
+		  candidate: candidate:1740573071 1 udp 1677729535 60.250.73.76 59153 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag n4Fy network-cost 999
+		  url: stun:turn.stage.airsync.net:3478
+		  ```
+		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx, url: stun:turn.stage.airsync.net:3478)
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: srflx, url: stun:turn.stage.airsync.net:3478)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
+		  - ```
+		  sdpMid: 2, sdpMLineIndex: 2
+		  candidate: candidate:3845669066 1 udp 33563135 35.201.196.47 57130 typ relay raddr 60.250.73.76 rport 59153 generation 0 ufrag n4Fy network-cost 999
+		  url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp
+		  ```
+		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: relay, url: turn:turn.stage.airsync.net:443?transport=tcp, relayProtocol: tcp)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMsetRemoteDescription (type: "answer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMsetRemoteDescriptionOnSuccess11/26/2024, 3:43:18 PMsignalingstatechange
+		  - ```
+		  stable
+		  ```
+		- 11/26/2024, 3:43:18 PMtransceiverModified [0], audio
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:18 PMtransceiverModified [1], video
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange
+		  - ```
+		  checking
+		  ```
+		- 11/26/2024, 3:43:19 PMconnectionstatechange
+		- ```
+		  connecting
+		  ```
+		- 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange
+		  - ```
+		  connected
+		  ```
+		- 11/26/2024, 3:43:19 PMicegatheringstatechange
+		- ```
+		  complete
+		  ```
+		- 11/26/2024, 3:43:19 PMconnectionstatechange
+		- ```
+		  connected
+		  ```
+		- 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx)
+		- ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:48 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:43:48 PMicecandidateerror
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:38 PMsetLocalDescription (munged) (type: "offer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:38 PMsetRemoteDescription (type: "answer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:38 PMsignalingstatechange
+		  - ```
+		  stable
+		  ```
+		- 11/26/2024, 3:47:38 PMiceconnectionstatechange
+		- ```
+		  completed
+		  ```
+		- 11/26/2024, 3:47:38 PMconnectionstatechange
+		- ```
+		  - ```
+		  - 11/26/2024, 3:47:40 PMsetLocalDescription (munged) (type: "offer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:40 PMsetRemoteDescription (type: "answer", 4 sections)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:40 PMsignalingstatechange
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:40 PMiceconnectionstatechange
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:47:40 PMconnectionstatechange
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:48:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:48:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:48:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:48:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:53:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:53:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:53:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  - ```
+		  - 11/26/2024, 3:53:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  - ```
+		  sdpMid: 0, sdpMLineIndex: 0
+		  candidate: candidate:3990663883 1 tcp 1518091519 ::1 33425 typ host tcptype passive generation 0 ufrag ATNr network-id 2
+		  ```
 - # WebSocket Message
 	- ## Upload
 	  ![image.png](../assets/image_1732606209368_0.png)
