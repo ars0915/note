@@ -121,6 +121,9 @@ public:: true
 		- **Network Conditions:** Packet loss or bandwidth changes.
 		- **Resolution and Frame Rate:** Encoding can be scaled to fit device capabilities.
 	- ## Transmission
+		- ### Signaling
+		- ### Connection Setup
+		-
 	- ## Rendering
 -
 - # Reference
