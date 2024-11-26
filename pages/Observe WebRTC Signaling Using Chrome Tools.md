@@ -1,5 +1,5 @@
 # WebSocket Message
-	- ## Local SDP offer
+	- ## Upload
 	  ![image.png](../assets/image_1732606209368_0.png)
 		- ```
 		  v=0
@@ -189,5 +189,4 @@
 		  a=sctp-port:5000
 		  a=max-message-size:262144
 		  ```
-	- ## Subsequent candidate
 -
