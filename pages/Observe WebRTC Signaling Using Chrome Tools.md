@@ -38,31 +38,12 @@
 		  - 11/26/2024, 3:43:19 PM addIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange ==> checking
 		  - 11/26/2024, 3:43:19 PM connectionstatechange ==> connecting
+		  - 11/26/2024, 3:43:19 PM addIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  ...
+		  - 11/26/2024, 3:43:19 PM iceconnectionstatechange ==> connected
+		  - 11/26/2024, 3:43:19 PM icegatheringstatechange ==> complete
+		  11/26/2024, 3:43:19 PM connectionstatechange ==> connected
 		  ```
-		- ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange
-		  - ```
-		  connected
-		  ```
-		- 11/26/2024, 3:43:19 PMicegatheringstatechange
-		- ```
-		  complete
-		  ```
-		- 11/26/2024, 3:43:19 PMconnectionstatechange
-		- ```
-		  connected
-		  ```
-		- 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx)
 		- ```
 		  - ```
 		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: relay)
