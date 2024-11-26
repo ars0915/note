@@ -95,6 +95,15 @@
 				  ```
 				- Offer/Answer Exchange
 				  The SDP includes media information such as codecs, track identifiers, and encryption parameters.
+				- Receive Remote Media
+				  When the remote peer adds tracks, they are delivered through the ontrack event.
+				  ```javascript
+				  pc.ontrack = (event) => {
+				      remoteVideoElement.srcObject = event.streams[0];
+				  };
+				  ```
+				- Synchronize Tracks
+				  Synchronization between audio and video tracks is handled by WebRTC based on the RTP timestamps.
 				-
 				-
 			- **Connection Established**:
