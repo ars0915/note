@@ -42,19 +42,12 @@
 		  ...
 		  - 11/26/2024, 3:43:19 PM iceconnectionstatechange ==> connected
 		  - 11/26/2024, 3:43:19 PM icegatheringstatechange ==> complete
-		  11/26/2024, 3:43:19 PM connectionstatechange ==> connected
+		  - 11/26/2024, 3:43:19 PM connectionstatechange ==> connected
+		  
 		  ```
 		- ```
 		  
-		  - ```
-		  - 11/26/2024, 3:47:38 PMsetLocalDescription (munged) (type: "offer", 4 sections)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:47:38 PMsetRemoteDescription (type: "answer", 4 sections)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:47:38 PMsignalingstatechange
-		  - ```
+		  
 		  stable
 		  ```
 		- 11/26/2024, 3:47:38 PMiceconnectionstatechange
