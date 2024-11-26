@@ -70,7 +70,7 @@
 				  ```
 			- #### **Media Stream Negotiation**:
 			  Media stream negotiation defines how media (audio, video) is sent between peers.
-				- Step
+				- **Step**
 					- Add Media Tracks
 					  Tracks are added to the PeerConnection using `addTrack()` or `addTransceiver()`.
 					  ```javascript
@@ -87,7 +87,7 @@
 					  ```
 					- Synchronize Tracks
 					  Synchronization between audio and video tracks is handled by WebRTC based on the RTP timestamps.
-				- Media-Related Events
+				- **Media-Related Events**
 					- `ontrack`: Triggered when a remote track is received.
 					- **`onnegotiationneeded`**: Indicates a need to renegotiate the connection (e.g., when adding a new track).
 					  
