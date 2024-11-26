@@ -71,6 +71,8 @@ public:: true
 		  ```
 	- #### **ICE Gather State Changes**:
 		- When the state of the ICE candidate gathering process changes
+			- `new`: No ICE candidates have been gathered yet.
+			-
 			-
 	- #### **Media Stream Negotiation**:
 	  Media stream negotiation defines how media (audio, video) is sent between peers.
