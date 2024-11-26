@@ -108,7 +108,9 @@ public:: true
 		- ### MediaStream
 		  Represents a stream of media content, which may include multiple tracks such as audio and video.
 		- ### MediaStreamTrack
-		  Represents a single media track within a `MediaStream`, such as an individual audio or video track. Each `MediaStreamTrack` may have one or more channels. The channel represents the smallest unit of a media stream, such as an audio signal associated with a given speaker, like left or right in a stereo audio track.
+		  Represents a single media track within a `MediaStream`, such as an individual audio or video track.
+		  Each `MediaStreamTrack` may have one or more channels.
+		  The channel represents the smallest unit of a media stream, such as an audio signal associated with a given speaker, like left or right in a stereo audio track.
 		- ### Constraints
 		  Constraints are used to specify desired properties for media capture, such as resolution for video or sample rate for audio.
 	- ## Encoding
