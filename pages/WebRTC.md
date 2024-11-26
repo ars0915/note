@@ -293,6 +293,7 @@
 			    }
 			  };
 			  ```
-			  Each time a message arrives from the signaling server invokes `onmessage` event
+			  Each time a message arrives from the signaling server invokes `onmessage` event.
+			  If the incoming message has a `description`, it's either an offer or an answer sent by the other peer.
 			-
 	-
