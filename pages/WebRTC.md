@@ -10,10 +10,10 @@ public:: true
 		  它僅提供允許在堆疊中的其他位置實現 QoS 所需的資訊。
 		- 不處理可能需要的資源的分配或保留。
 	- ## [[RTCPeerConnection]]
+	- ## [[RTP 實作 hold 功能]]
 - # Connectivity
   id:: 67441318-7be3-4c5f-b921-e393ac007fb0
 	- ## Signaling
-	  collapsed:: true
 		- ### Session descriptions
 		  The configuration of an endpoint on a WebRTC connection.
 		  透過 [[SDP]] 交換資訊
@@ -55,7 +55,6 @@ public:: true
 			- The **current description** (which is returned by the `RTCPeerConnection.currentLocalDescription` and `RTCPeerConnection.currentRemoteDescription` properties) represents the description currently in actual use by the connection. This is the most recent connection that both sides have fully agreed to use.
 			- The **pending description** (returned by `RTCPeerConnection.pendingLocalDescription` and `RTCPeerConnection.pendingRemoteDescription`) indicates a description which is currently under consideration following a call to `setLocalDescription()` or `setRemoteDescription()`, respectively.
 	- ## ICE
-	  collapsed:: true
 		- ### Trickle ICE
 		  Trickle ICE is a feature in WebRTC that allows ICE candidates (potential network paths) to be sent incrementally to the remote peer as they are discovered, rather than waiting for the entire list of candidates to be gathered. This helps establish the connection faster and makes the process more efficient.
 		- ### Candidate Pair
