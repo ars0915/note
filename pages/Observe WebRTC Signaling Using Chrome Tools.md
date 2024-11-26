@@ -1,11 +1,11 @@
 # WebRTC Events
 	- ## ICE Candidate Gathering
-		- host
+		- host: local IP and port
 		  ```
 		  sdpMid: 0, sdpMLineIndex: 0
 		  candidate: candidate:1345223362 1 udp 2113937151 4aea1f26-95f2-41a5-a9f1-f18a2be8f58b.local 51366 typ host generation 0 ufrag n4Fy network-cost 999
 		  ```
-		- srflx
+		- srflx: Public-facing IP obtained via STUN.
 		  ```
 		  sdpMid: 2, sdpMLineIndex: 2
 		  candidate: candidate:1740573071 1 udp 1677729535 60.250.73.76 59153 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag n4Fy network-cost 999
