@@ -292,6 +292,7 @@
 			      // It's an ICE candidate received from the remote peer as part of trickle ICE
 			      } else if (candidate) {
 			        try {
+			          // The candidate is destined to be delivered to the local ICE layer by passing it into addIceCandidate()
 			          await pc.addIceCandidate(candidate);
 			        } catch (err) {
 			          if (!ignoreOffer) {
@@ -305,6 +306,5 @@
 			  };
 			  ```
 			  Each time a message arrives from the signaling server invokes `onmessage` event.
-			  The candidate is destined to be delivered to the local ICE layer by passing it into `addIceCandidate()`.
 			-
 	-
