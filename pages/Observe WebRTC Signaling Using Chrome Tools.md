@@ -202,5 +202,15 @@
 		  a=sctp-port:5000
 		  a=max-message-size:262144
 		  ```
-		-
+		- Candidate
+		  ```json
+		  {
+		    "sessionId": "65873a9f-028d-4590-ac73-91cdd7addc16",
+		    "type": "candidate",
+		    "sdp": null,
+		    "candidate": "candidate:1027641139 1 tcp 1518091519 ::1 36147 typ host tcptype passive generation 0 ufrag D9lK network-id 2",
+		    "sdpMid": "0",
+		    "sdpMLineIndex": 0
+		  }
+		  ```
 -
