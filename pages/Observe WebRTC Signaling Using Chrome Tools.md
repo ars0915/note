@@ -27,34 +27,18 @@
 		  - 11/26/2024, 3:43:18 PM createOfferOnSuccess (type: "offer", 4 sections)
 		  - 11/26/2024, 3:43:18 PM setLocalDescription (munged) (type: "offer", 4 sections)
 		  - 11/26/2024, 3:43:18 PM setLocalDescriptionOnSuccess
-		  - 11/26/2024, 3:43:18 PM signalingstatechange --> have-local-offer
-		  - 11/26/2024, 3:43:18 PM icegatheringstatechange  --> gathering
+		  - 11/26/2024, 3:43:18 PM signalingstatechange ==> have-local-offer
+		  - 11/26/2024, 3:43:18 PM icegatheringstatechange  ==> gathering
 		  - 11/26/2024, 3:43:18 PM icecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		  ...
 		  
 		  - 11/26/2024, 3:43:18 PM setRemoteDescription (type: "answer", 4 sections)
 		  - 11/26/2024, 3:43:18 PM setRemoteDescriptionOnSuccess
-		  - 11/26/2024, 3:43:18 PM signalingstatechange --> stable
+		  - 11/26/2024, 3:43:18 PM signalingstatechange ==> stable
 		  - 11/26/2024, 3:43:19 PM addIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  
+		  - 11/26/2024, 3:43:19 PMiceconnectionstatechange ==> checking
+		  - 11/26/2024, 3:43:19 PM connectionstatechange ==> connecting
 		  ```
-		- ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMtransceiverModified [1], video
-		  - ```
-		  - ```
-		  
-		  - ```
-		  - ```
-		  
-		  - ```
-		  checking
-		  ```
-		- 11/26/2024, 3:43:19 PMconnectionstatechange
-		- ```
-		  connecting
-		  ```
-		- 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		- ```
 		  - ```
 		  - 11/26/2024, 3:43:19 PMaddIceCandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
