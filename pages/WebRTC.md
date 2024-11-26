@@ -226,8 +226,11 @@
 	- ## Perfect negotiation pattern
 		- ### Concept
 			- Perfect negotiation makes it possible to seamlessly and completely separate the negotiation process from the rest of your application's logic
-			- The best thing about perfect negotiation is that the same code is used for both the caller and the callee, so there's no repetition or otherwise added levels of negotiation code to write.
+			- The same code is used for both the caller and the callee, so there's no repetition or otherwise added levels of negotiation code to write.
 			- Perfect negotiation works by assigning each of the two peers a role to play in the negotiation process that's entirely separate from the WebRTC connection state:
 				- A **polite** peer, which uses ICE rollback to prevent collisions with incoming offers. A polite peer, essentially, is one which may send out offers, but then responds if an offer arrives from the other peer with "Okay, never mind, drop my offer and I'll consider yours instead."
 				- An **impolite** peer, which always ignores incoming offers that collide with its own offers. It never apologizes or gives up anything to the polite peer. Any time a collision occurs, the impolite peer wins.
-		-
+		- ### Implement
+			- #### **Handling the negotiationneeded event**
+				-
+			-
