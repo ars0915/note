@@ -232,5 +232,19 @@
 				- An **impolite** peer, which always ignores incoming offers that collide with its own offers. It never apologizes or gives up anything to the polite peer. Any time a collision occurs, the impolite peer wins.
 		- ### Implement
 			- #### **Handling the negotiationneeded event**
-				-
+			  ```javascript
+			  let makingOffer = false;
+			  
+			  pc.onnegotiationneeded = async () => {
+			    try {
+			      makingOffer = true;
+			      await pc.setLocalDescription();
+			      signaler.send({ description: pc.localDescription });
+			    } catch (err) {
+			      console.error(err);
+			    } finally {
+			      makingOffer = false;
+			    }
+			  };
+			  ```
 			-
