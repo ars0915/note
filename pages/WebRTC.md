@@ -67,8 +67,8 @@ public:: true
 	-
 - # Data channel
 	- ## Create a data channel
-	  
-	  ```javascript
+	-
+	- ```javascript
 	  let dataChannel = pc.createDataChannel("MyApp Channel");
 	  
 	  dataChannel.addEventListener("open", (event) => {
@@ -79,7 +79,16 @@ public:: true
 	  
 	  
 	  ```javascript
+	  let dataChannel = pc.createDataChannel("MyApp Channel", {
+	    negotiated: true,
+	  });
+	  
+	  dataChannel.addEventListener("open", (event) => {
+	    beginTransmission(dataChannel);
+	  });
+	  
+	  requestRemoteChannel(dataChannel.id);
 	  ```
-	  specifying in the options a `negotiated` property set to `true`. This signals to the peer connection to not attempt to negotiate the channel on your behalf.
+	  Specifying in the options a `negotiated` property set to `true`. This signals to the peer connection to not attempt to negotiate the channel on your behalf.
 	-
 	-
