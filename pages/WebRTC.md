@@ -64,19 +64,14 @@
 				      }
 				  };
 				  ```
-				- #### **Signaling States**
+				- Signaling States
 				  The `signalingState` property reflects the SDP exchange's progress:
 					- **`stable`**: No ongoing SDP exchange.
 					- **`have-local-offer`**: Local SDP offer created and set.
 					- **`have-remote-offer`**: Remote SDP offer received.
 					- **`closed`**: PeerConnection is closed.
-			- ((67441318-7be3-4c5f-b921-e393ac007fb0))
-				- **Signaling**:
-					- Exchange SDP offers/answers and ICE candidates via a signaling server.
-				- **ICE Gathering**:
-					- Gather local candidates and send them incrementally (Trickle ICE).
-				- **ICE Connectivity Checks**:
-					- Test candidate pairs and select the best working path.
+			- #### **ICE Connection State Changes**:
+				-
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
