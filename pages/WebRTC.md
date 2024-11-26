@@ -106,7 +106,17 @@
 					- Synchronize Tracks
 					  Synchronization between audio and video tracks is handled by WebRTC based on the RTP timestamps.
 				- Media-Related Events
-				-
+					- `ontrack`: Triggered when a remote track is received.
+					- **`onnegotiationneeded`**: Indicates a need to renegotiate the connection (e.g., when adding a new track).
+					  
+					  ```javascript
+					  pc.onnegotiationneeded = async () => {
+					      const offer = await pc.createOffer();
+					      await pc.setLocalDescription(offer);
+					      signalingServer.send({ sdp: pc.localDescription });
+					  };
+					  ```
+			-
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
