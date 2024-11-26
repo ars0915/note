@@ -54,7 +54,15 @@
 						- **`have-local-offer`**: Local SDP offer created and set.
 						- **`have-remote-offer`**: Remote SDP offer received.
 						- **`closed`**: PeerConnection is closed.
-					- The `signalingState` in a WebRTC connection doesn't immediately transition to `have-remote-offer` when a remote SDP offer is received
+					- ### **State Transition with `setRemoteDescription()`**
+					  The `signalingState` in a WebRTC connection doesn't immediately transition to `have-remote-offer` when a remote SDP offer is received
+					  When a remote offer is received, the application must explicitly call:
+					  ```javascript
+					  await pc.setRemoteDescription(description);
+					  ```
+					  This triggers the transition of the `signalingState`:
+						- From **`stable`** to **`have-remote-offer`** if the connection is stable.
+						- From other states to indicate that an offer has been processed.
 			- #### **ICE Connection State Changes**:
 				- The `iceConnectionState` property reflects the progress of the ICE connection:
 					- **`new`**: ICE agent is gathering candidates.
