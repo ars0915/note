@@ -279,11 +279,13 @@
 			          description.type === "offer" &&
 			          (makingOffer || pc.signalingState !== "stable");
 			  
+			        // If we're the impolite peer, and we're receiving a colliding offer, we return without setting the description
 			        ignoreOffer = !polite && offerCollision;
 			        if (ignoreOffer) {
 			          return;
 			        }
 			  
+			        // If we're the polite peer, and we're receiving a colliding offer, we don't need to do anything special, because our existing offer will automatically be rolled back in the next step.
 			        await pc.setRemoteDescription(description);
 			        if (description.type === "offer") {
 			          await pc.setLocalDescription();
