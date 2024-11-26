@@ -1,7 +1,8 @@
 # WebSocket Message
 	- ## Upload
 	  ![image.png](../assets/image_1732606209368_0.png)
-		- ```
+		- SDP
+		  ```
 		  v=0
 		  o=- 2178718206776319700 2 IN IP4 127.0.0.1
 		  s=-
@@ -120,6 +121,7 @@
 		  a=sctp-port:5000
 		  a=max-message-size:262144
 		  ```
+		- Candidate
 	- ## Remote SDP answer
 	  ![image.png](../assets/image_1732606328076_0.png)
 		- ```
