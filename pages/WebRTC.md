@@ -34,7 +34,7 @@
 			  const peerConnection = new RTCPeerConnection();
 			  ```
 		- ### Lifecycle
-			- #### **Initialization**:
+			- #### **Signaling**:
 				- Create `RTCPeerConnection` objects on both sides.
 				  ```javascript
 				  const configuration = {
@@ -49,7 +49,7 @@
 				  - // You can also create an `RTCPeerConnection` without any configuration:
 				  const peerConnection = new RTCPeerConnection();
 				  ```
-				- Add media tracks or data channels.
+				- Generate offer/answer
 			- ((67441318-7be3-4c5f-b921-e393ac007fb0))
 				- **Signaling**:
 					- Exchange SDP offers/answers and ICE candidates via a signaling server.
