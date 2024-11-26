@@ -1,4 +1,6 @@
-# RTP
+public:: true
+
+- # RTP
 	- ## Offer
 	  collapsed:: true
 		- Generally low latency.
