@@ -288,7 +288,7 @@
 			        // If we're the polite peer, and we're receiving a colliding offer, we don't need to do anything special, because our existing offer will automatically be rolled back in the next step
 			        await pc.setRemoteDescription(description);
 			        if (description.type === "offer") {
-			          // 
+			          // setLocalDescription() to automatically generate an appropriate answer in response to the received offer
 			          await pc.setLocalDescription();
 			          signaler.send({ description: pc.localDescription });
 			        }
