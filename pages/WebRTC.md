@@ -258,5 +258,41 @@
 			  
 			  This takes the `candidate` member of this ICE event and passes it through to the signaling channel's `send()` method to be sent over the signaling server to the remote peer.
 			- #### **Handling incoming messages on the signaling channel**
+			  
+			  ```javascript
+			  let ignoreOffer = false;
+			  
+			  signaler.onmessage = async ({ data: { description, candidate } }) => {
+			    try {
+			      if (description) {
+			        const offerCollision =
+			          description.type === "offer" &&
+			          (makingOffer || pc.signalingState !== "stable");
+			  
+			        ignoreOffer = !polite && offerCollision;
+			        if (ignoreOffer) {
+			          return;
+			        }
+			  
+			        await pc.setRemoteDescription(description);
+			        if (description.type === "offer") {
+			          await pc.setLocalDescription();
+			          signaler.send({ description: pc.localDescription });
+			        }
+			      } else if (candidate) {
+			        try {
+			          await pc.addIceCandidate(candidate);
+			        } catch (err) {
+			          if (!ignoreOffer) {
+			            throw err;
+			          }
+			        }
+			      }
+			    } catch (err) {
+			      console.error(err);
+			    }
+			  };
+			  ```
+			  Each time a message arrives from the signaling server invoke
 			-
 	-
