@@ -50,6 +50,16 @@
 				  const peerConnection = new RTCPeerConnection();
 				  ```
 				- Generate offer/answer
+				  
+				  ```javascript
+				  const offer = await pc.createOffer();
+				  await pc.setLocalDescription(offer);
+				  ```
+				- Exchange ICE Candidates
+				  
+				  ```javascript
+				  ```
+				-
 			- ((67441318-7be3-4c5f-b921-e393ac007fb0))
 				- **Signaling**:
 					- Exchange SDP offers/answers and ICE candidates via a signaling server.
