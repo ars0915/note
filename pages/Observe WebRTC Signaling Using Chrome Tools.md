@@ -12,6 +12,11 @@
 		  url: stun:turn.stage.airsync.net:3478
 		  ```
 		- relay
+		  ```
+		  sdpMid: 2, sdpMLineIndex: 2
+		  candidate: candidate:3845669066 1 udp 33563135 35.201.196.47 57130 typ relay raddr 60.250.73.76 rport 59153 generation 0 ufrag n4Fy network-cost 999
+		  url: turn:turn.stage.airsync.net:3478?transport=udp, relayProtocol: udp
+		  ```
 		-
 - # WebSocket Message
 	- ## Upload
