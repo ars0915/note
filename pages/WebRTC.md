@@ -298,6 +298,7 @@
 			          // The candidate is destined to be delivered to the local ICE layer by passing it into addIceCandidate()
 			          await pc.addIceCandidate(candidate);
 			        } catch (err) {
+			          //  If an error occurs and we've ignored the most recent offer, we also ignore any error that may occur when trying to add the candidate
 			          if (!ignoreOffer) {
 			            throw err;
 			          }
