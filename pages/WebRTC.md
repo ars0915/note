@@ -293,6 +293,6 @@
 			    }
 			  };
 			  ```
-			  Each time a message arrives from the signaling server invoke
+			  Each time a message arrives from the signaling server invokes `onmessage` event
 			-
 	-
