@@ -92,7 +92,9 @@ public:: true
 - # [[Observe WebRTC Signaling Using Chrome Tools]]
 - # Media Flow
 	- ## Media capture and constraints
-		- ### MediaStream and MediaStreamTrack
+	  Media capture in WebRTC is facilitated by the `getUserMedia()` method, which prompts the user for permission to access their camera and microphone. Upon consent, it returns a `MediaStream` object containing `MediaStreamTrack` objects for each media type (audio and video)
+		- ### MediaStream
+		- ### MediaStreamTrack
 		- ### Constraints
 	- ## Encoding
 	- ## Transmission
