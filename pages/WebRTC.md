@@ -93,6 +93,18 @@ public:: true
 - # Media Flow
 	- ## Media capture and constraints
 	  Media capture in WebRTC is facilitated by the `getUserMedia()` method, which prompts the user for permission to access their camera and microphone. Upon consent, it returns a `MediaStream` object containing `MediaStreamTrack` objects for each media type (audio and video)
+	  ```javascript
+	  const openMediaDevices = async (constraints) => {
+	      return await navigator.mediaDevices.getUserMedia(constraints);
+	  }
+	  
+	  try {
+	      const stream = openMediaDevices({'video':true,'audio':true});
+	      console.log('Got MediaStream:', stream);
+	  } catch(error) {
+	      console.error('Error accessing media devices.', error);
+	  }
+	  ```
 		- ### MediaStream
 		  Represents a stream of media content, which may include multiple tracks such as audio and video.
 		- ### MediaStreamTrack
