@@ -27,43 +27,12 @@
 		  - 11/26/2024, 3:43:18 PM createOfferOnSuccess (type: "offer", 4 sections)
 		  - 11/26/2024, 3:43:18 PM setLocalDescription (munged) (type: "offer", 4 sections)
 		  - 11/26/2024, 3:43:18 PM setLocalDescriptionOnSuccess
-		  - 11/26/2024, 3:43:18 PM signalingstatechange
-		  							have-local-offer
-		  - 11/26/2024, 3:43:18 PM transceiverModified [0], audio
+		  - 11/26/2024, 3:43:18 PM signalingstatechange --> have-local-offer
+		  - 11/26/2024, 3:43:18 PM icegatheringstatechange  --> gathering
+		  - 11/26/2024, 3:43:18 PM icecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		  ...
 		  
-		  - 11/26/2024, 3:43:18 PMtransceiverModified [1], video
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicegatheringstatechange
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
-		  - ```
-		  sdpMid: 0, sdpMLineIndex: 0
-		  candidate: candidate:1345223362 1 udp 2113937151 4aea1f26-95f2-41a5-a9f1-f18a2be8f58b.local 51366 typ host generation 0 ufrag n4Fy network-cost 999
 		  ```
-		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: host)
-		- ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: host)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidateerror
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 2, sdpMLineIndex: 2, type: srflx, url: stun:turn.stage.airsync.net:3478)
-		  - ```
-		  sdpMid: 2, sdpMLineIndex: 2
-		  candidate: candidate:1740573071 1 udp 1677729535 60.250.73.76 59153 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag n4Fy network-cost 999
-		  url: stun:turn.stage.airsync.net:3478
-		  ```
-		- 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 0, sdpMLineIndex: 0, type: srflx, url: stun:turn.stage.airsync.net:3478)
 		- ```
 		  - ```
 		  - 11/26/2024, 3:43:18 PMicecandidate(sdpMid: 1, sdpMLineIndex: 1, type: srflx, url: stun:turn.stage.airsync.net:3478)
