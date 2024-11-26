@@ -67,4 +67,9 @@ public:: true
 	-
 - # Data channel
 	- ## Create a data channel
+	  
+	  ```javascript
+	  ```
+	  Call `createDataChannel()`without specifying a value for the `negotiated` property, or specifying the property with a value of `false`. This will automatically trigger the `RTCPeerConnection` to handle the negotiations for you, causing the remote peer to create a data channel and linking the two together across the network.
+	-
 	-
