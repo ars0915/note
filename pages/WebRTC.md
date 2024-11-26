@@ -123,7 +123,14 @@ public:: true
 	- ## Transmission
 		- ### Signaling
 		- ### Connection Setup
-		-
+		- ### **Data Transmission**
+			- WebRTC streams media data over:
+				- **SRTP (Secure Real-time Transport Protocol):** Ensures secure transmission of audio and video.
+				- **RTP (Real-time Transport Protocol):** For payload delivery with minimal latency.
+				- **RTCP (RTP Control Protocol):** Provides feedback on quality, such as packet loss and jitter.
+		- ### **Packet Prioritization**
+			- Video and audio packets are prioritized differently to ensure audio continuity (e.g., in poor network conditions).
+			- **Forward Error Correction (FEC):** Used to reconstruct lost packets.
 	- ## Rendering
 -
 - # Reference
