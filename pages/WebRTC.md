@@ -113,7 +113,7 @@ public:: true
 		  The channel represents the smallest unit of a media stream, such as an audio signal associated with a given speaker, like left or right in a stereo audio track.
 		- ### Constraints
 		  Constraints are used to specify desired properties for media capture, such as resolution for video or sample rate for audio.
-		  [Set and get constraints example](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Constraints)
+		  [Example constraint exerciser](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Constraints#example_constraint_exerciser)
 	- ## Encoding
 	- ## Transmission
 	- ## Rendering
