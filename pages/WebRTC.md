@@ -15,24 +15,6 @@
 	  RTCRtpReceivers 提供檢查和獲取有關傳入 MediaStreamTrack 資料的資訊的能力。
 	  **RTCRtpTransceiver**
 	  RTCRtpTransceiver 是一對共用 SDP mid 屬性的 RTP 傳送器和 RTP 接收器，這表示它們共用相同的 SDP media m-line（表示雙向 SRTP 串流）。這些由 RTCPeerConnection.getTransceivers() 方法傳回，每個 mid 和收發器共享一對一的關係，每個 RTCPeerConnection 的 mid 都是唯一的。
-		- ### How to establish a RTCPeerConnection object in JavaScript.
-			- The `RTCPeerConnection` is created using its constructor, which can take an optional configuration object to define connection settings.
-			  ```javascript
-			  const configuration = {
-			    iceServers: [
-			        { urls: "stun:stun.l.google.com:19302" }, // Google's public STUN server
-			        // Add TURN servers here if needed
-			    ],
-			  };
-			  
-			  // Create the RTCPeerConnection object
-			  const peerConnection = new RTCPeerConnection(configuration);
-			  
-			  console.log("RTCPeerConnection created:", peerConnection);
-			  
-			  // You can also create an `RTCPeerConnection` without any configuration:
-			  const peerConnection = new RTCPeerConnection();
-			  ```
 		- ### Lifecycle
 			- #### **Signaling**:
 				- Create `RTCPeerConnection` objects on both sides.
