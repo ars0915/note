@@ -71,6 +71,7 @@ public:: true
 		  };
 		  ```
 	- #### **ICE Gather State Changes**:
+	  id:: 674574d2-15ac-486d-a46b-b1e55e2e2cec
 		- When the state of the ICE candidate gathering process changes
 			- `new`: No ICE candidates have been gathered yet.
 			- `gathering`: The `RTCPeerConnection` is actively gathering ICE candidates.
