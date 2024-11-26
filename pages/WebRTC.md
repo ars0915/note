@@ -251,5 +251,5 @@
 			  
 			  We set a Boolean variable, `makingOffer` to `true` to mark that we're preparing an offer. To avoid races, we'll use this value later instead of the signaling state to determine whether or not an offer is being processed because the value of `signalingState` changes asynchronously, introducing a glare opportunity.
 			- #### **Handling incoming ICE candidates**
-				-
+				- handle the `RTCPeerConnection` event `icecandidate`, which is how the local ICE layer passes candidates to us for delivery to the remote peer over the signaling channel.
 	-
