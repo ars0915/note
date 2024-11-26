@@ -1,5 +1,11 @@
 # WebRTC Events
-	-
+	- ## ICE Candidate Gathering
+		- icecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
+		- ```
+		  sdpMid: 0, sdpMLineIndex: 0
+		  candidate: candidate:1345223362 1 udp 2113937151 4aea1f26-95f2-41a5-a9f1-f18a2be8f58b.local 51366 typ host generation 0 ufrag n4Fy network-cost 999
+		  ```
+		-
 - # WebSocket Message
 	- ## Upload
 	  ![image.png](../assets/image_1732606209368_0.png)
