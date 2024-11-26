@@ -86,7 +86,10 @@
 				      console.log("ICE connection state:", pc.iceConnectionState);
 				  };
 				  ```
-			-
+			- #### **Media Stream Negotiation**:
+			  Media stream negotiation defines how media (audio, video) is sent between peers.
+				- Add Media Tracks
+				-
 			- **Connection Established**:
 			- Media starts flowing between peers.
 			- **Renegotiation (Optional)**:
