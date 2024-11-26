@@ -69,7 +69,9 @@ public:: true
 		      console.log("ICE connection state:", pc.iceConnectionState);
 		  };
 		  ```
-	-
+	- #### **ICE Gather State Changes**:
+		- When the state of the ICE candidate gathering process changes
+			-
 	- #### **Media Stream Negotiation**:
 	  Media stream negotiation defines how media (audio, video) is sent between peers.
 		- **Step**
