@@ -66,6 +66,7 @@ public:: true
 	- ## [[Perfect negotiation pattern]]
 	-
 - # Data channel
+  collapsed:: true
 	- ## Create a data channel
 		- ### Automatic negotiation
 		  ```javascript
@@ -90,6 +91,8 @@ public:: true
 	- ## Security
 		- All data transferred using WebRTC is encrypted. In the case of `RTCDataChannel`, the encryption used is Datagram Transport Layer Security (DTLS)
 - # [[Observe WebRTC Signaling Using Chrome Tools]]
+- # Media Flow
+-
 -
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
