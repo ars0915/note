@@ -32,16 +32,11 @@
 		  - 11/26/2024, 3:43:18 PM icecandidate(sdpMid: 0, sdpMLineIndex: 0, type: host)
 		  ...
 		  
-		  - 11/26/2024, 3:43:18 PMsetRemoteDescription (type: "answer", 4 sections)
+		  - 11/26/2024, 3:43:18 PM setRemoteDescription (type: "answer", 4 sections)
+		  - 11/26/2024, 3:43:18 PM setRemoteDescriptionOnSuccess
+		  - 11/26/2024, 3:43:18 PM signalingstatechange --> stable
 		  ```
 		- ```
-		  
-		  - 11/26/2024, 3:43:18 PMsetRemoteDescription (type: "answer", 4 sections)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMsetRemoteDescriptionOnSuccess11/26/2024, 3:43:18 PMsignalingstatechange
-		  - ```
-		  stable
 		  ```
 		- 11/26/2024, 3:43:18 PMtransceiverModified [0], audio
 		- ```
