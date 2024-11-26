@@ -116,10 +116,10 @@ public:: true
 		  [Example constraint exerciser](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API/Constraints#example_constraint_exerciser)
 	- ## Encoding
 	  Once captured, media streams are encoded using codecs before transmission. WebRTC supports various codecs, including VP8 and VP9 for video, and Opus for audio. The choice of codec can affect the quality and bandwidth requirements of the media stream.
-		- ### **Bitrate Control**
-		  WebRTC dynamically adjusts the encoding bitrate based on:
-			- **Network Conditions:** Packet loss or bandwidth changes.
-			- **Resolution and Frame Rate:** Encoding can be scaled to fit device capabilities.
+	  **Bitrate Control**
+	  WebRTC dynamically adjusts the encoding bitrate based on:
+		- **Network Conditions:** Packet loss or bandwidth changes.
+		- **Resolution and Frame Rate:** Encoding can be scaled to fit device capabilities.
 	- ## Transmission
 	- ## Rendering
 	-
