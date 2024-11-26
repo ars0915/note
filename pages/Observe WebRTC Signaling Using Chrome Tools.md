@@ -1,4 +1,6 @@
-# WebRTC Events
+public:: true
+
+- # WebRTC Events
 	- ## ICE Candidate Gathering
 		- host: Local IP and port
 		  ```
