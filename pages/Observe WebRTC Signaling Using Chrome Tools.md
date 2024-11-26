@@ -1,7 +1,7 @@
 # WebSocket Message
 	- ## Upload
 	  ![image.png](../assets/image_1732606209368_0.png)
-		- SDP
+		- SDP offer
 		  ```
 		  v=0
 		  o=- 2178718206776319700 2 IN IP4 127.0.0.1
@@ -122,9 +122,20 @@
 		  a=max-message-size:262144
 		  ```
 		- Candidate
-	- ## Remote SDP answer
+		  ```json
+		  {
+		    "sessionId": "65873a9f-028d-4590-ac73-91cdd7addc16",
+		    "type": "candidate",
+		    "sdp": null,
+		    "candidate": "candidate:32629788 1 udp 1677729535 60.250.73.76 4109 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag wzpp network-cost 999",
+		    "sdpMid": "2",
+		    "sdpMLineIndex": 2
+		  }
+		  ```
+	- ## Download
 	  ![image.png](../assets/image_1732606328076_0.png)
-		- ```
+		- SDP answer
+		  ```
 		  v=0
 		  o=- 5513141044946050259 2 IN IP4 127.0.0.1
 		  s=-
@@ -191,4 +202,5 @@
 		  a=sctp-port:5000
 		  a=max-message-size:262144
 		  ```
+		-
 -
