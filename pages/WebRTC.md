@@ -250,4 +250,6 @@
 			  The set description is either an answer to the most recent offer from the remote peer or a freshly-created offer if there's no negotiation underway. Here, it will always be an `offer`, because t**he negotiationneeded event is only fired in `stable` state**.
 			  
 			  We set a Boolean variable, `makingOffer` to `true` to mark that we're preparing an offer. To avoid races, we'll use this value later instead of the signaling state to determine whether or not an offer is being processed because the value of `signalingState` changes asynchronously, introducing a glare opportunity.
-			-
+			- #### **Handling incoming ICE candidates**
+				-
+	-
