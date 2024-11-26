@@ -1,4 +1,6 @@
-# **Key Features of `prflx` (Peer Reflexive Candidates)**
+public:: true
+
+- # **Key Features of `prflx` (Peer Reflexive Candidates)**
 	- **Dynamic Discovery:**
 		- Unlike host, server reflexive (`srflx`), or relay candidates, a `prflx` candidate is not provided by the signaling process or STUN/TURN servers. It is discovered during the ICE connectivity checks when one peer sends a binding request to the other.
 	- **Observed Address:**
