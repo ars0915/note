@@ -19,32 +19,18 @@
 		  ```
 	- ## Connection States
 		- ```
-		  - ```
 		  - 11/26/2024, 3:43:14 PM createDataChannel
-		  - ```
-		  - ```
 		  - 11/26/2024, 3:43:14 PM negotiationneeded
-		  11/26/2024, 3:43:18 PMtransceiverAdded [0], audio
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMtransceiverAdded [1], video
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMcreateOffer
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMcreateOfferOnSuccess (type: "offer", 4 sections)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMsetLocalDescription (munged) (type: "offer", 4 sections)
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMsetLocalDescriptionOnSuccess11/26/2024, 3:43:18 PMsignalingstatechange
-		  - ```
-		  - ```
-		  - 11/26/2024, 3:43:18 PMtransceiverModified [0], audio
-		  - ```
-		  - ```
+		  - 11/26/2024, 3:43:18 PM transceiverAdded [0], audio
+		  - 11/26/2024, 3:43:18 PM transceiverAdded [1], video
+		  - 11/26/2024, 3:43:18 PM createOffer
+		  - 11/26/2024, 3:43:18 PM createOfferOnSuccess (type: "offer", 4 sections)
+		  - 11/26/2024, 3:43:18 PM setLocalDescription (munged) (type: "offer", 4 sections)
+		  - 11/26/2024, 3:43:18 PM setLocalDescriptionOnSuccess
+		  - 11/26/2024, 3:43:18 PM signalingstatechange
+		  							have-local-offer
+		  - 11/26/2024, 3:43:18 PM transceiverModified [0], audio
+		  
 		  - 11/26/2024, 3:43:18 PMtransceiverModified [1], video
 		  - ```
 		  - ```
