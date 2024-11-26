@@ -116,13 +116,12 @@
 					      signalingServer.send({ sdp: pc.localDescription });
 					  };
 					  ```
-			-
-			- **Connection Established**:
-			- Media starts flowing between peers.
-			- **Renegotiation (Optional)**:
-			- Triggered if media configuration changes (e.g., adding a track).
-			- **Connection Termination**:
-			- Close the PeerConnection when done.
+			- #### **Connection Termination**
+				- Close the PeerConnection when done.
+				  
+				  ```javascript
+				  pc.close();
+				  ```
 	- ## RTP 實作 hold 功能
 		- ### 開啟 hold mode
 			- #### Local peer
