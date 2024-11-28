@@ -1,6 +1,7 @@
 public:: true
 
 - # RTP
+  collapsed:: true
 	- ## Offer
 		- Generally low latency.
 		- 資料包按順序編號並帶有時間戳，以便在資料包無序到達時進行重組。這使得使用 RTP 發送的資料可以在不保證排序甚至根本不保證傳送的傳輸上傳送。
@@ -13,6 +14,7 @@ public:: true
 	- ## [[RTP 實作 hold 功能]]
 - # Connectivity
   id:: 67441318-7be3-4c5f-b921-e393ac007fb0
+  collapsed:: true
 	- ## Signaling
 		- ### Session descriptions
 		  The configuration of an endpoint on a WebRTC connection.
@@ -65,6 +67,7 @@ public:: true
 	- ## [[Perfect negotiation pattern]]
 	-
 - # Data channel
+  collapsed:: true
 	- ## Create a data channel
 		- ### Automatic negotiation
 		  ```javascript
@@ -90,6 +93,7 @@ public:: true
 		- All data transferred using WebRTC is encrypted. In the case of `RTCDataChannel`, the encryption used is Datagram Transport Layer Security (DTLS)
 - # [[Observe WebRTC Signaling Using Chrome Tools]]
 - # Media Flow
+  collapsed:: true
 	- ## Media capture and constraints
 	  Media capture in WebRTC is facilitated by the `getUserMedia()` method, which prompts the user for permission to access their camera and microphone. Upon consent, it returns a `MediaStream` object containing `MediaStreamTrack` objects for each media type (audio and video)
 	  ```javascript
