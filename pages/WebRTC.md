@@ -157,6 +157,8 @@ public:: true
 	  從內部送出之封包的目的地 IP 位址會被記住。只有這些曾經收過這些封包的位址可以送封包進入 NAT。由其他位址送進來的封包，都會被檔下。
 	  ![image.png](../assets/image_1732760578137_0.png){:height 243, :width 604}
 	- ## Port Restricted Cone NAT
+	  由外部送進來的封包，除了由那些接收過內部所送出 的封包的IP 位址及 Port Number 所送來的封包之外，都會被檔下。
+	  ![image.png](../assets/image_1732760613347_0.png)
 	- ## Symmetric NAT
 -
 - # Reference
