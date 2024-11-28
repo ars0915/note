@@ -149,6 +149,7 @@ public:: true
 				- Frames are queued for rendering in the browser or native application.
 				- Display timing ensures synchronization with the audio stream.
 - # NAT
+  NAT 是一種將內部IP 與外部IP互相轉換之技術。其起源是因為 IPv4 位址 稀少，而很多企業或網路公司在擁有少數IP 地址而公司內部確有太多電腦時 而採用共用IP 的解決方法，讓一個IP 地址給多個電腦使用。如今最常見的 IP 分享器或無線區域網路Access Point 都有NAT 的功能。使用者利用 ADSL上網 後，拿到一個 IP 地址，而IP 分享器或WLAN AP 則將一組專供內部使用的私有IP ， 通常是192.168.0.x，分配給所有內部電腦，內部每部電腦擁有一個192.168.0.x的IP 位址， 但WLAN AP 對外卻只有一個由網路公司賦予的IP 位址。 通常NAT 是將每一部電腦所用的 (IP, port number)， 本文稱為*內部位址*，對應到 (共用IP, port number)，本文稱為*外部位址*， 而 NAT 負責將進出封包的表頭進行轉換使得內部電腦可以 透通的與外部網路連線溝通。
 -
 -
 - # Reference
