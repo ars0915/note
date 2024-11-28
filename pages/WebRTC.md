@@ -148,6 +148,8 @@ public:: true
 				- The video decoder reconstructs the compressed frames.
 				- Frames are queued for rendering in the browser or native application.
 				- Display timing ensures synchronization with the audio stream.
+- # NAT
+-
 -
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
