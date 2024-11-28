@@ -154,6 +154,8 @@ public:: true
 	  單純的做位址轉換，並未對進出的封包設限
 	  ![image.png](../assets/image_1732760533280_0.png)
 	- ## Restricted Cone NAT (Address Restricted Cone)
+	  從內部送出之封包的目的地 IP 位址會被記住。只有這些曾經收過這些封包的位址可以送封包進入 NAT。由其他位址送進來的封包，都會被檔下。
+	  ![image.png](../assets/image_1732760578137_0.png){:height 243, :width 604}
 	- ## Port Restricted Cone NAT
 	- ## Symmetric NAT
 -
