@@ -160,6 +160,9 @@ public:: true
 	  由外部送進來的封包，除了由那些接收過內部所送出 的封包的IP 位址及 Port Number 所送來的封包之外，都會被檔下。
 	  ![image.png](../assets/image_1732760613347_0.png)
 	- ## Symmetric NAT
+	  前三種NAT在做位址轉換時，無論封包是送往何處， NAT內部同一內部位址 都對應到同一個外部位址，但在Symmetric NAT內則每一內部位址對不同的目的地， 都對應到不同的外部位址。
+	  Symmetric NAT只允許先由私有網域內的使用者發送封包到網際網路中的使用者 可以回傳封包。
+	  ![image.png](../assets/image_1732761037385_0.png)
 -
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
