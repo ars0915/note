@@ -65,7 +65,6 @@ public:: true
 	- ## [[Perfect negotiation pattern]]
 	-
 - # Data channel
-  collapsed:: true
 	- ## Create a data channel
 		- ### Automatic negotiation
 		  ```javascript
