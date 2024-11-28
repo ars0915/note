@@ -178,8 +178,10 @@ public:: true
 	  For data channels, DTLS operates over the Stream Control Transmission Protocol (SCTP) to secure arbitrary data transmission.
 		- SSL/TLS 基於 TCP，因此不需要操心重放、亂序、丟包的問題，可靠傳輸由 TCP 做了保證；而 DTLS 基於 UDP，UDP 是一種盡力而爲的協議，因此 DTLS 需要自己處理重放、亂序、丟包的問題。
 		- ### 握手防護機制
-			- 重傳
-			  TCP 天然的重傳機制保證了消息不會丟失，而 UDP 對此沒有任何保證。因此 DTLS 額外增加了超時重傳機制來確定握手消息到達，流程如下：
+			- **重傳**
+			  TCP 天然的重傳機制保證了消息不會丟失，而 UDP 對此沒有任何保證。因此 DTLS 額外增加了超時重傳機制來確定握手消息到達
+			  ![image.png](../assets/image_1732772382337_0.png)
+			- **序列號**
 	- ## SRTP
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
