@@ -165,7 +165,8 @@ public:: true
 		  Symmetric NAT只允許先由私有網域內的使用者發送封包到網際網路中的使用者 可以回傳封包。
 		  ![image.png](../assets/image_1732761037385_0.png)
 	- ## Challenges in P2P connections
-		-
+	  兩個皆位於 Private IP 區域內的設備，欲建立連線時，會因為不知道對方的 Public IP Address，而無法正確的建立連線。
+	- ## WebRTC tools for NAT/Firewall Traversal
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
