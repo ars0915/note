@@ -182,6 +182,8 @@ public:: true
 			  TCP 天然的重傳機制保證了消息不會丟失，而 UDP 對此沒有任何保證。因此 DTLS 額外增加了超時重傳機制來確定握手消息到達
 			  ![image.png](../assets/image_1732772382337_0.png)
 			- **序列號**
+			  爲了保證握手消息的有序性，DTLS 在握手報文中增加了 message_seq 字段便於接收方處理亂序消息。接收方直接處理屬於當前步驟的消息，提供一個緩存隊列來緩存提前到達的消息。
+			- **消息重放檢測**
 	- ## SRTP
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
