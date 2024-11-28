@@ -19,6 +19,7 @@ public:: true
 				- ### **Focus on UDP Conversations**
 					- In the **Conversations** window, switch to the **UDP** tab.
 					- This tab shows a list of all UDP conversations (source/destination IP and port pairs) along with statistics like packet count, byte count, and duration.
+					  ![image.png](../assets/image_1732789740137_0.png)
 				- ###  Identify Streaming Traffic
 					- Look for streams with a **high packet count** and a **steady byte rate**—typical for streaming traffic.
 					- If you know the IP address of the streaming server, look for conversations involving that IP.
