@@ -194,6 +194,7 @@ public:: true
 				- 因此 DTLS 在 1.0 版本就加入了 HelloVerifyRequest 和 Cookie，用於服務端對客戶端的二次校驗，避免 DoS 攻擊。具體實現方式如下：
 					- 當客戶端首次給服務端發送 Client Hello 時，服務端只會生成一個 Cookie 並通過 HelloVerifyRequest 發送給客戶端，不會執行分配緩衝區等操作，直到收到帶上相同 Cookie 的 Client Hello 纔會繼續握手，可以使得僞造 IP 的攻擊難以實現（使用真實 IP 的 DoS 攻擊無能爲力）；
 					- HelloVerifyRequest 足夠小，即使服務端被攻擊者當槍使來攻擊其他機器，也不會造成大量數據發送。
+				- ![image.png](../assets/image_1732772650397_0.png)
 				-
 	- ## SRTP
 - # Reference
