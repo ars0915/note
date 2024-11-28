@@ -195,8 +195,9 @@ public:: true
 					- 當客戶端首次給服務端發送 Client Hello 時，服務端只會生成一個 Cookie 並通過 HelloVerifyRequest 發送給客戶端，不會執行分配緩衝區等操作，直到收到帶上相同 Cookie 的 Client Hello 纔會繼續握手，可以使得僞造 IP 的攻擊難以實現（使用真實 IP 的 DoS 攻擊無能爲力）；
 					- HelloVerifyRequest 足夠小，即使服務端被攻擊者當槍使來攻擊其他機器，也不會造成大量數據發送。
 				- ![image.png](../assets/image_1732772650397_0.png)
-				-
 	- ## SRTP
+	  SRTP is an extension of the Real-time Transport Protocol (RTP) and provides encryption, message authentication, and integrity for media streams.
+		-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
