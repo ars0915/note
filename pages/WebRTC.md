@@ -207,5 +207,5 @@ public:: true
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
 	- "SCTP introduction,"  Available: [link_to_page](https://sites.google.com/site/applezulab/network/sctp_introduction).
 	- "一文讀懂 DTLS 協議," Available: [link_to_page](https://www.readfog.com/a/1641737692694810624).
-	-
+	- "An In-Depth Look at SRTP Protocol: Securing Real-Time Communication," *digitalsamba*, Available: [link_to_page](https://www.digitalsamba.com/blog/srtp-protocol).
 -
