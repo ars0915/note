@@ -19,13 +19,13 @@ public:: true
 				- ### **Focus on UDP Conversations**
 					- In the **Conversations** window, switch to the **UDP** tab.
 					- This tab shows a list of all UDP conversations (source/destination IP and port pairs) along with statistics like packet count, byte count, and duration.
-				- ###  **Identify Streaming Traffic**
-				- Look for streams with a **high packet count** and a **steady byte rate**—typical for streaming traffic.
-				- If you know the IP address of the streaming server, look for conversations involving that IP.
-				  
-				  **Key Indicators of Streaming Traffic:**
-				- High **packet count**: Indicates a sustained stream of data.
-				- Consistent **data size**: Streaming often uses similar-sized packets.
+				- ###  Identify Streaming Traffic
+					- Look for streams with a **high packet count** and a **steady byte rate**—typical for streaming traffic.
+					- If you know the IP address of the streaming server, look for conversations involving that IP.
+					  **Key Indicators of Streaming Traffic:**
+						- High **packet count**: Indicates a sustained stream of data.
+						- Consistent **data size**: Streaming often uses similar-sized packets.
+				-
 	- ## P2P Connections
 	  ![image.png](../assets/image_1732779164495_0.png)
 	-
