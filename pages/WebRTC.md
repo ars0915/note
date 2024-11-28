@@ -151,20 +151,21 @@ public:: true
 - # NAT
   NAT 是一種將內部IP 與外部IP互相轉換之技術。負責將進出封包的表頭進行轉換使得內部電腦可以 透通的與外部網路連線溝通。
 	- ## NAT types
-	- ### Full Cone NAT
-	  單純的做位址轉換，並未對進出的封包設限
-	  ![image.png](../assets/image_1732760533280_0.png)
-	- ### Restricted Cone NAT (Address Restricted Cone)
-	  從內部送出之封包的目的地 IP 位址會被記住。只有這些曾經收過這些封包的位址可以送封包進入 NAT。由其他位址送進來的封包，都會被檔下。
-	  ![image.png](../assets/image_1732760578137_0.png){:height 243, :width 604}
-	- ### Port Restricted Cone NAT
-	  由外部送進來的封包，除了由那些接收過內部所送出 的封包的IP 位址及 Port Number 所送來的封包之外，都會被檔下。
-	  ![image.png](../assets/image_1732760613347_0.png)
-	- ### Symmetric NAT
-	  前三種NAT在做位址轉換時，無論封包是送往何處， NAT內部同一內部位址 都對應到同一個外部位址，但在Symmetric NAT內則每一內部位址對不同的目的地， 都對應到不同的外部位址。
-	  Symmetric NAT只允許先由私有網域內的使用者發送封包到網際網路中的使用者 可以回傳封包。
-	  ![image.png](../assets/image_1732761037385_0.png)
--
+		- ### Full Cone NAT
+		  單純的做位址轉換，並未對進出的封包設限
+		  ![image.png](../assets/image_1732760533280_0.png)
+		- ### Restricted Cone NAT (Address Restricted Cone)
+		  從內部送出之封包的目的地 IP 位址會被記住。只有這些曾經收過這些封包的位址可以送封包進入 NAT。由其他位址送進來的封包，都會被檔下。
+		  ![image.png](../assets/image_1732760578137_0.png){:height 243, :width 604}
+		- ### Port Restricted Cone NAT
+		  由外部送進來的封包，除了由那些接收過內部所送出 的封包的IP 位址及 Port Number 所送來的封包之外，都會被檔下。
+		  ![image.png](../assets/image_1732760613347_0.png)
+		- ### Symmetric NAT
+		  前三種NAT在做位址轉換時，無論封包是送往何處， NAT內部同一內部位址 都對應到同一個外部位址，但在Symmetric NAT內則每一內部位址對不同的目的地， 都對應到不同的外部位址。
+		  Symmetric NAT只允許先由私有網域內的使用者發送封包到網際網路中的使用者 可以回傳封包。
+		  ![image.png](../assets/image_1732761037385_0.png)
+	- ## Challenges in P2P connections
+		-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
