@@ -201,7 +201,8 @@ public:: true
 		- **Confidentiality:** By encrypting the media payload, SRTP ensures that audio and video content remain confidential during transmission.
 		- **Authentication:** It verifies that the media packets originate from a legitimate source, preventing impersonation attacks.
 		- **Integrity:** SRTP ensures that media packets have not been modified in transit, protecting against tampering.
-	-
+- # [[Emulate Network Conditions to Test WebRTC Adaptability]]
+-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
