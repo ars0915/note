@@ -167,7 +167,10 @@ public:: true
 	- ## Challenges in P2P connections
 	  兩個皆位於 Private IP 區域內的設備，欲建立連線時，會因為不知道對方的 Public IP Address，而無法正確的建立連線。
 	- ## WebRTC tools for NAT/Firewall Traversal
-		-
+		- **ICE (Interactive Connectivity Establishment):** A framework that combines STUN and TURN to discover the best path to connect peers. ICE gathers multiple connection candidates (e.g., direct, STUN-derived, TURN-relayed) and tests them to determine the most efficient route.
+		- **STUN (Session Traversal Utilities for NAT):** Allows a device to discover its public IP address and the type of NAT it is behind by sending requests to a STUN server, which responds with the device's public address and port. This information helps establish direct connections when possible.
+		- **TURN (Traversal Using Relays around NAT):** Used when direct connections fail, TURN servers relay data between peers. This approach is more resource-intensive but ensures connectivity in restrictive NAT scenarios, such as with symmetric NATs.
+	-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
