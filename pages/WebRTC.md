@@ -172,7 +172,8 @@ public:: true
 		- **STUN (Session Traversal Utilities for NAT):** Allows a device to discover its public IP address and the type of NAT it is behind by sending requests to a STUN server, which responds with the device's public address and port. This information helps establish direct connections when possible.
 		- **TURN (Traversal Using Relays around NAT):** Used when direct connections fail, TURN servers relay data between peers. This approach is more resource-intensive but ensures connectivity in restrictive NAT scenarios, such as with symmetric NATs.
 - # Security in WebRTC
-	-
+	- ## DTLS
+	- ## SRTP
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
