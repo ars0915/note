@@ -184,6 +184,9 @@ public:: true
 			- **序列號**
 			  爲了保證握手消息的有序性，DTLS 在握手報文中增加了 message_seq 字段便於接收方處理亂序消息。接收方直接處理屬於當前步驟的消息，提供一個緩存隊列來緩存提前到達的消息。
 			- **消息重放檢測**
+			  消息重放也是 DoS 攻擊的一種，攻擊者可以截取發送者發送的數據，並直接原封不動地發給接收方，來達到欺騙接收方的目的。 DTLS 增加了類似 IPsec AH/ESP 的消息重放檢測，使用一個 bitmap 滑動窗口來接收消息，結合消息本身的序號，bitmap 可以判斷該消息是否是太老的消息，是的話則直接拋棄。這個功能在 DTLS 中是可選的，因爲某些 UDP 報文的重複只是單純因爲網絡錯誤。
+			- #### **報文大小限制**
+			  TCP 面向字節流，而 UDP 面向報文。因此 TCP 會自動將報文進行拆分和組裝，無需上層操心；而 UDP 報文如果超過了 MTU（鏈路層的最大傳輸單元） 限制，會在 IP 層被強制分片，使得每一片大小都小於 MTU，接收方 IP 層需要進行數據報的重組，這樣就會多做許多工作，更麻煩的地方在於只要其中一片丟失就會造成重組失敗，造成整個 UDP 報文丟失。 因此 DTLS 直接在 UDP 之上就對握手消息做了分段，握手報文中的 fragment_offset 和 fragment_length 就是爲了這個目的，分別代表這段報文相對消息起始的偏移量以及這段報文的長度。
 	- ## SRTP
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
