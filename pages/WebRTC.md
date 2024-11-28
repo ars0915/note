@@ -148,7 +148,7 @@ public:: true
 				- The video decoder reconstructs the compressed frames.
 				- Frames are queued for rendering in the browser or native application.
 				- Display timing ensures synchronization with the audio stream.
-- # NAT
+- # Network Traversal
   NAT 是一種將內部IP 與外部IP互相轉換之技術。負責將進出封包的表頭進行轉換使得內部電腦可以 透通的與外部網路連線溝通。
 	- ## NAT types
 		- ### Full Cone NAT
@@ -170,6 +170,7 @@ public:: true
 		- **ICE (Interactive Connectivity Establishment):** A framework that combines STUN and TURN to discover the best path to connect peers. ICE gathers multiple connection candidates (e.g., direct, STUN-derived, TURN-relayed) and tests them to determine the most efficient route.
 		- **STUN (Session Traversal Utilities for NAT):** Allows a device to discover its public IP address and the type of NAT it is behind by sending requests to a STUN server, which responds with the device's public address and port. This information helps establish direct connections when possible.
 		- **TURN (Traversal Using Relays around NAT):** Used when direct connections fail, TURN servers relay data between peers. This approach is more resource-intensive but ensures connectivity in restrictive NAT scenarios, such as with symmetric NATs.
+- # Security in WebRTC
 	-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
