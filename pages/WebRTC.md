@@ -173,6 +173,9 @@ public:: true
 		- **TURN (Traversal Using Relays around NAT):** Used when direct connections fail, TURN servers relay data between peers. This approach is more resource-intensive but ensures connectivity in restrictive NAT scenarios, such as with symmetric NATs.
 - # Security in WebRTC
 	- ## DTLS
+	  In WebRTC, DTLS is employed to secure both media and data channels.
+	  For media channels, DTLS is used in conjunction with SRTP to encrypt audio and video streams.
+	  For data channels, DTLS operates over the Stream Control Transmission Protocol (SCTP) to secure arbitrary data transmission.
 	- ## SRTP
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
