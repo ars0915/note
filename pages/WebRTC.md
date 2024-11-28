@@ -149,8 +149,9 @@ public:: true
 				- Frames are queued for rendering in the browser or native application.
 				- Display timing ensures synchronization with the audio stream.
 - # Network Traversal
-  NAT 是一種將內部IP 與外部IP互相轉換之技術。負責將進出封包的表頭進行轉換使得內部電腦可以 透通的與外部網路連線溝通。
-	- ## NAT types
+  collapsed:: true
+	- ## NAT
+	  NAT 是一種將內部IP 與外部IP互相轉換之技術。負責將進出封包的表頭進行轉換使得內部電腦可以 透通的與外部網路連線溝通。
 		- ### Full Cone NAT
 		  單純的做位址轉換，並未對進出的封包設限
 		  ![image.png](../assets/image_1732760533280_0.png)
