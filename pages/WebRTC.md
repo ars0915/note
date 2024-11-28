@@ -132,6 +132,18 @@ public:: true
 			- Video and audio packets are prioritized differently to ensure audio continuity (e.g., in poor network conditions).
 			- **Forward Error Correction (FEC):** Used to reconstruct lost packets.
 	- ## Rendering
+		- ### **Rendering Audio**
+			- Decoded audio streams are passed to the system's audio output (e.g., speakers or headphones).
+			- **Audio Rendering Components:**
+				- Volume control
+				- Noise suppression
+				- Echo cancellation
+		- ### **Rendering Video**
+			- Decoded video frames are displayed in an HTML `<video>` element.
+			- **Steps:**
+				- The video decoder reconstructs the compressed frames.
+				- Frames are queued for rendering in the browser or native application.
+				- Display timing ensures synchronization with the audio stream.
 -
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
