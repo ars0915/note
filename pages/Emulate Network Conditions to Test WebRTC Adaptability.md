@@ -6,6 +6,9 @@ public:: true
 	- ## STUN and TURN
 	  ![image.png](../assets/image_1732778427697_0.png)
 	- ## RTP media
+	- ## P2P Connections
+	  ![image.png](../assets/image_1732779164495_0.png)
+	-
 - # Blocking Direct Connections
 -
 -
