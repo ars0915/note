@@ -30,7 +30,8 @@ public:: true
 				- Select the packet then right click `Decoded As...`
 				  Set Current to `RTP`
 				  ![image.png](../assets/image_1732789923823_0.png)
-				-
+			- ### Check seq and time
+			  ![image.png](../assets/image_1732789968816_0.png)
 	- ## P2P Connections
 	  ![image.png](../assets/image_1732779164495_0.png)
 	-
