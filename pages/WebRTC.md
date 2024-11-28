@@ -197,7 +197,11 @@ public:: true
 				- ![image.png](../assets/image_1732772650397_0.png)
 	- ## SRTP
 	  SRTP is an extension of the Real-time Transport Protocol (RTP) and provides encryption, message authentication, and integrity for media streams.
-		-
+	  The encryption keys used by SRTP in WebRTC are derived from the DTLS handshake process, a method known as DTLS-SRTP. This approach ensures that key exchange is secure and that media streams are protected from interception and tampering.
+		- **Confidentiality:** By encrypting the media payload, SRTP ensures that audio and video content remain confidential during transmission.
+		- **Authentication:** It verifies that the media packets originate from a legitimate source, preventing impersonation attacks.
+		- **Integrity:** SRTP ensures that media packets have not been modified in transit, protecting against tampering.
+	-
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
