@@ -32,7 +32,7 @@ public:: true
 				  ![image.png](../assets/image_1732789923823_0.png)
 			- ### Check info
 			  seq 會是遞增
-			  PT
+			  PT 的 codec 會在 SDP 中找到 (e.g., 106)
 			- ![image.png](../assets/image_1732789968816_0.png){:height 368, :width 771}
 	- ## P2P Connections
 	  ![image.png](../assets/image_1732779164495_0.png)
