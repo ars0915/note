@@ -38,5 +38,6 @@ public:: true
 	  ![image.png](../assets/image_1732779164495_0.png)
 	-
 - # Blocking Direct Connections
+	- macOS use
 -
 -
