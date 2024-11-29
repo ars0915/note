@@ -52,12 +52,12 @@ public:: true
 		  ```
 	- ### Web sender
 		- Block port after connected
-			- 出現 Reconnecting
-			- 斷線
+			- 出現 Reconnecting 後斷線
 		- Block target IP after connected
 		  ```
 		  block quick proto udp from any to 172.21.10.181
 		  ```
-			- 使用 Turn
+			- 使用 TURN
+			  ![image.png](../assets/image_1732852666345_0.png)
 -
 -
