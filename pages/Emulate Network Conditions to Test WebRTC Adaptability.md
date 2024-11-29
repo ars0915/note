@@ -50,6 +50,14 @@ public:: true
 		  ```
 		  sudo pfctl -f /etc/pf.conf && sudo pfctl -E
 		  ```
-	-
+	- ### Web sender
+		- Block port after connected
+			- 出現 Reconnecting
+			- 斷線
+		- Block target IP after connected
+		  ```
+		  block quick proto udp from any to 172.21.10.181
+		  ```
+			- 使用 Turn
 -
 -
