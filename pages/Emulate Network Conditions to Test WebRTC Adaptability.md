@@ -60,6 +60,14 @@ public:: true
 			- 使用 TURN
 			  ![image.png](../assets/image_1732852666345_0.png)
 			  ![image.png](../assets/image_1732852687700_0.png)
-			-
+		- Block before connect
+			- 使用 TURN
+	- ### MacOS sender
+		- Block port after connected
+			- 出現 Reconnecting 後斷線
+		- Block target IP after connected
+			- 出現 Reconnecting 後斷線
+		- Block before connect
+			- 使用 TURN
 -
 -
