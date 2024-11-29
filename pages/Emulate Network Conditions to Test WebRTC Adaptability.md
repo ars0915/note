@@ -39,12 +39,12 @@ public:: true
 	-
 - # Blocking Direct Connections
 	- macOS use `pfctl` to block traffic
-	  ```
-	  sudo vim /etc/pf.conf
-	  ```
+		- ```
+		  sudo vim /etc/pf.conf
+		  ```
 		- At the end of the file add the following to block UDP on port 12345
 		  ```
-		  block out proto udp from any to any port 12345
+		  block quick proto udp from any to any port = 12345
 		  ```
 		- Then enable the firewall with
 		  ```
