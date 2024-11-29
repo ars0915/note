@@ -81,4 +81,6 @@ public:: true
 		- ![image.png](../assets/image_1732873195713_0.png)
 		- ![image.png](../assets/image_1732873216777_0.png)
 	- **Network Interruptions**
+		- ![image.png](../assets/image_1732873730103_0.png)
+		- ![image.png](../assets/image_1732873744036_0.png){:height 355, :width 804}
 -
