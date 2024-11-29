@@ -38,6 +38,19 @@ public:: true
 	  ![image.png](../assets/image_1732779164495_0.png)
 	-
 - # Blocking Direct Connections
-	- macOS use
+	- macOS use pfctl to block traffic
+		- You can use `pfctl` in OSX.
+		- ```
+		  sudo nano /etc/pf.conf
+		  ```
+		- At the end of the file add the following to block UDP on port 10000
+		- ```
+		  block out proto udp from any to any port 10000
+		  ```
+		- Then enable the firewall with
+		- ```
+		  sudo pfctl -f /etc/pf.conf && sudo pfctl -E
+		  ```
+		-
 -
 -
