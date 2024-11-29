@@ -74,7 +74,8 @@ public:: true
 		- ![image.png](../assets/image_1732871972812_0.png){:height 249, :width 804}
 		- ![image.png](../assets/image_1732872870867_0.png)
 	- **High Latency**
-		-
+		- ![image.png](../assets/image_1732873461741_0.png)
+		- ![image.png](../assets/image_1732873475410_0.png)
 	- **Jitter Simulation**
 	- **Packet Loss**
 		- ![image.png](../assets/image_1732873195713_0.png)
