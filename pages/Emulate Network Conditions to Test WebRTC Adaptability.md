@@ -70,10 +70,11 @@ public:: true
 		- Block before connect
 			- 使用 TURN
 - # Test with Network Emulator
-	-
+	- webrtc 數值解釋 https://www.w3.org/TR/webrtc-stats
 	- **Bandwidth Throttling**
 		- ![image.png](../assets/image_1732871972812_0.png){:height 249, :width 804}
 		- ![image.png](../assets/image_1732872870867_0.png)
+		-
 	- **High Latency**
 		- ![image.png](../assets/image_1732873461741_0.png)
 		- ![image.png](../assets/image_1732873475410_0.png)
