@@ -172,6 +172,7 @@ public:: true
 		- **STUN (Session Traversal Utilities for NAT):** Allows a device to discover its public IP address and the type of NAT it is behind by sending requests to a STUN server, which responds with the device's public address and port. This information helps establish direct connections when possible.
 		- **TURN (Traversal Using Relays around NAT):** Used when direct connections fail, TURN servers relay data between peers. This approach is more resource-intensive but ensures connectivity in restrictive NAT scenarios, such as with symmetric NATs.
 - # Security in WebRTC
+  collapsed:: true
 	- ## DTLS
 	  In WebRTC, DTLS is employed to secure both media and data channels.
 	  For media channels, DTLS is used in conjunction with SRTP to encrypt audio and video streams.
