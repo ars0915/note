@@ -77,7 +77,7 @@ public:: true
 		- 從 outbound-rtp -> targetBitrate 觀察和 Bandwidth 設定的限制是否相符
 		- WebRTC 會自動調整 bitrate
 			- 一開始 Bandwidth 調低後 -> 輸出超過 queue 能消化的量 -> PacketLost 會變高
-			- WebRTC 自動調低 targetBitrate 後 -> 送出的量變少(bytesSent_in_bits/s) jitter 變低 & packetLost 變低 & RTT 變低
+			- WebRTC 自動調低 targetBitrate 後 -> 送出的量變少(bytesSent_in_bits/s) -> jitter 變低 & packetLost 變低 & RTT 變低
 	- **High Latency**
 		- ![image.png](../assets/image_1732873461741_0.png)
 		- ![image.png](../assets/image_1732873475410_0.png)
