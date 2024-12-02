@@ -74,7 +74,8 @@ public:: true
 	- **Bandwidth Throttling**
 		- ![image.png](../assets/image_1732871972812_0.png){:height 249, :width 804}
 		- ![image.png](../assets/image_1732872870867_0.png)
-		-
+		- 從 outbound-rtp -> targetBitrate 觀察和 Bandwidth 設定的限
+		      1. Outbound -> targetBitrate
 	- **High Latency**
 		- ![image.png](../assets/image_1732873461741_0.png)
 		- ![image.png](../assets/image_1732873475410_0.png)
