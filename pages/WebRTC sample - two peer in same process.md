@@ -82,7 +82,9 @@
 			  I/flutter (21404):   retransmittedBytesSent: 0
 			  ```
 		- ### root cause
-			- Add track 後再建立 offer 才會有
+			- Add track 後再建立 offer
+			- remote
+			-
 	-
 	- ## macOS 無法連線
 	-
