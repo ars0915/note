@@ -90,6 +90,7 @@
 			- 透過 peer connection event 確定 gathering 結束且 connection failed
 			- 在 peer connection 建立後 ICE agent 就會開始尋找 candidate，可能會在對方還沒接到 SDP 前就發送而被忽略 => **queue buffer**
 			- peerConnection.getRemoteDescription() 會等到 set 後才 return，無法用來判斷 SDP 有沒有設定
+			- 套用 flutter_webrtc sample 檢查是否設定權限的問題
 		- ### root cause
 			-
 			-
