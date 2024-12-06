@@ -50,7 +50,7 @@
 			  ```
 			  需要有 `a=sendrecv` 或 `a=sendonly`
 				- **Inspect Offer SDP After Track Addition**: 確認 add track 再建立 offer
-			-
+			- 從 outbound
 	-
 	- ## macOS 無法連線
 	-
