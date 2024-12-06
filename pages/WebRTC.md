@@ -1,7 +1,6 @@
 public:: true
 
 - # RTP
-  collapsed:: true
 	- ## Offer
 		- Generally low latency.
 		- 資料包按順序編號並帶有時間戳，以便在資料包無序到達時進行重組。這使得使用 RTP 發送的資料可以在不保證排序甚至根本不保證傳送的傳輸上傳送。
