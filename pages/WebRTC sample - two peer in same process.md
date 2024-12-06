@@ -4,5 +4,7 @@
 - # Initialize
 	- Implement by flutter_webrtc, test on macOS and Android.
 - # Issues
-	- ## Android
+	- ## Android 連線後 remote render 失敗
+		-
+	- ## macOS 無法連線
 	-
