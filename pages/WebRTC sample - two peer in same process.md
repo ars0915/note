@@ -82,8 +82,8 @@
 			  I/flutter (21404):   retransmittedBytesSent: 0
 			  ```
 		- ### root cause
-			- Local peer add track 後再建立 offer
-			- Remote peer 在 setRemoteDescription 後就會觸發 on
+			- SDP 會根據 peer track 調整 => **Local peer add track 後再建立 offer
+			- Remote peer 在 setRemoteDescription 後就會觸發 onTrack event =>
 			-
 	-
 	- ## macOS 無法連線
