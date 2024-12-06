@@ -7,6 +7,7 @@
 	-
 - # Issues
 	- ## Android 連線後 remote render 失敗
+	  從 RTCIceConnectionState.RTCIceConnectionStateConnected 得知連線沒有問題
 		- ### Debug step
 			- 發現 remote peer 沒有接到 track
 			  
