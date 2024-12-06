@@ -4,7 +4,7 @@
 - # Initialize
 	- Implement by flutter_webrtc, test on macOS and Android.
 - # Final flow
-	-
+	- create peer -> listen event -> add tracks -> create offer -> send offer -> create answer -> send
 - # Issues
 	- ## Android 連線後 remote render 失敗
 	  從 RTCIceConnectionState.RTCIceConnectionStateConnected 得知連線沒有問題
