@@ -42,7 +42,8 @@
 			  I/flutter (12055):   currentRoundTripTime: 0.001
 			  I/flutter (12055):   consentRequestsSent: 0
 			  ```
-				- 發現 byte
+				- `bytesSent: 0` and `bytesReceived: 0`
+			- 檢查 SDP 發現 offer SDP 只有 `a`
 	-
 	- ## macOS 無法連線
 	-
