@@ -87,5 +87,5 @@
 	- ## macOS 無法連線
 		- ### Debug step
 			- 檢查 SDP 和 candidate 有沒有能配對的
-			-
+			- 透過 peer connection event 確定 gathering 結束且
 	-
