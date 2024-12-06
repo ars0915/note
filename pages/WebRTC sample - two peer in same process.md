@@ -5,6 +5,7 @@
 	- Implement by flutter_webrtc, test on macOS and Android.
 - # Issues
 	- ## Android 連線後 remote render 失敗
-		-
+		- ### Debug step
+			-
 	- ## macOS 無法連線
 	-
