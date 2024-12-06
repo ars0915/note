@@ -81,7 +81,8 @@
 			  I/flutter (21404):   qualityLimitationDurations: {other: 0.0, bandwidth: 0.0, cpu: 0.0, none: 0.027}
 			  I/flutter (21404):   retransmittedBytesSent: 0
 			  ```
-				-
+		- ### root cause
+			- Add track 後再建立 offer 才會有
 	-
 	- ## macOS 無法連線
 	-
