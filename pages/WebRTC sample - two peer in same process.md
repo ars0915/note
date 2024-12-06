@@ -88,5 +88,6 @@
 		- ### Debug step
 			- 檢查 SDP 和 candidate 有沒有能配對的
 			- 透過 peer connection event 確定 gathering 結束且 connection failed
-			- 在 peer connection 建立後 ICE agent 就會開始尋找 candidate
+			- 在 peer connection 建立後 ICE agent 就會開始尋找 candidate，可能會在對方還沒接到 SDP 前就發送而被忽略 => **queue **
+			-
 	-
