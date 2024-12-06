@@ -4,5 +4,5 @@
 - # Initialize
 	- Implement by flutter_webrtc, test on macOS and Android.
 - # Issues
-	- MacOS can't
+	- ## Android
 	-
