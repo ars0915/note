@@ -85,5 +85,7 @@
 			- SDP 會根據 peer track 調整 => **Local peer add track 後再建立 offer**
 			- Remote peer 在 setRemoteDescription 後就會觸發 onTrack event => **在設定 SDP 前先 listen event**
 	- ## macOS 無法連線
-		-
+		- ### Debug step
+			- 檢查 SDP 和 candidate 有沒有能配對的
+			-
 	-
