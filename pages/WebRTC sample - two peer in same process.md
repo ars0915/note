@@ -8,6 +8,6 @@
 - # Issues
 	- ## Android 連線後 remote render 失敗
 		- ### Debug step
-			-
+			- 檢查 remote peer 有沒有
 	- ## macOS 無法連線
 	-
