@@ -43,7 +43,12 @@
 			  I/flutter (12055):   consentRequestsSent: 0
 			  ```
 				- `bytesSent: 0` and `bytesReceived: 0`
-			- 檢查 SDP 發現 offer SDP 只有 `a`
+			- 檢查 SDP
+			  offer SDP
+			  ```
+			  a=recvonly
+			  ```
+			  需要有 a=sendrer
 	-
 	- ## macOS 無法連線
 	-
