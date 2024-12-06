@@ -92,6 +92,11 @@
 			- peerConnection.getRemoteDescription() 會等到 set 後才 return，無法用來判斷 SDP 有沒有設定
 			- 套用 flutter_webrtc sample 檢查是否設定權限的問題
 		- ### root cause
+			- `macos/Runner/DebugProfile.entitlements` 需要設定
+			  ```
+			         <key>com.apple.security.network.client</key>
+			         <true/>
+			  ```
 			-
 			-
 	-
