@@ -97,5 +97,4 @@
 			         <key>com.apple.security.network.client</key>
 			         <true/>
 			  ```
-				- macOS Sandbos
-	-
+				- macOS Sandbox restriction silent 所以可能看不到連線失敗的 log
