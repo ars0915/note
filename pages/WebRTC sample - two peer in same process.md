@@ -8,6 +8,16 @@
 - # Issues
 	- ## Android 連線後 remote render 失敗
 		- ### Debug step
-			- 檢查 remote peer 有沒有
+			- 發現 remote peer 沒有接到 track
+			  
+			  ```dart
+			  remotePeer!.onTrack = (RTCTrackEvent event) {
+			    if (event.streams.isNotEmpty) {
+			      remoteRenderer!.srcObject = event.streams[0];
+			    }
+			  };
+			  ```
+			-
+	-
 	- ## macOS 無法連線
 	-
