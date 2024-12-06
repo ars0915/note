@@ -50,7 +50,38 @@
 			  ```
 			  需要有 `a=sendrecv` 或 `a=sendonly`
 				- **Inspect Offer SDP After Track Addition**: 確認 add track 再建立 offer
-			- 從 outbound
+			- 從 outbound-rtp 發現沒有 encode frame
+			  ```
+			  I/flutter (21404): Timestamp: 1733376123810770.0, Stats Report ID: OT01V2797561059, Type: outbound-rtp
+			  I/flutter (21404):   headerBytesSent: 0
+			  I/flutter (21404):   transportId: T01
+			  I/flutter (21404):   hugeFramesSent: 0
+			  I/flutter (21404):   framesEncoded: 0
+			  I/flutter (21404):   mid: 0
+			  I/flutter (21404):   nackCount: 0
+			  I/flutter (21404):   totalPacketSendDelay: 0.0
+			  I/flutter (21404):   totalEncodeTime: 0.0
+			  I/flutter (21404):   firCount: 0
+			  I/flutter (21404):   pliCount: 0
+			  I/flutter (21404):   packetsSent: 0
+			  I/flutter (21404):   rtxSsrc: 2388816697
+			  I/flutter (21404):   keyFramesEncoded: 0
+			  I/flutter (21404):   retransmittedPacketsSent: 0
+			  I/flutter (21404):   kind: video
+			  I/flutter (21404):   targetBitrate: 277680.0
+			  I/flutter (21404):   ssrc: 2797561059
+			  I/flutter (21404):   active: true
+			  I/flutter (21404):   qualityLimitationReason: none
+			  I/flutter (21404):   qualityLimitationResolutionChanges: 0
+			  I/flutter (21404):   bytesSent: 0
+			  I/flutter (21404):   mediaSourceId: SV1
+			  I/flutter (21404):   codecId: COT01_127_level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f
+			  I/flutter (21404):   totalEncodedBytesTarget: 0
+			  I/flutter (21404):   framesSent: 0
+			  I/flutter (21404):   qualityLimitationDurations: {other: 0.0, bandwidth: 0.0, cpu: 0.0, none: 0.027}
+			  I/flutter (21404):   retransmittedBytesSent: 0
+			  ```
+				-
 	-
 	- ## macOS 無法連線
 	-
