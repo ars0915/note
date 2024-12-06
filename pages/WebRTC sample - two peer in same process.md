@@ -48,7 +48,8 @@
 			  ```
 			  a=recvonly
 			  ```
-			  需要有 a=sendrer
+			  需要有 `a=sendrecv` 或 `a=sendonly`
+				-
 	-
 	- ## macOS 無法連線
 	-
