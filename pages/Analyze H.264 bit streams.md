@@ -134,63 +134,27 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 1           nal_ref_idc                                                11 = 3
 		  [trace_headers @ 0x600000e18140] 3           nal_unit_type                                           00111 = 7
 		  [trace_headers @ 0x600000e18140] 8           profile_idc                                          01100100 = 100
-		  [trace_headers @ 0x600000e18140] 22          reserved_zero_2bits                                        00 = 0
 		  [trace_headers @ 0x600000e18140] 24          level_idc                                            00010101 = 21
-		  [trace_headers @ 0x600000e18140] 32          seq_parameter_set_id                                        1 = 0
 		  [trace_headers @ 0x600000e18140] 33          chroma_format_idc                                         010 = 1
 		  [trace_headers @ 0x600000e18140] 36          bit_depth_luma_minus8                                       1 = 0
 		  [trace_headers @ 0x600000e18140] 37          bit_depth_chroma_minus8                                     1 = 0
-		  [trace_headers @ 0x600000e18140] 38          qpprime_y_zero_transform_bypass_flag                        0 = 0
-		  [trace_headers @ 0x600000e18140] 39          seq_scaling_matrix_present_flag                             0 = 0
 		  [trace_headers @ 0x600000e18140] 40          log2_max_frame_num_minus4                                   1 = 0
-		  [trace_headers @ 0x600000e18140] 41          pic_order_cnt_type                                          1 = 0
-		  [trace_headers @ 0x600000e18140] 42          log2_max_pic_order_cnt_lsb_minus4                         011 = 2
-		  [trace_headers @ 0x600000e18140] 45          max_num_ref_frames                                      00111 = 6
-		  [trace_headers @ 0x600000e18140] 50          gaps_in_frame_num_allowed_flag                              0 = 0
 		  [trace_headers @ 0x600000e18140] 51          pic_width_in_mbs_minus1                             000011110 = 29
 		  [trace_headers @ 0x600000e18140] 60          pic_height_in_map_units_minus1                      000010001 = 16
 		  [trace_headers @ 0x600000e18140] 69          frame_mbs_only_flag                                         1 = 1
 		  [trace_headers @ 0x600000e18140] 70          direct_8x8_inference_flag                                   1 = 1
-		  [trace_headers @ 0x600000e18140] 71          frame_cropping_flag                                         1 = 1
-		  [trace_headers @ 0x600000e18140] 72          frame_crop_left_offset                                      1 = 0
-		  [trace_headers @ 0x600000e18140] 73          frame_crop_right_offset                                     1 = 0
-		  [trace_headers @ 0x600000e18140] 74          frame_crop_top_offset                                       1 = 0
-		  [trace_headers @ 0x600000e18140] 75          frame_crop_bottom_offset                                  010 = 1
-		  [trace_headers @ 0x600000e18140] 78          vui_parameters_present_flag                                 1 = 1
 		  [trace_headers @ 0x600000e18140] 79          aspect_ratio_info_present_flag                              1 = 1
 		  [trace_headers @ 0x600000e18140] 80          aspect_ratio_idc                                     00000001 = 1
-		  [trace_headers @ 0x600000e18140] 88          overscan_info_present_flag                                  0 = 0
-		  [trace_headers @ 0x600000e18140] 89          video_signal_type_present_flag                              0 = 0
-		  [trace_headers @ 0x600000e18140] 90          chroma_loc_info_present_flag                                0 = 0
-		  [trace_headers @ 0x600000e18140] 91          timing_info_present_flag                                    1 = 1
 		  [trace_headers @ 0x600000e18140] 92          num_units_in_tick            00000000000000000000001111101001 = 1001
 		  [trace_headers @ 0x600000e18140] 124         time_scale                   00000000000000001110101001100000 = 60000
-		  [trace_headers @ 0x600000e18140] 156         fixed_frame_rate_flag                                       0 = 0
-		  [trace_headers @ 0x600000e18140] 157         nal_hrd_parameters_present_flag                             0 = 0
-		  [trace_headers @ 0x600000e18140] 158         vcl_hrd_parameters_present_flag                             0 = 0
-		  [trace_headers @ 0x600000e18140] 159         pic_struct_present_flag                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 160         bitstream_restriction_flag                                  1 = 1
-		  [trace_headers @ 0x600000e18140] 161         motion_vectors_over_pic_boundaries_flag                     1 = 1
-		  [trace_headers @ 0x600000e18140] 162         max_bytes_per_pic_denom                                     1 = 0
-		  [trace_headers @ 0x600000e18140] 163         max_bits_per_mb_denom                                       1 = 0
-		  [trace_headers @ 0x600000e18140] 164         log2_max_mv_length_horizontal                         0001011 = 10
-		  [trace_headers @ 0x600000e18140] 171         log2_max_mv_length_vertical                           0001011 = 10
-		  [trace_headers @ 0x600000e18140] 178         max_num_reorder_frames                                    011 = 2
-		  [trace_headers @ 0x600000e18140] 181         max_dec_frame_buffering                                 00111 = 6
-		  [trace_headers @ 0x600000e18140] 186         rbsp_stop_one_bit                                           1 = 1
-		  [trace_headers @ 0x600000e18140] 187         rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 188         rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 189         rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 190         rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 191         rbsp_alignment_zero_bit                                     0 = 0
 		  ```
-			- forbidden_zero_bit: Must always be 0. Ensures stream integrity.
-			- nal_ref_idc: Indicates the importance of this NAL unit for decoding (3 = highest priority).
-			- nal_unit_type: Specifies the type of NAL unit (7 = SPS).
-			- profile_idc: Encoding profile used (100 = High Profile).
-			- level_idc: Defines the video level (complexity) (21 = Level 2.1).
-			- chroma_format_idc: Chroma subsampling format (1 = 4:2:0).
-			- bit_depth_luma_minus8 and bit_depth_chroma_minus8: Bit depth for luma and chroma (8-bit in this case).
+			- `forbidden_zero_bit`: Must always be 0. Ensures stream integrity.
+			- `nal_ref_idc:` Indicates the importance of this NAL unit for decoding (3 = highest priority).
+			- `nal_unit_type`: Specifies the type of NAL unit (7 = SPS).
+			- `profile_idc`: Encoding profile used (100 = High Profile).
+			- `level_idc`: Defines the video level (complexity) (21 = Level 2.1).
+			- `chroma_format_idc`: Chroma subsampling format (1 = 4:2:0).
+			- `bit_depth_luma_minus8` and `bit_depth_chroma_minus8`: Bit depth for luma and chroma (8-bit in this case).
 			- log2_max_frame_num_minus4: Specifies the maximum number of frames between keyframes.
 			- pic_width_in_mbs_minus1: Encoded width in macroblocks minus 1 (30 × 16 = 480 pixels wide).
 			- pic_height_in_map_units_minus1: Encoded height in macroblock units minus 1 (17 × 16 = 272 pixels high).
