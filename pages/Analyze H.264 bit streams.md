@@ -251,5 +251,11 @@ tags:: Video Compression
 		  ```shell
 		  [h264 @ 0x148e08440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
 		  ```
-		-
+		- `nal_unit_type`: 1:
+			- Indicates the type of the current NAL Unit.
+			- Type 1 corresponds to a coded slice of a non-IDR (non-keyframe) picture.
+		- `nal_ref_idc`: 2:
+		  Indicates the importance of the frame for reference:
+			- 0: Non-reference frame.
+			- 1-3: Increasing importance as a reference frame.
 	-
