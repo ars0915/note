@@ -184,8 +184,6 @@ tags:: Video Compression
 		- Slice header
 		  ```shell
 		  Slice Header
-		  0           forbidden_zero_bit                                          0 = 0
-		  1           nal_ref_idc                                                10 = 2
 		  3           nal_unit_type                                           00001 = 1
 		  8           first_mb_in_slice                                           1 = 0
 		  9           slice_type                                              00111 = 6
@@ -210,7 +208,7 @@ tags:: Video Compression
 		  Packet: 34 bytes, pts 36, dts 36, duration 33.
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (1 = non-IDR slice, P-frame).
-			- slice_type: Slice type (6 = P-slice).
+			- `slice_type`: Slice type (6 = P-slice).
 			- frame_num: Frame number for reference.
 			- pic_order_cnt_lsb: Least significant bits of picture order count, used for reordering frames.
 			- direct_spatial_mv_pred_flag: Indicates whether spatial prediction is used for motion vectors.
