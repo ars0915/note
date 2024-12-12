@@ -192,7 +192,6 @@ tags:: Video Compression
 		  25          direct_spatial_mv_pred_flag                                 1 = 1
 		  33          slice_qp_delta                                          00101 = -2
 		  38          disable_deblocking_filter_idc                               1 = 0
-		  Packet: 34 bytes, pts 36, dts 36, duration 33.
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (1 = non-IDR slice, P-frame).
 			- `slice_type`: Slice type (6 = P-slice).
@@ -202,4 +201,13 @@ tags:: Video Compression
 			  id:: 675a84e3-eef2-4172-97d2-1a28240d8dd0
 			- `slice_qp_delta`: Adjustment to the quantization parameter for this slice.
 			- `disable_deblocking_filter_idc`: Indicates whether the deblocking filter is used.
-	-
+		- Packet Metadata
+		  
+		  ```shell
+		  Packet: 34 bytes, pts 36, dts 36, duration 33.
+		  ```
+			- The final line describes the NAL packet itself:
+				- `Packet`: 34 bytes: Size of the packet in bytes.
+				- `pts`: Presentation timestamp of the frame (e.g., 36).
+				- `dts`: Decoding timestamp of the frame (e.g., 36).
+				- duration: Frame duration (e.g., 33, which corresponds to 33 ms if the timebase is 1/1000).
