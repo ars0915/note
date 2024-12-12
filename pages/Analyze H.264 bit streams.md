@@ -48,9 +48,6 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
   color_primaries=unknown
   color_transfer=unknown
   chroma_location=left
-  [SIDE_DATA]
-  side_data_type=H.26[45] User Data Unregistered SEI message
-  [/SIDE_DATA]
   [/FRAME]
   [FRAME]
   media_type=audio
@@ -81,5 +78,5 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
 		  pict_type=I
 		  ```
 	- ## Frame size
-		-
+		- Mostly I frame is bigger than P
 	- ## Presentation and decode timestamps
