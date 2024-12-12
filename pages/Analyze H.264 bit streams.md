@@ -231,12 +231,16 @@ tags:: Video Compression
 	- `threads 1`: Limits FFmpeg to use a single thread for decoding. This ensures sequential processing, useful for debugging as it simplifies the output.
 	- `debug 'mb_type'`: Activates debug mode and outputs macroblock type (mb_type) information. Macroblocks are the basic units of video compression in H.264. This shows how each macroblock is encoded (e.g., intra-prediction, inter-prediction, or skipped).
 	- output snippet
-	  
-	  ```shell
-	  [h264 @ 0x148e08440]     0           64          128         192         256         320         384         448
-	  [h264 @ 0x148e08440]   0 d  d  d  d  d  <  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d
-	  ```
-		- Each line corresponds to a row of macroblocks in the video frame.
+		- **Macroblock Type Debug Table**
+		  
+		  ```shell
+		  [h264 @ 0x148e08440]     0           64          128         192         256         320         384         448
+		  [h264 @ 0x148e08440]   0 d  d  d  d  d  <  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d
+		  ```
+		- ```shell
+		  [h264 @ 0x148e08440]     0           64          128         192         256         320         384         448
+		  [h264 @ 0x148e08440]   0 d  d  d  d  d  <  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d
+		  ```Each line corresponds to a row of macroblocks in the video frame.
 		- Column labels (0, 64, 128, etc.):
 			- These indicate macroblock positions (or indices) across the frame.
 		- Values (d, <, >, X, etc.):
@@ -245,4 +249,5 @@ tags:: Video Compression
 			- <, >: `Forward or backward motion prediction` (indicates inter-prediction using reference frames).
 			- X: `Intra-coded blocks` (encoded without reference to other blocks or frames).
 			- or +: Variants of intra or inter modes, showing further details.
+		- **NAL Unit Metadata**
 	-
