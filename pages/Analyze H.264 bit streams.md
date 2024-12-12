@@ -78,5 +78,14 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
 		  pict_type=I
 		  ```
 	- ## Frame size
-		- Mostly I frame is bigger than P
+		- Mostly I frames is bigger than P and B frames
+		  
+		  ```shell
+		  [FRAME]
+		  pkt_size=4714
+		  pict_type=I
+		  [/FRAME]
+		  
+		  
+		  ```
 	- ## Presentation and decode timestamps
