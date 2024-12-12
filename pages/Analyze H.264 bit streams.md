@@ -129,6 +129,24 @@ tags:: Video Compression
 		- SPS
 		  
 		  ```shell
+		  Sequence Parameter Set
+		  0           forbidden_zero_bit                                          0 = 0
+		  1           nal_ref_idc                                                11 = 3
+		  3           nal_unit_type                                           00111 = 7
+		  8           profile_idc                                          01100100 = 100
+		  24          level_idc                                            00010101 = 21
+		  33          chroma_format_idc                                         010 = 1
+		  36          bit_depth_luma_minus8                                       1 = 0
+		  37          bit_depth_chroma_minus8                                     1 = 0
+		  40          log2_max_frame_num_minus4                                   1 = 0
+		  51          pic_width_in_mbs_minus1                             000011110 = 29
+		  60          pic_height_in_map_units_minus1                      000010001 = 16
+		  69          frame_mbs_only_flag                                         1 = 1
+		  78          vui_parameters_present_flag                                 1 = 1
+		  79          aspect_ratio_info_present_flag                              1 = 1
+		  80          aspect_ratio_idc                                     00000001 = 1
+		  92          num_units_in_tick            00000000000000000000001111101001 = 1001
+		  124         time_scale                   00000000000000001110101001100000 = 60000
 		  ```
 			- `forbidden_zero_bit`: Must always be 0. Ensures stream integrity.
 			- `nal_ref_idc:` Indicates the importance of this NAL unit for decoding (3 = highest priority).
@@ -146,15 +164,15 @@ tags:: Video Compression
 			- `time_scale` and `num_units_in_tick`: Timing information for frame rate. Here, 60000 / 1001 = ~59.94 fps.
 		- PPS
 		  ```shell
-		  [trace_headers @ 0x600000e18140] Picture Parameter Set
-		  [trace_headers @ 0x600000e18140] 3           nal_unit_type                                           01000 = 8
-		  [trace_headers @ 0x600000e18140] 8           pic_parameter_set_id                                        1 = 0
-		  [trace_headers @ 0x600000e18140] 9           seq_parameter_set_id                                        1 = 0
-		  [trace_headers @ 0x600000e18140] 10          entropy_coding_mode_flag                                    1 = 1
-		  [trace_headers @ 0x600000e18140] 13          num_ref_idx_l0_default_active_minus1                    00110 = 5
-		  [trace_headers @ 0x600000e18140] 18          num_ref_idx_l1_default_active_minus1                        1 = 0
-		  [trace_headers @ 0x600000e18140] 22          pic_init_qp_minus26                                     00111 = -3
-		  [trace_headers @ 0x600000e18140] 33          deblocking_filter_control_present_flag                      1 = 1
+		  Picture Parameter Set
+		  3           nal_unit_type                                           01000 = 8
+		  8           pic_parameter_set_id                                        1 = 0
+		  9           seq_parameter_set_id                                        1 = 0
+		  10          entropy_coding_mode_flag                                    1 = 1
+		  13          num_ref_idx_l0_default_active_minus1                    00110 = 5
+		  18          num_ref_idx_l1_default_active_minus1                        1 = 0
+		  22          pic_init_qp_minus26                                     00111 = -3
+		  33          deblocking_filter_control_present_flag                      1 = 1
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (8 = PPS).
 			- `pic_parameter_set_id`: Identifier for this PPS.
@@ -164,32 +182,38 @@ tags:: Video Compression
 			- `pic_init_qp_minus26`: Initial quantization parameter for the picture.
 			- `deblocking_filter_control_present_flag`: Indicates if deblocking filter parameters are present.
 		- Slice header
-		  
 		  ```shell
-		  [trace_headers @ 0x600000e18140] Slice Header
-		  [trace_headers @ 0x600000e18140] 0           forbidden_zero_bit                                          0 = 0
-		  [trace_headers @ 0x600000e18140] 1           nal_ref_idc                                                10 = 2
-		  [trace_headers @ 0x600000e18140] 3           nal_unit_type                                           00001 = 1
-		  [trace_headers @ 0x600000e18140] 8           first_mb_in_slice                                           1 = 0
-		  [trace_headers @ 0x600000e18140] 9           slice_type                                              00111 = 6
-		  [trace_headers @ 0x600000e18140] 14          pic_parameter_set_id                                        1 = 0
-		  [trace_headers @ 0x600000e18140] 15          frame_num                                                0010 = 2
-		  [trace_headers @ 0x600000e18140] 19          pic_order_cnt_lsb                                      000100 = 4
-		  [trace_headers @ 0x600000e18140] 25          direct_spatial_mv_pred_flag                                 1 = 1
-		  [trace_headers @ 0x600000e18140] 26          num_ref_idx_active_override_flag                            1 = 1
-		  [trace_headers @ 0x600000e18140] 27          num_ref_idx_l0_active_minus1                                1 = 0
-		  [trace_headers @ 0x600000e18140] 28          num_ref_idx_l1_active_minus1                                1 = 0
-		  [trace_headers @ 0x600000e18140] 29          ref_pic_list_modification_flag_l0                           0 = 0
-		  [trace_headers @ 0x600000e18140] 30          ref_pic_list_modification_flag_l1                           0 = 0
-		  [trace_headers @ 0x600000e18140] 31          adaptive_ref_pic_marking_mode_flag                          0 = 0
-		  [trace_headers @ 0x600000e18140] 32          cabac_init_idc                                              1 = 0
-		  [trace_headers @ 0x600000e18140] 33          slice_qp_delta                                          00101 = -2
-		  [trace_headers @ 0x600000e18140] 38          disable_deblocking_filter_idc                               1 = 0
-		  [trace_headers @ 0x600000e18140] 39          slice_alpha_c0_offset_div2                                010 = 1
-		  [trace_headers @ 0x600000e18140] 42          slice_beta_offset_div2                                    010 = 1
-		  [trace_headers @ 0x600000e18140] 45          cabac_alignment_one_bit                                     1 = 1
-		  [trace_headers @ 0x600000e18140] 46          cabac_alignment_one_bit                                     1 = 1
-		  [trace_headers @ 0x600000e18140] 47          cabac_alignment_one_bit                                     1 = 1
-		  [trace_headers @ 0x600000e18140] Packet: 34 bytes, pts 36, dts 36, duration 33.
+		  Slice Header
+		  0           forbidden_zero_bit                                          0 = 0
+		  1           nal_ref_idc                                                10 = 2
+		  3           nal_unit_type                                           00001 = 1
+		  8           first_mb_in_slice                                           1 = 0
+		  9           slice_type                                              00111 = 6
+		  14          pic_parameter_set_id                                        1 = 0
+		  15          frame_num                                                0010 = 2
+		  19          pic_order_cnt_lsb                                      000100 = 4
+		  25          direct_spatial_mv_pred_flag                                 1 = 1
+		  26          num_ref_idx_active_override_flag                            1 = 1
+		  27          num_ref_idx_l0_active_minus1                                1 = 0
+		  28          num_ref_idx_l1_active_minus1                                1 = 0
+		  29          ref_pic_list_modification_flag_l0                           0 = 0
+		  30          ref_pic_list_modification_flag_l1                           0 = 0
+		  31          adaptive_ref_pic_marking_mode_flag                          0 = 0
+		  32          cabac_init_idc                                              1 = 0
+		  33          slice_qp_delta                                          00101 = -2
+		  38          disable_deblocking_filter_idc                               1 = 0
+		  39          slice_alpha_c0_offset_div2                                010 = 1
+		  42          slice_beta_offset_div2                                    010 = 1
+		  45          cabac_alignment_one_bit                                     1 = 1
+		  46          cabac_alignment_one_bit                                     1 = 1
+		  47          cabac_alignment_one_bit                                     1 = 1
+		  Packet: 34 bytes, pts 36, dts 36, duration 33.
 		  ```
+			- `nal_unit_type`: Specifies the type of NAL unit (1 = non-IDR slice, P-frame).
+			- slice_type: Slice type (6 = P-slice).
+			- frame_num: Frame number for reference.
+			- pic_order_cnt_lsb: Least significant bits of picture order count, used for reordering frames.
+			- direct_spatial_mv_pred_flag: Indicates whether spatial prediction is used for motion vectors.
+			- slice_qp_delta: Adjustment to the quantization parameter for this slice.
+			- disable_deblocking_filter_idc: Indicates whether the deblocking filter is used.
 	-
