@@ -11,11 +11,11 @@ public:: true
 		  In the context of video compression, headers are sections of the bitstream that contain metadata describing how the encoded video data is structured and how it should be decoded. Headers play a critical role in ensuring that a decoder can interpret the bitstream correctly.
 			- **Global Headers:**
 			  These apply to the entire video stream and provide information necessary for decoding the video as a whole.
-				- SPS (Sequence Parameter Set): Defines global parameters like resolution, frame rate, bit depth, and color format.
-				- PPS (Picture Parameter Set): Contains parameters specific to decoding frames, such as entropy coding and reference frame settings.
+				- `SPS (Sequence Parameter Set)`: Defines global parameters like resolution, frame rate, bit depth, and color format.
+				- `PPS (Picture Parameter Set)`: Contains parameters specific to decoding frames, such as entropy coding and reference frame settings.
 			- **Frame Headers:**
 			  These appear at the beginning of each frame and describe frame-specific details, like whether the frame is a keyframe or a predicted frame.
-				- Slice Header: Contains information about a slice (portion of a frame) and specifies how it relates to other slices or frames.
+				- `Slice Header`: Contains information about a slice (portion of a frame) and specifies how it relates to other slices or frames.
 			- **NAL Unit Headers (H.264/AVC Specific):**
 			  The bitstream is divided into NAL Units (Network Abstraction Layer Units), each with a header that indicates the type of data it contains.
 				- SPS, PPS, IDR frame (keyframe), non-IDR frame, etc.
