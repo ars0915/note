@@ -14,4 +14,4 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
   ```shell
   ffprobe -v trace -show_frames output.mkv
   ```
--
+	-
