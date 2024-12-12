@@ -119,6 +119,7 @@ tags:: Video Compression
 		  [/FRAME]
 		  ```
 - # Inspect NAL Unit and Slice Information
+  collapsed:: true
   Use `ffmpeg` to trace NAL unit and slice-level details
   ```shell
   ffmpeg -i file.h264 -c copy -bsf:v trace_headers -f null -
@@ -213,4 +214,10 @@ tags:: Video Compression
 		- **nal_unit_type**
 		  id:: 675a88b9-0350-452b-87d6-0cfc9581509a
 		  ![image.png](../assets/image_1733986574843_0.png){:height 678, :width 804}
--
+- # Visualize Motion Vectors
+  Display motion vectors overlaid on the video:
+  ```shell
+  ffplay -flags2 +export_mvs file.h264 -vf codecview=mv=pf+bf+bb
+  ```
+  Save a video with motion vectors overlaid:
+  ffmpeg -flags2 +export_mvs -i file.h264 -vf codecview=mv=pf+bf+bb output.mp4
