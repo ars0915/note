@@ -126,7 +126,7 @@ tags:: Video Compression
 	- `bsf:v trace_headers`:
 	  Applies the trace_headers [bitstream](((675a7bdf-c641-4c0c-ba7d-421309ee1dc2))) filter to the video stream. This filter analyzes the H.264 bitstream and outputs information about headers in the stream, such as Sequence Parameter Sets (SPS), Picture Parameter Sets (PPS), and slice headers.
 	- output snippet
-		- SPS
+		- **SPS**
 		  
 		  ```shell
 		  Sequence Parameter Set
@@ -162,7 +162,7 @@ tags:: Video Compression
 			- `vui_parameters_present_flag`: Indicates if additional VUI (Video Usability Information) is present.
 			- `aspect_ratio_idc`: Aspect ratio (1 = square pixels).
 			- `time_scale` and `num_units_in_tick`: Timing information for frame rate. Here, 60000 / 1001 = ~59.94 fps.
-		- PPS
+		- **PPS**
 		  ```shell
 		  Picture Parameter Set
 		  3           nal_unit_type                                           01000 = 8
@@ -181,7 +181,7 @@ tags:: Video Compression
 			- `num_ref_idx_l0_default_active_minus1`: Default number of reference frames for prediction.
 			- `pic_init_qp_minus26`: Initial quantization parameter for the picture.
 			- `deblocking_filter_control_present_flag`: Indicates if deblocking filter parameters are present.
-		- Slice header
+		- **Slice header**
 		  ```shell
 		  Slice Header
 		  3           nal_unit_type                                           00001 = 1
@@ -201,8 +201,7 @@ tags:: Video Compression
 			  id:: 675a84e3-eef2-4172-97d2-1a28240d8dd0
 			- `slice_qp_delta`: Adjustment to the quantization parameter for this slice.
 			- `disable_deblocking_filter_idc`: Indicates whether the deblocking filter is used.
-		- Packet Metadata
-		  
+		- **Packet Metadata**
 		  ```shell
 		  Packet: 34 bytes, pts 36, dts 36, duration 33.
 		  ```
@@ -211,3 +210,5 @@ tags:: Video Compression
 				- `pts`: Presentation timestamp of the frame (e.g., 36).
 				- `dts`: Decoding timestamp of the frame (e.g., 36).
 				- `duration`: Frame duration (e.g., 33, which corresponds to 33 ms if the timebase is 1/1000).
+		- nal_unit_type
+		  id:: 675a88b9-0350-452b-87d6-0cfc9581509a
