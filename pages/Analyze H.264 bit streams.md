@@ -267,6 +267,7 @@ tags:: Video Compression
 - # Analyze Quantization Parameters
   
   ```shell
+  ffmpeg -threads 1 -debug 'qp' -i output.mkv -f null -
   ```
 -
 -
