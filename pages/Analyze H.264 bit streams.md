@@ -100,8 +100,9 @@ tags:: Video Compression
 		  [/FRAME]
 		  ```
 	- ## Presentation and decode timestamps
-		- presen
-		  
+		- `pts`: The presentation timestamp of the frame, often used in place of pkt_pts when analyzing frames.
+		  `pkt_dts`: The decoding timestamp of the packet, indicating when the frame should be decoded.
+		  `best_effort_timestamp`: FFmpeg’s best guess at the frame’s timestamp, derived from either pts, pkt_pts, or other available metadata.
 		  ```shell
 		  [FRAME]
 		  media_type=video
