@@ -192,11 +192,6 @@ tags:: Video Compression
 		  25          direct_spatial_mv_pred_flag                                 1 = 1
 		  33          slice_qp_delta                                          00101 = -2
 		  38          disable_deblocking_filter_idc                               1 = 0
-		  39          slice_alpha_c0_offset_div2                                010 = 1
-		  42          slice_beta_offset_div2                                    010 = 1
-		  45          cabac_alignment_one_bit                                     1 = 1
-		  46          cabac_alignment_one_bit                                     1 = 1
-		  47          cabac_alignment_one_bit                                     1 = 1
 		  Packet: 34 bytes, pts 36, dts 36, duration 33.
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (1 = non-IDR slice, P-frame).
@@ -204,6 +199,7 @@ tags:: Video Compression
 			- `frame_num`: Frame number for reference.
 			- `pic_order_cnt_lsb`: Least significant bits of picture order count, used for reordering frames.
 			- `direct_spatial_mv_pred_flag`: Indicates whether spatial prediction is used for motion vectors.
+			  id:: 675a84e3-eef2-4172-97d2-1a28240d8dd0
 			- `slice_qp_delta`: Adjustment to the quantization parameter for this slice.
-			- disable_deblocking_filter_idc: Indicates whether the deblocking filter is used.
+			- `disable_deblocking_filter_idc`: Indicates whether the deblocking filter is used.
 	-
