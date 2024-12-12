@@ -237,17 +237,19 @@ tags:: Video Compression
 		  [h264 @ 0x148e08440]     0           64          128         192         256         320         384         448
 		  [h264 @ 0x148e08440]   0 d  d  d  d  d  <  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d
 		  ```
-		- ```shell
-		  [h264 @ 0x148e08440]     0           64          128         192         256         320         384         448
-		  [h264 @ 0x148e08440]   0 d  d  d  d  d  <  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d  d
-		  ```Each line corresponds to a row of macroblocks in the video frame.
-		- Column labels (0, 64, 128, etc.):
-			- These indicate macroblock positions (or indices) across the frame.
-		- Values (d, <, >, X, etc.):
-		  Represent the type of encoding used for each macroblock:
-			- d: `Direct mode` (used in B-frames, predicts using motion vectors from reference frames).
-			- <, >: `Forward or backward motion prediction` (indicates inter-prediction using reference frames).
-			- X: `Intra-coded blocks` (encoded without reference to other blocks or frames).
-			- or +: Variants of intra or inter modes, showing further details.
+		  Each line corresponds to a row of macroblocks in the video frame.
+			- Column labels (0, 64, 128, etc.):
+				- These indicate macroblock positions (or indices) across the frame.
+			- Values (d, <, >, X, etc.):
+			  Represent the type of encoding used for each macroblock:
+				- d: `Direct mode` (used in B-frames, predicts using motion vectors from reference frames).
+				- <, >: `Forward or backward motion prediction` (indicates inter-prediction using reference frames).
+				- X: `Intra-coded blocks` (encoded without reference to other blocks or frames).
+				- or +: Variants of intra or inter modes, showing further details.
 		- **NAL Unit Metadata**
+		  
+		  ```shell
+		  [h264 @ 0x148e08440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+		  ```
+		-
 	-
