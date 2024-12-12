@@ -269,5 +269,23 @@ tags:: Video Compression
   ```shell
   ffmpeg -threads 1 -debug 'qp' -i output.mkv -f null -
   ```
--
+	- **Macroblock Debug Table**
+	  
+	  ```shell
+	  [h264 @ 0x13de07150]     0       64      128     192     256     320     384     448
+	  [h264 @ 0x13de07150]   0 333333333333333333333333333333333333333333333333333333333333
+	  [h264 @ 0x13de07150]  16 333333333333333333333333333333333333333333333333333333333333
+	  ...
+	  [h264 @ 0x13de07150] 256 313131282828282828282828282828282828282828282828282828282828
+	  ```
+		- The subsequent rows (0, 16, 32, …) represent different rows of macroblocks in the frame.
+		- **Macroblock Types**:
+		  3: Direct Prediction Mode:
+		  	•	The macroblock is encoded using direct motion prediction, common in B-frames.
+		  	•	It uses motion vectors from reference frames without explicit coding for higher efficiency.
+		  	•	1: Inter-Prediction Mode:
+		  	•	The macroblock is encoded using motion prediction from a single reference frame.
+		  	•	This indicates more explicit motion compensation compared to direct mode.
+		  	•	2 or 8 (towards the end):
+		  	•	These numbers often represent different modes or regions, such as skipped macroblocks, intra-coded blocks, or non-standard prediction modes.
 -
