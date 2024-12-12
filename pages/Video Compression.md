@@ -2,6 +2,7 @@ public:: true
 
 - # Glossary
 	- ## Bitstream
+	  id:: 675a7bdf-c641-4c0c-ba7d-421309ee1dc2
 	  A bitstream is a sequence of binary data (bits) used to encode video or audio in a compressed format. It is essentially the output of an encoder and the input to a decoder. In video compression (e.g., H.264), the bitstream contains:
 	  •	Encoded video data.
 	  •	Metadata required to decode and display the video correctly.
