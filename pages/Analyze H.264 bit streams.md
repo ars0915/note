@@ -163,11 +163,8 @@ tags:: Video Compression
 			- `aspect_ratio_idc`: Aspect ratio (1 = square pixels).
 			- `time_scale` and `num_units_in_tick`: Timing information for frame rate. Here, 60000 / 1001 = ~59.94 fps.
 		- PPS
-		  
 		  ```shell
 		  [trace_headers @ 0x600000e18140] Picture Parameter Set
-		  [trace_headers @ 0x600000e18140] 0           forbidden_zero_bit                                          0 = 0
-		  [trace_headers @ 0x600000e18140] 1           nal_ref_idc                                                11 = 3
 		  [trace_headers @ 0x600000e18140] 3           nal_unit_type                                           01000 = 8
 		  [trace_headers @ 0x600000e18140] 8           pic_parameter_set_id                                        1 = 0
 		  [trace_headers @ 0x600000e18140] 9           seq_parameter_set_id                                        1 = 0
@@ -193,6 +190,13 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 46          rbsp_alignment_zero_bit                                     0 = 0
 		  [trace_headers @ 0x600000e18140] 47          rbsp_alignment_zero_bit
 		  ```
+			- `nal_unit_type`: Specifies the type of NAL unit (8 = PPS).
+			- `pic_parameter_set_id`: Identifier for this PPS.
+			- `seq_parameter_set_id`: Links this PPS to its corresponding SPS.
+			- entropy_coding_mode_flag: Specifies the entropy coding method (1 = CABAC, a more efficient method).
+			- num_ref_idx_l0_default_active_minus1: Default number of reference frames for prediction.
+			- pic_init_qp_minus26: Initial quantization parameter for the picture.
+			- deblocking_filter_control_present_flag: Indicates if deblocking filter parameters are present.
 		- Slice header
 		  
 		  ```shell
