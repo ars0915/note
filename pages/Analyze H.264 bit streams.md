@@ -17,6 +17,60 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
   output snippet
   
   ```shell
+  [FRAME]
+  media_type=video
+  stream_index=0
+  key_frame=1
+  pts=3
+  pts_time=0.003000
+  pkt_dts=3
+  pkt_dts_time=0.003000
+  best_effort_timestamp=3
+  best_effort_timestamp_time=0.003000
+  duration=33
+  duration_time=0.033000
+  pkt_pos=4989
+  pkt_size=21382
+  width=480
+  height=270
+  crop_top=0
+  crop_bottom=0
+  crop_left=0
+  crop_right=0
+  pix_fmt=yuv420p
+  sample_aspect_ratio=1:1
+  pict_type=I
+  interlaced_frame=0
+  top_field_first=0
+  repeat_pict=0
+  color_range=tv
+  color_space=unknown
+  color_primaries=unknown
+  color_transfer=unknown
+  chroma_location=left
+  [SIDE_DATA]
+  side_data_type=H.26[45] User Data Unregistered SEI message
+  [/SIDE_DATA]
+  [/FRAME]
+  [FRAME]
+  media_type=audio
+  stream_index=1
+  key_frame=1
+  pts=3
+  pts_time=0.003000
+  pkt_dts=3
+  pkt_dts_time=0.003000
+  best_effort_timestamp=3
+  best_effort_timestamp_time=0.003000
+  duration=13
+  duration_time=0.013000
+  pkt_pos=27203
+  pkt_size=1
+  sample_fmt=fltp
+  nb_samples=576
+  channels=2
+  channel_layout=stereo
+  [/FRAME]
   ```
 	- ## Frame type
 		- When video key_frame = 1, pict_type = I
