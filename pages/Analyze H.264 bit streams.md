@@ -15,4 +15,9 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
   ffprobe -v trace -show_frames output.mkv
   ```
 	- ## Frame type
-	- ##
+		- When video key_frame = 1, pict_type = I
+		  
+		  ```shell
+		  ```
+	- ## Frame size
+	- ## Presentation and decode timestamps
