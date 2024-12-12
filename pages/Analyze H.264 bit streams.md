@@ -231,6 +231,12 @@ tags:: Video Compression
 	- `threads 1`: Limits FFmpeg to use a single thread for decoding. This ensures sequential processing, useful for debugging as it simplifies the output.
 	- `debug 'mb_type'`: Activates debug mode and outputs macroblock type (mb_type) information. Macroblocks are the basic units of video compression in H.264. This shows how each macroblock is encoded (e.g., intra-prediction, inter-prediction, or skipped).
 	- output snippet
+		- **New Frame Metadata**
+		  ```shell
+		  [h264 @ 0x148e08440] New frame, type: B
+		  ```
+		  `New frame`: Marks the decoding of a new frame.
+		  `type: B`: Indicates this is a B-frame (bidirectionally predicted frame), which uses both past and future frames for motion prediction.
 		- **Macroblock Type Debug Table**
 		  
 		  ```shell
@@ -258,11 +264,5 @@ tags:: Video Compression
 			  Indicates the importance of the frame for reference:
 				- 0: Non-reference frame.
 				- 1-3: Increasing importance as a reference frame.
-		- **New Frame Metadata**
-		  ```shell
-		  [h264 @ 0x148e08440] New frame, type: B
-		  ```
-		  `New frame`: Marks the decoding of a new frame.
-		  `type: B`: Indicates this is a B-frame (bidirectionally predicted frame), which uses both past and future frames for motion prediction.
-		-
+-
 -
