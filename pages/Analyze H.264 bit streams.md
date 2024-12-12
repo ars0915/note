@@ -119,7 +119,6 @@ tags:: Video Compression
 		  [/FRAME]
 		  ```
 - # Inspect NAL Unit and Slice Information
-  collapsed:: true
   Use `ffmpeg` to trace NAL unit and slice-level details
   ```shell
   ffmpeg -i output.mkv -c copy -bsf:v trace_headers -f null -
@@ -224,4 +223,10 @@ tags:: Video Compression
   ffmpeg -flags2 +export_mvs -i output.mkv -vf codecview=mv=pf+bf+bb output.mp4
   ```
   ![image.png](../assets/image_1733987684366_0.png)
+- # Analyze Macroblock Types
+  
+  ```shell
+  ffmpeg -threads 1 -debug 'mb_type' -i file.h264 -f null -
+  ```
+	-
 -
