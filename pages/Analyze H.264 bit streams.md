@@ -81,4 +81,5 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
 		  pict_type=I
 		  ```
 	- ## Frame size
+		-
 	- ## Presentation and decode timestamps
