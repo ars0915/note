@@ -37,4 +37,4 @@ public:: true
 				- Number of reference frames.
 			- NAL Unit Headers:
 			  Contain fields like:
-			  	•	Type: SPS (7), PPS (8), IDR frame (5), or non-IDR frame (1).
+				- Type: SPS (7), PPS (8), IDR frame (5), or non-IDR frame (1).
