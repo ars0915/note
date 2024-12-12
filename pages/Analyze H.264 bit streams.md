@@ -210,4 +210,4 @@ tags:: Video Compression
 				- `Packet`: 34 bytes: Size of the packet in bytes.
 				- `pts`: Presentation timestamp of the frame (e.g., 36).
 				- `dts`: Decoding timestamp of the frame (e.g., 36).
-				- duration: Frame duration (e.g., 33, which corresponds to 33 ms if the timebase is 1/1000).
+				- `duration`: Frame duration (e.g., 33, which corresponds to 33 ms if the timebase is 1/1000).
