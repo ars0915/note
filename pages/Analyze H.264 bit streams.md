@@ -210,5 +210,6 @@ tags:: Video Compression
 				- `pts`: Presentation timestamp of the frame (e.g., 36).
 				- `dts`: Decoding timestamp of the frame (e.g., 36).
 				- `duration`: Frame duration (e.g., 33, which corresponds to 33 ms if the timebase is 1/1000).
-		- nal_unit_type
+		- **nal_unit_type**
 		  id:: 675a88b9-0350-452b-87d6-0cfc9581509a
+		  ![image.png](../assets/image_1733986574843_0.png){:height 678, :width 804}
