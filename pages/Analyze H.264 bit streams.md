@@ -267,7 +267,7 @@ tags:: Video Compression
 - # Analyze Quantization Parameters
   
   ```shell
-  ffmpeg -threads 1 -debug 'qp' -i output.mkv -f null -
+  ffmpeg -threads 1 -debug 'qp' -i output.mp4 -f null - > qp_values.txt 2>&1
   ```
 	- **Macroblock Debug Table**
 	  
