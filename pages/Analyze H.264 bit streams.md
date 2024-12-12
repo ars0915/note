@@ -223,4 +223,5 @@ tags:: Video Compression
   ```shell
   ffmpeg -flags2 +export_mvs -i output.mkv -vf codecview=mv=pf+bf+bb output.mp4
   ```
+  ![image.png](../assets/image_1733987684366_0.png)
 -
