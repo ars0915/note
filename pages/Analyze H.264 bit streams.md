@@ -129,24 +129,6 @@ tags:: Video Compression
 		- SPS
 		  
 		  ```shell
-		  [trace_headers @ 0x600000e18140] Sequence Parameter Set
-		  [trace_headers @ 0x600000e18140] 0           forbidden_zero_bit                                          0 = 0
-		  [trace_headers @ 0x600000e18140] 1           nal_ref_idc                                                11 = 3
-		  [trace_headers @ 0x600000e18140] 3           nal_unit_type                                           00111 = 7
-		  [trace_headers @ 0x600000e18140] 8           profile_idc                                          01100100 = 100
-		  [trace_headers @ 0x600000e18140] 24          level_idc                                            00010101 = 21
-		  [trace_headers @ 0x600000e18140] 33          chroma_format_idc                                         010 = 1
-		  [trace_headers @ 0x600000e18140] 36          bit_depth_luma_minus8                                       1 = 0
-		  [trace_headers @ 0x600000e18140] 37          bit_depth_chroma_minus8                                     1 = 0
-		  [trace_headers @ 0x600000e18140] 40          log2_max_frame_num_minus4                                   1 = 0
-		  [trace_headers @ 0x600000e18140] 51          pic_width_in_mbs_minus1                             000011110 = 29
-		  [trace_headers @ 0x600000e18140] 60          pic_height_in_map_units_minus1                      000010001 = 16
-		  [trace_headers @ 0x600000e18140] 69          frame_mbs_only_flag                                         1 = 1
-		  [trace_headers @ 0x600000e18140] 78          vui_parameters_present_flag                                 1 = 1
-		  [trace_headers @ 0x600000e18140] 79          aspect_ratio_info_present_flag                              1 = 1
-		  [trace_headers @ 0x600000e18140] 80          aspect_ratio_idc                                     00000001 = 1
-		  [trace_headers @ 0x600000e18140] 92          num_units_in_tick            00000000000000000000001111101001 = 1001
-		  [trace_headers @ 0x600000e18140] 124         time_scale                   00000000000000001110101001100000 = 60000
 		  ```
 			- `forbidden_zero_bit`: Must always be 0. Ensures stream integrity.
 			- `nal_ref_idc:` Indicates the importance of this NAL unit for decoding (3 = highest priority).
@@ -171,30 +153,16 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 10          entropy_coding_mode_flag                                    1 = 1
 		  [trace_headers @ 0x600000e18140] 13          num_ref_idx_l0_default_active_minus1                    00110 = 5
 		  [trace_headers @ 0x600000e18140] 18          num_ref_idx_l1_default_active_minus1                        1 = 0
-		  [trace_headers @ 0x600000e18140] 19          weighted_pred_flag                                          1 = 1
-		  [trace_headers @ 0x600000e18140] 20          weighted_bipred_idc                                        10 = 2
 		  [trace_headers @ 0x600000e18140] 22          pic_init_qp_minus26                                     00111 = -3
-		  [trace_headers @ 0x600000e18140] 27          pic_init_qs_minus26                                         1 = 0
-		  [trace_headers @ 0x600000e18140] 28          chroma_qp_index_offset                                  00101 = -2
 		  [trace_headers @ 0x600000e18140] 33          deblocking_filter_control_present_flag                      1 = 1
-		  [trace_headers @ 0x600000e18140] 34          constrained_intra_pred_flag                                 0 = 0
-		  [trace_headers @ 0x600000e18140] 35          redundant_pic_cnt_present_flag                              0 = 0
-		  [trace_headers @ 0x600000e18140] 36          transform_8x8_mode_flag                                     1 = 1
-		  [trace_headers @ 0x600000e18140] 37          pic_scaling_matrix_present_flag                             0 = 0
-		  [trace_headers @ 0x600000e18140] 38          second_chroma_qp_index_offset                           00101 = -2
-		  [trace_headers @ 0x600000e18140] 43          rbsp_stop_one_bit                                           1 = 1
-		  [trace_headers @ 0x600000e18140] 44          rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 45          rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 46          rbsp_alignment_zero_bit                                     0 = 0
-		  [trace_headers @ 0x600000e18140] 47          rbsp_alignment_zero_bit
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (8 = PPS).
 			- `pic_parameter_set_id`: Identifier for this PPS.
 			- `seq_parameter_set_id`: Links this PPS to its corresponding SPS.
 			- `entropy_coding_mode_flag`: Specifies the entropy coding method (1 = CABAC, a more efficient method).
 			- `num_ref_idx_l0_default_active_minus1`: Default number of reference frames for prediction.
-			- pic_init_qp_minus26: Initial quantization parameter for the picture.
-			- deblocking_filter_control_present_flag: Indicates if deblocking filter parameters are present.
+			- `pic_init_qp_minus26`: Initial quantization parameter for the picture.
+			- `deblocking_filter_control_present_flag`: Indicates if deblocking filter parameters are present.
 		- Slice header
 		  
 		  ```shell
