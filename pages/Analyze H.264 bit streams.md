@@ -142,7 +142,6 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 51          pic_width_in_mbs_minus1                             000011110 = 29
 		  [trace_headers @ 0x600000e18140] 60          pic_height_in_map_units_minus1                      000010001 = 16
 		  [trace_headers @ 0x600000e18140] 69          frame_mbs_only_flag                                         1 = 1
-		  [trace_headers @ 0x600000e18140] 70          direct_8x8_inference_flag                                   1 = 1
 		  [trace_headers @ 0x600000e18140] 79          aspect_ratio_info_present_flag                              1 = 1
 		  [trace_headers @ 0x600000e18140] 80          aspect_ratio_idc                                     00000001 = 1
 		  [trace_headers @ 0x600000e18140] 92          num_units_in_tick            00000000000000000000001111101001 = 1001
@@ -155,13 +154,13 @@ tags:: Video Compression
 			- `level_idc`: Defines the video level (complexity) (21 = Level 2.1).
 			- `chroma_format_idc`: Chroma subsampling format (1 = 4:2:0).
 			- `bit_depth_luma_minus8` and `bit_depth_chroma_minus8`: Bit depth for luma and chroma (8-bit in this case).
-			- log2_max_frame_num_minus4: Specifies the maximum number of frames between keyframes.
-			- pic_width_in_mbs_minus1: Encoded width in macroblocks minus 1 (30 × 16 = 480 pixels wide).
-			- pic_height_in_map_units_minus1: Encoded height in macroblock units minus 1 (17 × 16 = 272 pixels high).
-			- frame_mbs_only_flag: Indicates whether only progressive frames are used (1 = yes).
-			- vui_parameters_present_flag: Indicates if additional VUI (Video Usability Information) is present.
-			- aspect_ratio_idc: Aspect ratio (1 = square pixels).
-			- time_scale and num_units_in_tick: Timing information for frame rate. Here, 60000 / 1001 = ~59.94 fps.
+			- `log2_max_frame_num_minus4`: Specifies the maximum number of frames between keyframes.
+			- `pic_width_in_mbs_minus1`: Encoded width in macroblocks minus 1 (30 × 16 = 480 pixels wide).
+			- `pic_height_in_map_units_minus1`: Encoded height in macroblock units minus 1 (17 × 16 = 272 pixels high).
+			- `frame_mbs_only_flag`: Indicates whether only progressive frames are used (1 = yes).
+			- `vui_parameters_present_flag`: Indicates if additional VUI (Video Usability Information) is present.
+			- `aspect_ratio_idc`: Aspect ratio (1 = square pixels).
+			- `time_scale` and `num_units_in_tick`: Timing information for frame rate. Here, 60000 / 1001 = ~59.94 fps.
 		- PPS
 		  
 		  ```shell
