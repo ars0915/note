@@ -241,8 +241,8 @@ tags:: Video Compression
 			- These indicate macroblock positions (or indices) across the frame.
 		- Values (d, <, >, X, etc.):
 		  Represent the type of encoding used for each macroblock:
-			- d: Direct mode (used in B-frames, predicts using motion vectors from reference frames).
-			- <, >: Forward or backward motion prediction (indicates inter-prediction using reference frames).
-			- X: Intra-coded blocks (encoded without reference to other blocks or frames).
+			- d: `Direct mode` (used in B-frames, predicts using motion vectors from reference frames).
+			- <, >: `Forward or backward motion prediction` (indicates inter-prediction using reference frames).
+			- X: `Intra-coded blocks` (encoded without reference to other blocks or frames).
 			- or +: Variants of intra or inter modes, showing further details.
 	-
