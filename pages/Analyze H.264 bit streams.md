@@ -187,17 +187,9 @@ tags:: Video Compression
 		  3           nal_unit_type                                           00001 = 1
 		  8           first_mb_in_slice                                           1 = 0
 		  9           slice_type                                              00111 = 6
-		  14          pic_parameter_set_id                                        1 = 0
 		  15          frame_num                                                0010 = 2
 		  19          pic_order_cnt_lsb                                      000100 = 4
 		  25          direct_spatial_mv_pred_flag                                 1 = 1
-		  26          num_ref_idx_active_override_flag                            1 = 1
-		  27          num_ref_idx_l0_active_minus1                                1 = 0
-		  28          num_ref_idx_l1_active_minus1                                1 = 0
-		  29          ref_pic_list_modification_flag_l0                           0 = 0
-		  30          ref_pic_list_modification_flag_l1                           0 = 0
-		  31          adaptive_ref_pic_marking_mode_flag                          0 = 0
-		  32          cabac_init_idc                                              1 = 0
 		  33          slice_qp_delta                                          00101 = -2
 		  38          disable_deblocking_filter_idc                               1 = 0
 		  39          slice_alpha_c0_offset_div2                                010 = 1
@@ -209,9 +201,9 @@ tags:: Video Compression
 		  ```
 			- `nal_unit_type`: Specifies the type of NAL unit (1 = non-IDR slice, P-frame).
 			- `slice_type`: Slice type (6 = P-slice).
-			- frame_num: Frame number for reference.
-			- pic_order_cnt_lsb: Least significant bits of picture order count, used for reordering frames.
-			- direct_spatial_mv_pred_flag: Indicates whether spatial prediction is used for motion vectors.
-			- slice_qp_delta: Adjustment to the quantization parameter for this slice.
+			- `frame_num`: Frame number for reference.
+			- `pic_order_cnt_lsb`: Least significant bits of picture order count, used for reordering frames.
+			- `direct_spatial_mv_pred_flag`: Indicates whether spatial prediction is used for motion vectors.
+			- `slice_qp_delta`: Adjustment to the quantization parameter for this slice.
 			- disable_deblocking_filter_idc: Indicates whether the deblocking filter is used.
 	-
