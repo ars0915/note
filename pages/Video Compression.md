@@ -21,4 +21,9 @@ public:: true
 				- The NAL Unit Header contains fields like:
 					- nal_unit_type: Specifies the type of data (e.g., 5 for IDR frames, 7 for SPS, 8 for PPS).
 					- nal_ref_idc: Indicates the importance of the NAL unit for decoding.
--
+		- Example: H.264 Bitstream Components
+		  In an H.264 bitstream, the structure might look like this:
+		  ```shell
+		  [Header: SPS] [Header: PPS] [Header: IDR Frame] [Slice Data] ...
+		  ```
+		-
