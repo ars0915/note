@@ -220,4 +220,7 @@ tags:: Video Compression
   ffplay -flags2 +export_mvs file.h264 -vf codecview=mv=pf+bf+bb
   ```
   Save a video with motion vectors overlaid:
+  ```shell
   ffmpeg -flags2 +export_mvs -i file.h264 -vf codecview=mv=pf+bf+bb output.mp4
+  ```
+-
