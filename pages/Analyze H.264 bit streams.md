@@ -169,8 +169,6 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 8           pic_parameter_set_id                                        1 = 0
 		  [trace_headers @ 0x600000e18140] 9           seq_parameter_set_id                                        1 = 0
 		  [trace_headers @ 0x600000e18140] 10          entropy_coding_mode_flag                                    1 = 1
-		  [trace_headers @ 0x600000e18140] 11          bottom_field_pic_order_in_frame_present_flag                0 = 0
-		  [trace_headers @ 0x600000e18140] 12          num_slice_groups_minus1                                     1 = 0
 		  [trace_headers @ 0x600000e18140] 13          num_ref_idx_l0_default_active_minus1                    00110 = 5
 		  [trace_headers @ 0x600000e18140] 18          num_ref_idx_l1_default_active_minus1                        1 = 0
 		  [trace_headers @ 0x600000e18140] 19          weighted_pred_flag                                          1 = 1
@@ -193,8 +191,8 @@ tags:: Video Compression
 			- `nal_unit_type`: Specifies the type of NAL unit (8 = PPS).
 			- `pic_parameter_set_id`: Identifier for this PPS.
 			- `seq_parameter_set_id`: Links this PPS to its corresponding SPS.
-			- entropy_coding_mode_flag: Specifies the entropy coding method (1 = CABAC, a more efficient method).
-			- num_ref_idx_l0_default_active_minus1: Default number of reference frames for prediction.
+			- `entropy_coding_mode_flag`: Specifies the entropy coding method (1 = CABAC, a more efficient method).
+			- `num_ref_idx_l0_default_active_minus1`: Default number of reference frames for prediction.
 			- pic_init_qp_minus26: Initial quantization parameter for the picture.
 			- deblocking_filter_control_present_flag: Indicates if deblocking filter parameters are present.
 		- Slice header
