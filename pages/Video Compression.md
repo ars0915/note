@@ -17,8 +17,8 @@ public:: true
 				- Slice Header: Contains information about a slice (portion of a frame) and specifies how it relates to other slices or frames.
 			- NAL Unit Headers (H.264/AVC Specific):
 			  The bitstream is divided into NAL Units (Network Abstraction Layer Units), each with a header that indicates the type of data it contains.
-			- SPS, PPS, IDR frame (keyframe), non-IDR frame, etc.
-			- The NAL Unit Header contains fields like:
-			- nal_unit_type: Specifies the type of data (e.g., 5 for IDR frames, 7 for SPS, 8 for PPS).
-			  	•	nal_ref_idc: Indicates the importance of the NAL unit for decoding.
+				- SPS, PPS, IDR frame (keyframe), non-IDR frame, etc.
+				- The NAL Unit Header contains fields like:
+					- nal_unit_type: Specifies the type of data (e.g., 5 for IDR frames, 7 for SPS, 8 for PPS).
+					- nal_ref_idc: Indicates the importance of the NAL unit for decoding.
 -
