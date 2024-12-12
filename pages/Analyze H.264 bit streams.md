@@ -258,4 +258,10 @@ tags:: Video Compression
 		  Indicates the importance of the frame for reference:
 			- 0: Non-reference frame.
 			- 1-3: Increasing importance as a reference frame.
-	-
+		- **New Frame Metadata**
+		  
+		  ```shell
+		  ```
+		  `New frame`: Marks the decoding of a new frame.
+		  `type: B`: Indicates this is a B-frame (bidirectionally predicted frame), which uses both past and future frames for motion prediction.
+		-
