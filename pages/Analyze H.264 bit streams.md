@@ -103,6 +103,7 @@ tags:: Video Compression
 		- `pts`: The presentation timestamp of the frame, often used in place of pkt_pts when analyzing frames.
 		  `pkt_dts`: The decoding timestamp of the packet, indicating when the frame should be decoded.
 		  `best_effort_timestamp`: FFmpeg’s best guess at the frame’s timestamp, derived from either pts, pkt_pts, or other available metadata.
+		  `duration`: duration=33 and duration_time=0.033000 mean that this frame is displayed for 0.033 seconds (or 33 milliseconds) before the next frame is presented.
 		  ```shell
 		  [FRAME]
 		  media_type=video
