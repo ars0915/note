@@ -228,5 +228,6 @@ tags:: Video Compression
   ```shell
   ffmpeg -threads 1 -debug 'mb_type' -i file.h264 -f null -
   ```
-	-
+	- `threads 1`: Limits FFmpeg to use a single thread for decoding. This ensures sequential processing, useful for debugging as it simplifies the output.
+	- `debug 'mb_type'`: Activates debug mode and outputs macroblock type (mb_type) information. Macroblocks are the basic units of video compression in H.264. This shows how each macroblock is encoded (e.g., intra-prediction, inter-prediction, or skipped).
 -
