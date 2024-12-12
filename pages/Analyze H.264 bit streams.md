@@ -122,7 +122,7 @@ tags:: Video Compression
   collapsed:: true
   Use `ffmpeg` to trace NAL unit and slice-level details
   ```shell
-  ffmpeg -i file.h264 -c copy -bsf:v trace_headers -f null -
+  ffmpeg -i output.mkv -c copy -bsf:v trace_headers -f null -
   ```
 	- `bsf:v trace_headers`:
 	  Applies the trace_headers [bitstream](((675a7bdf-c641-4c0c-ba7d-421309ee1dc2))) filter to the video stream. This filter analyzes the H.264 bitstream and outputs information about headers in the stream, such as Sequence Parameter Sets (SPS), Picture Parameter Sets (PPS), and slice headers.
@@ -217,10 +217,10 @@ tags:: Video Compression
 - # Visualize Motion Vectors
   Display motion vectors overlaid on the video:
   ```shell
-  ffplay -flags2 +export_mvs file.h264 -vf codecview=mv=pf+bf+bb
+  ffplay -flags2 +export_mvs output.mkv -vf codecview=mv=pf+bf+bb
   ```
   Save a video with motion vectors overlaid:
   ```shell
-  ffmpeg -flags2 +export_mvs -i file.h264 -vf codecview=mv=pf+bf+bb output.mp4
+  ffmpeg -flags2 +export_mvs -i output.mkv -vf codecview=mv=pf+bf+bb output.mp4
   ```
 -
