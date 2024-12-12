@@ -116,24 +116,6 @@ tags:: Video Compression
 		  best_effort_timestamp_time=26.296000
 		  duration=33
 		  duration_time=0.033000
-		  pkt_pos=1309483
-		  pkt_size=748
-		  width=480
-		  height=270
-		  crop_top=0
-		  crop_bottom=0
-		  crop_left=0
-		  crop_right=0
-		  pix_fmt=yuv420p
-		  sample_aspect_ratio=1:1
-		  pict_type=P
-		  interlaced_frame=0
-		  top_field_first=0
-		  repeat_pict=0
-		  color_range=tv
-		  color_space=unknown
-		  color_primaries=unknown
-		  color_transfer=unknown
-		  chroma_location=left
 		  [/FRAME]
 		  ```
+		-
