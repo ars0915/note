@@ -120,4 +120,9 @@ tags:: Video Compression
 		  [/FRAME]
 		  ```
 - # Inspect NAL Unit and Slice Information
--
+  Use `ffmpeg` to trace NAL unit and slice-level details
+  
+  ```shell
+  ffmpeg -i file.h264 -c copy -bsf:v trace_headers -f null -
+  ```
+	-
