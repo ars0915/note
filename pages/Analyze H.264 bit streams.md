@@ -264,8 +264,7 @@ tags:: Video Compression
 			  Indicates the importance of the frame for reference:
 				- 0: Non-reference frame.
 				- 1-3: Increasing importance as a reference frame.
-- # Analyze Quantization Parameters
-  
+- # Analyze Quantization Parameters (didn't see QP values)
   ```shell
   ffmpeg -threads 1 -debug 'qp' -i output.mp4 -f null - > qp_values.txt 2>&1
   ```
