@@ -142,6 +142,7 @@ tags:: Video Compression
 		  [trace_headers @ 0x600000e18140] 51          pic_width_in_mbs_minus1                             000011110 = 29
 		  [trace_headers @ 0x600000e18140] 60          pic_height_in_map_units_minus1                      000010001 = 16
 		  [trace_headers @ 0x600000e18140] 69          frame_mbs_only_flag                                         1 = 1
+		  [trace_headers @ 0x600000e18140] 78          vui_parameters_present_flag                                 1 = 1
 		  [trace_headers @ 0x600000e18140] 79          aspect_ratio_info_present_flag                              1 = 1
 		  [trace_headers @ 0x600000e18140] 80          aspect_ratio_idc                                     00000001 = 1
 		  [trace_headers @ 0x600000e18140] 92          num_units_in_tick            00000000000000000000001111101001 = 1001
