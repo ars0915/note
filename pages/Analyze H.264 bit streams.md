@@ -6,4 +6,6 @@ ffmpeg -i Documents/chrome.mp4 -c:v libx264 -tune animation  Documents/output.mk
 - # Plot Frame Type and Size
   
   ```shell
+  plotframes -I output.mkv -t qt
   ```
+-
