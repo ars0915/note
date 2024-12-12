@@ -121,8 +121,9 @@ tags:: Video Compression
 		  ```
 - # Inspect NAL Unit and Slice Information
   Use `ffmpeg` to trace NAL unit and slice-level details
-  
   ```shell
   ffmpeg -i file.h264 -c copy -bsf:v trace_headers -f null -
   ```
+	- `bsf:v trace_headers`:
+	  Applies the trace_headers bitstream filter to the video stream. This filter analyzes the H.264 bitstream and outputs information about headers in the stream, such as Sequence Parameter Sets (SPS), Picture Parameter Sets (PPS), and slice headers.
 	-
