@@ -26,15 +26,15 @@ public:: true
 		  ```shell
 		  [Header: SPS] [Header: PPS] [Header: IDR Frame] [Slice Data] ...
 		  ```
-			- SPS (Sequence Parameter Set):
+			- **SPS (Sequence Parameter Set):**
 			  Defines global settings like:
 				- Resolution: 1920x1080
 				- Profile: High
 				- Level: 4.1
-			- PPS (Picture Parameter Set):
+			- **PPS (Picture Parameter Set):**
 			  Frame-specific settings like:
 				- Entropy coding method: CABAC or CAVLC
 				- Number of reference frames.
-			- NAL Unit Headers:
+			- **NAL Unit Headers:**
 			  Contain fields like:
 				- Type: SPS (7), PPS (8), IDR frame (5), or non-IDR frame (1).
