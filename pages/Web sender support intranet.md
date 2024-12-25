@@ -8,7 +8,7 @@
 	  透過`組別`、`序號`經過 Backend 轉發配對
 	- **intranet**
 	  native sender 透過查自己 IP 假設第1碼一樣(內網IP網段可能是 192、172、10)
-	-
 - # Goal
 	- ## Web sender 包裝成 PWA
 	- ## Web sender 支援 intranet
+		- Connect to a self-signed local server without a browser warning
