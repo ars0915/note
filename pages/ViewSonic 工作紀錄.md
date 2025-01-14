@@ -29,20 +29,15 @@
 		  2.	內網連線需求： 在僅有內網環境下，需支援穩定的連線功能，選用 PWA 作為解決方案。
 		  3.	安全限制： 瀏覽器不支援不安全的 HTTP 連線，且在僅有自簽憑證的條件下，需使用 WebTransport 協議實現連線。
 		- ### 完成的具體成果
-		  1.	調查與方法論：
-		  •	完成技術調查，撰寫了 RFC 文件，提供清晰的實現方法與技術選擇，供團隊內部討論與評估。
+		  1. 完成技術調查，撰寫了 RFC 文件，提供清晰的實現方法與技術選擇，供團隊內部討論與評估。
 		  2.	POC 實作：
 		  •	成功開發基於 PWA 的 WebTransport Client，並完成跨平台的初步測試。
 		  •	在 Flutter 中實現 WebTransport Server，驗證其功能與性能表現。
-	- SMART 目標描述
-	- 具體目標 (Specific):
-	  研究並驗證 Chromebook 透過 PWA 實現內網連線與影音投放的可行性，並成功構建 WebTransport Server。
-	- 可衡量 (Measurable):
-	  •	撰寫 1 份完整的 RFC 文件，並獲得團隊的討論與反饋。
-	  •	成功完成至少 2 個 POC 測試案例，分別在 PWA 與 Flutter 上實現 WebTransport Server，並進行初步性能驗證。
-	- 可達成 (Achievable):
-	  通過現有技術資源結合實驗與調試工具完成需求，且符合產品的核心需求。
-	- 相關性 (Relevant):
-	  此項目直接解決了 Chromebook 限制下的需求，並為產品在內網環境中的應用提供了解決方案，增強產品適配性與競爭力。
-	- 時限性 (Time-bound):
-	  在 2 周內完成技術調查、POC 開發、測試及 RFC 文件提交。
+		- ### SMART 目標描述
+			- 具體目標 (Specific):
+			  研究並驗證 Chromebook 透過 PWA 實現內網連線與影音投放的可行性，並成功構建 WebTransport Server。可衡量 (Measurable):
+			  •	撰寫 1 份完整的 RFC 文件，並獲得團隊的討論與反饋。
+			  •	成功完成至少 2 個 POC 測試案例，分別在 PWA 與 Flutter 上實現 WebTransport Server，並進行初步性能驗證。
+			  可達成 (Achievable): 通過現有技術資源結合實驗與調試工具完成需求，且符合產品的核心需求。
+			  相關性 (Relevant): 此項目直接解決了 Chromebook 限制下的需求，並為產品在內網環境中的應用提供了解決方案，增強產品適配性與競爭力。
+			  時限性 (Time-bound): 在 2 周內完成技術調查、POC 開發、測試及 RFC 文件提交。
