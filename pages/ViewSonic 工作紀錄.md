@@ -38,7 +38,7 @@
 			  研究並驗證 Chromebook 透過 PWA 實現內網連線，並成功構建 WebTransport Server。
 			  可衡量 (Measurable):
 			  •	撰寫 1 份完整的 RFC 文件，並獲得團隊的討論與反饋。
-			  •	成功完成至少 2 個 POC 測試案例，分別在 PWA 與 Flutter 上實現 WebTransport Server，並進行初步性能驗證。
+			  •	成功完成至少 2 個 POC 測試案例，分別在 PWA 實現 WebTransport Client 與 Flutter 上的 WebTransport Server 交換訊息。
 			  可達成 (Achievable): 通過現有技術資源結合實驗與調試工具完成需求，且符合產品的核心需求。
 			  相關性 (Relevant): 此項目直接解決了 Chromebook 限制下的需求，並為產品在內網環境中的應用提供了解決方案，增強產品適配性與競爭力。
 			  時限性 (Time-bound): 在 2 周內完成技術調查、POC 開發、測試及 RFC 文件提交。
