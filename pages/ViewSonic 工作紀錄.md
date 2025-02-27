@@ -22,7 +22,7 @@
 		  可達成 (Achievable): 通過使用調試工具和測試數據，逐步定位並解決問題。
 		  相關性 (Relevant): 此修正直接影響產品的用戶體驗，符合業務目標。
 		  時限性 (Time-bound): 在一週內完成問題修復與驗證。
-	- ## 調查與 POC：實現 Chromebook 上的內網連線與影音投放
+	- ## 實現 Chromebook 上的內網連線與影音投放
 		- ### 目標背景與重要性
 		  原因：
 		  1.	系統限制克服： Chromebook 的 native app 無法抓取系統聲音，因其運行於 sandbox 中，而內建 Chrome 瀏覽器未受此限制。
@@ -30,9 +30,8 @@
 		  3.	安全限制： 瀏覽器不支援不安全的 HTTP 連線，且在僅有自簽憑證的條件下，需使用 WebTransport 協議實現連線。
 		- ### 完成的具體成果
 		  1. 完成技術調查，撰寫了 RFC 文件，提供清晰的實現方法與技術選擇，供團隊內部討論與評估。
-		  2. POC 實作：
-		  •	成功開發基於 PWA 的 WebTransport Client，並完成跨平台的初步測試。
-		  •	在 Flutter 中實現 WebTransport Server，驗證其功能與性能表現。
+		  2.成功開發基於 PWA 的 WebTransport Client，並完成跨平台的初步測試。
+		- 在 Flutter 中實現 WebTransport Server，驗證其功能與性能表現。
 		- ### SMART 目標描述
 			- 具體目標 (Specific):
 			  研究並驗證 Chromebook 透過 PWA 實現內網連線與影音投放的可行性，並成功構建 WebTransport Server。可衡量 (Measurable):
