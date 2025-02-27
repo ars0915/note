@@ -32,7 +32,7 @@
 		  1. 完成技術調查，撰寫了 RFC 文件，提供清晰的實現方法與技術選擇，供團隊內部討論與評估。
 		  2. 成功開發基於 PWA 的 WebTransport Client，並完成跨平台的初步測試。
 		  3. 在 Flutter 中實現 WebTransport Server，驗證其功能與性能表現。
-		  4. WebTransport 限
+		  4. WebTransport 限制使用的憑證只能是 14 天內的效期，在 CI 時產生多組憑證給應用程式根據日期選擇。
 		- ### SMART 目標描述
 			- 具體目標 (Specific):
 			  研究並驗證 Chromebook 透過 PWA 實現內網連線與影音投放的可行性，並成功構建 WebTransport Server。可衡量 (Measurable):
