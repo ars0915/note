@@ -1,7 +1,8 @@
 # Network
 	- ## Port binding result
+		- report server bind result
 	- ## Low level connect test
-		- Tests if a TCP port is open and reachable
+		- Tests if a TCP / UDP port is open and reachable
 		  It's the most fundamental network connectivity check
 		  pinpoint whether a failure is at the network/firewall level or at the application protocol level
 		- ### Error
@@ -10,7 +11,6 @@
 			- **HOST_NOT_FOUND**: Host could not be resolved, indicating DNS or routing issues
 			- **NO_ROUTE**: No route to the host, indicating network configuration issues
 			- **CONNECTION_RESET**: Connection was reset, which could mean a firewall or server configured to drop connections
-		-
 	- ## Application connection test
 	  These are higher-level protocols that run on top of TCP
 	  They not only check port connectivity but also protocol-level communication
