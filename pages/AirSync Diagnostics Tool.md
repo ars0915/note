@@ -9,7 +9,7 @@
 			- **HOST_NOT_FOUND**: Host could not be resolved, indicating DNS or routing issues
 			- **NO_ROUTE**: No route to the host, indicating network configuration issues
 			- **CONNECTION_RESET**: Connection was reset, which could mean a firewall or server configured to drop connections
-		- 只能透過連線測試
+		-
 	- ## Application connection test
 	  These are higher-level protocols that run on top of TCP
 	  They not only check port connectivity but also protocol-level communication
