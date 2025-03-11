@@ -1,8 +1,9 @@
 # Network
-	- ## Port test
-	  Tests if a TCP port is open and reachable
-	  It's the most fundamental network connectivity check
-	  pinpoint whether a failure is at the network/firewall level or at the application protocol level
+	- ## Port binding result
+	- ## Low level connect test
+		- Tests if a TCP port is open and reachable
+		  It's the most fundamental network connectivity check
+		  pinpoint whether a failure is at the network/firewall level or at the application protocol level
 		- ### Error
 			- **CONNECTION_REFUSED**: The server actively refused the connection, which typically means the server is reachable but nothing is listening on that port
 			- **TIMEOUT**: The connection timed out, which often indicates a firewall blocking the connection
