@@ -51,12 +51,13 @@
 - # Requirements
 	- WebTransport 的協議設計需要滿足多項安全性與運作要求：
 	- 所有傳輸必須加密（TLS 1.3 或 DTLS）。
-	- 伺服器必須明確允許客戶端發送數據。
-	- **客戶端必須受到流量限制，避免頻寬濫用**。
-	- **必須支援多個 WebTransport 會話的並行運作**。
-	- **限制客戶端只能連線到授權的 WebTransport 伺服器**。
-	- **伺服器必須能識別請求的來源（Origin）**。
-	- **伺服器端點必須能夠以 URI 表示，方便與 Web 平台整合**。
+	- Server 必須明確允許 Client 發送數據。
+	- Client 必須受到流量限制，避免頻寬濫用。
+	- 必須支援多個 WebTransport session 的並行運作。
+	- 限制 Client 只能連線到授權的 WebTransport Server。
+	- Server 必須能識別請求的來源（Origin）。
+	- Server endpoint 必須能夠以 URI 表示，方便與 Web 平台整合。
+	-
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
