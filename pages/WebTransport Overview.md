@@ -57,7 +57,8 @@
 	- 限制 Client 只能連線到授權的 WebTransport Server。
 	- Server 必須能識別請求的來源（Origin）。
 	- Server endpoint 必須能夠以 URI 表示，方便與 Web 平台整合。
--
+- # Session Establishment
+	-
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
