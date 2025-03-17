@@ -66,7 +66,7 @@
 - # WebTransport over HTTP/3
 	- WebTransport 可以與 HTTP/3 一起使用，並且能夠在同一條 QUIC 連線上多路復用 HTTP 和非 HTTP 的數據。
 	- WebTransport **使用 HTTP 進行握手（Handshake）**，但一旦握手完成，後續的數據傳輸則完全依賴 **QUIC**，而不再使用 HTTP 本身。
-	-
+	- WebTransport sessions are initiated inside a given HTTP/3 connection by the client, who sends an extended CONNECT request [[RFC8441](https://www.rfc-editor.org/rfc/rfc8441)].
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
 - https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-http3
