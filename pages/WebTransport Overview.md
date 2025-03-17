@@ -71,3 +71,4 @@
 - https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-http3
 - https://sites.google.com/site/applezulab/network/sctp_introduction
 - https://www.w3.org/TR/webtransport/
+- https://medium.com/jalexs-murmur/intro-http3-quic-dc11e77bbb9f
