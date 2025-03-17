@@ -1,4 +1,6 @@
-# Background
+public:: true
+
+- # Background
 	- **傳統雙向數據流方案**  WebSockets 的順序性導致的 Head-of-Line Blocking 問題影響低延遲應用的效能
 		- **Head-of-Line Blocking（HOL Blocking）** 是指當數據流中的一個數據包（或訊息）因為某些原因（例如丟失、延遲或必須按順序處理）而被阻塞時，後續的數據包也無法繼續傳輸或處理，即使它們之間沒有直接的依賴關係。
 			- **HTTP/2**：雖然它透過多路復用（multiplexing）允許多個流在同一個 TCP 連線上並行傳輸，但如果底層 TCP 連線發生 HOL Blocking，所有流仍然會被影響。
