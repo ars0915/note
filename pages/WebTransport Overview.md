@@ -19,8 +19,9 @@
 		- 開發者可以確保所有數據流共享同一個 QUIC 連線，避免 WebSocket 這種不可預測的行為。
 		- **能夠優化不同數據流的傳輸優先級**，例如某些流可以設定為高優先級，某些流則可以允許丟包（類似 UDP）。
 		- 提供不可靠數據報傳輸 (類似 UDP)
-	-
-- ## Reference
+- # Definition
+-
+- # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
 - [https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-http3/#name-quic-webtransport-and-http-](https://datatracker.ietf.org/doc/html/draft-ietf-webtrans-http3/#name-quic-webtransport-and-http-)
 - https://sites.google.com/site/applezulab/network/sctp_introduction
