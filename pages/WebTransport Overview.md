@@ -4,15 +4,13 @@
 			- **HTTP/2**：雖然它透過多路復用（multiplexing）允許多個流在同一個 TCP 連線上並行傳輸，但如果底層 TCP 連線發生 HOL Blocking，所有流仍然會被影響。
 			- **HTTP/3**：基於 QUIC（UDP 之上的協議），解決了 TCP 的 HOL Blocking 問題，允許獨立的流在不同的 QUIC 連接內並行傳輸，即使某個流遇到問題，也不會影響其他流。
 	- **現有替代方案**
-		- WebRTC 資料通道的特性與限制
-		- 依賴 ICE 和 userspace SCTP，導致採用率低
+		- WebRTC 依賴 ICE 和 userspace SCTP，導致採用率低
 			- SCTP 通訊協定之多重串流特性有別於傳統的 TCP 通訊協定單一串流（single-stream），當端點建立連線時，可預先相互協調將要使用的串流數量，並且能夠將不同類型的資料分別以不同的串流傳輸
-	- **多 WebSocket 連線的替代設計**
-		- 透過 HTTP/3 開啟多個 WebSocket 連線的可能性
-		- 主要缺點：
-			- 每個流都需要 WebSocket 握手，增加 RTT
-			- 只能由客戶端啟動流，缺乏伺服器啟動的能力
-			- WebSocket 映射到伺服器的過程不透明，影響性能與最佳化
+		- 多 WebSocket 連線的替代設計: 透過 HTTP/3 開啟多個 WebSocket 連線
+			- 主要缺點：
+				- 每個流都需要 WebSocket 握手，增加 RTT
+				- 只能由客戶端啟動流，缺乏伺服器啟動的能力
+				- WebSocket 映射到伺服器的過程不透明，影響性能與最佳化
 	- **WebTransport 的優勢**
 		- 單一傳輸對象支援多流多工
 		- 提供不可靠數據報傳輸 (類似 UDP)
