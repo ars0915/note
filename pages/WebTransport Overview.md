@@ -20,7 +20,34 @@
 		- **能夠優化不同數據流的傳輸優先級**，例如某些流可以設定為高優先級，某些流則可以允許丟包（類似 UDP）。
 		- 提供不可靠數據報傳輸 (類似 UDP)
 - # Definition
-	-
+	- WebTransport 是一個框架，旨在為應用開發者提供一個抽象化的傳輸層，同時保留部分關鍵的傳輸層特性。它基於以下概念：
+	- **1. WebTransport 會話（WebTransport Session）**
+		- 單一的通訊上下文（context），用於客戶端與伺服器之間的傳輸。
+		- 可能對應到獨立的傳輸層連線，也可能是**共享**的多路復用（multiplexed）連線的一部分。
+		- 即使多個會話共享相同的底層連線，它們在邏輯上仍然是獨立的。
+	- **2. WebTransport 協議（WebTransport Protocol）**
+		- 一種特定的協議，用來建立 WebTransport 會話。
+	- **3. Datagra）**
+	- **不可靠傳輸**的數據單元（類似 UDP）。
+	- 受 **最大傳輸單元（MTU）** 限制。
+	- 傳輸時不保證可靠性或順序。
+	- #### **4. 串流（Stream）**
+	- **可靠傳輸**（類似 TCP）。
+	- 以位元組序列的形式傳輸，確保接收端的順序與發送端相同。
+	- 可以是任意長度，無法全部緩存，因此 API 允許**部分數據讀取**。
+	- #### **5. 訊息（Message）**
+	- 一種特殊類型的 Stream，足夠小以至於可以**完全緩存**後再傳遞給應用。
+	- WebTransport **不直接定義**訊息，而是透過完全緩存 Stream 來模擬訊息的行為。
+	- WebSockets 使用訊息作為核心抽象，而 WebTransport 則沒有這種限制。
+	- #### **6. 伺服器（Server）**
+	- **接受 WebTransport 會話**的應用程式。
+	- 若 WebTransport 建立於 **多路復用協議（如 HTTP/2 或 HTTP/3）** 之上，則「WebTransport 伺服器」指的是特定端點（如特定 HTTP 資源的處理程序），而非 TCP/UDP 層級的網路監聽應用。
+	- #### **7. 客戶端（Client）**
+	- **發起 WebTransport 會話**的應用程式。
+	- 可能運行在受限的安全環境中，例如瀏覽器中的 JavaScript 應用。
+	- #### **8. 使用者代理（User Agent）**
+	- **代表客戶端創建 WebTransport 連線的軟體系統**。
+	- 具有完全的網路存取權限，例如瀏覽器或其他能夠管理 WebTransport 會話的軟體。
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
