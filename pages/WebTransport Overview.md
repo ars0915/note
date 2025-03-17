@@ -62,7 +62,6 @@
 	  在 session ready 前，可以允許數據發送，但必須確保不會引發重放攻擊。
 	- 避免重放攻擊的方法：
 		- 使用安全機制，如 TLS 1.3，避免重複發送敏感數據。
-		  讓客戶端顯式授權 需要提前發送的數據。
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
