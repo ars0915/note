@@ -59,9 +59,11 @@
 	- Server endpoint 必須能夠以 URI 表示，方便與 Web 平台整合。
 - # Session Establishment
 	- WebTransport 會話的建立是 非同步的，需要 Server 確認 Origin 與 URI 才能完成。
-	  在 session ready 前，可以允許數據發送，但必須確保不會引發重放攻擊。
+	  在 session ready 前，**可以允許數據發送**，但必須確保不會引發重放攻擊。
 	- 避免重放攻擊的方法：
 		- 使用安全機制，如 TLS 1.3，避免重複發送敏感數據。
+		  Client 必須明確請求授權，才能在 ready 前發送
+	-
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
