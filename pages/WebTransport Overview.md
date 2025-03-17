@@ -21,11 +21,11 @@
 		- 提供不可靠數據報傳輸 (類似 UDP)
 - # Definition
 	- WebTransport 是一個框架，旨在為應用開發者提供一個抽象化的傳輸層，同時保留部分關鍵的傳輸層特性。它基於以下概念：
-	- **1. WebTransport 會話（WebTransport Session）**
+	- **1. WebTransport Session**
 		- 單一的通訊上下文（context），用於客戶端與伺服器之間的傳輸。
 		- 可能對應到獨立的傳輸層連線，也可能是**共享**的多路復用（multiplexed）連線的一部分。
 		- 即使多個會話共享相同的底層連線，它們在邏輯上仍然是獨立的。
-	- **2. WebTransport 協議（WebTransport Protocol）**
+	- **2. WebTransport Protocol**
 		- 一種特定的協議，用來建立 WebTransport 會話。
 	- **3. Datagram**
 		- **不可靠傳輸**的數據單元（類似 UDP）。
@@ -48,6 +48,7 @@
 	- **8. User Agent**
 		- **代表客戶端創建 WebTransport 連線的軟體系統**。
 		- 具有完全的網路存取權限，例如瀏覽器或其他能夠管理 WebTransport 會話的軟體。
+-
 -
 - # Reference
 - [https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/](https://datatracker.ietf.org/doc/draft-ietf-webtrans-overview/)
