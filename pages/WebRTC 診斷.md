@@ -4,7 +4,7 @@ public:: true
 	- [[Emulate Network Conditions to Test WebRTC Adaptability]]
 - ## 畫面模糊
 	- **📌 畫面模糊 (Video Blurriness) 應該檢查哪些 WebRTC 指標？**
-	- 如果 WebRTC 視訊出現模糊現象，可能是因為 **編碼壓縮過高、網路頻寬不足、解析度降低** 等因素
+		- 如果 WebRTC 視訊出現模糊現象，可能是因為 **編碼壓縮過高、網路頻寬不足、解析度降低** 等因素
 	- **📌 如何快速診斷模糊問題？**
 		- 1️⃣ **解析度是否降低？** 🔍
 			- 👉 **檢查 frameWidth / frameHeight** 是否變小。
