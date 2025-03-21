@@ -62,7 +62,9 @@ public:: true
 			- The **jitter buffer** is used to **smooth out packet arrival times** by delaying packets slightly before decoding.
 			  If packets arrive **too early or out of order**, the buffer waits a little before handing them off.
 		- jitterBufferEmittedCount
-		-
+			- **The number of frames (audio or video) emitted from the jitter buffer** (i.e., handed off for decoding/rendering)
+			- Helps normalize jitterBufferDelay over time to get **average per-frame buffering delay**
+			-
 		- framesPerSecond
 	- 影像品質相關
 		- qpSum: 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
