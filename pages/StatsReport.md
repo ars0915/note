@@ -56,9 +56,9 @@ public:: true
 		  id:: 67dce088-e75d-44d3-8fbc-deecb820c2fd
 			- High pliCount means frequent packet loss or network issues.
 			  Unlike FIR, PLI is lighter and used more often in WebRTC.
-		- framesReceived
+		- framesReceived、bytesReceived、packetsReceived
 		- jitterBufferDelay、jitterBufferEmittedCount、jitter
-		- bytesReceived
+		- framesPerSecond
 	- 影像品質相關
 		- qpSum: 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
 		- frameHeight、frameWidth
@@ -71,6 +71,7 @@ public:: true
 		- powerEfficientEncoder
 			- true → The encoder is using hardware acceleration, which saves CPU and battery.
 			  false → The encoder is using software encoding, which can drain power and impact performance.
+		- framesDecoded
 	-
 	-
 	-
