@@ -57,8 +57,12 @@ public:: true
 			- High pliCount means frequent packet loss or network issues.
 			  Unlike FIR, PLI is lighter and used more often in WebRTC.
 		- framesReceived、bytesReceived、packetsReceived
-		- jitterBufferDelay、jitterBufferEmittedCount、jitter
-			-
+		- jitter
+		- jitterBufferDelay
+			- The jitter buffer is used to **smooth out packet arrival times** by delaying packets slightly before decoding.
+			  If packets arrive **too early or out of order**, the buffer waits a little before handing them off.
+		- jitterBufferEmittedCount
+		-
 		- framesPerSecond
 	- 影像品質相關
 		- qpSum: 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
