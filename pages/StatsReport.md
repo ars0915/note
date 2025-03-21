@@ -59,7 +59,7 @@ public:: true
 		- framesReceived、bytesReceived、packetsReceived
 		- jitter
 		- jitterBufferDelay
-			- The jitter buffer is used to **smooth out packet arrival times** by delaying packets slightly before decoding.
+			- The **jitter buffer** is used to **smooth out packet arrival times** by delaying packets slightly before decoding.
 			  If packets arrive **too early or out of order**, the buffer waits a little before handing them off.
 		- jitterBufferEmittedCount
 		-
