@@ -52,7 +52,7 @@ public:: true
 	- 網路相關
 		- packetsLost
 		- framesDropped
-		- pliCount: Number of Picture Loss Indication (PLI) messages received, signaling video loss recovery requests.
+		- pliCount: A PLI is sent by the receiver when it detects missing video frames and requests a keyframe
 		  id:: 67dce088-e75d-44d3-8fbc-deecb820c2fd
 		- framesReceived
 		- jitterBufferDelay
@@ -63,6 +63,8 @@ public:: true
 		- key frame
 			- keyFramesReceived: Keyframes received by the receiver.
 			- firCount: Number of Full Intra Request (FIR) messages received, indicating how often keyframes were requested.
+				- High firCount → Possible packet loss or new participants joining a stream frequently.
+				  Too many FIR requests → Can cause high bandwidth usage since keyframes are larger than delta frames.
 			- keyFramesDecoded
 	-
 	-
