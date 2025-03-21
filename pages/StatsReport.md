@@ -49,3 +49,4 @@ public:: true
 	    39 = {map entry} "framesDecoded" -> 602
 	    40 = {map entry} "totalInterFrameDelay" -> 110.464
 	  ```
+	- qpSum： 愈低 影像品
