@@ -49,11 +49,17 @@ public:: true
 	    39 = {map entry} "framesDecoded" -> 602
 	    40 = {map entry} "totalInterFrameDelay" -> 110.464
 	  ```
-	- qpSum： 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
-	- keyFramesReceived: Keyframes received by the receiver.
-	  firCount: Number of Full Intra Request (FIR) messages received, indicating how often keyframes were requested.
+	- 網路相關
+		-
+	- 影像品質相關
+		- qpSum: 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
+		- keyFramesReceived: Keyframes received by the receiver.
+		  firCount: Number of Full Intra Request (FIR) messages received, indicating how often keyframes were requested.
+		  keyFramesDecoded
 	- pliCount: Number of Picture Loss Indication (PLI) messages received, signaling video loss recovery requests.
 	  id:: 67dce088-e75d-44d3-8fbc-deecb820c2fd
-	- packetsLost:
+	- packetsLost
+	- framesDropped
+	-
 	-
 	-
