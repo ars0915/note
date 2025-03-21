@@ -54,6 +54,8 @@ public:: true
 		- framesDropped
 		- pliCount: A PLI is sent by the receiver when it detects missing video frames and requests a keyframe
 		  id:: 67dce088-e75d-44d3-8fbc-deecb820c2fd
+			- High pliCount means frequent packet loss or network issues.
+			  Unlike FIR, PLI is lighter and used more often in WebRTC.
 		- framesReceived
 		- jitterBufferDelay
 		- jitterBufferEmittedCount
@@ -66,6 +68,9 @@ public:: true
 				- High firCount → Possible packet loss or new participants joining a stream frequently.
 				  Too many FIR requests → Can cause high bandwidth usage since keyframes are larger than delta frames.
 			- keyFramesDecoded
+		- powerEfficientEncoder
+			- true → The encoder is using hardware acceleration, which saves CPU and battery.
+			  false → The encoder is using software encoding, which can drain power and impact performance.
 	-
 	-
 	-
