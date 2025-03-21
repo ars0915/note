@@ -58,6 +58,7 @@ public:: true
 			  Unlike FIR, PLI is lighter and used more often in WebRTC.
 		- framesReceived、bytesReceived、packetsReceived
 		- jitterBufferDelay、jitterBufferEmittedCount、jitter
+			-
 		- framesPerSecond
 	- 影像品質相關
 		- qpSum: 愈低 量化程度較低 → 更多細節保留 → 影像品質較高
