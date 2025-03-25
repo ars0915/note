@@ -44,4 +44,5 @@
 			  時限性 (Time-bound): 在 2 周內完成技術調查、POC 開發、測試及 RFC 文件提交。
 	- ## 檢測工具
 		- 診斷連線
-		- 實現 webRTC internal stats 在
+		- 實現 webRTC internal stats 在 native APP
+		- 優化 log
