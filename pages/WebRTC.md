@@ -197,13 +197,12 @@ public:: true
 		- **Authentication:** It verifies that the media packets originate from a legitimate source, preventing impersonation attacks.
 		- **Integrity:** SRTP ensures that media packets have not been modified in transit, protecting against tampering.
 - # [[Emulate Network Conditions to Test WebRTC Adaptability]]
--
+- # [[WebRTC Implementation]]
 - # Reference
 	- "Introduction to WebRTC protocols," *mdn web docs*, Available: [link_to_page](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols).
 	- "Getting started with WebRTC," *WebRTC.org*, Available: [link_to_page](https://webrtc.org/getting-started/overview).
 	- "SCTP introduction,"  Available: [link_to_page](https://sites.google.com/site/applezulab/network/sctp_introduction).
 	- "一文讀懂 DTLS 協議," Available: [link_to_page](https://www.readfog.com/a/1641737692694810624).
 	- "An In-Depth Look at SRTP Protocol: Securing Real-Time Communication," *digitalsamba*, Available: [link_to_page](https://www.digitalsamba.com/blog/srtp-protocol).
-	- "WebRTC sitemap," *chromium code search*, Available: [link_to_page](https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/g3doc/sitemap.md). 
-	  type:: [[Web Page]]
+	- "WebRTC sitemap," *chromium code search*, Available: [link_to_page](https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/g3doc/sitemap.md).
 -
