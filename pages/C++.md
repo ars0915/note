@@ -1,4 +1,6 @@
-## Constructors
+public:: true
+
+- ## Constructors
 	- ```cpp
 	  class RTC_EXPORT BasicPortAllocator : public PortAllocator {
 	   public:
