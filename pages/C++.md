@@ -26,4 +26,14 @@
 		  BasicPortAllocator a1 = network_manager; //隱式轉換會 compile error
 		  BasicPortAllocator a2{network_manager}; 
 		  ```
--
+- ## Loop by pointer
+	- ```cpp
+	  std::vector<std::unique_ptr<webrtc::PortAllocatorSession>> allocator_sessions_;
+	  for (const auto& session : allocator_sessions_) {
+	  	if (session->IsStopped()) {
+	      	continue;
+	      }
+	  	session->StopGettingPorts();
+	  }
+	  ```
+		-
