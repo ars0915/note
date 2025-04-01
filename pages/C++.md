@@ -94,4 +94,4 @@
 -
 -
 - # Reference
--
+- "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
