@@ -15,13 +15,15 @@
 	                       rtc::PacketSocketFactory* socket_factory,
 	                       const ServerAddresses& stun_servers);
 	  ```
-	- Constructor with Only NetworkManager
-	  ```cpp
-	  explicit BasicPortAllocator(rtc::NetworkManager* network_manager);
-	  ```
-	  避免在沒有意想到的地方發生隱式轉換 (implicit conversion)
-	  例如
-	  ```cpp
-	  BasicPortAllocator a1 = network_manager; //隱式轉換會 compile error
-	  ```
+	- There are multiple overloaded constructors, allowing instances of BasicPortAllocator to be initialized in different ways.
+		- Constructor with Only NetworkManager
+		  ```cpp
+		  explicit BasicPortAllocator(rtc::NetworkManager* network_manager);
+		  ```
+		  避免在沒有意想到的地方發生隱式轉換 (implicit conversion)
+		  例如
+		  ```cpp
+		  BasicPortAllocator a1 = network_manager; //隱式轉換會 compile error
+		  
+		  ```
 	-
