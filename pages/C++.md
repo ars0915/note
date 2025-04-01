@@ -79,5 +79,19 @@
 	  }
 	  ```
 	  ```cpp
+	  class JsepTransportController : /* extends... */ {
+	   public:
+	    // other definitions...
 	  
+	    // sigslot::signal 支持操作符重载，
+	    // void operator()(Args... args) { emit(args...); }
+	    sigslot::signal1<cricket::IceConnectionState> SignalIceConnectionState;
+	  
+	    // other definitions...
+	  }
 	  ```
+	  当 JsepTransportController 调用 `SignalIceConnectionState(state)` 时，便会回调 `PeerConnection::OnTransportControllerConnectionState` 这个方法；事实上只要 connect 了的方法，都会被回调。对于 Java(Script) 开发者来说，这种回调机制肯定不陌生，其实就是一种观察者模式的实现，**主要是为了代码解耦。**
+-
+-
+- # Reference
+-
