@@ -45,6 +45,11 @@
 		- Using std::unique_ptr:
 			- A **std::unique_ptr is a move-only object**, meaning it cannot be copied. Attempting to use it without a reference (auto session) would result in a compilation error.
 			- Using const auto& correctly references the std::unique_ptr without trying to copy it.
-		- Calling Methods via Pointer:
-			- session->IsStopped() and session->StopGettingPorts(); work because session is a std::unique_ptr, and the -> operator accesses the underlying PortAllocatorSession.
--
+		- Why Not Use PortAllocatorSession Directly?
+			- Direct Object Access:
+			  You can’t directly iterate using PortAllocatorSession because the vector doesn’t store PortAllocatorSession objects. It stores std::unique_ptr<PortAllocatorSession>.
+			  ```cpp
+			  for (const PortAllocatorSession& session : allocator_sessions_) {  // ❌ ERROR
+			  }
+			  ```
+			-
