@@ -22,5 +22,5 @@
 	  避免在沒有意想到的地方發生隱式轉換 (implicit conversion)
 	  例如
 	  ```cpp
-	  BasicPortAllocator
+	  BasicPortAllocator a1 = network_manager; //隱式轉換會 compile error
 	  ```
