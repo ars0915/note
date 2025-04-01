@@ -19,3 +19,8 @@
 	  ```cpp
 	  explicit BasicPortAllocator(rtc::NetworkManager* network_manager);
 	  ```
+	  避免在沒有意想到的地方發生隱式轉換 (implicit conversion)
+	  例如
+	  ```cpp
+	  BasicPortAllocator
+	  ```
