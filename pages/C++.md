@@ -37,12 +37,11 @@
 	  }
 	  ```
 		- const: 
-		  The const ensures that session is read-only and cannot be modified within the loop. This is appropriate if you don’t intend to modify the unique_ptr itself, only call functions on the pointed-to object.
+		  The const ensures that session is read-only and cannot be modified within the loop. This is appropriate if you **don’t intend to modify the unique_ptr** itself, only call functions on the pointed-to object.
 		- auto&:
-		- auto& is a reference to the actual element in the vector, instead of making a copy of it.
-		  	•	Since allocator_sessions_ is a std::vector<std::unique_ptr<webrtc::PortAllocatorSession>>, each element is 
-		           a std::unique_ptr<PortAllocatorSession>.
-		  	•	Using auto& ensures that the code is efficient by avoiding unnecessary copies of the smart pointer.
+			- auto& is a reference to the actual element in the vector, instead of making a copy of it.
+			- Since allocator_sessions_ is a std::vector<std::unique_ptr<webrtc::PortAllocatorSession>>, each element is a std::unique_ptr<PortAllocatorSession>.
+			- Using auto& ensures that the code is efficient by **avoiding unnecessary copies** of the smart pointer.
 		- Using std::unique_ptr:
 		  	•	A std::unique_ptr is a move-only object, meaning it cannot be copied. Attempting to use it without a reference (auto session) would result in a compilation error.
 		  	•	Using const auto& correctly references the std::unique_ptr without trying to copy it.
