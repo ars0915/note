@@ -52,4 +52,15 @@
 			  for (const PortAllocatorSession& session : allocator_sessions_) {  // ❌ ERROR
 			  }
 			  ```
-			-
+			- Dereferencing (More Verbose):
+			  If you explicitly want to work with the underlying object, you could write:
+			  ```cpp
+			  for (const auto& session_ptr : allocator_sessions_) {
+			    const PortAllocatorSession& session = *session_ptr;
+			    if (session.IsStopped()) {
+			      continue;
+			    }
+			    session_ptr->StopGettingPorts();
+			  }
+			  ```
+-
