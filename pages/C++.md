@@ -63,4 +63,21 @@
 			    session_ptr->StopGettingPorts();
 			  }
 			  ```
--
+- ## sigslot
+	- ```cpp
+	  // PeerConnection 继承自 sigslot::has_slots
+	  bool PeerConnection::Initialize(/* args... */) {
+	    // method body...
+	  
+	    // std::unique_ptr<JsepTransportController> transport_controller_;
+	    transport_controller_.reset(new JsepTransportController(/* args... */));
+	    // 调用 connect 时需要传入两个参数，即接收回调的对象的指针，和回调方法的指针
+	    transport_controller_->SignalIceConnectionState.connect(
+	        this, &PeerConnection::OnTransportControllerConnectionState);
+	  
+	    // method body...
+	  }
+	  ```
+	  ```cpp
+	  
+	  ```
