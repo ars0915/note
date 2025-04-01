@@ -1,5 +1,5 @@
 ## Constructors
-	- ```c++
+	- ```cpp
 	  class RTC_EXPORT BasicPortAllocator : public PortAllocator {
 	   public:
 	    // note: The (optional) relay_port_factory is owned by caller
@@ -16,3 +16,6 @@
 	                       const ServerAddresses& stun_servers);
 	  ```
 	- Constructor with Only NetworkManager
+	  ```cpp
+	  explicit BasicPortAllocator(rtc::NetworkManager* network_manager);
+	  ```
