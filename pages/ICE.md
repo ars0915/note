@@ -84,6 +84,7 @@ public:: true
 				- Controlled Agent:  An ICE agent that waits for the controlling agent
 				      to select the final choice of candidate pairs.
 		- 如果前两步都没有对比出结果，则直接调用 `CompareConnectionCandidates` 进行对比。
+		- {{embed ((67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c))}}
 	- ## CompareConnectionStates
 	  id:: 67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c
 		- ```cpp
@@ -169,5 +170,7 @@ public:: true
 			- 当 TCP 断连时，主动方（active）会尝试重连 5s，期间仍然保持原连接 writable 状态不变。被动方（passive）也会保持原连接 writable 状态不变；且重连成功时会创建一条新连接，当新连接变为 writable 状态时，显然应该选择它。
 		- 如果以上条件均不满足，则认为 a 和 b 相等。
 	- ## CompareConnectionCandidates
-	-
+	  id:: 67ec9dcb-5992-48c8-9271-66603959f931
+	- ## ShouldSwitchConnection
+		-
 		-
