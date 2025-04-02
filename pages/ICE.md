@@ -74,8 +74,13 @@ public:: true
 		  }
 		  ```
 		- 调用 `CompareConnectionStates` 对比 a 和 b，如果 `state_cmp != 0`（两者不相等），则直接将 `state_cmp` 作为结果返回。
-		- 如果此时 WebRTC 扮演的角色为 `ICEROLE_CONTROLLED`（被控制者），则对比 a 和 b 的远端提名次数，选择次数较高的那个；或者选择两者中最近收到过数据包的那个。
+		- 如果此时 WebRTC 扮演的角色为 `ICEROLE_CONTROLLED`，则对比 a 和 b 的远端提名次数，选择次数较高的那个；或者选择两者中最近收到过数据包的那个。
 		- 如果前两步都没有对比出结果，则直接调用 `CompareConnectionCandidates` 进行对比。
-		- 在连接过程中，总有一方是控制者（controlling），另一方是被控制者（controlled）。由控制者负责决定最终选择哪个 ICE candidate 进行配对，并通过 STUN 协议告知被控制者。具体可参见 [RFC 5245](https://datatracker.ietf.org/doc/html/rfc5245#section-3)。
-			-
-		-
+		- 在连接过程中，总有一方是 Controlling，另一方是 Controlled。由 Controlling 负责决定最终选择哪个 ICE candidate 进行配对，并通过 STUN 协议告知 Controlled。具体可参见 [RFC 5245](https://datatracker.ietf.org/doc/html/rfc5245#section-3)。
+			- Controlling Agent:  The ICE agent that is responsible for selecting
+			      the final choice of candidate pairs and signaling them through
+			      STUN and an updated offer, if needed.  In any session, one agent
+			      is always controlling.  The other is the controlled agent.
+			- Controlled Agent:  An ICE agent that waits for the controlling agent
+			      to select the final choice of candidate pairs.
+	-
