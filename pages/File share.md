@@ -31,6 +31,7 @@ public:: true
 - ## 方案
 	- webRTC
 	- WebTorrent
+	- ![image.png](../assets/image_1743577154099_0.png)
 - ## 參考產品
 	- LocalSend
 		- 開源
