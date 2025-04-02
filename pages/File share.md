@@ -28,21 +28,17 @@ public:: true
 		  是否需加密
 		  一次傳的檔案數量上限
 		  檔案大小上限
-- 方案
-  
-  webRTC
-  WebTorrent
-  
-  參考產品
-  
-  Local
-  * LocalSend
-      * 開源
-      * 使用 TCP, UDP
-      * 加密
-      * 搜尋設備使用 UDP 廣播 or HTTP 向本地所有 IP 發送請求註冊
-      * 傳輸使用 HTTP，接收端為 server
-      * 接收方無法使用時可以由發送端提供未加密 HTTP 網址下載
+- ## 方案
+	- webRTC
+	  WebTorrent
+- ## 參考產品
+- LocalSend
+- 開源
+  使用 TCP, UDP
+  加密
+  搜尋設備使用 UDP 廣播 or HTTP 向本地所有 IP 發送請求註冊
+  傳輸使用 HTTP，接收端為 server
+  接收方無法使用時可以由發送端提供未加密 HTTP 網址下載
   * Landrop
       * 舊版開源
       * 搜尋設備使用 UDP 廣播
