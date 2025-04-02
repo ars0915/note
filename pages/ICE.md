@@ -30,7 +30,7 @@ public:: true
 		  }
 		  ```
 		- 调用 `absl::c_stable_sort`排序；当两个元素相等时，`absl::c_stable_sort` 将保证这两个元素之间的顺序关系。
-		- 排序规则主要由 [CompareConnections](((67ec995d-d162-4653-88d2-b48c10d1fc75))) 实现；如果 `CompareConnections` 判断 a 和 b 相等，则两者中 RTT（Round-Trip Time）较小的那个将排在前面。
+		- 排序规则主要由 [CompareConnections](((67ec995d-d162-4653-88d2-b48c10d1fc75))) 实现；如果 [CompareConnections](((67ec995d-d162-4653-88d2-b48c10d1fc75)))  判断 a 和 b 相等，则两者中 RTT（Round-Trip Time）较小的那个将排在前面。
 		- 排序完毕后，还需要调用 `ShouldSwitchConnection` 确认是否真的需要切换到新连接。
 	- ## CompareConnections
 	  id:: 67ec995d-d162-4653-88d2-b48c10d1fc75
@@ -76,14 +76,14 @@ public:: true
 		  ```
 		- 调用 [CompareConnectionStates](((67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c))) 对比 a 和 b，如果 `state_cmp != 0`（两者不相等），则直接将 `state_cmp` 作为结果返回。
 		- 如果此时 WebRTC 扮演的角色为 `ICEROLE_CONTROLLED`，则对比 a 和 b 的远端提名次数，选择次数较高的那个；或者选择两者中最近收到过数据包的那个。
+			- 在连接过程中，总有一方是 Controlling，另一方是 Controlled。由 Controlling 负责决定最终选择哪个 ICE candidate 进行配对，并通过 STUN 协议告知 Controlled。具体可参见 [RFC 5245](https://datatracker.ietf.org/doc/html/rfc5245#section-3)。
+				- Controlling Agent:  The ICE agent that is responsible for selecting
+				      the final choice of candidate pairs and signaling them through
+				      STUN and an updated offer, if needed.  In any session, one agent
+				      is always controlling.  The other is the controlled agent.
+				- Controlled Agent:  An ICE agent that waits for the controlling agent
+				      to select the final choice of candidate pairs.
 		- 如果前两步都没有对比出结果，则直接调用 `CompareConnectionCandidates` 进行对比。
-		- 在连接过程中，总有一方是 Controlling，另一方是 Controlled。由 Controlling 负责决定最终选择哪个 ICE candidate 进行配对，并通过 STUN 协议告知 Controlled。具体可参见 [RFC 5245](https://datatracker.ietf.org/doc/html/rfc5245#section-3)。
-			- Controlling Agent:  The ICE agent that is responsible for selecting
-			      the final choice of candidate pairs and signaling them through
-			      STUN and an updated offer, if needed.  In any session, one agent
-			      is always controlling.  The other is the controlled agent.
-			- Controlled Agent:  An ICE agent that waits for the controlling agent
-			      to select the final choice of candidate pairs.
 	- ## CompareConnectionStates
 	  id:: 67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c
 		- ```cpp
@@ -168,5 +168,6 @@ public:: true
 		- 或者当 a 和 b 都是 TCP 连接，且两者的 `write_state` 都为 `STATE_WRITABLE` ，选择两者中已经连接成功（connected）的那个。設定 connected 的逻辑可以参考 `Connection::set_connected`。
 			- 当 TCP 断连时，主动方（active）会尝试重连 5s，期间仍然保持原连接 writable 状态不变。被动方（passive）也会保持原连接 writable 状态不变；且重连成功时会创建一条新连接，当新连接变为 writable 状态时，显然应该选择它。
 		- 如果以上条件均不满足，则认为 a 和 b 相等。
-		-
+	- ## CompareConnectionCandidates
+	-
 		-
