@@ -64,8 +64,10 @@ public:: true
 		- 隨時可加入
 		- flutter 實作方法
 			- 切檔案
-			-
-			-
+			- 建立Chunk Map (Bitfield)
+			  `[true, false, true, false, false, true, ...]`
+			- Exchange Bitfields Between Peers
+			- Send/Respond to Chunk Requests
 - ## 評估項目
 	- internet / intranet 支援
 	- 使用者間要透過 IFP 中轉或直連
