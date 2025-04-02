@@ -17,63 +17,59 @@ public:: true
 	  
 	  Android 版不能上傳檔案
 	  無法 Device <-> Device
-	- 大檔案上傳
-	  
-	  切片
+- ## Note
+- ### 實作需注意
+	- 切片
 	  還原切片、拼接
 	  中斷後續傳
-	  
-	  討論
-	  
-	  是否需要雲端儲存 	存取時限
-	  裝置間互傳是否直接建立連線
-	  是否需加密
-	  一次傳的檔案數量上限
-	  檔案大小上限
-	  
-	  
-	  方案
-	  
-	  webRTC
-	  WebTorrent
-	  
-	  參考產品
-	  
-	  Local
-	  * LocalSend
-	      * 開源
-	      * 使用 TCP, UDP
-	      * 加密
-	      * 搜尋設備使用 UDP 廣播 or HTTP 向本地所有 IP 發送請求註冊
-	      * 傳輸使用 HTTP，接收端為 server
-	      * 接收方無法使用時可以由發送端提供未加密 HTTP 網址下載
-	  * Landrop
-	      * 舊版開源
-	      * 搜尋設備使用 UDP 廣播
-	      * 每個裝置啟一個 server 使用 TCP 連線
-	  * AirDroid
-	  * drop.lol
-	      * 開源
-	      * 文件說使用 webRTC
-	      * 加密
-	  * ShareDrop
-	      * 開源
-	      * 文件說使用 webRTC
-	  * WebTorrent
-	      * base on webRTC
-	      * 上傳者只要傳部份給所有人
-	      * 大家 share chunk
-	      * 需要
-	          * Trackers (via WebSocket) to find other peers
-	          * Distributed Hash Tables (DHT) in native environments
-	      * 可以並行傳輸增加速度和量級
-	      * 減少上傳者的 loading
-	      * 
-	  
-	  
-	  
-	  
-	  評估項目
-	  1. internet / intranet 支援
-	  2. 使用者間要透過 IFP 中轉或直連
-	  3. housekeeping
+	- 討論
+		- 是否需要雲端儲存 	存取時限
+		  裝置間互傳是否直接建立連線
+		  是否需加密
+		  一次傳的檔案數量上限
+		  檔案大小上限
+- 方案
+  
+  webRTC
+  WebTorrent
+  
+  參考產品
+  
+  Local
+  * LocalSend
+      * 開源
+      * 使用 TCP, UDP
+      * 加密
+      * 搜尋設備使用 UDP 廣播 or HTTP 向本地所有 IP 發送請求註冊
+      * 傳輸使用 HTTP，接收端為 server
+      * 接收方無法使用時可以由發送端提供未加密 HTTP 網址下載
+  * Landrop
+      * 舊版開源
+      * 搜尋設備使用 UDP 廣播
+      * 每個裝置啟一個 server 使用 TCP 連線
+  * AirDroid
+  * drop.lol
+      * 開源
+      * 文件說使用 webRTC
+      * 加密
+  * ShareDrop
+      * 開源
+      * 文件說使用 webRTC
+  * WebTorrent
+      * base on webRTC
+      * 上傳者只要傳部份給所有人
+      * 大家 share chunk
+      * 需要
+          * Trackers (via WebSocket) to find other peers
+          * Distributed Hash Tables (DHT) in native environments
+      * 可以並行傳輸增加速度和量級
+      * 減少上傳者的 loading
+      * 
+  
+  
+  
+  
+  評估項目
+  1. internet / intranet 支援
+  2. 使用者間要透過 IFP 中轉或直連
+  3. housekeeping
