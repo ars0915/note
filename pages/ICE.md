@@ -29,7 +29,7 @@ public:: true
 		    return ShouldSwitchConnection(reason, top_connection);
 		  }
 		  ```
-		  调用 absl::c_stable_sort 这个方法进行排序；当两个元素相等时，absl::c_stable_sort 将保证这两个元素之间的顺序关系。
-		  排序规则主要由 CompareConnections 实现；如果 CompareConnections 判断 a 和 b 相等，则两者中 RTT（Round-Trip Time）较小的那个将排在前面。
+		- 调用 absl::c_stable_sort排序；当两个元素相等时，absl::c_stable_sort 将保证这两个元素之间的顺序关系。
+		- 排序规则主要由 CompareConnections 实现；如果 CompareConnections 判断 a 和 b 相等，则两者中 RTT（Round-Trip Time）较小的那个将排在前面。
 		  排序完毕后，还需要调用 ShouldSwitchConnection 确认是否真的需要切换到新连接。
 		-
