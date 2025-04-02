@@ -57,9 +57,9 @@ public:: true
 		  大家 share chunk
 		  可以並行傳輸增加速度和量級
 		  減少上傳者的 loading
-		- 需要
-			- Trackers (via WebSocket) to find other peers
-			- Distributed Hash Tables (DHT) in native environments
+		- 需要其中一個
+			- Trackers (via WebSocket) to find other peers (用來建立 WebRTC 連線)
+			- Distributed Hash Tables (DHT) in native environments (完全去中心化，不需 Signaling server)
 		- 不需要所有 peer 都連線
 		- 隨時可加入
 - ## 評估項目
