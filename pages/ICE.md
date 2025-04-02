@@ -83,8 +83,7 @@ public:: true
 				      is always controlling.  The other is the controlled agent.
 				- Controlled Agent:  An ICE agent that waits for the controlling agent
 				      to select the final choice of candidate pairs.
-		- 如果前两步都没有对比出结果，则直接调用 `CompareConnectionCandidates` 进行对比。
-		- {{embed ((67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c))}}
+		- 如果前两步都没有对比出结果，则直接调用 [CompareConnectionCandidates](((67ec9dcb-5992-48c8-9271-66603959f931))) 进行对比。
 	- ## CompareConnectionStates
 	  id:: 67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c
 		- ```cpp
