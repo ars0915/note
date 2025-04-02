@@ -222,5 +222,54 @@ public:: true
 		- 如果以上条件均不满足，则认为 a 和 b 相等。
 	- ## ShouldSwitchConnection
 	  id:: 67ec9ede-e8fb-4b4e-93f3-3e7ad7dffd28
-		-
+		- ```cpp
+		  IceControllerInterface::SwitchResult BasicIceController::ShouldSwitchConnection(
+		      IceControllerEvent reason,
+		      const Connection* new_connection) {
+		    if (!ReadyToSend(new_connection) || selected_connection_ == new_connection) {
+		      return {absl::nullopt, absl::nullopt};
+		    }
+		  
+		    if (selected_connection_ == nullptr) {
+		      return HandleInitialSelectDampening(reason, new_connection);
+		    }
+		  
+		    // Do not switch to a connection that is not receiving if it is not on a
+		    // preferred network or it has higher cost because it may be just spuriously
+		    // better.
+		    int compare_a_b_by_networks = CompareCandidatePairNetworks(
+		        new_connection, selected_connection_, config_.network_preference);
+		    if (compare_a_b_by_networks == b_is_better && !new_connection->receiving()) {
+		      return {absl::nullopt, absl::nullopt};
+		    }
+		  
+		    bool missed_receiving_unchanged_threshold = false;
+		    absl::optional<int64_t> receiving_unchanged_threshold(
+		        rtc::TimeMillis() - config_.receiving_switching_delay_or_default());
+		    int cmp = CompareConnections(selected_connection_, new_connection,
+		                                 receiving_unchanged_threshold,
+		                                 &missed_receiving_unchanged_threshold);
+		  
+		    // method body...
+		  
+		    if (cmp < 0) {
+		      return {new_connection, absl::nullopt};
+		    } else if (cmp > 0) {
+		      return {absl::nullopt, recheck_event};
+		    }
+		  
+		    // If everything else is the same, switch only if rtt has improved by
+		    // a margin.
+		    if (new_connection->rtt() <= selected_connection_->rtt() - kMinImprovement) {
+		      return {new_connection, absl::nullopt};
+		    }
+		  
+		    return {absl::nullopt, recheck_event};
+		  }
+		  ```
+		- 如果新连接还没有准备好发送数据，则不切换。准备好（ReadyToSend）是指，该连接应当是可写入的，或者是假定可写入的，或者处于 `STATE_WRITE_UNRELIABLE` 状态。
+		- 如果原连接还不存在，则调用 HandleInitialSelectDampening 判断是否使用新连接。这是因为每当有新的连接可用时便会触发重新排序，而此时第一条连接可能还没有被选择出来。我们当然期望选到的第一条连接是一条较为不错的连接，所以需要设置一定的 dampening（阻尼，读者也可以理解为阈值）。如果新连接不满足要求，则不切换。
+		- 调用 CompareCandidatePairNetworks 按照偏好的网络类型进行选择。如果原连接更优，且新连接并没有在接收数据（receiving），则不切换。
+		- 调用 CompareConnections（有阈值）对比原连接和新连接。如果原连接更优，则不切换。
+		- 如果新连接的 RTT 与原连接相比没有明显降低（kMinImprovement），则不切换。
 		-
