@@ -73,3 +73,6 @@ public:: true
 		    return CompareConnectionCandidates(a, b);
 		  }
 		  ```
+		- 调用 `CompareConnectionStates` 对比 a 和 b，如果 `state_cmp != 0`（两者不相等），则直接将 `state_cmp` 作为结果返回。
+		- 如果此时 WebRTC 扮演的角色为 `ICEROLE_CONTROLLED`（被控制者），则对比 a 和 b 的远端提名次数，选择次数较高的那个；或者选择两者中最近收到过数据包的那个。
+		- 如果前两步都没有对比出结果，则直接调用 CompareConnectionCandidates 进行对比。
