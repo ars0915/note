@@ -155,7 +155,7 @@ public:: true
 		- 对于 a 和 b，首先选择两者中可写入（writable）或者假定（presume）可写入的那个。
 		  假定可写入的判断条件可以简单认为是 local candidate 为 relay 模式，且 remote candidate 为 relay 或者 [[prflx]] 模式。
 		  relay 模式即为 TURN 模式； [[prflx]] 模式指的是在使用 STUN 模式连接成功后，WebRTC 发现可以与远端直连了，便会本地生成新的 remote candidate 作为候选。
-		- 如果前面選不出來，选择 write_state 更小的那个。
+		- 如果前一田山中选择 write_state 更小的那个。
 		  Connection::WriteState 的枚举定义如下：
 			- `STATE_WRITABLE = 0` 表示近期有收到过 ping responses；
 			  `STATE_WRITE_UNRELIABLE = 1` 表示有一些 ping 发送失败了；
