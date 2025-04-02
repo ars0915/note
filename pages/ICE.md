@@ -73,7 +73,7 @@ public:: true
 		    return CompareConnectionCandidates(a, b);
 		  }
 		  ```
-		- 调用 `CompareConnectionStates` 对比 a 和 b，如果 `state_cmp != 0`（两者不相等），则直接将 `state_cmp` 作为结果返回。
+		- 调用 CompareConnectionStates((67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c)) 对比 a 和 b，如果 `state_cmp != 0`（两者不相等），则直接将 `state_cmp` 作为结果返回。
 		- 如果此时 WebRTC 扮演的角色为 `ICEROLE_CONTROLLED`，则对比 a 和 b 的远端提名次数，选择次数较高的那个；或者选择两者中最近收到过数据包的那个。
 		- 如果前两步都没有对比出结果，则直接调用 `CompareConnectionCandidates` 进行对比。
 		- 在连接过程中，总有一方是 Controlling，另一方是 Controlled。由 Controlling 负责决定最终选择哪个 ICE candidate 进行配对，并通过 STUN 协议告知 Controlled。具体可参见 [RFC 5245](https://datatracker.ietf.org/doc/html/rfc5245#section-3)。
@@ -84,6 +84,7 @@ public:: true
 			- Controlled Agent:  An ICE agent that waits for the controlling agent
 			      to select the final choice of candidate pairs.
 	- ## CompareConnectionStates
+	  id:: 67ec9ab4-fd0d-4d5e-94e9-7724b7678e7c
 		- ```cpp
 		  bool BasicIceController::PresumedWritable(const Connection* conn) const {
 		    return (conn->write_state() == Connection::STATE_WRITE_INIT &&
