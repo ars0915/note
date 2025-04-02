@@ -161,6 +161,8 @@ public:: true
 			  `STATE_WRITE_UNRELIABLE = 1` 表示有一些 ping 发送失败了；
 			  `STATE_WRITE_INIT = 2` 表示还没有受到过 ping response；
 			  `STATE_WRITE_TIMEOUT = 3` 表示有大量 ping 发送失败，可以认为是连接超时。
-		- 或者选择两者中正在接收数据（receiving）的那个，判断是否正在接收数据可以参考 Connection::UpdateReceiving 这个方法的调用栈。注意 a 和 b 存在顺序关系，如果要切换到 b 还需要满足一定的阈值（threshold）；不过目前源码中 SortAndSwitchConnection 调用 CompareConnections 时并没有设置阈值，所以可以直接切换。
-		  或者当 a 和 b 都是 TCP 连接，且两者的 write_state 都为 STATE_WRITABLE ，选择两者中已经连接成功（connected）的那个。设置连接成功的逻辑可以参考 Connection::set_connected 这个方法的调用栈。
+		- 或者选择两者中正在接收数据（receiving）的那个，判断是否正在接收数据可以参考 `Connection::UpdateReceiving` 这个方法的调用栈。注意 a 和 b 存在顺序关系，如果要切换到 b 还需要满足一定的阈值（threshold）；不过目前源码中 SortAndSwitchConnection 调用 CompareConnections 时并没有设置阈值，所以可以直接切换。
+		- 或者当 a 和 b 都是 TCP 连接，且两者的 write_state 都为 STATE_WRITABLE ，选择两者中已经连接成功（connected）的那个。设置连接成功的逻辑可以参考 Connection::set_connected 这个方法的调用栈。
 		  如果以上条件均不满足，则认为 a 和 b 相等。
+		-
+		-
