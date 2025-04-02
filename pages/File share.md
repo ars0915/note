@@ -68,6 +68,9 @@ public:: true
 			  `[true, false, true, false, false, true, ...]`
 			- Exchange Bitfields Between Peers
 			- Send/Respond to Chunk Requests
+			- 選擇 Peer 的策略
+				- round-robin / least-busy
+			-
 - ## 評估項目
 	- internet / intranet 支援
 	- 使用者間要透過 IFP 中轉或直連
