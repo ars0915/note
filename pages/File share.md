@@ -61,7 +61,7 @@ public:: true
 			- Trackers (via WebSocket) to find other peers
 			- Distributed Hash Tables (DHT) in native environments
 		- 不需要所有 peer 都連線
-		-
+		- 隨時可加入
 - ## 評估項目
 	- internet / intranet 支援
 	- 使用者間要透過 IFP 中轉或直連
