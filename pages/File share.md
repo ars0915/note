@@ -54,18 +54,13 @@ public:: true
 - WebTorrent
 	- base on webRTC
 	  上傳者只要傳部份給所有人
-	      * 大家 share chunk
-	      * 需要
-	          * Trackers (via WebSocket) to find other peers
-	          * Distributed Hash Tables (DHT) in native environments
-	      * 可以並行傳輸增加速度和量級
-	      * 減少上傳者的 loading
-	      * 
-	  
-	  
-	  
-	  
-	  評估項目
-	  1. internet / intranet 支援
-	  2. 使用者間要透過 IFP 中轉或直連
-	  3. housekeeping
+	  大家 share chunk
+	  可以並行傳輸增加速度和量級
+	  減少上傳者的 loading
+	- 需要
+		- Trackers (via WebSocket) to find other peers
+		- Distributed Hash Tables (DHT) in native environments
+- ## 評估項目
+- internet / intranet 支援
+  2. 使用者間要透過 IFP 中轉或直連
+  3. housekeeping
