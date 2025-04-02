@@ -170,6 +170,52 @@ public:: true
 		- 如果以上条件均不满足，则认为 a 和 b 相等。
 	- ## CompareConnectionCandidates
 	  id:: 67ec9dcb-5992-48c8-9271-66603959f931
+		- ```cpp
+		  // Compares two connections based only on the candidate and network information.
+		  // Returns positive if |a| is better than |b|.
+		  int BasicIceController::CompareConnectionCandidates(const Connection* a,
+		                                                      const Connection* b) const {
+		    int compare_a_b_by_networks =
+		        CompareCandidatePairNetworks(a, b, config_.network_preference);
+		    if (compare_a_b_by_networks != a_and_b_equal) {
+		      return compare_a_b_by_networks;
+		    }
+		  
+		    // Compare connection priority. Lower values get sorted last.
+		    if (a->priority() > b->priority()) {
+		      return a_is_better;
+		    }
+		    if (a->priority() < b->priority()) {
+		      return b_is_better;
+		    }
+		  
+		    // If we're still tied at this point, prefer a younger generation.
+		    // (Younger generation means a larger generation number).
+		    int cmp = (a->remote_candidate().generation() + a->generation()) -
+		              (b->remote_candidate().generation() + b->generation());
+		    if (cmp != 0) {
+		      return cmp;
+		    }
+		  
+		    // A periodic regather (triggered by the regather_all_networks_interval_range)
+		    // will produce candidates that appear the same but would use a new port. We
+		    // want to use the new candidates and purge the old candidates as they come
+		    // in, so use the fact that the old ports get pruned immediately to rank the
+		    // candidates with an active port/remote candidate higher.
+		    bool a_pruned = is_connection_pruned_func_(a);
+		    bool b_pruned = is_connection_pruned_func_(b);
+		    if (!a_pruned && b_pruned) {
+		      return a_is_better;
+		    }
+		    if (a_pruned && !b_pruned) {
+		      return b_is_better;
+		    }
+		  
+		    // Otherwise, must be equal
+		    return 0;
+		  }
+		  ```
+		-
 	- ## ShouldSwitchConnection
 	  id:: 67ec9ede-e8fb-4b4e-93f3-3e7ad7dffd28
 		-
