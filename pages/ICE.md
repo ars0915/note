@@ -31,8 +31,7 @@ public:: true
 		  ```
 		- 调用 `absl::c_stable_sort`排序；当两个元素相等时，`absl::c_stable_sort` 将保证这两个元素之间的顺序关系。
 		- 排序规则主要由 [CompareConnections](((67ec995d-d162-4653-88d2-b48c10d1fc75))) 实现；如果 [CompareConnections](((67ec995d-d162-4653-88d2-b48c10d1fc75)))  判断 a 和 b 相等，则两者中 RTT（Round-Trip Time）较小的那个将排在前面。
-		- 排序完毕后，还需要调用 [ShouldSwitchConnection]() 确认是否真的需要切换到新连接。
-		- ((67ec9ede-e8fb-4b4e-93f3-3e7ad7dffd28))
+		- 排序完毕后，还需要调用 [ShouldSwitchConnection](((67ec9ede-e8fb-4b4e-93f3-3e7ad7dffd28))) 确认是否真的需要切换到新连接。
 	- ## CompareConnections
 	  id:: 67ec995d-d162-4653-88d2-b48c10d1fc75
 		- ```cpp
