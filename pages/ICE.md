@@ -215,7 +215,11 @@ public:: true
 		    return 0;
 		  }
 		  ```
-		-
+		- 调用 CompareCandidatePairNetworks 对比 a 和 b，首先选择配置中偏好的网络类型（比如 4G）；如果 a 和 b 的网络类型相等，就选择两者中 [network cost](https://datatracker.ietf.org/doc/html/draft-thatcher-ice-network-cost-01#section-1) 较小的那个；network cost 体现了 ICE 服务器对该连接的网络类型的偏好。
+		- 或者对比 a 和 b 的优先级，选择两者中优先级较大的那个。优先级的计算方式可参见 `Connection::priority` ，**需要使用到 SDP 中配置的 ICE candidates 的优先级。**
+		- 或者选择 a 和 b 中 local candidate 与 remote candidate 较新（新生成）的那个。
+		- 或者选择 a 和 b 中没有被剪枝（pruned）的那个。剪枝的原因可参见 [RFC 5245 - 5.7.3](https://datatracker.ietf.org/doc/html/rfc5245#section-5.7.3)。
+		- 如果以上条件均不满足，则认为 a 和 b 相等。
 	- ## ShouldSwitchConnection
 	  id:: 67ec9ede-e8fb-4b4e-93f3-3e7ad7dffd28
 		-
