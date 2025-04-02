@@ -83,4 +83,6 @@ public:: true
 			      is always controlling.  The other is the controlled agent.
 			- Controlled Agent:  An ICE agent that waits for the controlling agent
 			      to select the final choice of candidate pairs.
-	-
+	- ## CompareConnectionStates
+		- ```cpp
+		  ```
