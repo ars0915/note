@@ -163,8 +163,8 @@ public:: true
 			  `STATE_WRITE_TIMEOUT = 3` 表示有大量 ping 发送失败，可以认为是连接超时。
 		- 或者选择两者中正在接收数据（receiving）的那个，判断是否 receiving 可以参考 `Connection::UpdateReceiving`。
 		  注意 a 和 b 存在顺序关系，如果要切换到 b 还需要满足一定的阈值（threshold）；不过目前源码中 SortAndSwitchConnection 调用 CompareConnections 时并没有设置阈值，所以可以直接切换。
-		- 或者当 a 和 b 都是 TCP 连接，且两者的 `write_state` 都为 `STATE_WRITABLE` ，选择两者中已经连接成功（connected）的那个。設定 connected 的逻辑可以参考 `Connection::set_connected` 。
+		- 或者当 a 和 b 都是 TCP 连接，且两者的 `write_state` 都为 `STATE_WRITABLE` ，选择两者中已经连接成功（connected）的那个。設定 connected 的逻辑可以参考 `Connection::set_connected`。
+			- 当 TCP 断连时，主动方（active）会尝试重连 5s，期间仍然保持原连接 writable 状态不变。被动方（passive）也会保持原连接 writable 状态不变；且重连成功时会创建一条新连接，当新连接变为 writable 状态时，显然应该选择它。
 		- 如果以上条件均不满足，则认为 a 和 b 相等。
-		-
 		-
 		-
