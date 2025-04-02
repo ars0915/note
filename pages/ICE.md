@@ -85,4 +85,80 @@ public:: true
 			      to select the final choice of candidate pairs.
 	- ## CompareConnectionStates
 		- ```cpp
+		  bool BasicIceController::PresumedWritable(const Connection* conn) const {
+		    return (conn->write_state() == Connection::STATE_WRITE_INIT &&
+		            config_.presume_writable_when_fully_relayed &&
+		            conn->local_candidate().type() == RELAY_PORT_TYPE &&
+		            (conn->remote_candidate().type() == RELAY_PORT_TYPE ||
+		             conn->remote_candidate().type() == PRFLX_PORT_TYPE));
+		  }
+		  
+		  // Compare two connections based on their writing, receiving, and connected
+		  // states.
+		  int BasicIceController::CompareConnectionStates(
+		      const Connection* a,
+		      const Connection* b,
+		      absl::optional<int64_t> receiving_unchanged_threshold,
+		      bool* missed_receiving_unchanged_threshold) const {
+		    // First, prefer a connection that's writable or presumed writable over
+		    // one that's not writable.
+		    bool a_writable = a->writable() || PresumedWritable(a);
+		    bool b_writable = b->writable() || PresumedWritable(b);
+		    if (a_writable && !b_writable) {
+		      return a_is_better;
+		    }
+		    if (!a_writable && b_writable) {
+		      return b_is_better;
+		    }
+		  
+		    // Sort based on write-state. Better states have lower values.
+		    if (a->write_state() < b->write_state()) {
+		      return a_is_better;
+		    }
+		    if (b->write_state() < a->write_state()) {
+		      return b_is_better;
+		    }
+		  
+		    // We prefer a receiving connection to a non-receiving, higher-priority
+		    // connection when sorting connections and choosing which connection to
+		    // switch to.
+		    if (a->receiving() && !b->receiving()) {
+		      return a_is_better;
+		    }
+		    if (!a->receiving() && b->receiving()) {
+		      if (!receiving_unchanged_threshold ||
+		          (a->receiving_unchanged_since() <= *receiving_unchanged_threshold &&
+		           b->receiving_unchanged_since() <= *receiving_unchanged_threshold)) {
+		        return b_is_better;
+		      }
+		      *missed_receiving_unchanged_threshold = true;
+		    }
+		  
+		    // some comments...
+		  
+		    // In the case where we reconnect TCP connections, the original best
+		    // connection is disconnected without changing to WRITE_TIMEOUT. In this case,
+		    // the new connection, when it becomes writable, should have higher priority.
+		    if (a->write_state() == Connection::STATE_WRITABLE &&
+		        b->write_state() == Connection::STATE_WRITABLE) {
+		      if (a->connected() && !b->connected()) {
+		        return a_is_better;
+		      }
+		      if (!a->connected() && b->connected()) {
+		        return b_is_better;
+		      }
+		    }
+		  
+		    return 0;
+		  }
 		  ```
+		- 对于 a 和 b，首先选择两者中可写入（writable）或者假定（presume）可写入的那个。
+		  假定可写入的判断条件可以简单认为是 local candidate 为 relay 模式，且 remote candidate 为 relay 或者 prflx 模式。relay 模式即为 TURN 模式；prflx 模式指的是在使用 STUN 模式连接成功后，WebRTC 发现可以与远端直连了，便会本地生成新的 remote candidate 作为候选。
+		  或者选择 write_state 更小的那个。Connection::WriteState 的枚举定义如下：
+		- STATE_WRITABLE = 0 表示近期有收到过 ping responses；
+		  STATE_WRITE_UNRELIABLE = 1 表示有一些 ping 发送失败了；
+		  STATE_WRITE_INIT = 2 表示还没有受到过 ping response；
+		  STATE_WRITE_TIMEOUT = 3 表示有大量 ping 发送失败，可以认为是连接超时。
+		  或者选择两者中正在接收数据（receiving）的那个，判断是否正在接收数据可以参考 Connection::UpdateReceiving 这个方法的调用栈。注意 a 和 b 存在顺序关系，如果要切换到 b 还需要满足一定的阈值（threshold）；不过目前源码中 SortAndSwitchConnection 调用 CompareConnections 时并没有设置阈值，所以可以直接切换。
+		  或者当 a 和 b 都是 TCP 连接，且两者的 write_state 都为 STATE_WRITABLE ，选择两者中已经连接成功（connected）的那个。设置连接成功的逻辑可以参考 Connection::set_connected 这个方法的调用栈。
+		  如果以上条件均不满足，则认为 a 和 b 相等。
