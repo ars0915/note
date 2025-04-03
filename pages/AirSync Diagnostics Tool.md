@@ -1,4 +1,6 @@
-# Network
+public:: true
+
+- # Network
 	- ## Port binding result
 		- report server bind result
 	- ## Low level connect test
