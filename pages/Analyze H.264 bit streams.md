@@ -287,4 +287,8 @@ tags:: Video Compression
 				- This indicates more explicit motion compensation compared to direct mode.
 			- 2 or 8 (towards the end):
 				- These numbers often represent different modes or regions, such as skipped macroblocks, intra-coded blocks, or non-standard prediction modes.
--
+- ## DTS & PTS
+	- DTS (Decode Timestamp)
+	- PTS (Presentation Timestamp)
+	- Decoder 會根據 DTS 順序解碼,
+	-
