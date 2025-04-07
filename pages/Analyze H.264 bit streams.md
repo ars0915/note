@@ -290,5 +290,10 @@ tags:: Video Compression
 - ## DTS & PTS
 	- DTS (Decode Timestamp)
 	- PTS (Presentation Timestamp)
-	- Decoder 會根據 DTS 順序解碼,
-	-
+	- Decoder 會根據 DTS 順序解碼，根據 PTS 順序播放
+	- ```
+	       I B P B P B P B I
+	  PTS: 1 2 3 4 5 6 7 8 9
+	  DTS: 1 3 2 5 4 7 6 9 8
+	  ```
+	- 解碼 B frame 前需要所有的參考 frame
