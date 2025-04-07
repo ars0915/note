@@ -296,4 +296,4 @@ tags:: Video Compression
 	  PTS: 1 2 3 4 5 6 7 8 9
 	  DTS: 1 3 2 5 4 7 6 9 8
 	  ```
-	- 解碼 B frame 前需要所有的參考 frame
+	- 解碼 B frame 前需要所有的參考 frame，在 real time 通常不使用 B frame，所以 DTS 通常等於 PTS
