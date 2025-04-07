@@ -62,4 +62,3 @@ public:: true
 	- ## Bitrate Control
 		- CBR: Constant 希望檔案大小被限制，quality 不保證
 		- VBR: Variable 保持品質，size 不可控
-	-
