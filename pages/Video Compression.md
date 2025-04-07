@@ -41,8 +41,10 @@ public:: true
 				- Type: SPS (7), PPS (8), IDR frame (5), or non-IDR frame (1).
 	- ## Frame
 		- I frame: Intraframe, Keyframe，Spatial
-			- 不需參考其他幀即可編碼
+			- 不需參考其他幀即可編碼，
 		- P frame: Predicted
-			- 需要之前的 I frame 或 P frame 參考，只有
+			- 需要之前的 I frame 或 P frame 參考，只有變化的部份需要編碼
+		- B frame: Bi-directional Predicted
+			- 需要之前和之後的 I, P frame 編碼
 		-
 		-
