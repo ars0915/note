@@ -60,4 +60,6 @@ public:: true
 		  ```
 		- 解碼 B frame 前需要所有的參考 frame，在 real time 通常不使用 B frame，所以 DTS 通常等於 PTS
 	- ## Bitrate Control
-		-
+		- CBR: Constant 希望檔案大小被限制，quality 不保證
+		- VBR: Variable 保持品質，size 不可控
+	-
