@@ -39,4 +39,8 @@ public:: true
 			- **NAL Unit Headers:**
 			  Contain fields like:
 				- Type: SPS (7), PPS (8), IDR frame (5), or non-IDR frame (1).
-	- ##
+	- ## Frame
+		- I frame: Intraframe, Keyframe，Spatial
+			- 不需參考其他
+		-
+		-
