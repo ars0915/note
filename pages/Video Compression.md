@@ -46,6 +46,8 @@ public:: true
 			- 需要之前的 I frame 或 P frame 參考，只有變化的部份需要編碼
 		- B frame: Bi-directional Predicted
 			- 需要之前和之後的 I, P frame 編碼，缺點：延遲、live stream 要等待、運算量大
-		- GOP: Group of Picture
+		- GOP: Group of Pictures
+			- 代表 I frame 間的間隔，愈長檔案愈小，但畫質可能愈差
+		-
 		-
 		-
