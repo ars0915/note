@@ -30,7 +30,7 @@ public:: true
 		  await pc.setLocalDescription(offer);
 		  ```
 		- Exchange ICE Candidates
-		  在設完 local 
+		  在設完 local description 後才會觸發 gathering
 		  Both peers gather and exchange ICE candidates incrementally (Trickle ICE) or after all candidates are collected (Full ICE).
 		  ```javascript
 		  pc.onicecandidate = (event) => {
