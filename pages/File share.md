@@ -78,10 +78,11 @@ public:: true
 	- housekeeping
 - ## Sender 間建立連線
   避免 receiver 成為瓶頸，同時保持整個系統的高效率和彈性。
-	- **直接連接**：如果可以在 sender 間建立直接的 WebRTC 連接，這是最高效的
+	- 可以在 sender 間建立直接的 WebRTC 連接
 	- **Mesh 網絡**：每個 sender 維持與其他幾個 sender 的連接，形成分散式網絡
-	- **使用 signaling server**：receiver 可以作為 signaling server，幫助 sender 間建立連接，但實際資料傳輸不經過 receiver
+	- receiver 可以作為 signaling server，幫助 sender 間建立連接，但實際資料傳輸不經過 receiver
 	- ### 何時建立 sender 間的連線？
+		- 建立連線需要的資源和時間
 		- WebRTC 連線建立時間
 		- 信令交換延遲
 		- 初始連線建立後的檔案分割與傳輸協調
