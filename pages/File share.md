@@ -139,7 +139,10 @@ public:: true
 				- 根據使用場景修改負載 threshold
 			- 持續優化預測算法
 - ## File cleanup
-	- ###
+	- ### Android Cache Directory
+		- Internal cache
+			- 在應用程式下
+		- External cache
 	- ### 需要 App 啟動
 		- WorkManager
 		- FileProvider  clear cache directory
