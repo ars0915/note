@@ -141,8 +141,11 @@ public:: true
 - ## File cleanup
 	- ### Android Cache Directory
 		- Internal cache
-			- 在文件管理器無法瀏覽
+			- 在文件管理器無法瀏覽，除了 App 本身或 root、adb
+			- 空間相對有限
 		- External cache
+			- 用戶可通過文件管理器訪問（取決於設備）
+			- 空間通常比內部緩存大
 	- ### 需要 App 啟動
 		- WorkManager
 		- FileProvider  clear cache directory
