@@ -143,4 +143,6 @@ public:: true
 		- WorkManager
 		- FileProvider  clear cache directory
 	- ### 系統級 task (需要權限)
+		- JobScheduler
+		- 監聽系統事件
 		-
