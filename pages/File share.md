@@ -146,7 +146,7 @@ public:: true
 		- External cache
 			- 用戶可通過文件管理器訪問（取決於設備）
 			- 空間通常比內部緩存大
-			-
+		- LRU (Least Recently Used) 緩存是 Android 框架中提供的一種內存緩存實現，它基於"最近最少使用"原則來管理緩存項目。當緩存達到容量上限時，最長時間未被訪問的項目會被優先移除，為新項目騰出空間。
 	- ### 需要 App 啟動
 		- WorkManager
 		- FileProvider  clear cache directory
