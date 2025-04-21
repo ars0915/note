@@ -78,6 +78,7 @@ public:: true
 	- 使用者間要透過 IFP 中轉或直連
 	- housekeeping
 - ## Sender 間建立連線
+  collapsed:: true
   避免 receiver 成為瓶頸，同時保持整個系統的高效率和彈性。
 	- 在 sender 間建立直接的 WebRTC 連接（如果沒辦法建立就會有多條路徑的問題）
 	- Mesh 網絡：每個 sender 維持與其他幾個 sender 的連接，形成分散式網絡
@@ -137,4 +138,5 @@ public:: true
 				- 需要定時監控
 				- 根據使用場景修改負載 threshold
 			- 持續優化預測算法
--
+- ## Housekeeping
+	-
