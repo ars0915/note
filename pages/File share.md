@@ -146,6 +146,7 @@ public:: true
 		- External cache
 			- 用戶可通過文件管理器訪問（取決於設備）
 			- 空間通常比內部緩存大
+			-
 	- ### 需要 App 啟動
 		- WorkManager
 		- FileProvider  clear cache directory
