@@ -141,5 +141,6 @@ public:: true
 - ## Housekeeping
 	- ### 需要 App 啟動
 		- WorkManager
+		- FileProvider  clear cache directory
+	- ### 系統級 task (需要權限)
 		-
-	- ### 系統級 task
