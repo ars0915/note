@@ -141,7 +141,7 @@ public:: true
 - ## File cleanup
 	- ### Android Cache Directory
 		- Internal cache
-			- 在應用程式下
+			- 在文件管理器無法瀏覽
 		- External cache
 	- ### 需要 App 啟動
 		- WorkManager
