@@ -21,3 +21,4 @@ public:: true
 		- The receiving peer generates a `prflx` candidate for the observed source address and port, associating it with the original host or server reflexive candidate.
 	- **Pair Testing:**
 		- The newly created `prflx` candidate is added to the list of potential candidate pairs for testing. If it works better than other candidates, it might be selected for the session.
+-
