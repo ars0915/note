@@ -118,5 +118,14 @@
 	  ```cpp
 	  new_sample_cb(GstElement* sink, CustomData* data) {
 	    g_print(">>> INSIDE new_sample_cb\n");
+	    
+	    g_signal_emit_by_name(sink, "pull-sample", &sample);
+	    if (sample) {
+	      GST_INFO("pull sample");
+	  
+	      GstCaps* caps = gst_sample_get_caps(sample);
+	      gchar* caps_str = gst_caps_to_string(caps);
+	      g_print("appsink sample caps: %s\n", caps_str);
+	      g_free(caps_str);
 	  ```
--
+- ## app sink callback 成功
