@@ -150,4 +150,6 @@
 	  ```
 - ## app sink callback 沒有觸發
 	- 看上一個 element 有沒有正常運作
+	  使用 `gst_bin_get_by_name` 需要在 pipeline 設定名稱，不然會是預設的像是 rtph264depay0
+	-
 	-
