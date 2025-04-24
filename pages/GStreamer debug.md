@@ -88,9 +88,9 @@
 	    if (!depay)
 	      GST_ERROR("Depayloader not found");
 	  ```
-- ### 檢查 appsink 是否有設定 signal
+- ### 檢查 appsink 設定
 	- ```cpp
-	  // appsinke 設定 signal
+	  // appsinke 需要設定 emit signal 才能觸發 callback
 	  g_object_set(data->app_sink, "emit-signals", TRUE, NULL);
 	  g_print("Set emit-signals = TRUE on appsink\n");
 	  
