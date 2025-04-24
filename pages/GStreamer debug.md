@@ -83,3 +83,5 @@
 		  }, NULL, NULL);
 		  ```
 -
+- ### 檢查 appsink 是否有設定 signal
+	-
