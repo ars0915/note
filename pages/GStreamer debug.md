@@ -1,5 +1,19 @@
 ## 黑屏沒有錯誤訊息
+	- 在
 	- gstreamer 除了 default 的 log 要設定 level 外，用到的 element 也要設定
 	  
 	  ```cpp
+	  // default
+	  gst_debug_set_default_threshold(GST_LEVEL_TRACE);
+	  // 其他 element
+	  gst_debug_set_threshold_for_name("identity", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("checkbuffer", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("udpsrc", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("basesrc", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("GST_CAPS", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("GST_PIPELINE", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("fakesink", GST_LEVEL_LOG);
+	  gst_debug_set_threshold_for_name("GST_DEBUG_DUMP", GST_LEVEL_TRACE);
+	  gst_debug_set_threshold_for_name("rtph264depay", GST_LEVEL_LOG);
 	  ```
+	-
