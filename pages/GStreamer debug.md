@@ -18,4 +18,4 @@
 	  gst_debug_set_threshold_for_name("rtph264depay", GST_LEVEL_LOG);
 	  ```
 - ### 檢查是否 App 有接到流量
-	- 抓流量的 App 可能不
+	- 抓流量的 App 不一定準確
