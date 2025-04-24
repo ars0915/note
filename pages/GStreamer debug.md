@@ -142,6 +142,9 @@
 	  }
 	  ```
 	- 發現 hardware decode error log
-	-
+	  
+	  ```
+	  E MediaCodec: Invalid to call at Released state; only valid in executing state
+	  ```
 - ## app sink callback 沒有觸發
--
+	- 看
