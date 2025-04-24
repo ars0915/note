@@ -19,5 +19,19 @@
 	  ```
 - ### 確認 rtp 有正確送出
 	- 透過 VLC 開 SDP 播放
+	  
+	  ```sdp
+	  v=0
+	  o=- 0 0 IN IP4 127.0.0.1
+	  s=Pion WebRTC
+	  c=IN IP4 224.5.5.5
+	  t=0 0
+	  m=audio 4000 RTP/AVP 111
+	  a=rtpmap:111 OPUS/48000/2
+	  m=video 4002 RTP/AVP 96
+	  a=rtpmap:96 H264/90000
+	  ```
 - ### 檢查是否 App 有接到流量
 	- 抓流量的 App 不一定準確
+	- 檢查 JAVA 層是否有接到封包
+		-
