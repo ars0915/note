@@ -34,3 +34,29 @@
 - ### 檢查是否 App 有接到流量
 	- 抓流量的 App 不一定準確
 	- 檢查 JAVA 層是否有接到封包
+	  
+	  ```
+	  // ✅ Acquire multicast lock to enable multicast packet reception
+	  WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+	  multicastLock = wifi.createMulticastLock("gst-rtp");
+	  multicastLock.setReferenceCounted(true);
+	  multicastLock.acquire();
+	  Log.d("Multicast", "MulticastLock acquired? " + multicastLock.isHeld())
+	  
+	  new Thread(() -> {
+	    try {
+	      MulticastSocket socket = new MulticastSocket(4002);
+	      socket.setReuseAddress(true);
+	      socket.joinGroup(InetAddress.getByName("224.5.5.5"));
+	      byte[] buf = new byte[2048];
+	      while (true) {
+	        DatagramPacket packet = new DatagramPacket(buf, buf.length);
+	        socket.receive(packet);
+	        Log.d("MulticastTest", "Got packet: " + packet.getLength());
+	      }
+	    } catch (Exception e) {
+	      Log.e("MulticastTest", "Error receiving multicast", e);
+	    }
+	  }).start();
+	  ```
+	- 看 udpsrc log
