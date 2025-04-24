@@ -17,5 +17,7 @@
 	  gst_debug_set_threshold_for_name("GST_DEBUG_DUMP", GST_LEVEL_TRACE);
 	  gst_debug_set_threshold_for_name("rtph264depay", GST_LEVEL_LOG);
 	  ```
+- ### 確認 rtp 有正確送出
+	- 透過 VLC 開 SDP 播放
 - ### 檢查是否 App 有接到流量
 	- 抓流量的 App 不一定準確
