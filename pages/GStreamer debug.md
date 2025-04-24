@@ -82,6 +82,13 @@
 		        return GST_PAD_PROBE_OK; 
 		  }, NULL, NULL);
 		  ```
--
+- ### 檢查 element 有設定成功
+	- ```cpp
+	  GstElement* depay = gst_bin_get_by_name(GST_BIN(data->pipeline), "rtph264depay");
+	    if (!depay)
+	      GST_ERROR("Depayloader not found");
+	  ```
 - ### 檢查 appsink 是否有設定 signal
+	- ```cpp
+	  ```
 	-
