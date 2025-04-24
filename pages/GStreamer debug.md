@@ -187,4 +187,5 @@
 		- **ALLOCATION query failed** 的可能原因
 			- rtph264depay is trying to output something like `video/x-h264`, `stream-format=(string)byte-stream`, `alignment=(string)au`
 			  If your appsink has different caps or is too strict, it will reject the caps and the chain breaks.
-			- appsink 沒有設定 caps
+			  => appsink 沒有設定正確的 caps
+			-
