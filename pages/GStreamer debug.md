@@ -132,5 +132,13 @@
 	- 在 callback function 中會 call `g_rtp_player->OnVideoFrame`，檢查 decode 有沒有正確設定
 	  如果是在 cpp 設定 decode 會用到 `AMediaCodec`
 	  確認 codec 和使用 hardware 或 software
-	-
+	  
+	  ```cpp
+	  VideoDecoderPtr CreateVideoDecoder(
+	    ...){
+	    ...
+	    ALOGI("🎬 [CreateVideoDecoder] codec type: %d", codec_type);
+	    ALOGI("🎬 [CreateVideoDecoder] using hardware: %d", !use_software_decoder);
+	  }
+	  ```
 - ## app sink callback 沒有觸發
