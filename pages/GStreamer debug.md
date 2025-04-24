@@ -217,6 +217,14 @@
 			      }, NULL, NULL);
 			  ```
 			  發現有收到 buffer 但沒有 caps
-			  但 new-sample callback 有觸發了，且 decoder 有 error，重啟後又突然好了
+			  但 new-sample callback 有觸發了，且 decoder 有 error
+			  
+			  ```
+			  04-24 11:21:54.663 17562 17776 I GLib+stdout: PTS: 0:10:26.755039437
+			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: MediaSession::OnVideoFrame
+			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: After HandleVideoCsd
+			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: no video_decoder_
+			  ```
+			  重啟後又突然好了
 			-
 		-
