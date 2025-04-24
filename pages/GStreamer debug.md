@@ -189,4 +189,10 @@
 			  If your appsink has different caps or is too strict, it will reject the caps and the chain breaks.
 			  => appsink 沒有設定正確的 caps
 		- 確認 rtph264depay 輸出的格式
+		  
+		  ```
+		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
+		  ```
+		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉
+		- 先把 appsink caps
 		-
