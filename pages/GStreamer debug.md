@@ -217,6 +217,5 @@
 			      }, NULL, NULL);
 			  ```
 			  發現有收到 buffer 但沒有 caps
-			  代表
 			-
 		-
