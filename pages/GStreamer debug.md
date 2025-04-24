@@ -141,4 +141,7 @@
 	    ALOGI("🎬 [CreateVideoDecoder] using hardware: %d", !use_software_decoder);
 	  }
 	  ```
+	- 發現 hardware decode error log
+	-
 - ## app sink callback 沒有觸發
+-
