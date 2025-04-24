@@ -194,26 +194,29 @@
 		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
 		  ```
 		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉
-		- 先把 appsink caps 拿掉並加上檢查
-		  
-		  ```cpp
-		  // 確認實際傳到 appsink 的 caps
-		  GstPad* appsink_pad = gst_element_get_static_pad(data->app_sink, "sink");
-		  GstCaps* caps = gst_pad_get_current_caps(appsink_pad);
-		  if (caps) {
-		      gchar* caps_str = gst_caps_to_string(caps);
-		      g_print("🔍 Appsink sink caps: %s\n", caps_str);
-		      g_free(caps_str);
-		      gst_caps_unref(caps);
-		  }
-		  gst_object_unref(appsink_pad);
-		  
-		  
-		  // 確認 appsink 有沒有接到 buffer
-		  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
-		      [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
-		          g_print("🎯 Buffer arrived at appsink!\n");
-		          return GST_PAD_PROBE_OK;
-		      }, NULL, NULL);
-		  ```
+			- 先把 appsink caps 拿掉並加上檢查
+			  
+			  ```cpp
+			  // 確認實際傳到 appsink 的 caps
+			  GstPad* appsink_pad = gst_element_get_static_pad(data->app_sink, "sink");
+			  GstCaps* caps = gst_pad_get_current_caps(appsink_pad);
+			  if (caps) {
+			      gchar* caps_str = gst_caps_to_string(caps);
+			      g_print("🔍 Appsink sink caps: %s\n", caps_str);
+			      g_free(caps_str);
+			      gst_caps_unref(caps);
+			  }
+			  gst_object_unref(appsink_pad);
+			  
+			  
+			  // 確認 appsink 有沒有接到 buffer
+			  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
+			      [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
+			          g_print("🎯 Buffer arrived at appsink!\n");
+			          return GST_PAD_PROBE_OK;
+			      }, NULL, NULL);
+			  ```
+			  發現有收到 buffer 但沒有 caps
+			  代表
+			-
 		-
