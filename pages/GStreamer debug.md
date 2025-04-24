@@ -209,6 +209,11 @@
 		  gst_object_unref(appsink_pad);
 		  
 		  
-		  // 
+		  // 確認 appsink 有沒有接到 buffer
+		  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
+		      [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
+		          g_print("🎯 Buffer arrived at appsink!\n");
+		          return GST_PAD_PROBE_OK;
+		      }, NULL, NULL);
 		  ```
 		-
