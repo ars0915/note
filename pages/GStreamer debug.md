@@ -74,4 +74,12 @@
 		      g_free(uri);
 		    }
 		  ```
-		- 檢查 udpsrc 是否收到
+		- 檢查 udpsrc 是否發送到下一個 element
+		  
+		  ```cpp
+		  gst_pad_add_probe(pad, GST_PAD_PROBE_TYPE_BUFFER, [](GstPad* pad, GstPadProbeInfo* info, gpointer user_data) -> GstPadProbeReturn {
+		        g_print(">>> udpsrc delivered buffer to identity\n");
+		        return GST_PAD_PROBE_OK; 
+		  }, NULL, NULL);
+		  ```
+-
