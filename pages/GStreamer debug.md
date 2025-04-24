@@ -151,5 +151,30 @@
 - ## app sink callback 沒有觸發
 	- 看上一個 element 有沒有正常運作
 	  使用 `gst_bin_get_by_name` 需要在 pipeline 設定名稱，不然會是預設的像是 rtph264depay0
-	-
-	-
+	- 觀察 rtph264depay 的 log
+	  
+	  ```apl
+	  D GStreamer+GST_PADS: 0:00:09.441286955 0xb4000072899f1700 ../gst/gstpad.c:4373:gst_pad_peer_query:<rtph264depay0:src> query failed
+	  D GStreamer+rtph264depay: 0:00:09.441296339 0xb4000072899f1700 ../gst/rtp/gstrtph264depay.c:395:gst_rtp_h264_depay_set_output_caps:<rtph264depay0> downstream ALLOCATION query failed
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441310416 0xb4000072899f1700 ../gst/gstminiobject.c:661:gst_mini_object_unref 0xb40000726913ab70 unref 1->0
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441320301 0xb4000072899f1700 ../gst/gstminiobject.c:661:gst_mini_object_unref 0xb40000726913a990 unref 7->6
+	  V GStreamer+structure: 0:00:09.441328839 0xb4000072899f1700 ../gst/gststructure.c:547:gst_structure_free free structure 0xb40000725e05aac0
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441337339 0xb4000072899f1700 ../gst/gstminiobject.c:661:gst_mini_object_unref 0xb40000726913a990 unref 6->5
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441347801 0xb4000072899f1700 ../gst/gstminiobject.c:479:gst_mini_object_ref 0xb400007289bfd230 ref 2->3
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441355763 0xb4000072899f1700 ../gst/gstminiobject.c:661:gst_mini_object_unref 0xb400007289c21350 unref 5->4
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441363070 0xb4000072899f1700 ../gst/gstobject.c:265:gst_object_unref:<rtph264depay0> 0xb40000725b0ea2a0 unref 2->1
+	  D GStreamer+GST_PADS: 0:00:09.441373032 0xb4000072899f1700 ../gst/gstpad.c:5954:gst_pad_send_event_unchecked:<rtph264depay0:sink> sent event, ret ok
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441382724 0xb4000072899f1700 ../gst/gstminiobject.c:479:gst_mini_object_ref 0xb400007289c21350 ref 4->5
+	  V GStreamer+GST_PADS: 0:00:09.441391532 0xb4000072899f1700 ../gst/gstpad.c:5387:store_sticky_event:<rtph264depay0:sink> stored sticky event caps
+	  D GStreamer+GST_PADS: 0:00:09.441445301 0xb4000072899f1700 ../gst/gstpad.c:5393:store_sticky_event:<rtph264depay0:sink> notify caps
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441461955 0xb4000072899f1700 ../gst/gstobject.c:238:gst_object_ref:<rtph264depay0> 0xb40000725b0ea2a0 ref 1->2
+	  V GStreamer+GST_PROPERTIES: 0:00:09.441474570 0xb4000072899f1700 ../gst/gstobject.c:473:gst_object_dispatch_properties_changed:<rtph264depay0> deep notification from sink (caps)
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441486955 0xb4000072899f1700 ../gst/gstobject.c:238:gst_object_ref:<pipeline0> 0xb40000725b0fa1d0 ref 1->2
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441497301 0xb4000072899f1700 ../gst/gstobject.c:265:gst_object_unref:<rtph264depay0> 0xb40000725b0ea2a0 unref 2->1
+	  V GStreamer+GST_PROPERTIES: 0:00:09.441505916 0xb4000072899f1700 ../gst/gstobject.c:473:gst_object_dispatch_properties_changed:<pipeline0> deep notification from sink (caps)
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441515224 0xb4000072899f1700 ../gst/gstobject.c:265:gst_object_unref:<pipeline0> 0xb40000725b0fa1d0 unref 2->1
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441524839 0xb4000072899f1700 ../gst/gstminiobject.c:661:gst_mini_object_unref 0xb400007289c21350 unref 5->4
+	  V GStreamer+GST_PADS: 0:00:09.441534378 0xb4000072899f1700 ../gst/gstpad.c:5578:gst_pad_push_event_unchecked:<udpsrc0:src> sent event 0xb400007289c21350 (caps) to peerpad <rtph264depay0:sink>, ret ok
+	  V GStreamer+GST_REFCOUNTING: 0:00:09.441549339 0xb4000072899f1700 ../gst/gstobject.c:265:gst_object_unref:<rtph264depay0:sink> 0xb40000725b0e03e0 unref 2->1
+	  ```
+		-
