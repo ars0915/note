@@ -129,5 +129,6 @@
 	      g_free(caps_str);
 	  ```
 - ## app sink callback 成功觸發
-	- 在 callback function 中會 call `g_rtp_player->OnVideoFrame`
+	- 在 callback function 中會 call `g_rtp_player->OnVideoFrame`，檢查 decode 有沒有正確設定
+	-
 - ## app sink callback 沒有觸發
