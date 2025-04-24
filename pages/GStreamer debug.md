@@ -108,6 +108,12 @@
 	  // appsink 設定接到 new-sample 的 callback
 	  g_signal_connect(data->app_sink, "new-sample", G_CALLBACK(new_sample_cb), data);
 	  g_print("Registered appsink new-sample handler\n");
+	  
+	  // 檢查 appsink 跟上一層有接好
+	  GstPad* sinkpad = gst_element_get_static_pad(data->app_sink, "sink");
+	  gboolean is_linked = gst_pad_is_linked(sinkpad);
+	  g_print("appsink is linked? %s\n", is_linked ? "yes" : "no");
+	  gst_object_unref(sinkpad);
 	  ```
 	- 在 callback 寫 log 檢查有沒有觸發
 	  
@@ -143,6 +149,5 @@
 	  E MediaCodec: Invalid to call at Released state; only valid in executing state
 	  ```
 - ## app sink callback 沒有觸發
-	- 檢查 appsink 有沒有設定成功
 	- 看上一個 element 有沒有正常運作
 	-
