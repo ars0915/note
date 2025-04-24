@@ -104,7 +104,7 @@
 	  g_object_set(data->app_sink, "caps", sink_caps, NULL);
 	  gst_caps_unref(sink_caps);
 	  
-	  // appsink 設定 callback
+	  // appsink 設定接到 new-sample 的 callback
 	  g_signal_connect(data->app_sink, "new-sample", G_CALLBACK(new_sample_cb), data);
 	  g_print("Registered appsink new-sample handler\n");
 	  GstPad* sinkpad = gst_element_get_static_pad(data->app_sink, "sink");
