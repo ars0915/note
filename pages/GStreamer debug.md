@@ -128,4 +128,6 @@
 	      g_print("appsink sample caps: %s\n", caps_str);
 	      g_free(caps_str);
 	  ```
-- ## app sink callback 成功
+- ## app sink callback 成功觸發
+	- 在 callback function 中會 call `g_rtp_player->OnVideoFrame`
+- ## app sink callback 沒有觸發
