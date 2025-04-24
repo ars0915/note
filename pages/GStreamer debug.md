@@ -17,4 +17,5 @@
 	  gst_debug_set_threshold_for_name("GST_DEBUG_DUMP", GST_LEVEL_TRACE);
 	  gst_debug_set_threshold_for_name("rtph264depay", GST_LEVEL_LOG);
 	  ```
-	- ### 檢
+- ### 檢查是否 App 有接到流量
+	-
