@@ -217,5 +217,6 @@
 			      }, NULL, NULL);
 			  ```
 			  發現有收到 buffer 但沒有 caps
+			  但 new-sample callback 有觸發了
 			-
 		-
