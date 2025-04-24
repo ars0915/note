@@ -60,3 +60,18 @@
 	  }).start();
 	  ```
 	- 看 udpsrc log
+		- 確認 udpsrc 設定成功
+		  
+		  ```cpp
+		  GstElement* udpsrc = gst_bin_get_by_name(GST_BIN(data->pipeline), "udpsrc0");
+		    if (!udpsrc) {
+		      GST_ERROR("udpsrc not found");
+		    } else {
+		      g_print("udpsrc element exists\n");
+		      gchar* uri;
+		      g_object_get(udpsrc, "uri", &uri, NULL);
+		      g_print("udpsrc URI: %s\n", uri);
+		      g_free(uri);
+		    }
+		  ```
+		- 檢查 udpsrc 是否收到
