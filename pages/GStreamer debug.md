@@ -97,6 +97,7 @@
 	  
 	  // 確認 rtph264depay 有正確的輸出 h264 frame
 	  // 設定 cap 的期望 format
+	  // 和在 pipeline 設定一樣
 	  GstCaps* sink_caps = gst_caps_new_simple("video/x-h264",
 	                                           "stream-format", G_TYPE_STRING, "byte-stream",
 	                                           "alignment", G_TYPE_STRING, "au",
