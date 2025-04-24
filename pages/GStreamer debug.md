@@ -177,4 +177,6 @@
 	  V GStreamer+GST_PADS: 0:00:09.441534378 0xb4000072899f1700 ../gst/gstpad.c:5578:gst_pad_push_event_unchecked:<udpsrc0:src> sent event 0xb400007289c21350 (caps) to peerpad <rtph264depay0:sink>, ret ok
 	  V GStreamer+GST_REFCOUNTING: 0:00:09.441549339 0xb4000072899f1700 ../gst/gstobject.c:265:gst_object_unref:<rtph264depay0:sink> 0xb40000725b0e03e0 unref 2->1
 	  ```
+		- `<udpsrc0:src> sent event (caps) to peerpad <rtph264depay0:sink>, ret ok`
+		  代表 udpsrc0 有 push caps 且 rtph264depay0 接受
 		-
