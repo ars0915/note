@@ -179,4 +179,8 @@
 	  ```
 		- `<udpsrc0:src> sent event (caps) to peerpad <rtph264depay0:sink>, ret ok`
 		  代表 udpsrc0 有 push caps 且 rtph264depay0 接受
-		-
+		- ```
+		  <rtph264depay0:src> query failed
+		  gst_rtp_h264_depay_set_output_caps:<rtph264depay0> downstream ALLOCATION query failed
+		  ```
+		  代表 rtph264depay 有試著 push
