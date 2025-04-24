@@ -113,4 +113,10 @@
 	  g_print("appsink is linked? %s\n", is_linked ? "yes" : "no");
 	  gst_object_unref(sinkpad);
 	  ```
-	-
+	- 在 callback 寫 log 檢查有沒有觸發
+	  
+	  ```cpp
+	  new_sample_cb(GstElement* sink, CustomData* data) {
+	    g_print(">>> INSIDE new_sample_cb\n");
+	  ```
+-
