@@ -90,14 +90,20 @@
 	  ```
 - ### 檢查 appsink 是否有設定 signal
 	- ```cpp
+	  // appsinke 設定 signal
 	  g_object_set(data->app_sink, "emit-signals", TRUE, NULL);
 	  g_print("Set emit-signals = TRUE on appsink\n");
+	  
+	  
+	  // 
 	  GstCaps* sink_caps = gst_caps_new_simple("video/x-h264",
 	                                           "stream-format", G_TYPE_STRING, "byte-stream",
 	                                           "alignment", G_TYPE_STRING, "au",
 	                                           NULL);
 	  g_object_set(data->app_sink, "caps", sink_caps, NULL);
 	  gst_caps_unref(sink_caps);
+	  
+	  // appsink 設定 callback
 	  g_signal_connect(data->app_sink, "new-sample", G_CALLBACK(new_sample_cb), data);
 	  g_print("Registered appsink new-sample handler\n");
 	  GstPad* sinkpad = gst_element_get_static_pad(data->app_sink, "sink");
