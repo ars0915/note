@@ -183,4 +183,7 @@
 		  <rtph264depay0:src> query failed
 		  gst_rtp_h264_depay_set_output_caps:<rtph264depay0> downstream ALLOCATION query failed
 		  ```
-		  代表 rtph264depay 有試著 push
+		  代表 rtph264depay 有試著 push H264 frame，但失敗了
+		- ALLOCATION query failed 的可能原因
+		-
+		-
