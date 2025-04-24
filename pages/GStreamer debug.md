@@ -95,7 +95,8 @@
 	  g_print("Set emit-signals = TRUE on appsink\n");
 	  
 	  
-	  // 
+	  // 確認 rtph264depay 有正確的輸出 h264 frame
+	  // 用
 	  GstCaps* sink_caps = gst_caps_new_simple("video/x-h264",
 	                                           "stream-format", G_TYPE_STRING, "byte-stream",
 	                                           "alignment", G_TYPE_STRING, "au",
