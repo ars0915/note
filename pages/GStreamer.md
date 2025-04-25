@@ -41,7 +41,7 @@ public:: true
 		- ### udpsrc
 		  用來接收 UDP 的 data
 			- multicast-iface=wlan0: 指定 Wi-Fi interface
-			- [caps](((680ae796-1125-444d-a1f5-a8ba62cd6468)))="application/x-rtp, ...": 宣告 output 的格式，幫助下一個 element
+			- [caps](((680ae796-1125-444d-a1f5-a8ba62cd6468)))="application/x-rtp, ...": 宣告 output 的格式，幫助下一個 element 知道如何處理 packet
 		- ### rtpbin
 		  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
