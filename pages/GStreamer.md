@@ -23,10 +23,13 @@ public:: true
 	- **pad**
 		- 連接 element 的接口，允許數據在 element 之間流動
 		- 提供元素間的數據傳輸可以動態創建和釋放
+			- 靜態Pad是在元素創建時就存在的，可以通過gst_element_get_static_pad()方法獲取
+			- 動態Pad是在運行時動態創建和刪除的。
 		- 有 `source` (輸出) 和 `sink` (輸入) 兩種類型
 		- [Capabilities](((680ae796-1125-444d-a1f5-a8ba62cd6468)))
 			- Pad Capabilities定義了Pad所支持的數據類型和格式
 			- 通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
+		- 一個源Pad可以連接到一個或多個接收器Pad，但一個接收器Pad只能連接到一個源Pad
 		-
 -
 - # video pipeline
