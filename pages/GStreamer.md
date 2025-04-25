@@ -33,8 +33,8 @@ public:: true
 		- 探針 Pad Probes 允許GStreamer應用程序監視和控制元素之間的數據流
 		  ![image.png](../assets/image_1745560627869_0.png)
 		- Ghost pad
-			- 由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
-			  ![image.png](../assets/image_1745560608388_0.png)
+		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
+		  ![image.png](../assets/image_1745560608388_0.png)
 -
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
