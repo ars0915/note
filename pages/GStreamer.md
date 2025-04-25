@@ -10,7 +10,7 @@ public:: true
 	  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 		- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
 		- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
-		-
+		- Note: It doesn’t automatically connect — you usually need to manually link udpsrc to the rtpbin recv_rtp_sink_0 pad. In simple pipelines like this, rtpbin can infer and autoconnect, but that’s risky in production.
 	- ## queue
 	- ## rtph264depay
 	- ## caps
