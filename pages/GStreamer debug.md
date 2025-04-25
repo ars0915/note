@@ -196,35 +196,17 @@ public:: true
 		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
 		  ```
 		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉
-			- 當 rtph264depay outputs multiple formats，appsink 需要加上 caps filter，不然會不知道要怎麼處理收到的 data
+			- #### 當 rtph264depay outputs multiple formats，appsink 需要加上 caps filter，
 			  id:: 680b020b-bbe4-463c-8ec5-06cb90431d0e
-			  ```
-			  video/x-h264, stream-format=(string)avc, alignment=(string)au;
-			  video/x-h264, stream-format=(string)byte-stream, alignment=(string){nal, au}
-			  ```
-			  	•	If you don’t set specific caps on appsink, and its caps are left as ANY, the caps negotiation might succeed, fail silently, or settle on a format the app doesn’t understand — leading to:
-			  	•	**new-sample callback not called**.
-			  	•	Or unexpected buffer formats.
-			  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
-			- #### 先把 appsink caps 拿掉並加上檢查
-			  
-			  ```cpp
-			  // 確認 appsink 有沒有接到 buffer
-			  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
-			      [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
-			          g_print("🎯 Buffer arrived at appsink!\n");
-			          return GST_PAD_PROBE_OK;
-			      }, NULL, NULL);
-			  ```
-			  發現有收到 buffer
-			  new-sample callback 有觸發了，但 decoder 有 error
-			  ```
-			  04-24 11:21:54.663 17562 17776 I GLib+stdout: PTS: 0:10:26.755039437
-			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: MediaSession::OnVideoFrame
-			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: After HandleVideoCsd
-			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: no video_decoder_
-			  ```
-			  重啟後又突然好了
+				- 不然會不知道要怎麼處理收到的 data
+				  ```
+				  video/x-h264, stream-format=(string)avc, alignment=(string)au;
+				  video/x-h264, stream-format=(string)byte-stream, alignment=(string){nal, au}
+				  ```
+				  	•	If you don’t set specific caps on appsink, and its caps are left as ANY, the caps negotiation might succeed, fail silently, or settle on a format the app doesn’t understand — leading to:
+				  	•	**new-sample callback not called**.
+				  	•	Or unexpected buffer formats.
+				  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
 			- ####
 			-
 			-
