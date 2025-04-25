@@ -136,12 +136,11 @@ public:: true
 		  Converts RTP stream to usable H264 byte stream.
 			- Input: RTP packets (application/x-rtp with H264 payload).
 			- Output: video/x-h264 in either avc or byte-stream format.
-			- rtph264depay 會輸出
+			- rtph264depay 會輸出幾個 format 取決於輸入的封包
 			  •	If the RTP stream uses “packetized” H264 NALUs directly, rtph264depay can output byte-stream (start codes).
 			  •	If the RTP stream uses AVC (MP4 style) format (sprop-parameter-sets, etc), it can output avc caps.
 			  •	Some senders (encoders or streamers) insert multiple SPS/PPS headers → both formats appear available.
 			- You can see this in the SDP or RTP payload specs.
-			- ✅ This is why it’s important to “fix” the output format using a capsfilter after rtph264depay:
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
