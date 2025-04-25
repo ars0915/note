@@ -203,24 +203,12 @@ public:: true
 			  video/x-h264, stream-format=(string)byte-stream, alignment=(string){nal, au}
 			  ```
 			  	•	If you don’t set specific caps on appsink, and its caps are left as ANY, the caps negotiation might succeed, fail silently, or settle on a format the app doesn’t understand — leading to:
-			  	•	new-sample callback not called.
+			  	•	**new-sample callback not called**.
 			  	•	Or unexpected buffer formats.
 			  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
 			- #### 先把 appsink caps 拿掉並加上檢查
 			  
 			  ```cpp
-			  // 確認實際傳到 appsink 的 caps
-			  GstPad* appsink_pad = gst_element_get_static_pad(data->app_sink, "sink");
-			  GstCaps* caps = gst_pad_get_current_caps(appsink_pad);
-			  if (caps) {
-			      gchar* caps_str = gst_caps_to_string(caps);
-			      g_print("🔍 Appsink sink caps: %s\n", caps_str);
-			      g_free(caps_str);
-			      gst_caps_unref(caps);
-			  }
-			  gst_object_unref(appsink_pad);
-			  
-			  
 			  // 確認 appsink 有沒有接到 buffer
 			  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
 			      [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
