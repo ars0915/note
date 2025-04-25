@@ -113,7 +113,13 @@ public:: true
 		  Lets you intercept and analyze/decode frames manually
 			- emit-signals=true (should be set in code): needed to receive the "new-sample" signal.
 			- sync=false: disables clock synchronization; it pushes frames as fast as possible (good for testing/debug).
-		-
+			  	•	sync=true (default): honors pipeline timestamps and clock; buffers are rendered in sync.
+			  	•	sync=false: disables clock sync; samples are delivered as soon as they’re decoded.
+				- Useful when:
+				  •	You want low latency, or
+				  •	You’re handling frames yourself and syncing manually.
+				- But disabling it can cause desync in A/V pipelines if not handled carefully.
+		- ### identity (debug 時用的)
 -
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
