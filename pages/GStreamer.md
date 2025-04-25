@@ -78,3 +78,5 @@ public:: true
 -
 -
 -
+- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
+  type:: [[Web Page]]
