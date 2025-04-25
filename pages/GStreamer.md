@@ -44,6 +44,11 @@ public:: true
 		- Ghost pad
 		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 		  ![image.png](../assets/image_1745560608388_0.png)
+- # Tools
+	- ## Bus
+	  用來監聽 runtime event 像是
+		-
+		-
 - # Example multicast RTP player
 	- ## video pipeline
 		- ```
