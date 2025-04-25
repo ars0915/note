@@ -46,7 +46,20 @@ public:: true
 		  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
 			- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
-			- Note: It doesn’t automatically connect — you usually need to manually link udpsrc to the rtpbin recv_rtp_sink_0 pad. In simple pipelines like this, rtpbin can infer and autoconnect, but that’s risky in production.
+			- Note: **It doesn’t automatically connect** — you usually need to manually link udpsrc to the rtpbin recv_rtp_sink_0 pad. In simple pipelines like this, rtpbin can infer and autoconnect, but that’s risky in production.
+			  
+			  ```cpp
+			  GstElement *udpsrc = gst_element_factory_make("udpsrc", NULL);
+			  GstElement *rtpbin = gst_element_factory_make("rtpbin", NULL);
+			  
+			  GstPad *sinkpad = gst_element_get_request_pad(rtpbin, "recv_rtp_sink_0");
+			  GstPad *srcpad = gst_element_get_static_pad(udpsrc, "src");
+			  
+			  gst_pad_link(srcpad, sinkpad);
+			  
+			  gst_object_unref(srcpad);
+			  gst_object_unref(sinkpad);
+			  ```
 		- ### queue
 		  Threading element that decouples upstream and downstream processing.
 			- Prevents blocking between slow and fast elements.
