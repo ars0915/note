@@ -185,7 +185,7 @@ public:: true
 			- When silent=false, it logs every buffer that passes through.
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
--
+- # FAQ
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
   type:: [[Web Page]]
