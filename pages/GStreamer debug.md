@@ -195,8 +195,9 @@ public:: true
 		  ```
 		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
 		  ```
-		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉####
-			- 先把 appsink caps 拿掉並加上檢查
+		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉
+			- 當 rtph264depay outputs multiple formats，appsink
+			- #### 先把 appsink caps 拿掉並加上檢查
 			  
 			  ```cpp
 			  // 確認實際傳到 appsink 的 caps
@@ -220,7 +221,6 @@ public:: true
 			  ```
 			  發現有收到 buffer 但沒有 caps
 			  但 new-sample callback 有觸發了，且 decoder 有 error
-			  
 			  ```
 			  04-24 11:21:54.663 17562 17776 I GLib+stdout: PTS: 0:10:26.755039437
 			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: MediaSession::OnVideoFrame
@@ -228,6 +228,7 @@ public:: true
 			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: no video_decoder_
 			  ```
 			  重啟後又突然好了
+			- ####
 			-
 			-
 		-
