@@ -8,6 +8,7 @@ public:: true
 		- **狀態(State)**: GStreamer的元素可以處於不同的狀態，例如停止狀態、播放狀態、暫停狀態等。狀態控制元素的執行和數據流動[6].
 		- **時鐘(Clock)**: GStreamer使用時鐘來控制媒體數據的同步和時間進度。時鐘提供精確的時序信息，確保音頻和視頻等媒體數據按預定的速率播放[1].
 	- 通過組合不同的元素、設定管道和狀態，開發者可以使用GStreamer來實現各種多媒體應用程序，包括音頻回放、音頻和視頻播放、錄音、流媒體和音頻編輯等功能
+-
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
