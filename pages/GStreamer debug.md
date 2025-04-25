@@ -190,7 +190,7 @@ public:: true
 			- rtph264depay is trying to output something like `video/x-h264`, `stream-format=(string)byte-stream`, `alignment=(string)au`
 			  If your appsink has different caps or is too strict, it will reject the caps and the chain breaks.
 			  => appsink 沒有設定正確的 caps
-		- 確認 rtph264depay 輸出的格式
+		- **確認 rtph264depay 輸出的格式**
 		  
 		  ```
 		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
@@ -206,7 +206,7 @@ public:: true
 			  	•	**new-sample callback not called**.
 			  	•	Or unexpected buffer formats.
 			  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
-			- #### 確認 appsink 有沒有接到 buffer
+			- #### 先把 appsink caps 拿掉並加上檢查
 			  
 			  ```cpp
 			  // 確認 appsink 有沒有接到 buffer
