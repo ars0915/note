@@ -14,6 +14,13 @@ public:: true
 	- pipeline
 		- GStreamer 的主要數據結構，用於建構元素的容器
 		- 管理元素的流程和同步，提供播放、暫停、停止等控制功能
+	- bin
+		- 特殊的 element，可以包含其他的 element 和 bin (子容器)
+		- 管理其內部的元素，提供元素間的連接和數據流動
+	- element
+		- GStreamer 的基本組件，處理媒體數據的物件
+		- 執行特定的媒體處理任務，如解碼、編碼、播放、捕獲等
+	-
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
