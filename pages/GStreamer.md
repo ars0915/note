@@ -84,10 +84,12 @@ public:: true
 		  ! appsink name=appsink sync=false
 		  ```
 		- ### udpsrc
+		  collapsed:: true
 		  用來接收 UDP 的 data
 			- multicast-iface=wlan0: 指定 Wi-Fi interface
 			- [caps](((680ae796-1125-444d-a1f5-a8ba62cd6468)))="application/x-rtp, ...": 宣告 output 的格式，幫助下一個 element 知道如何處理 packet
 		- ### rtpbin
+		  collapsed:: true
 		  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
 			- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
@@ -117,6 +119,7 @@ public:: true
 			  gst_object_unref(sinkpad);
 			  ```
 			- 在這個例子中沒有手動連接也可以作用是因為程式裡
+			  collapsed:: true
 			  gst_parse_launch() (the pipeline parser) auto-inserts request pad linking if:
 			  •	The pads exist or can be requested immediately.
 			  •	The elements are added in order with !.
@@ -131,7 +134,10 @@ public:: true
 			- Prevents blocking between slow and fast elements.
 			- Especially useful in RTP pipelines to handle jitter and buffering.
 			- Keeps packet delivery smooth even if downstream (decoding/rendering) is slow.
+			- #### 什麼時候需要用
+				-
 		- ### rtph264depay
+		  collapsed:: true
 		  Depacketizes the RTP H264 stream into raw H264 frames (removes RTP headers).
 		  Converts RTP stream to usable H264 byte stream.
 			- Input: RTP packets (application/x-rtp with H264 payload).
@@ -142,13 +148,16 @@ public:: true
 			  •	Some senders (encoders or streamers) insert multiple SPS/PPS headers → both formats appear available.
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
+		  collapsed:: true
 			- #### Set Caps on udpsrc
+			  collapsed:: true
 				- ```
 				  udpsrc caps="application/x-rtp, media=video, encoding-name=H264, payload=96, clock-rate=90000" ! ...
 				  ```
 				  	•	The output pad of udpsrc will produce buffers with these caps.
 				  	•	These caps are not a filter, they are an assertion: “This is the type of data I will emit.”
 			- #### Filter with Caps on a Link
+			  collapsed:: true
 				- You add a caps filter as an element between stages:
 				  
 				  ```
@@ -168,10 +177,12 @@ public:: true
 				  gst_caps_unref(sink_caps);
 				  ```
 		- ### appsink
+		  collapsed:: true
 		  Pulls data from the pipeline into your application
 		  Lets you intercept and analyze/decode frames manually
 			- emit-signals=true (should be set in code): needed to receive the "new-sample" signal.
 			- sync=false: disables clock synchronization; it pushes frames as fast as possible (good for testing/debug).
+			  collapsed:: true
 			  	•	sync=true (default): honors pipeline timestamps and clock; buffers are rendered in sync.
 			  	•	sync=false: disables clock sync; samples are delivered as soon as they’re decoded.
 				- Useful when:
@@ -179,13 +190,14 @@ public:: true
 				  •	You’re handling frames yourself and syncing manually.
 				- But disabling it can cause desync in A/V pipelines if not handled carefully.
 		- ### identity (debug 時用的)
+		  collapsed:: true
 		  ```
 		  rtph264depay ! identity name=checkbuffer silent=false ! appsink
 		  ```
 			- When silent=false, it logs every buffer that passes through.
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
-- # FAQ
+-
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
   type:: [[Web Page]]
