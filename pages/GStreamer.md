@@ -52,7 +52,8 @@ public:: true
 		- State changes
 		- Buffering
 		- Stream start, clock lost...
-		- ```cpp
+		- polling callback
+		  ```cpp
 		  GstBus *bus = gst_element_get_bus(pipeline);
 		  gst_bus_add_watch(bus, (GstBusFunc)on_message, user_data);
 		  gst_object_unref(bus);
