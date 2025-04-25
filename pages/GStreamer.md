@@ -140,7 +140,6 @@ public:: true
 			  •	If the RTP stream uses “packetized” H264 NALUs directly, rtph264depay can output byte-stream (start codes).
 			  •	If the RTP stream uses AVC (MP4 style) format (sprop-parameter-sets, etc), it can output avc caps.
 			  •	Some senders (encoders or streamers) insert multiple SPS/PPS headers → both formats appear available.
-			- You can see this in the SDP or RTP payload specs.
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
