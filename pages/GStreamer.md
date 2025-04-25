@@ -131,6 +131,7 @@ public:: true
 				  •	Dynamic/multiple streams: you need manual pad request + linking.
 		- ### queue
 		  Threading element that decouples upstream and downstream processing.
+		  當下面的 element 有延遲時，pipeline 還是能持續運作
 			- Prevents blocking between slow and fast elements.
 			- Especially useful in RTP pipelines to handle jitter and buffering.
 			- Keeps packet delivery smooth even if downstream (decoding/rendering) is slow.
@@ -139,7 +140,6 @@ public:: true
 				- Before decoders: To allow buffering decode input without blocking upstream.
 				- Before appsink: If the app consumes data asynchronously.
 				- If two elements don’t synchronize nicely, use a queue between.
-				-
 		- ### rtph264depay
 		  collapsed:: true
 		  Depacketizes the RTP H264 stream into raw H264 frames (removes RTP headers).
