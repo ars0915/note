@@ -87,6 +87,16 @@ public:: true
 			  gst_object_unref(srcpad);
 			  gst_object_unref(sinkpad);
 			  ```
+			- 在這個例子中沒有手動連接也可以作用是因為程式裡
+			  gst_parse_launch() (the pipeline parser) auto-inserts request pad linking if:
+			  •	The pads exist or can be requested immediately.
+			  •	The elements are added in order with !.
+			  •	The rtpbin is smart enough to request recv_rtp_sink_0 when parsing.
+				- ✅ If the parser can figure out the connections, it will request pads for you.
+				- ❌ But if the context gets more complicated (multiple streams, SSRC mismatches), you MUST manually link.
+				- Summary:
+				  •	Simple pipeline: auto-link works.
+				  •	Dynamic/multiple streams: you need manual pad request + linking.
 		- ### queue
 		  Threading element that decouples upstream and downstream processing.
 			- Prevents blocking between slow and fast elements.
