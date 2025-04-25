@@ -195,7 +195,7 @@ public:: true
 		  ```
 		  GStreamer+basetransform: 0:10:44.725148578 0xb40000725e813300 ../libs/gst/base/gstbasetransform.c:475:gst_base_transform_transform_caps:<checkbuffer>   to: video/x-h264, stream-format=(string)avc, alignment=(string)au, codec_data=(buffer)01420032ffe1001427420032898a3805e817bf34d40404041e1108cf01000428ce3c80, level=(string)5, profile=(string)baseline
 		  ```
-		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉
+		  發現 stream-format= avc，跟 appsink 設定的 caps 不同，會被濾掉####
 			- 先把 appsink caps 拿掉並加上檢查
 			  
 			  ```cpp
@@ -228,5 +228,6 @@ public:: true
 			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: no video_decoder_
 			  ```
 			  重啟後又突然好了
+			-
 			-
 		-
