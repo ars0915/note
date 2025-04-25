@@ -3,7 +3,8 @@ public:: true
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
-		-
+		- multicast-iface=wlan0: 指定 Wi-Fi interface
+		- caps="application/x-rtp, ...": 告訴 GStreamer UDP data 是 RTP format，
 	- ## caps
 		- ### Set Caps on udpsrc
 			- ```
