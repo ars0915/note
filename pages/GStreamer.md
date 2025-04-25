@@ -113,6 +113,7 @@ public:: true
 		  Lets you intercept and analyze/decode frames manually
 			- emit-signals=true (should be set in code): needed to receive the "new-sample" signal.
 			- sync=false: disables clock synchronization; it pushes frames as fast as possible (good for testing/debug).
+		-
 -
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
