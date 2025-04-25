@@ -11,16 +11,19 @@ public:: true
 - # 組件的基本定義和功能
 	- 容器中包含組件，以pads相連(Bins containing Elements, linked by Pads)
 	  ![image.png](../assets/image_1745560230416_0.png)
-	- pipeline
+	- **pipeline**
 		- GStreamer 的主要數據結構，用於建構元素的容器
 		- 管理元素的流程和同步，提供播放、暫停、停止等控制功能
-	- bin
+	- **bin**
 		- 特殊的 element，可以包含其他的 element 和 bin (子容器)
 		- 管理其內部的元素，提供元素間的連接和數據流動
-	- element
+	- **element**
 		- GStreamer 的基本組件，處理媒體數據的物件
 		- 執行特定的媒體處理任務，如解碼、編碼、播放、捕獲等
-	-
+	- **pad**
+		- 連接 element 的接口，允許數據在 element 之間流動
+		- 提供元素間的數據傳輸可以動態創建和釋放
+		- 有 `source` (輸出) 和 `sink` (輸入) 兩種類型
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
