@@ -225,5 +225,3 @@ public:: true
 				  	•	Or unexpected buffer formats.
 				  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
 		-
-			-
-		-
