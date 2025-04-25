@@ -150,6 +150,23 @@ public:: true
 	  ```
 	  E MediaCodec: Invalid to call at Released state; only valid in executing state
 	  ```
+	- #### 確認 appsink 有沒有接到 buffer
+	  ```cpp
+	  gst_pad_add_probe(appsink_pad, GST_PAD_PROBE_TYPE_BUFFER,
+	    [](GstPad*, GstPadProbeInfo*, gpointer) -> GstPadProbeReturn {
+	        g_print("🎯 Buffer arrived at appsink!\n");
+	        return GST_PAD_PROBE_OK;
+	    }, NULL, NULL);
+	  ```
+	  發現有收到 buffer
+	  new-sample callback 有觸發了，但 decoder 有 error
+	  ```
+	  04-24 11:21:54.663 17562 17776 I GLib+stdout: PTS: 0:10:26.755039437
+	  04-24 11:21:54.663 17562 17776 D MirrorPlugin: MediaSession::OnVideoFrame
+	  04-24 11:21:54.663 17562 17776 D MirrorPlugin: After HandleVideoCsd
+	  04-24 11:21:54.663 17562 17776 D MirrorPlugin: no video_decoder_
+	  ```
+	  重啟後又突然好了
 - ## app sink callback 沒有觸發
 	- 看上一個 element 有沒有正常運作
 	  使用 `gst_bin_get_by_name` 需要在 pipeline 設定名稱，不然會是預設的像是 rtph264depay0
@@ -207,7 +224,6 @@ public:: true
 				  	•	**new-sample callback not called**.
 				  	•	Or unexpected buffer formats.
 				  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
-			- ####
-			-
+		-
 			-
 		-
