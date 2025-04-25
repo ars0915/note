@@ -206,7 +206,7 @@ public:: true
 			  	•	**new-sample callback not called**.
 			  	•	Or unexpected buffer formats.
 			  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
-			- #### 先把 appsink caps 拿掉並加上檢查
+			- #### 確認 appsink 有沒有接到 buffer
 			  
 			  ```cpp
 			  // 確認 appsink 有沒有接到 buffer
