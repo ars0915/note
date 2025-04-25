@@ -135,6 +135,7 @@ public:: true
 			- Especially useful in RTP pipelines to handle jitter and buffering.
 			- Keeps packet delivery smooth even if downstream (decoding/rendering) is slow.
 			- #### 什麼時候需要用
+				- After rtpbin: rtpbin is multithreaded; outputs RTP/RTCP separately. Add queue for each stream branch.
 				-
 		- ### rtph264depay
 		  collapsed:: true
