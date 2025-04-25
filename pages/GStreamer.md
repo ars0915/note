@@ -51,7 +51,12 @@ public:: true
 		  Threading element that decouples upstream and downstream processing.
 			- Prevents blocking between slow and fast elements.
 			- Especially useful in RTP pipelines to handle jitter and buffering.
+			- Keeps packet delivery smooth even if downstream (decoding/rendering) is slow.
 		- ### rtph264depay
+		  Depacketizes the RTP H264 stream into raw H264 frames (removes RTP headers).
+		  Converts RTP stream to usable H264 byte stream.
+			- Input: RTP packets (application/x-rtp with H264 payload).
+			- Output: video/x-h264 in either avc or byte-stream format.
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
