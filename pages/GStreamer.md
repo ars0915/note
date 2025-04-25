@@ -24,6 +24,10 @@ public:: true
 		- 連接 element 的接口，允許數據在 element 之間流動
 		- 提供元素間的數據傳輸可以動態創建和釋放
 		- 有 `source` (輸出) 和 `sink` (輸入) 兩種類型
+		- Capabilities
+			- Pad Capabilities定義了Pad所支持的數據類型和格式
+			- 通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
+-
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
@@ -38,6 +42,7 @@ public:: true
 	- ## queue
 	- ## rtph264depay
 	- ## caps
+	  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 		- ### Set Caps on udpsrc
 			- ```
 			  udpsrc caps="application/x-rtp, media=video, encoding-name=H264, payload=96, clock-rate=90000" ! ...
