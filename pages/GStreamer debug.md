@@ -216,8 +216,8 @@ public:: true
 			          return GST_PAD_PROBE_OK;
 			      }, NULL, NULL);
 			  ```
-			  發現有收到 buffer 但沒有 caps
-			  但 new-sample callback 有觸發了，且 decoder 有 error
+			  發現有收到 buffer
+			  new-sample callback 有觸發了，但 decoder 有 error
 			  ```
 			  04-24 11:21:54.663 17562 17776 I GLib+stdout: PTS: 0:10:26.755039437
 			  04-24 11:21:54.663 17562 17776 D MirrorPlugin: MediaSession::OnVideoFrame
