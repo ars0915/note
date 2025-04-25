@@ -7,7 +7,10 @@ public:: true
 		- multicast-iface=wlan0: 指定 Wi-Fi interface
 		- caps="application/x-rtp, ...": 告訴 GStreamer UDP data 是 RTP format、包含 H264 video
 	- ## rtpbin
-	  管理 RTP sessino ss
+	  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
+		- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
+		- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
+		-
 	- ## queue
 	- ## rtph264depay
 	- ## caps
