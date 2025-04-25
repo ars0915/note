@@ -92,7 +92,7 @@ public:: true
 	  ```
 - ### 檢查 appsink 設定
 	- ```cpp
-	  // appsinke 需要設定 emit signal 才能觸發 callback
+	  // appsink 需要設定 emit signal 才能觸發 callback
 	  g_object_set(data->app_sink, "emit-signals", TRUE, NULL);
 	  g_print("Set emit-signals = TRUE on appsink\n");
 	  
