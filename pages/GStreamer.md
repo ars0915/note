@@ -41,7 +41,7 @@ public:: true
 		- ### udpsrc
 		  用來接收 UDP 的 data
 			- multicast-iface=wlan0: 指定 Wi-Fi interface
-			- caps="application/x-rtp, ...": 告訴 GStreamer UDP data 是 RTP format、包含 H264 video
+			- [caps](((680ae796-1125-444d-a1f5-a8ba62cd6468)))="application/x-rtp, ...": 告訴 GStreamer UDP data 是 RTP format、包含 H264 video
 		- ### rtpbin
 		  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
@@ -84,7 +84,8 @@ public:: true
 				  g_object_set(appsink, "caps", sink_caps, NULL);
 				  gst_caps_unref(sink_caps);
 				  ```
--
+		- appsink
+		  Pulls data from the pipeline into your application
 -
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
