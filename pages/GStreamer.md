@@ -84,12 +84,10 @@ public:: true
 		  ! appsink name=appsink sync=false
 		  ```
 		- ### udpsrc
-		  collapsed:: true
 		  用來接收 UDP 的 data
 			- multicast-iface=wlan0: 指定 Wi-Fi interface
 			- [caps](((680ae796-1125-444d-a1f5-a8ba62cd6468)))="application/x-rtp, ...": 宣告 output 的格式，幫助下一個 element 知道如何處理 packet
 		- ### rtpbin
-		  collapsed:: true
 		  管理 RTP session state, depacketization, jitter buffer, and SSRC handling
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
 			- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
@@ -129,6 +127,7 @@ public:: true
 				- Summary:
 				  •	Simple pipeline: auto-link works.
 				  •	Dynamic/multiple streams: you need manual pad request + linking.
+			-
 		- ### queue
 		  Threading element that decouples upstream and downstream processing.
 		  當下面的 element 有延遲時，pipeline 還是能持續運作
