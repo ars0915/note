@@ -120,6 +120,12 @@ public:: true
 				  •	You’re handling frames yourself and syncing manually.
 				- But disabling it can cause desync in A/V pipelines if not handled carefully.
 		- ### identity (debug 時用的)
+		  ```
+		  rtph264depay ! identity name=checkbuffer silent=false ! appsink
+		  ```
+			- When silent=false, it logs every buffer that passes through.
+			- You can see timestamps, sizes, and verify that data is flowing.
+			- It does not alter or process data—just “observes.”
 -
 -
 - YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
