@@ -52,7 +52,7 @@ public:: true
 		- State changes
 		- Buffering
 		- Stream start, clock lost...
-		- polling callback
+		- polling callback 用在 C-style apps
 		  ```cpp
 		  GstBus *bus = gst_element_get_bus(pipeline);
 		  gst_bus_add_watch(bus, (GstBusFunc)on_message, user_data);
@@ -73,6 +73,10 @@ public:: true
 		      }
 		      return TRUE; // Keep watching
 		  }
+		  ```
+		- GStreamer 自動觸發
+		  
+		  ```cpp
 		  ```
 - # Example multicast RTP player
 	- ## video pipeline
