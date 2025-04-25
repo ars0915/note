@@ -47,7 +47,7 @@ public:: true
 			- rtpbin dynamically generates “recv_rtp_sink_X_Y” and “recv_rtp_src_X_Y” pads
 			- It handles packet reordering, loss recovery, and clock sync for RTP sessions.
 			- Note: **It doesn’t automatically connect** — you usually need to manually link udpsrc to the rtpbin recv_rtp_sink_0 pad. In simple pipelines like this, rtpbin can infer and autoconnect, but that’s risky in production.
-			  
+			  This is **required** because rtpbin doesn’t expose static sink pads; they’re requested on demand.
 			  ```cpp
 			  GstElement *udpsrc = gst_element_factory_make("udpsrc", NULL);
 			  GstElement *rtpbin = gst_element_factory_make("rtpbin", NULL);
@@ -60,6 +60,7 @@ public:: true
 			  gst_object_unref(srcpad);
 			  gst_object_unref(sinkpad);
 			  ```
+			  也需要跟下一個 element 手動連接
 		- ### queue
 		  Threading element that decouples upstream and downstream processing.
 			- Prevents blocking between slow and fast elements.
