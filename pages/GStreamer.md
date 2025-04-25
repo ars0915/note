@@ -31,6 +31,7 @@ public:: true
 			- 通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
 		- 一個源Pad可以連接到一個或多個接收器Pad，但一個接收器Pad只能連接到一個源Pad
 		- 探針 Pad Probes 允許GStreamer應用程序監視和控制元素之間的數據流
+		  ![image.png](../assets/image_1745560627869_0.png)
 		- Ghost pad
 			- 由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 			  ![image.png](../assets/image_1745560608388_0.png)
