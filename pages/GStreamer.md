@@ -47,8 +47,32 @@ public:: true
 - # Tools
 	- ## Bus
 	  用來監聽 runtime event 像是
-		-
-		-
+		- Errors
+		- EOS (End of Stream)
+		- State changes
+		- Buffering
+		- Stream start, clock lost...
+		- ```cpp
+		  GstBus *bus = gst_element_get_bus(pipeline);
+		  gst_bus_add_watch(bus, (GstBusFunc)on_message, user_data);
+		  gst_object_unref(bus);
+		  
+		  gboolean on_message(GstBus *bus, GstMessage *msg, gpointer data) {
+		      switch (GST_MESSAGE_TYPE(msg)) {
+		          case GST_MESSAGE_ERROR:
+		              // handle error
+		              break;
+		          case GST_MESSAGE_EOS:
+		              // end of stream
+		              break;
+		          case GST_MESSAGE_STATE_CHANGED:
+		              // element or pipeline changed state
+		              break;
+		          // ... more messages
+		      }
+		      return TRUE; // Keep watching
+		  }
+		  ```
 - # Example multicast RTP player
 	- ## video pipeline
 		- ```
