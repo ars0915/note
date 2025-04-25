@@ -202,6 +202,6 @@ public:: true
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
 -
--
-- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
-  type:: [[Web Page]]
+- # Reference
+	- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
+	  type:: [[Web Page]]
