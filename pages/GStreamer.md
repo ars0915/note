@@ -35,7 +35,6 @@ public:: true
 		- Ghost pad
 		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 		  ![image.png](../assets/image_1745560608388_0.png)
--
 - # video pipeline
 	- udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 	- ## udpsrc
@@ -76,3 +75,6 @@ public:: true
 			  g_object_set(appsink, "caps", sink_caps, NULL);
 			  gst_caps_unref(sink_caps);
 			  ```
+-
+-
+-
