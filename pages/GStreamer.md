@@ -76,8 +76,8 @@ public:: true
 			  gst_object_unref(srcpad);
 			  gst_object_unref(sinkpad);
 			  ```
-			  也需要跟下一個 element 手動連接
 			  
+			  也需要跟下一個 element 手動連接
 			  ```cpp
 			  GstPad *srcpad = gst_element_get_static_pad(rtpbin, "recv_rtp_src_0");
 			  GstPad *sinkpad = gst_element_get_static_pad(queue, "sink");
