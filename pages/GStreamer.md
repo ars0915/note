@@ -77,6 +77,24 @@ public:: true
 		- GStreamer 自動觸發
 		  
 		  ```cpp
+		  bus = gst_element_get_bus(data->pipeline);
+		  bus_source = gst_bus_create_watch(bus);
+		  g_source_set_callback(bus_source, (GSourceFunc)gst_bus_async_signal_func,
+		                        NULL, NULL);
+		  g_source_attach(bus_source, data->context);
+		  g_source_unref(bus_source);
+		  g_signal_connect(G_OBJECT(bus), "message::error", (GCallback)error_cb,
+		                   data);
+		  g_signal_connect(G_OBJECT(bus), "message::eos", (GCallback)eos_cb, data);
+		  g_signal_connect(G_OBJECT(bus), "message::state-changed",
+		                   (GCallback)state_changed_cb, data);
+		  g_signal_connect(G_OBJECT(bus), "message::buffering",
+		                   (GCallback)buffering_cb, data);
+		  g_signal_connect(G_OBJECT(bus), "message::clock-lost",
+		                   (GCallback)clock_lost_cb, data);
+		  g_signal_connect(G_OBJECT(bus), "message::need-context",
+		                   (GCallback)need_context_cb, data);
+		  gst_object_unref(bus);
 		  ```
 - # Example multicast RTP player
 	- ## video pipeline
