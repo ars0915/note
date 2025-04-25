@@ -11,4 +11,18 @@ public:: true
 		- You add a caps filter as an element between stages:
 		  
 		  ```
+		  ... ! rtph264depay ! video/x-h264, stream-format=byte-stream, alignment=au ! appsink ...
+		  ```
+		  	•	The output of rtph264depay must match these caps.
+		  	•	If it doesn’t, negotiation fails (or it tries to convert via other elements if autoplugging is enabled).
+		  	•	This is how you force a certain format going into appsink.
+		- 和在程式裡加一樣
+		  
+		  ```cpp
+		  GstCaps* sink_caps = gst_caps_new_simple("video/x-h264",
+		      "stream-format", G_TYPE_STRING, "byte-stream",
+		      "alignment", G_TYPE_STRING, "au",
+		      NULL);
+		  g_object_set(appsink, "caps", sink_caps, NULL);
+		  gst_caps_unref(sink_caps);
 		  ```
