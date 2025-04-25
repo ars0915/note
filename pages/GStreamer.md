@@ -5,6 +5,9 @@ public:: true
 	- ## udpsrc
 		- multicast-iface=wlan0: 指定 Wi-Fi interface
 		- caps="application/x-rtp, ...": 告訴 GStreamer UDP data 是 RTP format、包含 H264 video
+	- ## rtpbin
+	- ## queue
+	- ## rtph264depay
 	- ## caps
 		- ### Set Caps on udpsrc
 			- ```
