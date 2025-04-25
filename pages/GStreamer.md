@@ -84,7 +84,7 @@ public:: true
 				  g_object_set(appsink, "caps", sink_caps, NULL);
 				  gst_caps_unref(sink_caps);
 				  ```
-		- appsink
+		- ### appsink
 		  Pulls data from the pipeline into your application
 		  Lets you intercept and analyze/decode frames manually
 			- emit-signals=true (should be set in code): needed to receive the "new-sample" signal.
