@@ -136,6 +136,9 @@ public:: true
 			- Keeps packet delivery smooth even if downstream (decoding/rendering) is slow.
 			- #### 什麼時候需要用
 				- After rtpbin: rtpbin is multithreaded; outputs RTP/RTCP separately. Add queue for each stream branch.
+				- Before decoders: To allow buffering decode input without blocking upstream.
+				- Before appsink: If the app consumes data asynchronously.
+				- If two elements don’t synchronize nicely, use a queue between.
 				-
 		- ### rtph264depay
 		  collapsed:: true
