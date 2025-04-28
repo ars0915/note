@@ -3,4 +3,5 @@
 - ![image.png](../assets/image_1745823294705_0.png)
 	- Encrypted Portion 由 payload, RTP padding, RTP pad count 組成
 	- 需要驗證部份 Authenticated Portion 由 Encrypted Portionm, RTP header, RTP header extension 組成
-	-
+	- 通常只對 payload 加密
+-
