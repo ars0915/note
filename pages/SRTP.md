@@ -39,10 +39,10 @@
 		- 如果序列號在當前窗口之前（太舊），SRTP 可以直接丟棄它。
 		- 使用位元掩碼（bitmask）快速記錄哪些封包已經收到過。
 	- Roll-over Counter (ROC)
-	- 因為序列號只有 16 bits，當它回繞時需要靠另一個值來判斷封包真正的順序。
-	- ROC（Roll-over Counter） 是一個 32 bits 的計數器，記錄回繞（wrap）次數。
-	- 每當序列號從 65535 回到 0，ROC +1。
-	  	•	Extended Sequence Number (ESN) = ROC * 2¹⁶ + SN
-	  	•	Extended Sequence Number 用來：
-	  	•	正確產生 IV
-	  	•	檢查封包順序
+		- 因為序列號只有 16 bits，當它回繞時需要靠另一個值來判斷封包真正的順序。
+		- ROC（Roll-over Counter） 是一個 32 bits 的計數器，記錄回繞（wrap）次數。
+		- 每當序列號從 65535 回到 0，ROC +1。
+		- Extended Sequence Number (ESN) = ROC * 2¹⁶ + SN
+		- Extended Sequence Number 用來：
+			- 正確產生 IV
+			- 檢查封包順序
