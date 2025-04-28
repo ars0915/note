@@ -14,3 +14,4 @@
 		- Cipher Parameter: 加解密使用的 key, salt，算法類型，參數
 		- Authentication Parameter: 完整性使用的 key, salt，算法類型，參數
 		- Anti-Replay Data: 防止重放攻擊緩存的數據信息
+	- 在 Session 中每個 Stream 都會用到屬於自己的加解密 key, Authentication key。
