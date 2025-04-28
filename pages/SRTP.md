@@ -84,4 +84,4 @@
 		- srtp-auth: **驗證算法**，用 HMAC-SHA1 計算 80-bit（10 bytes）封包驗證碼（authentication tag），保護封包完整性。
 		- roc=(uint)0
 			- 播放器假設這個「流」是從剛開始（序列號未回繞）開始收。
-			-
+			- 如果在中途才加入流，發送端的 RTP 序列號已經超過 65535（0xFFFF），ROC 不是 0 了，算出來的 IV 無法用來解密
