@@ -173,10 +173,12 @@ public:: true
 				- Packetized H264 in RTP:
 				  	•	H264 can be transmitted in different RTP packetization modes.
 				  	•	Each mode affects how NALUs are split across RTP packets.
-				- **Single NALU**: Each RTP packet contains **one full NAL unit**.
-				- **STAP-A**: Single RTP packet holds **multiple small NAL units**.
-				- **FU-A**: NAL unit is split across **multiple RTP packets** (fragmented).
-				-
+					- **Single NALU**: Each RTP packet contains **one full NAL unit**.
+					- **STAP-A**: Single RTP packet holds **multiple small NAL units**.
+					- **FU-A**: NAL unit is split across **multiple RTP packets** (fragmented).
+				- If you’re receiving STAP or FU-A packets, rtph264depay needs to reassemble or split NALUs → this affects its output format, which can be:
+				  	•	stream-format=byte-stream → with start codes (0x000001), suitable for decoders.
+				  	•	stream-format=avc → length-prefixed NALUs ([length][NALU data]), used in MP4.
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
