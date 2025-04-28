@@ -8,4 +8,5 @@ public:: true
 	- CSRC: 記錄所有參與方的來源 SSRC
 	- SSRC: 記錄封包的發送方，隨機從 md5 選取，在同一個視訊中不會有相同的 SSRC
 	- ![image.png](../assets/image_1745822962484_0.png)
--
+- ## RTCP
+	- RTP 沒有提供 QoS，RTCP 在來源和接收端定時交換統計資訊，
