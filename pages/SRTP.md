@@ -65,4 +65,20 @@
 - **Local Master Key**: 加密「自己送出去」的封包
 - **Remote Master Key**: 解密「別人送過來」的封包
 - # GStreamer
-	-
+	- ```
+	  udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 
+	  caps="application/x-srtp, media=video, payload=96, clock-rate=90000, 
+	  	encoding-name=H264,ssrc=(uint)1234564002,
+	      srtp-key=(buffer)E1F97A0D3E018BE0D64FA32C06DE41390EC675AD498AFEEBB6960B3AABE6, 
+	      srtp-cipher=aes-128-icm, srtp-auth=hmac-sha1-80, 
+	      srtcp-cipher=aes-128-icm, srtcp-auth=hmac-sha1-80, 
+	      roc=(uint)0" 
+	  ! srtpdec 
+	  ! rtpbin 
+	  ! queue 
+	  ! rtph264depay 
+	  ! video/x-h264, stream-format=byte-stream , alignment=au 
+	  ! appsink name=appsink sync=false
+	  ```
+		- srtp-cipher: **加密算法**，用 AES-128 in ICM (counter) 模式，確保 RTP payload 被加密。
+		-
