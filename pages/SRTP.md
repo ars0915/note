@@ -1,7 +1,10 @@
+# 要解決的問題
 - 對 RTP / RTCP 的 payload 加密
 - 保證 RTP / RTCP 的完整性，同時防止重放攻擊
+- # 結構
 - ![image.png](../assets/image_1745823294705_0.png)
 	- Encrypted Portion 由 payload, RTP padding, RTP pad count 組成
 	- 需要驗證部份 Authenticated Portion 由 Encrypted Portionm, RTP header, RTP header extension 組成
 	- 通常只對 payload 加密
--
+- # Key 管理
+	-
