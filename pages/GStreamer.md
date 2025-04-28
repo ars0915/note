@@ -169,6 +169,15 @@ public:: true
 			  •	If the RTP stream uses “packetized” H264 NALUs directly, rtph264depay can output byte-stream (start codes).
 			  •	If the RTP stream uses AVC (MP4 style) format (sprop-parameter-sets, etc), it can output avc caps.
 			  •	Some senders (encoders or streamers) insert multiple SPS/PPS headers → both formats appear available.
+			- NALU = Network Abstraction Layer Unit (unit of H264 video data).
+				- Packetized H264 in RTP:
+				  	•	H264 can be transmitted in different RTP packetization modes.
+				  	•	Each mode affects how NALUs are split across RTP packets.
+				- | 
+				  **Single NALU**
+				   | 
+				  Each RTP packet contains **one full NAL unit**.
+				   |
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
