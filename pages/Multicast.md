@@ -10,4 +10,7 @@ public:: true
   
   So 224.5.5.5 is valid. However:
 	- Addresses in 224.0.0.0 - 224.0.0.255 are **reserved** for local network control and shouldn’t be used for general-purpose multicasting.
+- ## 網路設定
+	- AP 有 IGMP Snooping: 只有訂閱者收到 Multicast流量
+	- AP
 -
