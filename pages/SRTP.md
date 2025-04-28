@@ -17,4 +17,4 @@
 	- 在 Session 中每個 Stream 都會用到屬於自己的加解密 key, Authentication key。這些 Session key 是通過對 Master key 使用 KDF (Key Derivation Function) 導出
 	- ![image.png](../assets/image_1745824069494_0.png)
 	- master key: DTLS 完成後協商得到的 key
-	- master salt: DTLS
+	- master salt: DTLS 完成後協商得到的 key
