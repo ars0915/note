@@ -85,5 +85,6 @@
 		- roc=(uint)0
 			- 播放器假設這個「流」是從剛開始（序列號未回繞）開始收。
 			- 如果在中途才加入流，發送端的 RTP 序列號已經超過 65535（0xFFFF），ROC 不是 0 了，算出來的 IV 無法用來解密
-			  ``W GStreamer+srtpdec: 0:04:34.688212765 0xb400007287feeb60 ../ext/srtp/gstsrtpdec.c:1500:gst_srtp_dec_decode_buffer:<srtpdec2> Error authentication packet, dropping`
+			  `W GStreamer+srtpdec: 0:04:34.688212765 0xb400007287feeb60 ../ext/srtp/gstsrtpdec.c:1500:gst_srtp_dec_decode_buffer:<srtpdec2> Error authentication packet, dropping`
+			-
 -
