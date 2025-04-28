@@ -8,4 +8,5 @@
 	- 通常只對 payload 加密
 - # Key 管理
 	- Session: <SRTP 目的 IP, SRTP 目的 port>
-	- Stream: <SSRC, RTP/RTCP 目的IP, RTP 目的 port>，一個 SRTP / SRTCP Session 由多個 stream 組成
+	- Stream: <SSRC, RTP/RTCP 目的IP, RTP 目的 port>，一個 SRTP / SRTCP Session 由多個 stream 組成。對每個 stream 的加解密相關參數描述為 Cryptographic Context。
+	- 每個 stream 的 Cr
