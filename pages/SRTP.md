@@ -1,0 +1,2 @@
+- 對 RTP / RTCP 的 payload 加密
+- 保證 RTP / RTCP 的完整性，同時
