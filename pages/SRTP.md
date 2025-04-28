@@ -81,4 +81,7 @@
 	  ! appsink name=appsink sync=false
 	  ```
 		- srtp-cipher: **加密算法**，用 AES-128 in ICM (counter) 模式，確保 RTP payload 被加密。
-		-
+		- srtp-auth: **驗證算法**，用 HMAC-SHA1 計算 80-bit（10 bytes）封包驗證碼（authentication tag），保護封包完整性。
+		- roc=(uint)0
+			- 播放器假設這個「流」是從剛開始（序列號未回繞）開始收。
+			-
