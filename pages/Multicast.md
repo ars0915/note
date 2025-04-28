@@ -13,4 +13,6 @@ public:: true
 - ## 網路設定
 	- AP 有 IGMP Snooping: 只有訂閱者收到 Multicast流量
 	- AP 無 IGMP Snooping（Flood): 全部裝置都收到 => 整個Wi-Fi或Switch網路變慢爆
--
+	- player 要選擇 wifi interface
+	- player 有開 udp socket 和拿 multicast lock，AP 是 flood 的話會收到很多垃圾封包，需要做限流
+		-
