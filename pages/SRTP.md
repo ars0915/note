@@ -20,13 +20,21 @@
 	- master salt: DTLS 完成後協商得到的 key
 - # 序列號
 	- RTP 封包內的序列號
-	  	•	每發送一個 RTP 封包，序列號加 1。
-	  	•	當序列號達到 65535 時，回繞（wrap around）回到 0。
-	  	•	這個序列號放在 RTP 封包頭中，占 16 bits。
+		- 每發送一個 RTP 封包，序列號加 1。
+		- 當序列號達到 65535 時，回繞（wrap around）回到 0。
+		- 這個序列號放在 RTP 封包頭中，占 16 bits。
 	- SRTP 封包保護（加密/認證）
-	  	•	加密和認證時，序列號會被用來產生 IV (Initialization Vector)。
-	  	•	IV 通常是基於：
-	  	•	SSRC（Synchronization Source）
-	  	•	序列號
-	  	•	其他密鑰派生參數
-	  	•	這樣設計可以確保即使資料內容重複，因為序列號不同，最終加密結果也不同，增加安全性。
+		- 加密和認證時，序列號會被用來產生 IV (Initialization Vector)。
+		- IV 通常是基於：
+			- SSRC（Synchronization Source）
+			- 序列號
+			- 其他密鑰派生參數
+		- 這樣設計可以確保即使資料內容重複，因為序列號不同，最終加密結果也不同，增加安全性。
+	- 防止重播攻擊（Replay Protection）
+	  	•	重播緩衝區（Replay Protection Window）：通常是 64 或 128 個封包大小。
+	  	•	SRTP 使用序列號來判斷接收到的封包是否是：
+	  	•	新封包（正常）
+	  	•	重複封包（攻擊或網路重播）
+	  	•	過期封包（已被處理過，應拒絕）
+	  	•	如果序列號在當前窗口之前（太舊），SRTP 可以直接丟棄它。
+	  	•	使用位元掩碼（bitmask）快速記錄哪些封包已經收到過。
