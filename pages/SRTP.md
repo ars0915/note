@@ -19,4 +19,14 @@
 	- master key: DTLS 完成後協商得到的 key
 	- master salt: DTLS 完成後協商得到的 key
 - # 序列號
-	-
+	- RTP 封包內的序列號
+	  	•	每發送一個 RTP 封包，序列號加 1。
+	  	•	當序列號達到 65535 時，回繞（wrap around）回到 0。
+	  	•	這個序列號放在 RTP 封包頭中，占 16 bits。
+	- SRTP 封包保護（加密/認證）
+	  	•	加密和認證時，序列號會被用來產生 IV (Initialization Vector)。
+	  	•	IV 通常是基於：
+	  	•	SSRC（Synchronization Source）
+	  	•	序列號
+	  	•	其他密鑰派生參數
+	  	•	這樣設計可以確保即使資料內容重複，因為序列號不同，最終加密結果也不同，增加安全性。
