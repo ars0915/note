@@ -1,2 +1,5 @@
 - 對 RTP / RTCP 的 payload 加密
-- 保證 RTP / RTCP 的完整性，同時
+- 保證 RTP / RTCP 的完整性，同時防止重放攻擊
+- ![image.png](../assets/image_1745823294705_0.png)
+	- Encrypted Portion 由 payload, RTP padding, RTP pad count 組成
+	-
