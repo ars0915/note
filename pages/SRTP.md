@@ -18,3 +18,5 @@
 	- ![image.png](../assets/image_1745824069494_0.png)
 	- master key: DTLS 完成後協商得到的 key
 	- master salt: DTLS 完成後協商得到的 key
+- # 序列號
+	-
