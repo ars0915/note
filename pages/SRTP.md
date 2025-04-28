@@ -52,4 +52,8 @@
 			- 正確產生 IV
 			- 檢查封包順序
 - #  Initialization Vector (IV) 的使用方式
+	- ## IV 的目的
+		- IV 是為了防止加密時出現相同明文導致的加密模式弱點。
+		- 在 SRTP 裡，每一個 RTP 封包都有一個唯一的 IV。
+		- IV 會參與生成加密密鑰流（尤其是在 AES-CTR、AES-GCM 模式下）。
 	-
