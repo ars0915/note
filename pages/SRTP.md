@@ -11,4 +11,6 @@
 	- Stream: <SSRC, RTP/RTCP 目的IP, RTP 目的 port>，一個 SRTP / SRTCP Session 由多個 stream 組成。對每個 stream 的加解密相關參數描述為 Cryptographic Context。
 	- 每個 stream 的 Cryptographic Context 中包含以下參數
 		- SSRC
-		- Cipher Parameter: 加解密使用的 key, salt，算法描述
+		- Cipher Parameter: 加解密使用的 key, salt，算法類型，參數
+		- Authentication Parameter: 完整性使用的 key, salt，算法類型，參數
+		- Anti-Replay Data: 防止重放攻擊緩存的數據信息
