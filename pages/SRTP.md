@@ -51,3 +51,5 @@
 		- Extended Sequence Number 用來：
 			- 正確產生 IV
 			- 檢查封包順序
+- #  Initialization Vector (IV) 的使用方式
+	-
