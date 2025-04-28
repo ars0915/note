@@ -7,4 +7,5 @@
 	- 需要驗證部份 Authenticated Portion 由 Encrypted Portionm, RTP header, RTP header extension 組成
 	- 通常只對 payload 加密
 - # Key 管理
-	-
+	- Session: <SRTP 目的 IP, SRTP 目的 port>
+	- Stream: <SSRC, RTP/RTCP>
