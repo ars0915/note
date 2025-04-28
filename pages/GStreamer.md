@@ -173,11 +173,10 @@ public:: true
 				- Packetized H264 in RTP:
 				  	•	H264 can be transmitted in different RTP packetization modes.
 				  	•	Each mode affects how NALUs are split across RTP packets.
-				- | 
-				  **Single NALU**
-				   | 
-				  Each RTP packet contains **one full NAL unit**.
-				   |
+				- **Single NALU**: Each RTP packet contains **one full NAL unit**.
+				- **STAP-A**: Single RTP packet holds **multiple small NAL units**.
+				- **FU-A**: NAL unit is split across **multiple RTP packets** (fragmented).
+				-
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- #### Set Caps on udpsrc
