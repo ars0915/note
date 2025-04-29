@@ -1,4 +1,7 @@
-# 要解決的問題
+public:: true
+tags:: Multicast
+
+- # 要解決的問題
 - 對 RTP / RTCP 的 payload 加密
 - 保證 RTP / RTCP 的完整性，同時防止重放攻擊
 - # 結構
