@@ -4,7 +4,7 @@
 	  相關性 (Relevant): 此技能直接提升了我在專案中進行多媒體傳輸與連線排查的能力，符合部門技術需求。 
 	  時限性 (Time-bound): 在試用期內完成 Flutter 開發基礎並成功整合 WebRTC 功能至專案。
 - # 完成的工作項目
-	- ## 調整 AirSync 的 WebRTC 連線流程
+	- ## 調整 AirSync 的 [[WebRTC]] 連線流程
 		- 具體目標 (Specific): 優化 WebRTC 連線的 SDP 交換流程，確保連線穩定性。
 		  可衡量 (Measurable): 完成流程調整，確認沒有 candidate 因 SDP 尚未交換而忽略。
 		  可達成 (Achievable): 根據 WebRTC 標準規範與現有架構設計，對程式碼進行局部調整即可完成。
