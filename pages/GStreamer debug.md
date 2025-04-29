@@ -1,4 +1,5 @@
 public:: true
+tags:: Multicast
 
 - ## 黑屏沒有錯誤訊息
 	- 在 java 層把 gstreamer video pipeline 的內容印出來
