@@ -99,12 +99,7 @@ public:: true
 - # Example multicast RTP player
 	- ## video pipeline
 		- ```
-		  udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" 
-		  ! rtpbin 
-		  ! queue 
-		  ! rtph264depay 
-		  ! video/x-h264, stream-format=byte-stream , alignment=au 
-		  ! appsink name=appsink sync=false
+		  udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-srtp, media=video, payload=96, clock-rate=90000, encoding-name=H264,ssrc=(uint)1234564002,srtp-key=(buffer)E1F97A0D3E018BE0D64FA32C06DE41390EC675AD498AFEEBB6960B3AABE6, srtp-cipher=aes-128-icm, srtp-auth=hmac-sha1-80, srtcp-cipher=aes-128-icm, srtcp-auth=hmac-sha1-80, roc=(uint)0" ! srtpdec ! rtpbin ! queue ! rtph264depay ! video/x-h264, stream-format=byte-stream , alignment=au ! appsink name=appsink sync=false
 		  ```
 		- ### udpsrc
 		  用來接收 UDP 的 data
