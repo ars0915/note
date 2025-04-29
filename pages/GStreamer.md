@@ -99,20 +99,7 @@ public:: true
 - # Example multicast RTP player
 	- ## video pipeline
 		- ```
-		  udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 
-		  caps="application/x-srtp, 
-		  	media=video, 
-		      payload=96, 
-		  	clock-rate=90000, 
-		      encoding-name=H264,
-		  	ssrc=(uint)1234564002,
-		  	srtp-key=(buffer)E1F97A0D3E018BE0D64FA32C06DE41390EC675AD498AFEEBB6960B3AABE6, 
-		  	srtp-cipher=aes-128-icm, 
-		  	srtp-auth=hmac-sha1-80, 
-		  	srtcp-cipher=aes-128-icm, 
-		  	srtcp-auth=hmac-sha1-80, 
-		  	roc=(uint)0" 
-		  ! srtpdec 
+		  udpsrc uri=udp://224.5.5.5:4002 multicast-iface=wlan0 caps="application/x-rtp, media=video, payload=96, clock-rate=90000, encoding-name=H264" 
 		  ! rtpbin 
 		  ! queue 
 		  ! rtph264depay 
@@ -237,7 +224,7 @@ public:: true
 			- When silent=false, it logs every buffer that passes through.
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
--
+		- [SRTP 相關參數]()
 - # Reference
 	- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
 	  type:: [[Web Page]]
