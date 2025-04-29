@@ -224,7 +224,8 @@ public:: true
 			- When silent=false, it logs every buffer that passes through.
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
-		- [SRTP 相關參數]()
+		- {{embed ((680f32e1-3ab3-4800-ba40-ec396ea0b721))}}
+		-
 - # Reference
 	- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
 	  type:: [[Web Page]]
