@@ -143,9 +143,17 @@ public:: true
 		  ```
 			- std::unique_ptr<T> 是一種 獨佔式智能指標，保證 只會有一個擁有者。
 			  它 不能被複製（copy），只能被移動（move）。
-			  這樣合法（傳右值）
 			  
+			  這樣合法（傳右值）
+			  ```cpp
+			  std::unique_ptr<int> up = std::make_unique<int>(5);
+			  take(std::move(up)); // ✅ 移動給函數
+			  ```
 			  這樣錯誤（傳左值）
+			  ```cpp
+			  std::unique_ptr<int> up = std::make_unique<int>(5);
+			  take(up); // ❌ 編譯錯誤，因為會試圖複製 up
+			  ```
 		- 避免拷貝大型物件
 		  
 		  ```cpp
