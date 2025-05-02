@@ -121,6 +121,17 @@ public:: true
 	- ### 為什麼要把左值轉成右值
 		- 右值才能觸發「移動語意(move semantics)」資源轉移
 		  避免「copy」，特別在處理大型資源時(std::vector, std::string, std::unique_ptr)
+		- move 比 copy 快
+		  
+		  ```cpp
+		  std::vector<int> v1 = {1, 2, 3, 4};
+		  
+		  // 這是拷貝：v2 是 v1 的副本
+		  std::vector<int> v2 = v1;
+		  
+		  // 這是移動：v3 直接接手 v1 的資源，v1 變空
+		  std::vector<int> v3 = std::move(v1);
+		  ```
 -
 -
 - # Reference
