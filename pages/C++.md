@@ -110,6 +110,10 @@ public:: true
 	  int y = x + 1; // x+ 1 是右值
 	  int z = 42; // 42 是右值
 	  ```
--
+	- ### std::move 把左值轉為右值參考 (rvalue reference)，讓它可以被移動
+		- ```cpp
+		  std::string a = "hello";
+		  std::string b = std::move(a); // ✅ 移動 a 的資源到 b
+		  ```
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
