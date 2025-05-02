@@ -93,7 +93,11 @@ public:: true
 	  }
 	  ```
 	  当 JsepTransportController 调用 `SignalIceConnectionState(state)` 时，便会回调 `PeerConnection::OnTransportControllerConnectionState` 这个方法；事实上只要 connect 了的方法，都会被回调。对于 Java(Script) 开发者来说，这种回调机制肯定不陌生，其实就是一种观察者模式的实现，**主要是为了代码解耦。**
-- ## 右
+- ## 左值 右值
+	- ### 左值 Lvalue
+	  出現在賦值運算子左邊的值，具名且可定位
+	- 有名字、
+	- ### 右值
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
