@@ -132,7 +132,8 @@ public:: true
 		  // 這是移動：v3 直接接手 v1 的資源，v1 變空
 		  std::vector<int> v3 = std::move(v1);
 		  ```
--
+	- ### 為什麼需要 std::move
+		- 傳遞 move-only 型別 ()
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
