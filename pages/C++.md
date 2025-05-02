@@ -189,7 +189,9 @@ public:: true
 		  
 		  std::move(task)(); // ✅ OK，一次性移動並執行
 		  ```
--
+		- 是一種 可封裝 move-only lambda 且只能移動執行一次的 callable，讓開發者明確限制：
+			- 只能執行一次（右值調用）
+			- 可用於回呼、任務提交、一-shot promise 等
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
