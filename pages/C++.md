@@ -170,7 +170,12 @@ public:: true
 	  std::string a = "hello";
 	  std::string b = std::move(a); // b 會調用 std::string 的 move constructor
 	  ```
--
+- ##  absl::AnyInvocable
+	- absl::AnyInvocable 是 Google Abseil C++ Library 提供的一個輕量版、功能更安全的函數封裝類別，類似於 std::function，但支援：
+		- 僅限一次執行（move-only）
+		- 支援 const、&、&& 調用（invocation qualifiers）
+		- 可儲存 lambda、函數物件、綁定的 callback，包含 move-only lambda
+	- 相比 std::function 必須可複製，absl::AnyInvocable 允許 move-only 的 lambda 或 callable，這讓它更適合 callback、任務封裝等用途。
 -
 -
 - # Reference
