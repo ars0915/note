@@ -115,7 +115,9 @@ public:: true
 		  std::string a = "hello"; // a 是左值
 		  std::string b = std::move(a); // ✅ 移動 a 的資源到 b, std::move(a)右值
 		  ```
-	-
+	- ### 左值引用、右值引用
+		- 左值引用: T& 接收一般變數、具名物件
+		- 右值引用: T&& 接收臨時物件，允許資
 -
 -
 - # Reference
