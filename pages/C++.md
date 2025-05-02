@@ -132,6 +132,16 @@ public:: true
 		  // 這是移動：v3 直接接手 v1 的資源，v1 變空
 		  std::vector<int> v3 = std::move(v1);
 		  ```
+	- ### std::move 不是真的在「移動」
+	  std::move(x) 只是把 x 的型別強制轉成右值參考（T&&），它不會真的做「移動」。
+	  真正移動的是 constructor 或 assignment operator：
+	  
+	  ```cpp
+	  std::string a = "hello";
+	  std::string b = std::move(a); // b 會調用 std::string 的 move constructor
+	  ```
+-
+-
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
