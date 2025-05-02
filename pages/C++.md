@@ -116,8 +116,8 @@ public:: true
 		  std::string b = std::move(a); // ✅ 移動 a 的資源到 b, std::move(a)右值
 		  ```
 	- ### 左值引用、右值引用
-		- 左值引用: T& 接收一般變數，具名物件
-		- 右值引用: T&& 接收臨時物件，允許資源轉移
+		- 左值引用: `T&` 接收一般變數，具名物件
+		- 右值引用: `T&&` 接收臨時物件，允許資源轉移
 	- ### 為什麼要把左值轉成右值
 		- 右值才能觸發「移動語意(move semantics)」資源轉移
 		  避免「copy」，特別在處理大型資源時(std::vector, std::string, std::unique_ptr)
@@ -176,6 +176,10 @@ public:: true
 		- 支援 const、&、&& 調用（invocation qualifiers）
 		- 可儲存 lambda、函數物件、綁定的 callback，包含 move-only lambda
 	- 相比 std::function 必須可複製，absl::AnyInvocable 允許 move-only 的 lambda 或 callable，這讓它更適合 callback、任務封裝等用途。
+	- ### absl::AnyInvocable<void() &&>
+		- 表示它只接受一個可呼叫的物件，且只能透過右值調用（即 std::move(callback)();)
+		  && (rvalue ref): 表示這個 callable **只能被右值調用**（例如只允許一次）
+		-
 -
 -
 - # Reference
