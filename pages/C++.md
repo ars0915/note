@@ -96,8 +96,14 @@ public:: true
 - ## 左值 右值
 	- ### 左值 Lvalue
 	  出現在賦值運算子左邊的值，具名且可定位
-	- 有名字、
-	- ### 右值
+		- 有名字、記憶體位址、可被取值(&)、可賦新值
+		  
+		  ```cpp
+		  int x = 10;
+		  x = 20;
+		  int* p = &x;
+		  ```
+	- ### 右值 Rvalue
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
