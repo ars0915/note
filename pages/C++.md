@@ -132,6 +132,25 @@ public:: true
 		  // 這是移動：v3 直接接手 v1 的資源，v1 變空
 		  std::vector<int> v3 = std::move(v1);
 		  ```
+	- ### 為什麼需要 std::move
+		- 傳遞 move-only 型別（如 std::unique_ptr）
+		  
+		  ```cpp
+		  void take(std::unique_ptr<int> p); // 只接受右值
+		  
+		  std::unique_ptr<int> up = std::make_unique<int>(5);
+		  take(std::move(up));  // ✅ 必須轉成右值才可移動
+		  ```
+			- std::unique_ptr<T> 是一種 獨佔式智能指標，保證 只會有一個擁有者。
+			  它 不能被複製（copy），只能被移動（move）。
+		- 避免拷貝大型物件
+		  
+		  ```cpp
+		  std::string makeMessage() {
+		      std::string msg = "Hello from a big string buffer...";
+		      return std::move(msg); // ✅ 可顯式提示移動（雖然編譯器可優化）
+		  }
+		  ```
 	- ### std::move 不是真的在「移動」
 	  std::move(x) 只是把 x 的型別強制轉成右值參考（T&&），它不會真的做「移動」。
 	  真正移動的是 constructor 或 assignment operator：
