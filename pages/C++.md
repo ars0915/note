@@ -179,7 +179,16 @@ public:: true
 	- ### absl::AnyInvocable<void() &&>
 		- 表示它只接受一個可呼叫的物件，且只能透過右值調用（即 std::move(callback)();)
 		  && (rvalue ref): 表示這個 callable **只能被右值調用**（例如只允許一次）
-		-
+		- 用途場景:
+		  單次 callback
+		  
+		  ```cpp
+		  absl::AnyInvocable<void() &&> task = [ptr = std::make_unique<int>(42)]() mutable {
+		      std::cout << "Value: " << *ptr << std::endl;
+		  };
+		  
+		  std::move(task)(); // ✅ OK，一次性移動並執行
+		  ```
 -
 -
 - # Reference
