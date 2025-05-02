@@ -112,8 +112,11 @@ public:: true
 	  ```
 	- ### std::move 把左值轉為右值參考 (rvalue reference)，讓它可以被移動
 		- ```cpp
-		  std::string a = "hello";
-		  std::string b = std::move(a); // ✅ 移動 a 的資源到 b
+		  std::string a = "hello"; // a 是左值
+		  std::string b = std::move(a); // ✅ 移動 a 的資源到 b, std::move(a)右值
 		  ```
+	-
+-
+-
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
