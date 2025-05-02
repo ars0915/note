@@ -104,6 +104,12 @@ public:: true
 		  int* p = &x;
 		  ```
 	- ### 右值 Rvalue
+	  臨時值、沒有名字、無法持久存在
+	  
+	  ```cpp
+	  int y = x + 1; // x+ 1 是右值
+	  int z = 42; // 42 是右值
+	  ```
 -
 - # Reference
 - "信號槽機制," *WebRTC 學習指南*, Available: [link_to_page](https://webrtc.mthli.com/code/sigslot/).
