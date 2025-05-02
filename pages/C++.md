@@ -119,7 +119,8 @@ public:: true
 		- 左值引用: T& 接收一般變數，具名物件
 		- 右值引用: T&& 接收臨時物件，允許資源轉移
 	- ### 為什麼要把左值轉成右值
-		- 右值才能觸發「移動語意(move se)
+		- 右值才能觸發「移動語意(move semantics)」資源轉移
+		  避免「copy」，特別在處理大型資源時(std::vector, std::string, std::unique_ptr)
 -
 -
 - # Reference
