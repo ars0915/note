@@ -226,7 +226,9 @@ tags:: Multicast
 			- You can see timestamps, sizes, and verify that data is flowing.
 			- It does not alter or process data—just “observes.”
 		- {{embed ((680f32e1-3ab3-4800-ba40-ec396ea0b721))}}
-		-
+- # MacOS gst-launch
+	- ```
+	  ```
 - # Reference
 	- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
 	  type:: [[Web Page]]
