@@ -228,6 +228,9 @@ tags:: Multicast
 		- {{embed ((680f32e1-3ab3-4800-ba40-ec396ea0b721))}}
 - # MacOS gst-launch
 	- ```
+	  gst-launch-1.0 -v udpsrc uri=udp://239.1.1.1:5004 multicast-iface=en0 \
+	  caps="application/x-srtp, media=video, payload=96, clock-rate=90000, encoding-name=H264,ssrc=(uint)1234564002,srtp-key=(buffer)E1F97A0D3E018BE0D64FA32C06DE41390EC675AD498AFEEBB6960B3AABE6, srtp-cipher=aes-128-icm, srtp-auth=hmac-sha1-80, srtcp-cipher=aes-128-icm, srtcp-auth=hmac-sha1-80, roc=(uint)0" \
+	  ! srtpdec ! rtpbin ! queue ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
 	  ```
 - # Reference
 	- YH Hsu, "[Streaming] GStreamer簡介與筆記," *hackmd*, Available: [link_to_page](https://hackmd.io/@YungHuiHsu/ryhRTZpt3). 
