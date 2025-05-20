@@ -226,7 +226,29 @@ tags:: Multicast
 				  	•	Or unexpected buffer formats.
 				  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
 - # 使用 probe pad 看每個元件的資料
-	- ```cpp
+	- 🔧 pad probe – 適合程式碼層級、彈性高的除錯
+		- ✅ 優點：
+		  •	可以動態在任意 pad 加入 callback
+		  •	可以透過 gst_buffer_map 自訂印出內容（如 Hex dump）
+		  •	可以印出 element 名稱、buffer flags、PTS/DTS 等
+		  •	不影響 pipeline 架構（無需改 pipeline string）
+		- 📌 什麼時候用？
+		  •	想知道「buffer 真正流到某個 pad 時長什麼樣子？」
+		  •	Debug 某個 plugin 收到的資料有無異常
+		  •	你已經在寫 C++ 或 JNI，方便插入 probe
+	- 📦 identity 元件 – 適合快速在 pipeline string 加觀察點
+		- ✅ 優點：
+		  •	加入 identity name=foo silent=false dump=true 會自動 log buffer 前 16 bytes
+		  •	不用寫 C++ 程式碼
+		  •	可以在 pipeline 中間隨時加上
+		- 📌 什麼時候用？
+		  •	想快速檢查某一段 pipeline 前後 buffer 有無變化
+		  •	你還不方便動 C++ code，但 pipeline 可用 gst-launch 或 gst_parse_launch
+		- ⚠️ 注意：
+		  •	需要改 pipeline 結構（可能造成 caps negotiation 行為改變）
+		  •	identity 只會印出部分內容，較難調整格式
+	- 加上 function
+	  ```cpp
 	  static GstPadProbeReturn buffer_probe_callback(GstPad* pad, GstPadProbeInfo* info, gpointer user_data) {
 	      if (GST_PAD_PROBE_INFO_TYPE(info) & GST_PAD_PROBE_TYPE_BUFFER) {
 	          GstElement* parent = gst_pad_get_parent_element(pad);
@@ -247,4 +269,23 @@ tags:: Multicast
 	      }
 	      return GST_PAD_PROBE_OK;
 	  }
+	  ```
+	  在 pipeline launch 後加上
+	  ```cpp
+	  const char* elements_to_probe[] = {"mysrc", "h264parse", "avdec_h264", "videoconvert"};
+	  
+	      for (const char* name : elements_to_probe) {
+	          GstElement* elem = gst_bin_get_by_name(GST_BIN(pipeline), name);
+	          if (elem) {
+	              GstPad* srcpad = gst_element_get_static_pad(elem, "src");
+	              if (srcpad) {
+	                  gst_pad_add_probe(srcpad, GST_PAD_PROBE_TYPE_BUFFER, buffer_probe_callback, nullptr, nullptr);
+	                  ALOGI("Added probe to %s", name);
+	                  gst_object_unref(srcpad);
+	              }
+	              gst_object_unref(elem);
+	          } else {
+	              ALOGI("Element not found: %s", name);
+	          }
+	      }
 	  ```
