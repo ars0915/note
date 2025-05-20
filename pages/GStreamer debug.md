@@ -225,4 +225,26 @@ tags:: Multicast
 				  	•	**new-sample callback not called**.
 				  	•	Or unexpected buffer formats.
 				  	•	Or buffers arriving but decoder (if any) fails — resulting in black screen.
--
+- # 使用 probe pad 看每個元件的資料
+	- ```cpp
+	  static GstPadProbeReturn buffer_probe_callback(GstPad* pad, GstPadProbeInfo* info, gpointer user_data) {
+	      if (GST_PAD_PROBE_INFO_TYPE(info) & GST_PAD_PROBE_TYPE_BUFFER) {
+	          GstElement* parent = gst_pad_get_parent_element(pad);
+	          const gchar* element_name = gst_element_get_name(parent);
+	          GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
+	          GstMapInfo map;
+	          if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
+	              std::string hex;
+	              for (size_t i = 0; i < std::min<size_t>(map.size, 16); ++i) {
+	                  char buf[4];
+	                  snprintf(buf, sizeof(buf), "%02X ", map.data[i]);
+	                  hex += buf;
+	              }
+	              ALOGI("[PROBE] element: %s, buffer size: %zu, head: %s",
+	                    element_name, map.size, hex.c_str());
+	              gst_buffer_unmap(buffer, &map);
+	          }
+	      }
+	      return GST_PAD_PROBE_OK;
+	  }
+	  ```
