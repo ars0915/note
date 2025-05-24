@@ -18,11 +18,9 @@ public:: true
 	- player 有開 udp socket 和拿 multicast lock，AP 是 flood 的話會收到很多垃圾封包，需要做限流
 		- **UDP socket 是否會收到資料，是根據「目的地 port（destination port）」來決定的，與 IP address（尤其 multicast IP）無關**。
 			- 程式加入 group，但沒 bind 對 port：
-			  結果：**OS 收到封包（因為 group 加入了），但 port 不對 → 不會 deliver 給這個 socket**
+			  結果：**OS 收到封包（因為 group 加入了）Wireshark 可以抓到，但 port 不對 → 不會 deliver 給這個 socket**
 			- 程式沒有加入 group，但有綁 port：
 			  結果：**OS 不會收到該 multicast 封包 → socket 根本沒機會拿到資料**
-			-
-			-
 		- Multicast封包的 destination IP可以是任何224.x.x.x group。
 		- 在 Flood模式下：
 			- socket 只綁 port，所以只要 port符合，封包就送給 App。
