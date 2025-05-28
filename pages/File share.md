@@ -33,7 +33,6 @@ public:: true
 	- WebTorrent
 	- ![image.png](../assets/image_1743577154099_0.png)
 - ## 參考產品
-  collapsed:: true
 	- LocalSend
 		- 開源
 		  使用 TCP, UDP
