@@ -247,32 +247,7 @@ tags:: Multicast
 		- ⚠️ 注意：
 		  •	需要改 pipeline 結構（可能造成 caps negotiation 行為改變）
 		  •	identity 只會印出部分內容，較難調整格式
-	- 加上 function
-	  ```cpp
-	  static GstPadProbeReturn buffer_probe_callback(GstPad* pad, GstPadProbeInfo* info, gpointer user_data) {
-	      if (GST_PAD_PROBE_INFO_TYPE(info) & GST_PAD_PROBE_TYPE_BUFFER) {
-	          GstElement* parent = gst_pad_get_parent_element(pad);
-	          const gchar* element_name = gst_element_get_name(parent);
-	          GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
-	          GstMapInfo map;
-	          if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
-	              std::string hex;
-	              for (size_t i = 0; i < std::min<size_t>(map.size, 16); ++i) {
-	                  char buf[4];
-	                  snprintf(buf, sizeof(buf), "%02X ", map.data[i]);
-	                  hex += buf;
-	              }
-	              ALOGI("[PROBE] element: %s, buffer size: %zu, head: %s",
-	                    element_name, map.size, hex.c_str());
-	              gst_buffer_unmap(buffer, &map);
-	          }
-	      }
-	      return GST_PAD_PROBE_OK;
-	  }
-	  ```
-	  在 pipeline launch 後加上
-	  ```cpp
-	  const char* elements_to_probe[] = {"mysrc", "h264parse", "avdec_h264", "videoconvert"};
+	- const char* elements_to_probe[] = {"mysrc", "h264parse", "avdec_h264", "videoconvert"};
 	  
 	      for (const char* name : elements_to_probe) {
 	          GstElement* elem = gst_bin_get_by_name(GST_BIN(pipeline), name);
@@ -288,5 +263,4 @@ tags:: Multicast
 	              ALOGI("Element not found: %s", name);
 	          }
 	      }
-	  ```
 -
