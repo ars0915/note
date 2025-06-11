@@ -26,4 +26,27 @@ public:: true
 			- socket 只綁 port，所以只要 port符合，封包就送給 App。
 			- 沒有 IP層級的自動 group filtering。
 	- GStreamer udpsrc 會自動發 IGMP join
--
+- # 頻寬估算
+	- Protocol Overhead 加上封包的資訊、Header、加密 tag 等等約多出 15% 大小
+	  
+	  GPT 建議用原本的頻寬 * 1.3 來估
+- ## 靜態內容
+	- 約 2 Mbps、15 FPS
+- ## 動態內容
+	- 約 6.5 Mbps、30 FPS
+	  
+	  如果 AP 是使用 broadcast 發送，只會發出一次資料，接收設備數不影響頻寬，但 WiFi 會使用最慢的 multicast rate，使 airtime 長時間被佔用。
+	  
+	  當開啟 Multicast to Unicast 功能後流量和 airtime 都會乘上 N 倍，但每個封包都可重送，穩定性會提高。
+- # 網路設備規格建議
+	- 在同一個 VLAN 中使用 Multicast 傳輸時，封包會透過 Layer 2 Multicast 機制由交換器在 VLAN 內轉發，不需經過 Layer 3 routing，傳輸延遲較低、效率較高，適合大規模同步播放的場景。
+	  
+	  為確保穩定播放與良好延遲控制，建議 Wi-Fi AP 具備以下功能：
+		- IGMP Snooping：協助交換器與 AP 僅將 Multicast 封包轉送至已加入 group 的裝置，避免 flooding。
+		- Multicast to Unicast：提升可靠性與傳輸速率，避免使用低速率的 broadcast 傳送方式。
+		- Multicast Rate 設定：可手動設定 Multicast 傳送速率（建議 ≥12 Mbps），避免預設 6 Mbps 造成 Airtime 壅塞。
+		- WMM / QoS 分類：將影音流量標記為高優先級（Video），避免被低優先流量擠壓。
+	- 在影音播放場景中，單台企業級 AP 實務上可穩定支援約 20～30 台裝置同時接收高畫質影片。若接收端超過此數量，建議部署多台 AP：
+		- 多台 AP 橋接於同一 VLAN，維持 Layer 2 Multicast 可用，避免因 VLAN 隔離導致 Multicast 無法傳播。
+		- 如果裝置位於不同 VLAN，需要在 L3 設備上設定 IGMP Proxy 或 PIM，以允許 Multicast 封包跨 VLAN 傳遞。
+		- 進行頻道規劃與 Load Balancing，將裝置分佈至不同無線頻道與 AP，以避免 AP 間干擾與 Airtime 過度擁擠。
