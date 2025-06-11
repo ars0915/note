@@ -30,3 +30,4 @@
 		  4.	這個 mapping/copy 開銷高，而且發生在每次抓圖時
 	- ✅ 好處：你能讀圖、做 hash、儲存、分析畫面像素
 	- ❌ 壞處：圖像資料必須從 GPU memory 複製一份到 CPU memory
+- 只要用到 ImageReader 無論是主動還是被動擷取方式，都必然涉及 CPU-side memory copy。這是因為 ImageReader 的設計本質上是為了讓應用程式用 CPU 來讀取圖像像素內容。
