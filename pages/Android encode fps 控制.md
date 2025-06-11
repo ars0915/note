@@ -20,7 +20,13 @@
 	  不控制「何時畫進來」，只能控制「何時送到 encoder」
 	  常見例子是用 SurfaceTexture 接收 frame，再自己用 OpenGL 畫到 encoder surface
 - # 主動擷取（before capture control）
-  •	用 Timer 或 Handler 以固定間隔（例如每 33ms）主動從 MediaProjection 擷取畫面（透過 ImageReader.acquireLatestImage()）
-  •	沒有 frame 就不擷取 → 節省 CPU/GPU
-  •	掌握擷取頻率，幀率由你決定
--
+	- 用 Timer 或 Handler 以固定間隔（例如每 33ms）主動從 MediaProjection 擷取畫面（透過 ImageReader.acquireLatestImage()）
+	  沒有 frame 就不擷取 → 節省 CPU/GPU
+	  掌握擷取頻率，幀率由你決定
+	- 當你呼叫 imageReader.acquireLatestImage() 時：
+		- 1.	MediaProjection 寫入的 buffer 是由 ImageReader.Surface 提供的，格式通常是 AHardwareBuffer（在 native 層）
+		  2.	為了讓 Java 層拿到 Image.getPlanes() 這種東西 → Android 會 map 一份 memory 到 CPU 存取空間。
+		  3.	如果是 RGBA / YUV 格式，會做 format 解碼 + copy → 成為 CPU-readable 的 ByteBuffer
+		  4.	這個 mapping/copy 開銷高，而且發生在每次抓圖時
+	- ✅ 好處：你能讀圖、做 hash、儲存、分析畫面像素
+	- ❌ 壞處：圖像資料必須從 GPU memory 複製一份到 CPU memory
