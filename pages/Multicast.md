@@ -26,3 +26,4 @@ public:: true
 			- socket 只綁 port，所以只要 port符合，封包就送給 App。
 			- 沒有 IP層級的自動 group filtering。
 	- GStreamer udpsrc 會自動發 IGMP join
+-
