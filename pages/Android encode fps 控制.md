@@ -20,9 +20,10 @@
 	  不控制「何時畫進來」，只能控制「何時送到 encoder」
 	  常見例子是用 SurfaceTexture 接收 frame，再自己用 OpenGL 畫到 encoder surface
 - # WebRTC 擷取
-	- 用 Timer 或 Handler 以固定間隔（例如每 33ms）主動從 MediaProjection 擷取畫面（透過 ImageReader.acquireLatestImage()）
-	  沒有 frame 就不擷取 → 節省 CPU/GPU
-	  掌握擷取頻率，幀率由你決定
+	- MediaProjection 的實際行為：
+		- **MediaProjection 本身是被動的** - 它不會"主動"以固定間隔擷取畫面
+		- **系統層面的優化** - Android 系統本身就有優化機制，當畫面沒有變化時會減少不必要的擷取，這不是 WebRTC 特別做的
+		- **ImageReader.acquireLatestImage()** - 這個方法是獲取"已經可用"的最新 image，而不是主動觸發擷取
 	- 當你呼叫 imageReader.acquireLatestImage() 時：
 		- 1.	MediaProjection 寫入的 buffer 是由 ImageReader.Surface 提供的，格式通常是 AHardwareBuffer（在 native 層）
 		  2.	為了讓 Java 層拿到 Image.getPlanes() 這種東西 → Android 會 map 一份 memory 到 CPU 存取空間。
