@@ -19,7 +19,7 @@
 	- 提供一個 Surface 給 MediaProjection → 系統自動把畫面畫進來。
 	  不控制「何時畫進來」，只能控制「何時送到 encoder」
 	  常見例子是用 SurfaceTexture 接收 frame，再自己用 OpenGL 畫到 encoder surface
-- # 主動擷取（before capture control）
+- # WebRTC 擷取
 	- 用 Timer 或 Handler 以固定間隔（例如每 33ms）主動從 MediaProjection 擷取畫面（透過 ImageReader.acquireLatestImage()）
 	  沒有 frame 就不擷取 → 節省 CPU/GPU
 	  掌握擷取頻率，幀率由你決定
