@@ -92,4 +92,7 @@ tags:: Multicast
 			  `W GStreamer+srtpdec: 0:04:34.688212765 0xb400007287feeb60 ../ext/srtp/gstsrtpdec.c:1500:gst_srtp_dec_decode_buffer:<srtpdec2> Error authentication packet, dropping`
 			-
 -
+- # Reference
+	- , "SRTP," *github*, Available: [link_to_page](https://github.com/0voice/audio_video_streaming/blob/main/article/018-WebRTC%20%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6%E7%AC%AC%E4%BA%8C%E8%AF%9D%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%98%BE%E5%87%BA%20SRTP%20%E5%8D%8F%E8%AE%AE.md). 
+	  type:: [[Web Page]]
 -
