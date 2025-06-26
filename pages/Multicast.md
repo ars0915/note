@@ -27,7 +27,10 @@ public:: true
 			- 沒有 IP層級的自動 group filtering。
 	- GStreamer udpsrc 會自動發 IGMP join
 	- ### Socket bind
-		- socket 在收 multicast 時要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`並且設定 SO_REUSEADDR、SO_REUSEPORT 讓多個應用
+		- **multicast**
+			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`並且設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
+		-
+		-
 - # 頻寬估算
 	- Protocol Overhead 加上封包的資訊、Header、加密 tag 等等約多出 15% 大小
 	  
