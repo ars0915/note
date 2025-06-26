@@ -28,10 +28,13 @@ public:: true
 	- GStreamer udpsrc 會自動發 IGMP join
 	- ### Socket bind
 		- **multicast**
-			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`並且設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
-			- IP_ADD_MEMBERSHIP(multicast_ip, interface_ip)  如果使用 join(multicast IP, INADDR_ANY) 作業系統會自動選一張
+			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`
+				- 設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
+			- IP_ADD_MEMBERSHIP(multicast_ip, interface_ip)
+				- 如果 interface_ip = INADDR_ANY，OS 自動選擇網卡
+				- 如果 interface_ip = 具體IP，使用指定網卡
 		- **unicast**
-			- socket 綁到 interface local IP
+			- socket 直接綁定到具體的網卡 IP + port
 		-
 - # 頻寬估算
 	- Protocol Overhead 加上封包的資訊、Header、加密 tag 等等約多出 15% 大小
