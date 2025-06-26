@@ -29,7 +29,7 @@ public:: true
 	- ### Socket bind
 		- **multicast**
 			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`並且設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
-			- join multicast group
+			- join(multicast IP, interface IP) 如果使用 join(multicast IP, INADDR_ANY) 作業系統會自動選一張
 		- **unicast**
 			- socket 綁到 interface local IP
 		-
