@@ -33,7 +33,7 @@ public:: true
 			- IP_ADD_MEMBERSHIP(multicast_ip, interface_ip)
 				- 如果 interface_ip = INADDR_ANY，OS 自動選擇網卡
 				- 如果 interface_ip = 具體IP，使用指定網卡
-			- 以上設定在 OS 層會有封包複製的現象，因為多張網卡都是 bind(socket, "0.0.0.0:5004")，只要有一張能收到
+			- 以上設定在 OS 層會有封包複製的現象，因為多張網卡都是 bind(socket, "0.0.0.0:5004")，只要有一張能收到，OS 會複製給其他張，在想要關掉其他 socket 不使用的情境下會判斷錯誤
 		- **unicast**
 			- socket 直接綁定到具體的網卡 IP + port
 		-
