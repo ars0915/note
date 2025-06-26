@@ -28,11 +28,12 @@ public:: true
 	- GStreamer udpsrc 會自動發 IGMP join
 	- ### Socket bind
 		- **multicast**
-			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`
+			- socket 綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`
 				- 設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
 			- IP_ADD_MEMBERSHIP(multicast_ip, interface_ip)
 				- 如果 interface_ip = INADDR_ANY，OS 自動選擇網卡
 				- 如果 interface_ip = 具體IP，使用指定網卡
+			- 以上設定在 OS 層會有封包複製的現象，因為多張網卡都是 bind(socket, "0.0.0.0:5004")，只要有一張能收到
 		- **unicast**
 			- socket 直接綁定到具體的網卡 IP + port
 		-
