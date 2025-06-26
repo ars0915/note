@@ -29,8 +29,9 @@ public:: true
 	- ### Socket bind
 		- **multicast**
 			- socket 要綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`並且設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
+			- join multicast group
 		- **unicast**
-			- socket 綁到 interface local IP 指定只有那個
+			- socket 綁到 interface local IP
 		-
 - # 頻寬估算
 	- Protocol Overhead 加上封包的資訊、Header、加密 tag 等等約多出 15% 大小
