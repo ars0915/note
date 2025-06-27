@@ -30,6 +30,7 @@ public:: true
 		- **multicast**
 			- socket 綁到 INADDR_ANY `bind(socket, "0.0.0.0:5004")`
 				- 設定 `SO_REUSEADDR`、`SO_REUSEPORT` 讓多個 socket 可以使用
+				- bind() 是用來指定要接收哪個 本機介面（interface）的位址，所以直接綁定到 Multicast IP（例如 239.x.x.x）會失敗
 			- IP_ADD_MEMBERSHIP(multicast_ip, interface_ip)
 				- 如果 interface_ip = INADDR_ANY，OS 自動選擇網卡
 				- 如果 interface_ip = 具體IP，使用指定網卡
