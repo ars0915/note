@@ -77,17 +77,6 @@
 		  // pipeline_time = 250ms（實際經過的時間）
 		  // 落後 230ms！
 		  ```
-		- 緩衝區積壓
-		  ```
-		  // 網路突然收到大量音頻包
-		  Buffer: [frame1, frame2, frame3, ..., frame20]
-		  
-		  // 處理第一個幀時
-		  // timestamp_ = frame1的時間戳 = 0ms
-		  // pipeline_time = 收到20個幀後的時間 = 400ms
-		  // 落後 400ms！
-		  ```
-		-
 		- **落後太多** → 數據被當作過時丟棄
 	- ### timestamp 超前的可能原因
 		- 累積誤差
