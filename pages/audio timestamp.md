@@ -90,7 +90,7 @@
 		  ```
 		- 系統時間跳躍
 		  pipeline_time 基於系統時鐘，如果系統時間被調整（NTP 同步、手動調整），pipeline 時鐘可能突然後退，但 timestamp_ 繼續累積
-		- 處理延遲
+		- 延遲後積壓的幀突然大量到達
 		  ```
 		  // CPU 高負載時
 		  發送端: frame1(0s) frame2(20ms) frame3(40ms)
