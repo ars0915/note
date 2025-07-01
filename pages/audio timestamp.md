@@ -26,3 +26,20 @@
 	  // 結果：音頻時間戳不連續，可能導致播放斷續或重複
 	  ```
 	- ### 與音頻數據本身的時序脫節
+	  ```
+	  // 音頻數據的實際時序：
+	  OPUS Frame 1: 代表 0-20ms 的音頻
+	  OPUS Frame 2: 代表 20-40ms 的音頻  
+	  OPUS Frame 3: 代表 40-60ms 的音頻
+	  
+	  // 但 pipeline 時間可能是：
+	  Frame 1 到達時: pipeline = 5.100s → timestamp = 5.100s
+	  Frame 2 到達時: pipeline = 5.150s → timestamp = 5.150s
+	  Frame 3 到達時: pipeline = 5.180s → timestamp = 5.180s
+	  
+	  // 音頻內容和時間戳完全不匹配！
+	  ```
+- ## 累積時間戳的優勢
+	- 保持音頻連續性
+	- 平滑播放
+	-
