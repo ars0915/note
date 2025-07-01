@@ -57,7 +57,7 @@
 - ## timestamp 調整
 	- ### timestamp 落後
 	- **落後太多** → 數據被當作過時丟棄
-	- ### timestamp 超前
+	- ### timestamp 超前的可能原因
 		- 累積誤差
 		  ```
 		  // 長時間運行後的累積誤差
@@ -69,6 +69,21 @@
 		  ```
 		- 系統時間跳躍
 		  pipeline_time 基於系統時鐘，如果系統時間被調整（NTP 同步、手動調整），pipeline 時鐘可能突然後退，但 timestamp_ 繼續累積
-		-
+		- 處理延遲
+		  ```
+		  // CPU 高負載時
+		  發送端: frame1(0s) frame2(20ms) frame3(40ms)
+		  接收端處理: 
+		    - 收到 frame1，處理延遲 → pipeline_time = 50ms, timestamp_ = 0ms
+		    - 收到 frame2，快速處理 → pipeline_time = 60ms, timestamp_ = 20ms  
+		    - 收到 frame3，立即處理 → pipeline_time = 61ms, timestamp_ = 40ms
+		    
+		  // frame3 時：timestamp_(40ms) < pipeline_time(61ms) ✓
+		  // 但如果後續幀快速到達...
+		    - 收到 frame4 → pipeline_time = 62ms, timestamp_ = 60ms
+		    - 收到 frame5 → pipeline_time = 63ms, timestamp_ = 80ms
+		    
+		  // 這時 timestamp_ 開始超前了！
+		  ```
 	- **超前太多** → 數據被當作未來數據延遲播放
 	-
