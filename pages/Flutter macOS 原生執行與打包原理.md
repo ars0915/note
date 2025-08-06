@@ -1,20 +1,22 @@
 - 本文件說明 Flutter macOS 原生專案在執行與打包過程中，與 .a / .dylib 的關係、Library 路徑解析、CocoaPods 對 .dylib 的處理方式，並結合實際專案（multicast plugin）進行範例說明。
-- macOS Flutter App 的結構
-  Flutter 在 macOS 上編譯後會產出一個原生 macOS 應用程式（.app），其實質上是一個目錄結構，包含主程式執行檔、資源、frameworks、以及其他元資料。本章將解構這個 .app 包內的結構，並說明 Flutter plugin（包含 native C++、GStreamer 等）如何整合進來。
-- App Bundle Layout
-  以 flutter_multicast_plugin_example.app 為例，其目錄結構大致如下：
-  flutter_multicast_plugin_example.app/
-  ├── Contents/
-  │   ├── MacOS/
-  │   │   └── flutter_multicast_plugin_example <- 主執行檔（Flutter engine runtime）
-  │   │   └── flutter_multicast_plugin_example.debug.dylib  <- Flutter plugin 的原生邏輯 (僅 Debug 模式)
-  ...
-  │   ├── Resources/                     <- Dart 資源檔案、Assets、以及 plugin 資源
-  │   │   ├── gstreamer-frameworks/      <- GStreamer 所需的 .dylib、plugins
-  │   │   │   ├── lib/                   <- Relocated 核心 .dylib
-  │   │   │   └── gstreamer-1.0/         <- plugin .dylib
-  Debug vs Release 模式的差異
-  Debug 模式
+- # macOS Flutter App 的結構
+	- Flutter 在 macOS 上編譯後會產出一個原生 macOS 應用程式（.app），其實質上是一個目錄結構，包含主程式執行檔、資源、frameworks、以及其他元資料。本章將解構這個 .app 包內的結構，並說明 Flutter plugin（包含 native C++、GStreamer 等）如何整合進來。
+	- ## App Bundle Layout
+		- 以 flutter_multicast_plugin_example.app 為例，其目錄結構大致如下：
+		- ```shell
+		  flutter_multicast_plugin_example.app/
+		  ├── Contents/
+		  │   ├── MacOS/
+		  │   │   └── flutter_multicast_plugin_example <- 主執行檔（Flutter engine runtime）
+		  │   │   └── flutter_multicast_plugin_example.debug.dylib  <- Flutter plugin 的原生邏輯 (僅 Debug 模式)
+		  ...
+		  │   ├── Resources/                     <- Dart 資源檔案、Assets、以及 plugin 資源
+		  │   │   ├── gstreamer-frameworks/      <- GStreamer 所需的 .dylib、plugins
+		  │   │   │   ├── lib/                   <- Relocated 核心 .dylib
+		  │   │   │   └── gstreamer-1.0/         <- plugin .dylib
+		  ```
+	- ##. Debug vs Release 模式的差異
+	  Debug 模式
 - CocoaPods 會將 plugin 的原生邏輯編譯為 .debug.dylib（例如：flutter_multicast_plugin_example.debug.dylib）
 - Flutter runtime 執行期間會 dlopen() 這個 dylib 並呼叫 plugin 初始化 (Flutter plugin 的 native initialization 註冊 native code 到 Flutter)
 - 好處是可以熱重載原生 plugin 並附加 debugger
