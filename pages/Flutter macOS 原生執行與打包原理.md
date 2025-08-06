@@ -80,29 +80,30 @@
 	- ### @executable_path
 		- 意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
 		- 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
-	- 範例：
-	  假設 app 結構如下：
-	  ```shell
-	  YourApp.app/
-	  └── Contents/
-	      ├── MacOS/
-	      │   ├── YourApp                ← 主執行檔
-	      │   └── flutter_plugin.dylib   ← 被主程式直接 link
-	      └── Resources/
-	          └── libfoo.dylib
-	  ```
-	  此時 flutter_plugin.dylib 可以寫：`@executable_path/../Resources/libfoo.dylib`
-- @rpath
-  意思：“runpath search path”，可以想成是一種路徑的變數。它本身不代表某個固定位置，而是在程式執行時，macOS 會從事先設定好的一串路徑中，一個一個去嘗試找出真正的檔案。
-- 常用於：「一個 binary 可以在不同環境下被動態找到依賴項」，常搭配 Xcode/CocoaPods 設定 LD_RUNPATH_SEARCH_PATHS
-- 在 Flutter + CocoaPods 的開發情境中，@rpath 較少被使用，因為：
-- CocoaPods 預設不會設置 @rpath，且使用方式較複雜
-- Flutter 工程對於 native linker 設定的控制有限
-- 為了簡化部署與除錯流程，建議改用 @loader_path，這樣 dylib 的依賴可以固定寫為相對於自身的位置，更直觀且容易維護。
-- 如果某個 dylib 寫了 @rpath/libfoo.dylib，那 macOS 會在執行時依序嘗試：
-- A/libfoo.dylib
-- B/libfoo.dylib
-- C/libfoo.dylib
+		- 範例：
+		  假設 app 結構如下：
+		  ```shell
+		  YourApp.app/
+		  └── Contents/
+		      ├── MacOS/
+		      │   ├── YourApp                ← 主執行檔
+		      │   └── flutter_plugin.dylib   ← 被主程式直接 link
+		      └── Resources/
+		          └── libfoo.dylib
+		  ```
+		  此時 flutter_plugin.dylib 可以寫：`@executable_path/../Resources/libfoo.dylib`
+	- ### @rpath
+		- 意思：“runpath search path”，可以想成是一種路徑的變數。它本身不代表某個固定位置，而是在程式執行時，macOS 會從事先設定好的一串路徑中，一個一個去嘗試找出真正的檔案。
+		- 常用於：「一個 binary 可以在不同環境下被動態找到依賴項」，常搭配 Xcode/CocoaPods 設定 LD_RUNPATH_SEARCH_PATHS
+		- 在 Flutter + CocoaPods 的開發情境中，@rpath 較少被使用，因為：
+			-
+				- CocoaPods 預設不會設置 @rpath，且使用方式較複雜
+			- Flutter 工程對於 native linker 設定的控制有限
+			- 為了簡化部署與除錯流程，建議改用 @loader_path，這樣 dylib 的依賴可以固定寫為相對於自身的位置，更直觀且容易維護。
+			- 如果某個 dylib 寫了 @rpath/libfoo.dylib，那 macOS 會在執行時依序嘗試：
+			- A/libfoo.dylib
+			- B/libfoo.dylib
+			- C/libfoo.dylib
 - 直到找到為止，而這些 A、B、C 就是在 linker 或 Xcode 中設定的 rpath 路徑。
 - 查看這個 binary 定義了哪些 rpath 對應路徑（即 runtime 查找會去哪裡找 @rpath）：otool -l plugin.dylib | grep -A 5 LC_RPATH
 - Flutter Multicast Plugin 的 GStreamer 打包與依賴處理設計
