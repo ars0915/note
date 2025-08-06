@@ -137,22 +137,22 @@
 					- 所有你指定的 .mm, .cc, .cpp, .c, .h 等原始碼
 					- 這些檔案會在 build 時被編譯並 靜態 link 進 .debug.dylib 中。
 				- s.vendored_libraries
-		- 你指定的 .a 檔（靜態庫）
-		- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
-		- 不包含的：
-		- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
-		- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
-- GStreamer .dylib 的來源與路徑處理
-  GStreamer 提供的 SDK（GStreamer.framework）中包含了大量 .dylib 檔案，分為兩類：
-- Core library（例如 libgstreamer-1.0.dylib, libavcodec.dylib）
-- Plugin library（例如 libgstcoreelements.dylib, libgstlibav.dylib）
-- 這些 .dylib 不會自動被 CocoaPods 或 Flutter 處理，因此我們採用以下機制：
-- 資源複製與 relocate
-  執行 scripts/build_gstreamer_bundle.sh，會將本機的 GStreamer.framework 內容：
-- 複製到 macos/gstreamer-frameworks/lib/ 與 gstreamer-frameworks/gstreamer-1.0/
-- 修改其 install_name 與依賴，設為：
-  @loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib
-  這確保 .dylib 之間的相依能從 plugin 本身的位置出發找到其他依賴。
+					- 你指定的 .a 檔（靜態庫）
+					- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
+			- 不包含的：
+				- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
+				- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
+	- ## GStreamer .dylib 的來源與路徑處理
+		- GStreamer 提供的 SDK（GStreamer.framework）中包含了大量 .dylib 檔案，分為兩類：
+			- Core library（例如 libgstreamer-1.0.dylib, libavcodec.dylib）
+			- Plugin library（例如 libgstcoreelements.dylib, libgstlibav.dylib）
+		- 這些 .dylib 不會自動被 CocoaPods 或 Flutter 處理，因此我們採用以下機制：
+		- ### 資源複製與 relocate
+			- 執行 scripts/build_gstreamer_bundle.sh，會將本機的 GStreamer.framework 內容：
+			- 複製到 macos/gstreamer-frameworks/lib/ 與 gstreamer-frameworks/gstreamer-1.0/
+			- 修改其 install_name 與依賴，設為：
+			  @loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib
+			  這確保 .dylib 之間的相依能從 plugin 本身的位置出發找到其他依賴。
 - podspec 的設定
 - s.resources = ['gstreamer-frameworks']
   s.vendored_libraries = ['libs/*.a', 'gstreamer-dylibs/*.dylib']
