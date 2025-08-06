@@ -53,29 +53,30 @@
 	- 可使用以下工具查看或修改 .dylib 的依賴路徑：
 		- 查看：otool -L <dylib>
 		- 修改：install_name_tool -change 或 -id
-- 為什麼需要理解動態庫路徑機制？
-  為了讓打包出來的 macOS .app 可以在「任何使用者電腦上」執行，而不依賴本機絕對路徑（像 /usr/local/lib），我們必須讓 app 內的 .dylib 使用「相對路徑」載入。
-- 若 .dylib 相依其他 .dylib，也要處理依賴鏈
-- 三個主要的特殊路徑變數
-  @loader_path
-  意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
-- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
-- 範例：
-  假設 app 結構如下：
-  MyApp.app/
-  ├── Contents/
-  │   ├── MacOS/
-  │   │   └── MyApp
-  │   └── Resources/
-  │       └── gstreamer-frameworks/
-  │           ├── gstreamer-1.0/
-  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
-  │           └── lib/
-  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
-  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：
-- @loader_path/../lib/libavcodec.61.dylib
-  libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
-  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
+	- ## 為什麼需要理解動態庫路徑機制？
+	- 為了讓打包出來的 macOS .app 可以在「任何使用者電腦上」執行，而不依賴本機絕對路徑（像 /usr/local/lib），我們必須讓 app 內的 .dylib 使用「相對路徑」載入。
+	- 若 .dylib 相依其他 .dylib，也要處理依賴鏈
+	- ## 三個主要的特殊路徑變數
+	- ### @loader_path
+	- 意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
+	- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
+	- 範例：
+	  假設 app 結構如下：
+	  ```shell
+	  MyApp.app/
+	  ├── Contents/
+	  │   ├── MacOS/
+	  │   │   └── MyApp
+	  │   └── Resources/
+	  │       └── gstreamer-frameworks/
+	  │           ├── gstreamer-1.0/
+	  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
+	  │           └── lib/
+	  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
+	  ```
+	  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：@loader_path/../lib/libavcodec.61.dylib
+	- libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
+	  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
 - @executable_path
   意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
 - 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
