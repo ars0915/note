@@ -15,24 +15,24 @@
 		  │   │   │   ├── lib/                   <- Relocated 核心 .dylib
 		  │   │   │   └── gstreamer-1.0/         <- plugin .dylib
 		  ```
-	- ##. Debug vs Release 模式的差異
-	  Debug 模式
-- CocoaPods 會將 plugin 的原生邏輯編譯為 .debug.dylib（例如：flutter_multicast_plugin_example.debug.dylib）
-- Flutter runtime 執行期間會 dlopen() 這個 dylib 並呼叫 plugin 初始化 (Flutter plugin 的 native initialization 註冊 native code 到 Flutter)
-- 好處是可以熱重載原生 plugin 並附加 debugger
-- Release 模式
-- .debug.dylib 不會被產出
-- plugin 的原生邏輯會被靜態連結到主執行檔中（透過 CocoaPods build system）
-- 更簡單的 deploy，較佳效能與載入時間
-- Plugin 的嵌入方式
-  Flutter plugin（包含原生 C++ 及 GStreamer 整合）會透過 CocoaPods 整合進 Xcode 專案中，進一步影響：
-- 原生 C++ 來源有兩種方式進入專案：
-- 撰寫在 s.source_files 中的原始碼會在 Debug 模式被編譯為 plugin 的 .dylib；在 Release 模式則靜態連結進主執行檔。
-- 預先透過 CMake 編譯好的 .a（靜態庫）則透過 s.vendored_libraries 被加入 linker 輸出。
-- plugin 若使用 GStreamer 的 .dylib（如解碼器或核心庫），這些會透過 CocoaPods 的資源配置（如 s.resources）被打包進 .app/Contents/Resources/
-- 關於 s.vendored_libraries 、s.source_files等欄位的具體功能與影響，會在〈CocoaPods 設定與打包控制〉章節中詳細說明。
-- .a 和 .dylib 的差異和選用策略
-  什麼是 .a 和 .dylib
+	- ## Debug vs Release 模式的差異
+	- Debug 模式
+		- CocoaPods 會將 plugin 的原生邏輯編譯為 .debug.dylib（例如：flutter_multicast_plugin_example.debug.dylib）
+		- Flutter runtime 執行期間會 dlopen() 這個 dylib 並呼叫 plugin 初始化 (Flutter plugin 的 native initialization 註冊 native code 到 Flutter)
+		- 好處是可以熱重載原生 plugin 並附加 debugger
+	- Release 模式
+		- .debug.dylib 不會被產出
+		- plugin 的原生邏輯會被靜態連結到主執行檔中（透過 CocoaPods build system）
+		- 更簡單的 deploy，較佳效能與載入時間
+	- ## Plugin 的嵌入方式
+	- Flutter plugin（包含原生 C++ 及 GStreamer 整合）會透過 CocoaPods 整合進 Xcode 專案中，進一步影響：
+		- 原生 C++ 來源有兩種方式進入專案：
+			- 撰寫在 s.source_files 中的原始碼會在 Debug 模式被編譯為 plugin 的 .dylib；在 Release 模式則靜態連結進主執行檔。
+			- 預先透過 CMake 編譯好的 .a（靜態庫）則透過 s.vendored_libraries 被加入 linker 輸出。
+		- plugin 若使用 GStreamer 的 .dylib（如解碼器或核心庫），這些會透過 CocoaPods 的資源配置（如 s.resources）被打包進 .app/Contents/Resources/
+	- 關於 s.vendored_libraries 、s.source_files等欄位的具體功能與影響，會在〈CocoaPods 設定與打包控制〉章節中詳細說明。
+- # .a 和 .dylib 的差異和選用策略
+- 什麼是 .a 和 .dylib
   類型
 - 名稱
 - 說明
