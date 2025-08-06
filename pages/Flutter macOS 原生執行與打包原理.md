@@ -39,21 +39,20 @@
 		- ![image.png](../assets/image_1754468887197_0.png)
 	- ## 在 Flutter Multicast Plugin 中的實際選擇考量
 		- 原生 C++ 程式（如 Crypto++、uvgRTP、自訂邏輯）以 .a 形式建構：
-- 避免額外載入 .dylib，簡化部署與打包流程
-- 可由 CocoaPods 自動 link 至 plugin 的 .debug.dylib（Debug 模式）或主執行檔（Release 模式）
-- GStreamer 支援在 runtime 動態載入 .dylib plugin 並註冊 element。除了內建的自動掃描目錄機制，也可以透過 gst_plugin_load_file() 手動載入指定 plugin。
-- 雖然部分 GStreamer plugin 也提供 .a 靜態版本，但使用上有下列限制：
-- 不會自動註冊 element
-- 需撰寫額外的註冊程式碼（呼叫 gst_plugin_register_static() 及對應的 init 函式）
-- 在大型原生 C++ 專案中，還有其他考量（如符號可見性、跨 target 共用等）會影響選擇 .a 或 .dylib，但在 Flutter plugin 開發中較少遇到，此處略去。
-- 使用 .dylib 時，需注意 macOS 的路徑解析與打包規則，詳見下一章〈Dynamic Library 路徑解析機制〉。
-- Dynamic Library 路徑解析機制（@loader_path / @rpath / @executable_path）
-  macOS 使用 .dylib 的實務注意事項
-  動態庫的 安裝位置 必須正確，常用方式為使用 @loader_path 或 @rpath 解決相對路徑問題。
-- 若 .dylib 並非來自系統路徑或未安裝為 framework，應透過 CocoaPods 的 s.resources 或其他手段 打包進 .app/Contents/Resources/。
-- 可使用以下工具查看或修改 .dylib 的依賴路徑：
-- 查看：otool -L <dylib>
-- 修改：install_name_tool -change 或 -id
+			- 避免額外載入 .dylib，簡化部署與打包流程
+			- 可由 CocoaPods 自動 link 至 plugin 的 .debug.dylib（Debug 模式）或主執行檔（Release 模式）
+		- GStreamer 支援在 runtime 動態載入 .dylib plugin 並註冊 element。除了內建的自動掃描目錄機制，也可以透過 gst_plugin_load_file() 手動載入指定 plugin。雖然部分 GStreamer plugin 也提供 .a 靜態版本，但使用上有下列限制：
+			- 不會自動註冊 element
+			- 需撰寫額外的註冊程式碼（呼叫 gst_plugin_register_static() 及對應的 init 函式）
+		- 在大型原生 C++ 專案中，還有其他考量（如符號可見性、跨 target 共用等）會影響選擇 .a 或 .dylib，但在 Flutter plugin 開發中較少遇到，此處略去。
+		- 使用 .dylib 時，需注意 macOS 的路徑解析與打包規則，詳見下一章〈Dynamic Library 路徑解析機制〉。
+- # Dynamic Library 路徑解析機制（@loader_path / @rpath / @executable_path）
+	- ## macOS 使用 .dylib 的實務注意事項
+	- 動態庫的 安裝位置 必須正確，常用方式為使用 @loader_path 或 @rpath 解決相對路徑問題。
+	- 若 .dylib 並非來自系統路徑或未安裝為 framework，應透過 CocoaPods 的 s.resources 或其他手段 打包進 .app/Contents/Resources/。
+	- 可使用以下工具查看或修改 .dylib 的依賴路徑：
+		- 查看：otool -L <dylib>
+		- 修改：install_name_tool -change 或 -id
 - 為什麼需要理解動態庫路徑機制？
   為了讓打包出來的 macOS .app 可以在「任何使用者電腦上」執行，而不依賴本機絕對路徑（像 /usr/local/lib），我們必須讓 app 內的 .dylib 使用「相對路徑」載入。
 - 若 .dylib 相依其他 .dylib，也要處理依賴鏈
