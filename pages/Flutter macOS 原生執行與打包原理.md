@@ -203,13 +203,13 @@
 			- LD_RUNPATH_SEARCH_PATHS：**執行時的 rpath 搜尋清單**，用來解決 .dylib 的相依關係
 		- s.user_target_xcconfig：會影響最終 app target 的 build 設定，通常不建議在 plugin pod 裡設
 - # 注意事項
-- .a 與 .dylib 不可混用於 runtime
-	- .a 是靜態庫，無法在執行時被 dlopen()。
-	- 若某些元件僅提供 .a（靜態庫），則無法在執行時透過 dlopen() 或其他方式動態載入。這會限制它們被動態 plugin 系統（如某些影像解碼框架）使用。
-- .dylib 不會自動打包進 .app
-	- 即使出現在 s.vendored_libraries，最終執行時 .app 內並不會有它。
-	- 必須明確放進 s.resources，才能讓 .app 執行時能載入。
-- .dylib 的依賴需手動 relocate
-	- 修改 install_name (-id) 與依賴路徑 (-change)
-	- @loader_path 是根據「當前載入的 .dylib 檔案」所在位置展開的，因此每個 .dylib 的依賴路徑需根據其實際放置位置動態決定
-	- 可用 otool -L 與 install_name_tool 驗證
+	- .a 與 .dylib 不可混用於 runtime
+		- .a 是靜態庫，無法在執行時被 dlopen()。
+		- 若某些元件僅提供 .a（靜態庫），則無法在執行時透過 dlopen() 或其他方式動態載入。這會限制它們被動態 plugin 系統（如某些影像解碼框架）使用。
+	- .dylib 不會自動打包進 .app
+		- 即使出現在 s.vendored_libraries，最終執行時 .app 內並不會有它。
+		- 必須明確放進 s.resources，才能讓 .app 執行時能載入。
+	- .dylib 的依賴需手動 relocate
+		- 修改 install_name (-id) 與依賴路徑 (-change)
+		- @loader_path 是根據「當前載入的 .dylib 檔案」所在位置展開的，因此每個 .dylib 的依賴路徑需根據其實際放置位置動態決定
+		- 可用 otool -L 與 install_name_tool 驗證
