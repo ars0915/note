@@ -32,18 +32,10 @@
 		- plugin 若使用 GStreamer 的 .dylib（如解碼器或核心庫），這些會透過 CocoaPods 的資源配置（如 s.resources）被打包進 .app/Contents/Resources/
 	- 關於 s.vendored_libraries 、s.source_files等欄位的具體功能與影響，會在〈CocoaPods 設定與打包控制〉章節中詳細說明。
 - # .a 和 .dylib 的差異和選用策略
-- 什麼是 .a 和 .dylib
-  類型
-- 名稱
-- 說明
-- 靜態庫
-- .a (archive)
-- 在編譯期間被直接打包進可執行檔中，產生的 binary 不再依賴外部檔案。
-- 動態庫
-- .dylib (dynamic library)
-- 在執行期間由系統動態載入，可被多個執行檔或模組共享。
-- 差異比較表
-  特性
+	- ## 什麼是 .a 和 .dylib
+		- 靜態庫 .a (archive): 在編譯期間被直接打包進可執行檔中，產生的 binary 不再依賴外部檔案。
+		- 動態庫.dylib (dynamic library): 在執行期間由系統動態載入，可被多個執行檔或模組共享。
+	- ## 差異比較表
 - .a (靜態)
 - .dylib (動態)
 - 連結時間
