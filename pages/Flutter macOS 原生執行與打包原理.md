@@ -154,14 +154,14 @@
 				  `@loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib`
 				  這確保 .dylib 之間的相依能從 plugin 本身的位置出發找到其他依賴。
 		- ### podspec 的設定
-		- ```shell
-		  s.resources = ['gstreamer-frameworks']
-		  s.vendored_libraries = ['libs/*.a', 'gstreamer-dylibs/*.dylib']
-		  ```
-		- s.resources 會把 gstreamer-frameworks 資料夾複製到 .app/Contents/Resources/ 中。
-		- s.vendored_libraries 中的 .dylib 只是作為編譯連結參考，最終執行依然依賴 Resources/ 中的副本。
-- .dylib 依賴的修正與路徑
-  為了讓所有 GStreamer 元件能在 macOS Flutter App 中正確載入與連結
+			- ```shell
+			  s.resources = ['gstreamer-frameworks']
+			  s.vendored_libraries = ['libs/*.a', 'gstreamer-dylibs/*.dylib']
+			  ```
+			- s.resources 會把 gstreamer-frameworks 資料夾複製到 .app/Contents/Resources/ 中。
+			- s.vendored_libraries 中的 .dylib 只是作為編譯連結參考，最終執行依然依賴 Resources/ 中的副本。
+	- ### .dylib 依賴的修正與路徑
+- 為了讓所有 GStreamer 元件能在 macOS Flutter App 中正確載入與連結
 - 確保執行時所有 .dylib 都能相對載入，不依賴絕對路徑或系統安裝、CocoaPods 在編譯時能完成連結，不需動態掃描或額外配置 RPATH
 - 針對不同 .dylib 類型設計了以下路徑策略：
 - gstreamer-frameworks/lib/：核心 .dylib（如 libgstreamer-1.0.dylib、libavcodec.dylib 等）
