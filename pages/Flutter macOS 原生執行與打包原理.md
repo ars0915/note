@@ -186,35 +186,22 @@
 			- 本 plugin 使用 gst_plugin_load_file() 手動載入 GStreamer plugin，避免依賴預設 scanner 行為。詳細策略請見維護指南。
 	- ## 為什麼這樣設計（可維護性、擴充性、與打包限制）
 	  這套架構的目標：
-- 需求
-- 對應設計
-- Flutter plugin 可 Debug / Release 下穩定運作
-- 使用 .a 靜態庫（Crypto++ / uvgRTP / 自訂邏輯）配合 CocoaPods，讓 Debug 模式自動產出 .debug.dylib，Release 模式則直接連結
-- GStreamer plugin 可以明確管理與增減
-- 手動 relocate .dylib、顯式 gst_plugin_load_file() 載入
-- GStreamer core 與 plugin 的依賴明確且不受路徑問題干擾
-- 統一使用 @loader_path 調整所有 .dylib 的 install_name 和相依，確保 Resources 內 .dylib 能正確互相連結
-- CocoaPods 可協助打包
-- 使用 s.resources、s.vendored_libraries 處理整合
-- 支援未來擴充其他 .dylib plugin
-- plugin 資料夾採可預測結構（如 gstreamer-frameworks/gstreamer-1.0），配合 relocation script，可快速更新或替換 GStreamer plugin
-- 編譯時與執行時相依保持一致性
-- gstreamer-dylibs/ 為與 runtime 相同內容但經過特殊 relocation 的副本，用來滿足 Xcode link 需求，確保 Debug/Release 都找得到正確路徑
-- CocoaPods 設定與打包控制
-  podspec 各欄位用途
-  s.source_files：指定會編譯進 .debug.dylib（Debug 模式）或主執行檔（Release 模式）的原生程式碼。例如：Classes/**/*.{h,m,mm}
-- s.vendored_libraries：讓 Xcode 編譯時可 link 到指定的 .a 或 .dylib，不會自動複製到 .app 內部。需搭配 .dylib 的 @loader_path 設定正確
-- s.resources：指定哪些檔案/資料夾會被打包進 .app/Contents/Resources/，例如 GStreamer plugin、core .dylib
-- s.frameworks：放 CocoaPods 原生支援的系統 framework
-- s.pod_target_xcconfig：可用來覆蓋 build flag，例如設定 GCC_PREPROCESSOR_DEFINITIONS 或調整 FRAMEWORK_SEARCH_PATHS
-- HEADER_SEARCH_PATHS：編譯原生程式碼時要去哪找 header file
-- OTHER_CFLAGS：加入自定義 macro
-- OTHER_LDFLAGS：在 編譯 linker 階段（ld） 加入額外參數，用來：
-- 指定要連結的 framework 或 library
-- 指定 rpath
-- 指定額外的搜尋路徑
-- LD_RUNPATH_SEARCH_PATHS：執行時的 rpath 搜尋清單，用來解決 .dylib 的相依關係
-- s.user_target_xcconfig：會影響最終 app target 的 build 設定，通常不建議在 plugin pod 裡設
+		- ![image.png](../assets/image_1754470856528_0.png)
+- # CocoaPods 設定與打包控制
+	- ## podspec 各欄位用途
+		- s.source_files：指定會編譯進 .debug.dylib（Debug 模式）或主執行檔（Release 模式）的原生程式碼。例如：Classes/**/*.{h,m,mm}
+		- s.vendored_libraries：讓 Xcode 編譯時可 link 到指定的 .a 或 .dylib，不會自動複製到 .app 內部。需搭配 .dylib 的 @loader_path 設定正確
+		- s.resources：指定哪些檔案/資料夾會被打包進 .app/Contents/Resources/，例如 GStreamer plugin、core .dylib
+		- s.frameworks：放 CocoaPods 原生支援的系統 framework
+		- s.pod_target_xcconfig：可用來覆蓋 build flag，例如設定 GCC_PREPROCESSOR_DEFINITIONS 或調整 FRAMEWORK_SEARCH_PATHS
+			- HEADER_SEARCH_PATHS：編譯原生程式碼時要去哪找 header file
+			- OTHER_CFLAGS：加入自定義 macro
+			- OTHER_LDFLAGS：在 編譯 linker 階段（ld） 加入額外參數，用來：
+				- 指定要連結的 framework 或 library
+				- 指定 rpath
+				- 指定額外的搜尋路徑
+			- LD_RUNPATH_SEARCH_PATHS：執行時的 rpath 搜尋清單，用來解決 .dylib 的相依關係
+		- s.user_target_xcconfig：會影響最終 app target 的 build 設定，通常不建議在 plugin pod 裡設
 - 注意事項
   .a 與 .dylib 不可混用於 runtime
 - .a 是靜態庫，無法在執行時被 dlopen()。
