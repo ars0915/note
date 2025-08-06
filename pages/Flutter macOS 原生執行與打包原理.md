@@ -106,23 +106,25 @@
 			- 直到找到為止，而這些 A、B、C 就是在 linker 或 Xcode 中設定的 rpath 路徑。
 		- 查看這個 binary 定義了哪些 rpath 對應路徑（即 runtime 查找會去哪裡找 @rpath）：`otool -l plugin.dylib | grep -A 5 LC_RPATH`
 - # Flutter Multicast Plugin 的 GStreamer 打包與依賴處理設計
-- 本章說明 multicast plugin 在 macOS 下整合 GStreamer 的整體架構與設計原理，包括靜態與動態資源的管理、Debug/Release 模式下的載入差異、CocoaPods 的設定角色、以及手動管理 .dylib 的必要性。
-- Plugin 的整體架構與組件關係圖（包含主執行檔、.debug.dylib、.dylib plugin）
-- flutter_multicast_plugin_example.app/
-  ├── Contents/
-  │   ├── MacOS/
-  │   │   └── flutter_multicast_plugin_example          ← 主執行檔
-  │   │   └── flutter_multicast_plugin_example.debug.dylib ← Debug 模式時的 plugin dylib
-  │   ├── Resources/
-  │   │   └── gstreamer-frameworks/
-  │   │       ├── lib/                                  ← GStreamer core .dylib
-  │   │       └── gstreamer-1.0/                         ← GStreamer plugin .dylib
-  flutter_multicast_plugin_example: Flutter engine 封裝出的主程式執行檔。
-- flutter_multicast_plugin_example.debug.dylib: Debug 模式下由 CocoaPods 產生的 plugin 動態庫。
-- gstreamer-frameworks/lib: 包含所有 GStreamer plugin 及核心模組運作所需的共用 .dylib 依賴（例如 libgstreamer-1.0.dylib, libglib-2.0.dylib, libavcodec.dylib 等）。
-- 這些 .dylib 會被：
-  •	Flutter plugin 的 native 程式碼載入
-  •	GStreamer plugin 本身 在執行時載入（例如 libgstcoreelements.dylib 載入 libglib-2.0.dylib）
+	- 本章說明 multicast plugin 在 macOS 下整合 GStreamer 的整體架構與設計原理，包括靜態與動態資源的管理、Debug/Release 模式下的載入差異、CocoaPods 的設定角色、以及手動管理 .dylib 的必要性。
+	- ## Plugin 的整體架構與組件關係圖（包含主執行檔、.debug.dylib、.dylib plugin）
+	- ```shell
+	  flutter_multicast_plugin_example.app/
+	  ├── Contents/
+	  │   ├── MacOS/
+	  │   │   └── flutter_multicast_plugin_example          ← 主執行檔
+	  │   │   └── flutter_multicast_plugin_example.debug.dylib ← Debug 模式時的 plugin dylib
+	  │   ├── Resources/
+	  │   │   └── gstreamer-frameworks/
+	  │   │       ├── lib/                                  ← GStreamer core .dylib
+	  │   │       └── gstreamer-1.0/                         ← GStreamer plugin .dylib
+	  ```
+	- flutter_multicast_plugin_example: Flutter engine 封裝出的主程式執行檔。
+	- flutter_multicast_plugin_example.debug.dylib: Debug 模式下由 CocoaPods 產生的 plugin 動態庫。
+	- gstreamer-frameworks/lib: 包含所有 GStreamer plugin 及核心模組運作所需的共用 .dylib 依賴（例如 libgstreamer-1.0.dylib, libglib-2.0.dylib, libavcodec.dylib 等）。
+	  這些 .dylib 會被：
+	  •	Flutter plugin 的 native 程式碼載入
+	  •	GStreamer plugin 本身 在執行時載入（例如 libgstcoreelements.dylib 載入 libglib-2.0.dylib）
 - gstreamer-frameworks/gstreamer-1.0: GStreamer plugin .dylib，例如 libgstcoreelements.dylib、libgstlibav.dylib。
 - .debug.dylib 與 dlopen() 
   在 Debug 模式 下，Flutter engine 並不會把 plugin 的 native code 直接連進主程式中，而是：
