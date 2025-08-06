@@ -108,40 +108,40 @@
 - # Flutter Multicast Plugin 的 GStreamer 打包與依賴處理設計
 	- 本章說明 multicast plugin 在 macOS 下整合 GStreamer 的整體架構與設計原理，包括靜態與動態資源的管理、Debug/Release 模式下的載入差異、CocoaPods 的設定角色、以及手動管理 .dylib 的必要性。
 	- ## Plugin 的整體架構與組件關係圖（包含主執行檔、.debug.dylib、.dylib plugin）
-	- ```shell
-	  flutter_multicast_plugin_example.app/
-	  ├── Contents/
-	  │   ├── MacOS/
-	  │   │   └── flutter_multicast_plugin_example          ← 主執行檔
-	  │   │   └── flutter_multicast_plugin_example.debug.dylib ← Debug 模式時的 plugin dylib
-	  │   ├── Resources/
-	  │   │   └── gstreamer-frameworks/
-	  │   │       ├── lib/                                  ← GStreamer core .dylib
-	  │   │       └── gstreamer-1.0/                         ← GStreamer plugin .dylib
-	  ```
-	- flutter_multicast_plugin_example: Flutter engine 封裝出的主程式執行檔。
-	- flutter_multicast_plugin_example.debug.dylib: Debug 模式下由 CocoaPods 產生的 plugin 動態庫。
-	- gstreamer-frameworks/lib: 包含所有 GStreamer plugin 及核心模組運作所需的共用 .dylib 依賴（例如 libgstreamer-1.0.dylib, libglib-2.0.dylib, libavcodec.dylib 等）。
-	  這些 .dylib 會被：
-	  •	Flutter plugin 的 native 程式碼載入
-	  •	GStreamer plugin 本身 在執行時載入（例如 libgstcoreelements.dylib 載入 libglib-2.0.dylib）
-- gstreamer-frameworks/gstreamer-1.0: GStreamer plugin .dylib，例如 libgstcoreelements.dylib、libgstlibav.dylib。
-- .debug.dylib 與 dlopen() 
-  在 Debug 模式 下，Flutter engine 並不會把 plugin 的 native code 直接連進主程式中，而是：
-- CocoaPods 為每個 plugin 建立一個 .debug.dylib
-- Flutter runtime 透過 dlopen() 載入這個 .debug.dylib，並執行其初始化函式
-- 這使得 plugin 可以在 Debug 模式下動態載入與卸載，有助於 hot reload/debug。
-- .debug.dylib 裡的內容來自你在 podspec 中指定的以下內容：
-- 包含的來源：
-- s.source_files
-- 所有你指定的 .mm, .cc, .cpp, .c, .h 等原始碼
-- 這些檔案會在 build 時被編譯並 靜態 link 進 .debug.dylib 中。
-- s.vendored_libraries
-- 你指定的 .a 檔（靜態庫）
-- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
-- 不包含的：
-- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
-- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
+		- ```shell
+		  flutter_multicast_plugin_example.app/
+		  ├── Contents/
+		  │   ├── MacOS/
+		  │   │   └── flutter_multicast_plugin_example          ← 主執行檔
+		  │   │   └── flutter_multicast_plugin_example.debug.dylib ← Debug 模式時的 plugin dylib
+		  │   ├── Resources/
+		  │   │   └── gstreamer-frameworks/
+		  │   │       ├── lib/                                  ← GStreamer core .dylib
+		  │   │       └── gstreamer-1.0/                         ← GStreamer plugin .dylib
+		  ```
+		- flutter_multicast_plugin_example: Flutter engine 封裝出的主程式執行檔。
+		- flutter_multicast_plugin_example.debug.dylib: Debug 模式下由 CocoaPods 產生的 plugin 動態庫。
+		- gstreamer-frameworks/lib: 包含所有 GStreamer plugin 及核心模組運作所需的共用 .dylib 依賴（例如 libgstreamer-1.0.dylib, libglib-2.0.dylib, libavcodec.dylib 等）。
+		  這些 .dylib 會被：
+		  •	Flutter plugin 的 native 程式碼載入
+		  •	GStreamer plugin 本身 在執行時載入（例如 libgstcoreelements.dylib 載入 libglib-2.0.dylib）
+		- gstreamer-frameworks/gstreamer-1.0: GStreamer plugin .dylib，例如 libgstcoreelements.dylib、libgstlibav.dylib。
+	- ## .debug.dylib 與 dlopen() 
+	  在 Debug 模式 下，Flutter engine 並不會把 plugin 的 native code 直接連進主程式中，而是：
+		- CocoaPods 為每個 plugin 建立一個 .debug.dylib
+		- Flutter runtime 透過 dlopen() 載入這個 .debug.dylib，並執行其初始化函式
+		- 這使得 plugin 可以在 Debug 模式下動態載入與卸載，有助於 hot reload/debug。
+		- .debug.dylib 裡的內容來自你在 podspec 中指定的以下內容：
+			- 包含的來源：
+				- s.source_files
+					- 所有你指定的 .mm, .cc, .cpp, .c, .h 等原始碼
+					- 這些檔案會在 build 時被編譯並 靜態 link 進 .debug.dylib 中。
+				- s.vendored_libraries
+		- 你指定的 .a 檔（靜態庫）
+		- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
+		- 不包含的：
+		- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
+		- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
 - GStreamer .dylib 的來源與路徑處理
   GStreamer 提供的 SDK（GStreamer.framework）中包含了大量 .dylib 檔案，分為兩類：
 - Core library（例如 libgstreamer-1.0.dylib, libavcodec.dylib）
