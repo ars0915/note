@@ -178,14 +178,14 @@
 				- Flutter plugin 的 native 程式會依賴 GStreamer core .dylib。
 				- 為了讓 Xcode / CocoaPods 在編譯時能正確 link 到這些 .dylib，因此將 .dylib 的副本放進 s.vendored_libraries 中的 gstreamer-dylibs/ 目錄。
 				- 這些副本內容與 Resources/gstreamer-frameworks/lib/ 中的檔案相同，但使用 install_name_tool -id 將其 install name 改為：
-				  @loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib
-				  .debug.dylib 或 app 主程式在 link 後，會記錄這個相對路徑，於執行時正確從 .app/Contents/Resources/gstreamer-frameworks/lib/ 載入實際的 .dylib。
-- 此外，這些副本中的內部依賴（即 libA.dylib 依賴 libB.dylib）也需要修改為一致的 Resources 路徑。
-- 因此，透過 install_name_tool -change，將所有以 lib*.dylib 開頭且非系統路徑的依賴，統一改為：@loader_path/../Resources/gstreamer-frameworks/lib/libXYZ.dylib
-  如此一來，不論是主程式、plugin、或其他 dylib，在執行期間都會從 .app/Contents/Resources/gstreamer-frameworks/lib/ 正確載入所有核心依賴。
-- 本 plugin 使用 gst_plugin_load_file() 手動載入 GStreamer plugin，避免依賴預設 scanner 行為。詳細策略請見維護指南。
-- 為什麼這樣設計（可維護性、擴充性、與打包限制）
-  這套架構的目標：
+				  `@loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib`
+				  `.debug.dylib` 或 app 主程式在 link 後，會記錄這個相對路徑，於執行時正確從 `.app/Contents/Resources/gstreamer-frameworks/lib/` 載入實際的 `.dylib`。
+				- 此外，這些副本中的內部依賴（即 libA.dylib 依賴 libB.dylib）也需要修改為一致的 Resources 路徑。
+				- 因此，透過 `install_name_tool -change`，將所有以 `lib*.dylib` 開頭且非系統路徑的依賴，統一改為：`@loader_path/../Resources/gstreamer-frameworks/lib/libXYZ.dylib`
+				  如此一來，不論是主程式、plugin、或其他 dylib，在執行期間都會從 `.app/Contents/Resources/gstreamer-frameworks/lib/` 正確載入所有核心依賴。
+			- 本 plugin 使用 gst_plugin_load_file() 手動載入 GStreamer plugin，避免依賴預設 scanner 行為。詳細策略請見維護指南。
+	- ## 為什麼這樣設計（可維護性、擴充性、與打包限制）
+	  這套架構的目標：
 - 需求
 - 對應設計
 - Flutter plugin 可 Debug / Release 下穩定運作
