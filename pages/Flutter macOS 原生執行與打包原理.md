@@ -58,38 +58,40 @@
 	- 若 .dylib 相依其他 .dylib，也要處理依賴鏈
 	- ## 三個主要的特殊路徑變數
 	- ### @loader_path
-	- 意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
-	- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
+		- 意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
+		- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
+		- 範例：
+		  假設 app 結構如下：
+		  ```shell
+		  MyApp.app/
+		  ├── Contents/
+		  │   ├── MacOS/
+		  │   │   └── MyApp
+		  │   └── Resources/
+		  │       └── gstreamer-frameworks/
+		  │           ├── gstreamer-1.0/
+		  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
+		  │           └── lib/
+		  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
+		  ```
+		  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：`@loader_path/../lib/libavcodec.61.dylib`
+		- libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
+		  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
+	- ### @executable_path
+		- 意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
+		- 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
 	- 範例：
 	  假設 app 結構如下：
 	  ```shell
-	  MyApp.app/
-	  ├── Contents/
-	  │   ├── MacOS/
-	  │   │   └── MyApp
-	  │   └── Resources/
-	  │       └── gstreamer-frameworks/
-	  │           ├── gstreamer-1.0/
-	  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
-	  │           └── lib/
-	  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
+	  YourApp.app/
+	  └── Contents/
+	      ├── MacOS/
+	      │   ├── YourApp                ← 主執行檔
+	      │   └── flutter_plugin.dylib   ← 被主程式直接 link
+	      └── Resources/
+	          └── libfoo.dylib
 	  ```
-	  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：@loader_path/../lib/libavcodec.61.dylib
-	- libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
-	  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
-- @executable_path
-  意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
-- 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
-- 範例：
-  假設 app 結構如下：
-- YourApp.app/
-  └── Contents/
-    ├── MacOS/
-    │   ├── YourApp                ← 主執行檔
-    │   └── flutter_plugin.dylib   ← 被主程式直接 link
-    └── Resources/
-        └── libfoo.dylib
-  此時 flutter_plugin.dylib 可以寫：@executable_path/../Resources/libfoo.dylib
+	  此時 flutter_plugin.dylib 可以寫：`@executable_path/../Resources/libfoo.dylib`
 - @rpath
   意思：“runpath search path”，可以想成是一種路徑的變數。它本身不代表某個固定位置，而是在程式執行時，macOS 會從事先設定好的一串路徑中，一個一個去嘗試找出真正的檔案。
 - 常用於：「一個 binary 可以在不同環境下被動態找到依賴項」，常搭配 Xcode/CocoaPods 設定 LD_RUNPATH_SEARCH_PATHS
