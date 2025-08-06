@@ -147,13 +147,13 @@
 			- Core library（例如 libgstreamer-1.0.dylib, libavcodec.dylib）
 			- Plugin library（例如 libgstcoreelements.dylib, libgstlibav.dylib）
 		- 這些 .dylib 不會自動被 CocoaPods 或 Flutter 處理，因此我們採用以下機制：
-		- ### 資源複製與 relocate
+		- #### 資源複製與 relocate
 			- 執行 scripts/build_gstreamer_bundle.sh，會將本機的 GStreamer.framework 內容：
 				- 複製到 macos/gstreamer-frameworks/lib/ 與 gstreamer-frameworks/gstreamer-1.0/
 				- 修改其 install_name 與依賴，設為：
 				  `@loader_path/../Resources/gstreamer-frameworks/lib/libxyz.dylib`
 				  這確保 .dylib 之間的相依能從 plugin 本身的位置出發找到其他依賴。
-		- ### podspec 的設定
+		- #### podspec 的設定
 			- ```shell
 			  s.resources = ['gstreamer-frameworks']
 			  s.vendored_libraries = ['libs/*.a', 'gstreamer-dylibs/*.dylib']
