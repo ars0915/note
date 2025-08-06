@@ -57,54 +57,54 @@
 		- 為了讓打包出來的 macOS .app 可以在「任何使用者電腦上」執行，而不依賴本機絕對路徑（像 /usr/local/lib），我們必須讓 app 內的 .dylib 使用「相對路徑」載入。
 		- 若 .dylib 相依其他 .dylib，也要處理依賴鏈
 	- ## 三個主要的特殊路徑變數
-	- ### @loader_path
-		- 意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
-		- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
-		- 範例：
-		  假設 app 結構如下：
-		  ```shell
-		  MyApp.app/
-		  ├── Contents/
-		  │   ├── MacOS/
-		  │   │   └── MyApp
-		  │   └── Resources/
-		  │       └── gstreamer-frameworks/
-		  │           ├── gstreamer-1.0/
-		  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
-		  │           └── lib/
-		  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
-		  ```
-		  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：`@loader_path/../lib/libavcodec.61.dylib`
-		- libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
-		  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
-	- ### @executable_path
-		- 意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
-		- 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
-		- 範例：
-		  假設 app 結構如下：
-		  ```shell
-		  YourApp.app/
-		  └── Contents/
-		      ├── MacOS/
-		      │   ├── YourApp                ← 主執行檔
-		      │   └── flutter_plugin.dylib   ← 被主程式直接 link
-		      └── Resources/
-		          └── libfoo.dylib
-		  ```
-		  此時 flutter_plugin.dylib 可以寫：`@executable_path/../Resources/libfoo.dylib`
-	- ### @rpath
-		- 意思：“runpath search path”，可以想成是一種路徑的變數。它本身不代表某個固定位置，而是在程式執行時，macOS 會從事先設定好的一串路徑中，一個一個去嘗試找出真正的檔案。
-		- 常用於：「一個 binary 可以在不同環境下被動態找到依賴項」，常搭配 Xcode/CocoaPods 設定 LD_RUNPATH_SEARCH_PATHS
-		- 在 Flutter + CocoaPods 的開發情境中，@rpath 較少被使用，因為：
-			- CocoaPods 預設不會設置 @rpath，且使用方式較複雜
-			- Flutter 工程對於 native linker 設定的控制有限
-		- 為了簡化部署與除錯流程，建議改用 @loader_path，這樣 dylib 的依賴可以固定寫為相對於自身的位置，更直觀且容易維護。
-		- 如果某個 dylib 寫了 @rpath/libfoo.dylib，那 macOS 會在執行時依序嘗試：
-			- A/libfoo.dylib
-			- B/libfoo.dylib
-			- C/libfoo.dylib
-			- 直到找到為止，而這些 A、B、C 就是在 linker 或 Xcode 中設定的 rpath 路徑。
-		- 查看這個 binary 定義了哪些 rpath 對應路徑（即 runtime 查找會去哪裡找 @rpath）：`otool -l plugin.dylib | grep -A 5 LC_RPATH`
+		- ### @loader_path
+			- 意思：正在載入某個 dylib 時，該 dylib 檔案本身所在的目錄
+			- 常用情境：某個 plugin .dylib 依賴其他 .dylib 時，用來表示「從自己這個檔案的位置出發」去找依賴項
+			- 範例：
+			  假設 app 結構如下：
+			  ```shell
+			  MyApp.app/
+			  ├── Contents/
+			  │   ├── MacOS/
+			  │   │   └── MyApp
+			  │   └── Resources/
+			  │       └── gstreamer-frameworks/
+			  │           ├── gstreamer-1.0/
+			  │           │   └── libgstlibav.dylib            <-- 正在被載入的 plugin
+			  │           └── lib/
+			  │               └── libavcodec.61.dylib          <-- 依賴的核心 dylib
+			  ```
+			  此時，plugin libgstlibav.dylib 依賴 libavcodec.61.dylib，就可以寫成：`@loader_path/../lib/libavcodec.61.dylib`
+			- libgstlibav.dylib 在 Resources/gstreamer-frameworks/gstreamer-1.0/
+			  它的依賴 libavcodec.61.dylib 在 ../lib/（也就是 Resources/gstreamer-frameworks/lib/）
+		- ### @executable_path
+			- 意思：代表「主程式」的執行檔位置，通常是 .app/Contents/MacOS/
+			- 常用於：當主程式直接 link 某個 .dylib 時（例如 plugin 的 .debug.dylib），這些 .dylib 內的依賴路徑可以使用 @executable_path。
+			- 範例：
+			  假設 app 結構如下：
+			  ```shell
+			  YourApp.app/
+			  └── Contents/
+			      ├── MacOS/
+			      │   ├── YourApp                ← 主執行檔
+			      │   └── flutter_plugin.dylib   ← 被主程式直接 link
+			      └── Resources/
+			          └── libfoo.dylib
+			  ```
+			  此時 flutter_plugin.dylib 可以寫：`@executable_path/../Resources/libfoo.dylib`
+		- ### @rpath
+			- 意思：“runpath search path”，可以想成是一種路徑的變數。它本身不代表某個固定位置，而是在程式執行時，macOS 會從事先設定好的一串路徑中，一個一個去嘗試找出真正的檔案。
+			- 常用於：「一個 binary 可以在不同環境下被動態找到依賴項」，常搭配 Xcode/CocoaPods 設定 LD_RUNPATH_SEARCH_PATHS
+			- 在 Flutter + CocoaPods 的開發情境中，@rpath 較少被使用，因為：
+				- CocoaPods 預設不會設置 @rpath，且使用方式較複雜
+				- Flutter 工程對於 native linker 設定的控制有限
+			- 為了簡化部署與除錯流程，建議改用 @loader_path，這樣 dylib 的依賴可以固定寫為相對於自身的位置，更直觀且容易維護。
+			- 如果某個 dylib 寫了 @rpath/libfoo.dylib，那 macOS 會在執行時依序嘗試：
+				- A/libfoo.dylib
+				- B/libfoo.dylib
+				- C/libfoo.dylib
+				- 直到找到為止，而這些 A、B、C 就是在 linker 或 Xcode 中設定的 rpath 路徑。
+			- 查看這個 binary 定義了哪些 rpath 對應路徑（即 runtime 查找會去哪裡找 @rpath）：`otool -l plugin.dylib | grep -A 5 LC_RPATH`
 - # Flutter Multicast Plugin 的 GStreamer 打包與依賴處理設計
 	- 本章說明 multicast plugin 在 macOS 下整合 GStreamer 的整體架構與設計原理，包括靜態與動態資源的管理、Debug/Release 模式下的載入差異、CocoaPods 的設定角色、以及手動管理 .dylib 的必要性。
 	- ## Plugin 的整體架構與組件關係圖（包含主執行檔、.debug.dylib、.dylib plugin）
@@ -126,22 +126,22 @@
 		  •	Flutter plugin 的 native 程式碼載入
 		  •	GStreamer plugin 本身 在執行時載入（例如 libgstcoreelements.dylib 載入 libglib-2.0.dylib）
 		- gstreamer-frameworks/gstreamer-1.0: GStreamer plugin .dylib，例如 libgstcoreelements.dylib、libgstlibav.dylib。
-	- ## .debug.dylib 與 dlopen() 
-	  在 Debug 模式 下，Flutter engine 並不會把 plugin 的 native code 直接連進主程式中，而是：
-		- CocoaPods 為每個 plugin 建立一個 .debug.dylib
-		- Flutter runtime 透過 dlopen() 載入這個 .debug.dylib，並執行其初始化函式
-		- 這使得 plugin 可以在 Debug 模式下動態載入與卸載，有助於 hot reload/debug。
-		- .debug.dylib 裡的內容來自你在 podspec 中指定的以下內容：
-			- 包含的來源：
-				- s.source_files
-					- 所有你指定的 .mm, .cc, .cpp, .c, .h 等原始碼
-					- 這些檔案會在 build 時被編譯並 靜態 link 進 .debug.dylib 中。
-				- s.vendored_libraries
-					- 你指定的 .a 檔（靜態庫）
-					- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
-			- 不包含的：
-				- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
-				- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
+	- ## .debug.dylib 與 dlopen()
+		- 在 Debug 模式 下，Flutter engine 並不會把 plugin 的 native code 直接連進主程式中，而是：
+			- CocoaPods 為每個 plugin 建立一個 .debug.dylib
+			- Flutter runtime 透過 dlopen() 載入這個 .debug.dylib，並執行其初始化函式
+			- 這使得 plugin 可以在 Debug 模式下動態載入與卸載，有助於 hot reload/debug。
+			- .debug.dylib 裡的內容來自你在 podspec 中指定的以下內容：
+				- 包含的來源：
+					- s.source_files
+						- 所有你指定的 .mm, .cc, .cpp, .c, .h 等原始碼
+						- 這些檔案會在 build 時被編譯並 靜態 link 進 .debug.dylib 中。
+					- s.vendored_libraries
+						- 你指定的 .a 檔（靜態庫）
+						- 這些 .a 檔的內容會被 靜態 link 進 .debug.dylib
+				- 不包含的：
+					- .dylib 檔案（就算寫在 s.vendored_libraries）並不會被打包進 .debug.dylib → 它們會在執行時由主程式或 plugin 透過 dlopen() 或系統 linker 載入。
+					- s.resources 指定的資料（例如 .dylib plugin 放到 Resources）→ 這些資料會被複製進 .app/Contents/Resources/，但不屬於 .debug.dylib 的一部分。
 	- ## GStreamer .dylib 的來源與路徑處理
 		- GStreamer 提供的 SDK（GStreamer.framework）中包含了大量 .dylib 檔案，分為兩類：
 			- Core library（例如 libgstreamer-1.0.dylib, libavcodec.dylib）
