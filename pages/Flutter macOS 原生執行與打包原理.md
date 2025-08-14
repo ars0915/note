@@ -1,3 +1,5 @@
+public:: true
+
 - 本文件說明 Flutter macOS 原生專案在執行與打包過程中，與 .a / .dylib 的關係、Library 路徑解析、CocoaPods 對 .dylib 的處理方式，並結合實際專案（multicast plugin）進行範例說明。
 - # macOS Flutter App 的結構
 	- Flutter 在 macOS 上編譯後會產出一個原生 macOS 應用程式（.app），其實質上是一個目錄結構，包含主程式執行檔、資源、frameworks、以及其他元資料。本章將解構這個 .app 包內的結構，並說明 Flutter plugin（包含 native C++、GStreamer 等）如何整合進來。
