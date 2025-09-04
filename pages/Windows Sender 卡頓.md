@@ -55,3 +55,4 @@
 			- 若同一時間 availableOutgoingBitrate 沒掉太多，但 bitrate_bps 卻暴衝、pktSendDelay_ms 升高
 			  ⇒ 不是網路突降，是幀本身過大或 pacer 不平滑。
 			- 若 availableOutgoingBitrate 本來就很低（例如 < 1 Mbps），任何 IDR 都容易變「相對過大」：優先降低 keyframe 大小/頻率或先把 BWE 問題解掉。
+-
