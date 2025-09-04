@@ -37,5 +37,5 @@
 		- framesEncoded / framesSent：幀數
 		- bytesSent：總傳輸位元組數
 		- 如果 hugeFramesSent 有增加、bytesSent 瞬間暴衝（遠高於平均）-> 表示有超大幀被送出（通常是 IDR/關鍵幀）。
-	-
+		- qpSum：如果平常幀的 QP 在 30 附近，突然掉到 18 → 表示編碼器產生了很大、很高畫質的幀（常見於 IDR）。
 		-
