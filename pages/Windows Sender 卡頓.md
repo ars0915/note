@@ -1,18 +1,15 @@
 # Stats 觀察
-	- packetSendDelayAvgMs 很高 （
-	- framesEncodedPerSecond 很低
-	- bytesSentPerSecond 一開始低
-- 可能的原因
--
-- BWE（Bandwidth Estimation）錯估太低
+	- packetSendDelayAvgMs 很高 （1000.83,1893.87,1875.24,2000.34,1737.83,1948.83,1828.76,1501.58,1259.65,740.78）
+	- framesEncodedPerSecond 很低（5,7,8,7,7,8,8,8,8,8）
+	- bytesSentPerSecond 一開始低（116272,157196,193374,195622,246239,296953,316706,351522,407036,476824）
+- # 可能的原因
+- ## BWE（Bandwidth Estimation）錯估太低
   常見於 TWCC 沒有生效 或 回報異常
-- 幀太大 / 碼率突發
+- ## 幀太大 / 碼率突發
   例如關鍵幀（IDR frame）或場景切換，突然 500KB～1MB
-- 發送端執行緒排程壅塞
-- RTP 分片太多
-  
-  
-  增加 log
+- ## 發送端執行緒排程壅塞
+- ## RTP 分片太多
+- 增加 log
   
   * availableOutgoingBitrate
     * 和實際碼率對比
