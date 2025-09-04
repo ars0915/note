@@ -57,4 +57,8 @@
 			- 若 availableOutgoingBitrate 本來就很低（例如 < 1 Mbps），任何 IDR 都容易變「相對過大」：優先降低 keyframe 大小/頻率或先把 BWE 問題解掉。
 	- ## 估 RTP 分片
 		- 在每個取樣區間（Δt）計算：
-		  	1.	每幀封包數（PPF）
+			- 每幀封包數（PPF）
+			  `PPF ≈ (ΔpacketsSent) / (ΔframesEncoded 或 ΔframesSent)`
+			- 每包平均有效載荷（APL）
+			  `APL_bytes ≈ (ΔbytesSent) / (ΔpacketsSent)`
+			-
