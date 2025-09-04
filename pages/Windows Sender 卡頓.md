@@ -27,6 +27,7 @@
 				- 長時間不上升（例如一直卡在起始值）
 				- 或忽上忽下（1 Mbps ↔ 100 kbps ↔ 1 Mbps ↔ …），但網路其實穩 → 算法沒正確收到回報
 		- 和 packetSendDelayAvgMs、jitterBufferDelay 對照
+		  id:: 68b94627-f11e-44c3-8a6c-9933138b6b0e
 			- 如果 availableOutgoingBitrate 太低 → sender 應該自動降碼率 → queue 不應該爆。
 			- 如果你看到：
 				- availableOutgoingBitrate 很低
