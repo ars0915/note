@@ -67,11 +67,8 @@
 			- 若長時間 PPF > 2 × PPF_med_inter，且 APL < ~700–900B ⇒ 高機率「分片過細」或「很多迷你包」
 		- Keyframe（IDR）
 			- 在 ΔkeyFramesEncoded > 0 的區間，若
-			  	•	PPF_idr > 50（1080p 常見上限；>100 幾乎必然偏多），或
-			  	•	APL_idr 明顯 < 目標（例如 <800B）
-			  ⇒ 這個 IDR 的 RTP 分片/打包顆粒度偏不理想（包太小、包太多）
-			  連動訊號
-			  	•	同時 ΔtotalPacketSendDelay/ΔpacketsSent（區間平均送包延遲）在 keyframe 區間突升
-			  ⇒ 過多分片 + 短時突發，正在撐爆 pacer/queue
+				- PPF_idr > 50（1080p 常見上限；>100 幾乎必然偏多），或 APL_idr 明顯 < 目標（例如 <800B）⇒ 這個 IDR 的 RTP 分片/打包顆粒度偏不理想（包太小、包太多）
+			- 連動訊號
+				- 同時 ΔtotalPacketSendDelay/ΔpacketsSent（區間平均送包延遲）在 keyframe 區間突升 ⇒ 過多分片 + 短時突發，正在撐爆 pacer/queue
 		-
 		-
