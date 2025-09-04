@@ -79,4 +79,8 @@
 		- media-source（或 video-source）
 			- frames（有些實作叫 framesCaptured）
 			- framesPerSecond
+		- outbound-rtp（video）
+			- framesEncoded、totalEncodeTime、keyFramesEncoded、hugeFramesSent
+		- `ΔframesCaptured  - ΔframesEncoded  >> 0`  ⇒ Capture→Encoder 之間有 drop
+	-
 		-
