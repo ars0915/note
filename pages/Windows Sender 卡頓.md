@@ -61,4 +61,7 @@
 			  `PPF ≈ (ΔpacketsSent) / (ΔframesEncoded 或 ΔframesSent)`
 			- 每包平均有效載荷（APL）
 			  `APL_bytes ≈ (ΔbytesSent) / (ΔpacketsSent)`
-			-
+		- 內網/一般 MTU 下，扣掉 IP/UDP/RTP 頭，單包 1000–1200B 有效載荷很常見。
+		  若長時間 PPF > 2 × PPF_med_inter，且 APL < ~700–900B
+		  ⇒ 高機率「分片過細」或「很多迷你包」
+		-
