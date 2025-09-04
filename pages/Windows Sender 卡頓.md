@@ -1,0 +1,38 @@
+# Stats 觀察
+	- packetSendDelayAvgMs 很高 （
+	- framesEncodedPerSecond 很低
+	- bytesSentPerSecond 一開始低
+- 可能的原因
+-
+- BWE（Bandwidth Estimation）錯估太低
+  常見於 TWCC 沒有生效 或 回報異常
+- 幀太大 / 碼率突發
+  例如關鍵幀（IDR frame）或場景切換，突然 500KB～1MB
+- 發送端執行緒排程壅塞
+- RTP 分片太多
+  
+  
+  增加 log
+  
+  * availableOutgoingBitrate
+    * 和實際碼率對比
+        * 觀察同時間的：
+            * availableOutgoingBitrate
+            * bytesSentPerSecond × 8（實際碼率）
+        * 正常情況：
+            * 實際碼率 ≈ availableOutgoingBitrate（稍微低一點，因為發送端要留 margin）
+        * 異常情況：
+            * availableOutgoingBitrate 明顯比實際碼率低很多（例：available=0.5 Mbps，但實際還在送 3 Mbps） → TWCC/RTCP 可能失效，BWE 沒被正確採用
+            * availableOutgoingBitrate 長時間卡在極低值（例如 30–50 kbps），畫面卻完全卡住 → BWE 錯估
+    * 隨時間變化
+        * 正常：
+            * 起始時小（例如 300 kbps），幾秒內快速「ramp up」到多 Mbps，之後穩定。
+        * 異常：
+            * 長時間不上升（例如一直卡在起始值）
+            * 或忽上忽下（1 Mbps ↔ 100 kbps ↔ 1 Mbps ↔ …），但網路其實穩 → 算法沒正確收到回報
+    *  和 packetSendDelayAvgMs、jitterBufferDelay 對照
+        * 如果 availableOutgoingBitrate 太低 → sender 應該自動降碼率 → queue 不應該爆。
+        * 如果你看到：
+            * availableOutgoingBitrate 很低
+            * 但 sender 還在高碼率送(看bytesSentPerSecond） → packetSendDelayAvgMs 飆高 → jitter buffer 堆積
+                * 👉 這表示 sender 沒有用到 BWE（可能沒啟用 TWCC feedback）。
