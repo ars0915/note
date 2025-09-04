@@ -35,5 +35,7 @@
 	- ## 如何判斷幀太大
 		- hugeFramesSent：大幀計數（libwebrtc 會標記異常大的 frame）
 		- framesEncoded / framesSent：幀數
-		- bytesSent
+		- bytesSent：總傳輸位元組數
+		- 如果 hugeFramesSent 有增加、bytesSent 瞬間暴衝（遠高於平均）-> 表示有超大幀被送出（通常是 IDR/關鍵幀）。
+	-
 		-
