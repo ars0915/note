@@ -48,4 +48,9 @@
 			  	•	用同一區間的 fps 算幀間隔：frame_interval = 1/fps
 			  	•	若 idr_send_time_est > 2 × frame_interval ⇒ 偏異常
 			  （>1× 已吃緊，>2× 高機率撐爆 pacer/queue）
-			-
+			- 同一區間的 pktSendDelay_ms 明顯升高（例如 > 50–100 ms，或較前 5 個區間中位數高出 3 倍），且與上面 IDR 訊號同時發生
+			  ⇒ 高機率是 IDR 太大導致的壅塞。
+		- ### 交叉驗證（網路 & BWE 是否合理）
+			- 若同一時間 availableOutgoingBitrate 沒掉太多，但 bitrate_bps 卻暴衝、pktSendDelay_ms 升高
+			  ⇒ 不是網路突降，是幀本身過大或 pacer 不平滑。
+			- 若 availableOutgoingBitrate 本來就很低（例如 < 1 Mbps），任何 IDR 都容易變「相對過大」：優先降低 keyframe 大小/頻率或先把 BWE 問題解掉。
