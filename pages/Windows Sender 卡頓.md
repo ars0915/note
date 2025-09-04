@@ -70,5 +70,9 @@
 				- PPF_idr > 50（1080p 常見上限；>100 幾乎必然偏多），或 APL_idr 明顯 < 目標（例如 <800B）⇒ 這個 IDR 的 RTP 分片/打包顆粒度偏不理想（包太小、包太多）
 			- 連動訊號
 				- 同時 ΔtotalPacketSendDelay/ΔpacketsSent（區間平均送包延遲）在 keyframe 區間突升 ⇒ 過多分片 + 短時突發，正在撐爆 pacer/queue
-		-
+		- 取最近 3–5 秒的 inter 幀 PPF 與 APL 的中位數做基準。
+		- 檢查「keyframe 區間」與「一般區間」：
+			- 一般區間：若 PPF 長期偏高且 APL 偏小 ⇒ 分片過多（即使沒有 keyframe）。
+			- keyframe 區間：若 PPF 明顯尖峰（>50 或 >基準 8–12 倍）且 packetSendDelay 同步升 ⇒ IDR 分片/打包不佳。
+		- 若同時看到 availableOutgoingBitrate 正常、實際碼率 ≈ 其值，但 packetSendDelay 在 keyframe 區間飆高 ⇒ 不是 BWE 問題，是分片/幀太大問題。
 		-
