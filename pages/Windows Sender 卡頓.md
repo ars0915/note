@@ -40,4 +40,12 @@
 		- qpSum：如果平常幀的 QP 在 30 附近，突然掉到 18 → 表示編碼器產生了很大、很高畫質的幀（常見於 IDR）。
 		- ### 疑似 IDR 時刻
 			- ΔkeyFramesEncoded > 0
+			- ΔhugeFramesSent > 0
+			- 觀察某個區間 bitrate_bps > 滾動中位數的 3–5 倍（突發碼率尖峰）
+		- ### 判斷「是否異常大」
+			- 用同一區間的 availableOutgoingBitrate 當分母，估計「送出這個區間新增位元組需要多久」：
+			  idr_send_time_est = 8*(ΔbytesSent) / availableOutgoingBitrate
+			  	•	用同一區間的 fps 算幀間隔：frame_interval = 1/fps
+			  	•	若 idr_send_time_est > 2 × frame_interval ⇒ 偏異常
+			  （>1× 已吃緊，>2× 高機率撐爆 pacer/queue）
 			-
