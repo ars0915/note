@@ -75,4 +75,8 @@
 			- 一般區間：若 PPF 長期偏高且 APL 偏小 ⇒ 分片過多（即使沒有 keyframe）。
 			- keyframe 區間：若 PPF 明顯尖峰（>50 或 >基準 8–12 倍）且 packetSendDelay 同步升 ⇒ IDR 分片/打包不佳。
 		- 若同時看到 availableOutgoingBitrate 正常、實際碼率 ≈ 其值，但 packetSendDelay 在 keyframe 區間飆高 ⇒ 不是 BWE 問題，是分片/幀太大問題。
+	- ## Capture → Encoder 有冇 drop
+		- media-source（或 video-source）
+			- frames（有些實作叫 framesCaptured）
+			- framesPerSecond
 		-
