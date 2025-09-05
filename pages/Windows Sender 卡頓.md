@@ -34,7 +34,11 @@
 				- 但 sender 還在高碼率送(看bytesSentPerSecond） → packetSendDelayAvgMs 飆高 → jitter buffer 堆積
 				  -> 這表示 sender 沒有用到 BWE（可能沒啟用 TWCC feedback）
 		- 用 targetBitrate（分配給這條流的目標）看 BWE 算出來之後，系統打算給這條流多少？
-			-
+			- 可以知道 allocator 是否根據 BWE 限制分配
+			- 但不能確認「實際送出是不是達到這個目標」（需要看 bytesSentPerSecond ）
+			- target ≈ available 且 actual ≈ target → BWE 正常，系統穩定
+			  	•	target ≈ available 但 actual ≪ target → encoder/幀率不足
+			  	•	target ≫ available 且 actual ≫ available → allocator 沒遵守 BWE，queue 堆爆（你觀察到的情況）
 	- ## 如何判斷幀太大
 		- hugeFramesSent：大幀計數（libwebrtc 會標記異常大的 frame）
 		- framesEncoded / framesSent：幀數
