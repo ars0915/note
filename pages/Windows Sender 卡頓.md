@@ -33,6 +33,8 @@
 				- availableOutgoingBitrate 很低
 				- 但 sender 還在高碼率送(看bytesSentPerSecond） → packetSendDelayAvgMs 飆高 → jitter buffer 堆積
 				  -> 這表示 sender 沒有用到 BWE（可能沒啟用 TWCC feedback）
+		- 用 targetBitrate（分配給這條流的目標）看 BWE 算出來之後，系統打算給這條流多少？
+			-
 	- ## 如何判斷幀太大
 		- hugeFramesSent：大幀計數（libwebrtc 會標記異常大的 frame）
 		- framesEncoded / framesSent：幀數
