@@ -4,5 +4,5 @@
 	- decodebin 也沒有再產出，應該是 glimagesink 的背壓造成
 	- 前面加上 queue => decodebin -> videoconvert -> capsfilter -> queue -> glimagesink
 - 畫面卡卡的沒有聲音
-	-
+	- glimagesink: sync 用 false 會
 	-
