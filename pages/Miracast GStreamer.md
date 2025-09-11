@@ -1,3 +1,4 @@
+-
 - decodebin -> videoconvert -> capsfilter -> glimagesink 黑畫面
 	- 看 native windows 尺寸是 1*1 => 先在 Surface 設定尺寸後再傳入
 - render 完第一個畫面後就卡住
@@ -17,4 +18,5 @@
 		  •	若 render（例如 GPU 或 Surface）太慢，或是上游 PTS 很跳躍，就會：
 		  •	畫面掉幀（因為 PTS 過期）
 		  •	視訊嚴重卡頓，但音訊正常
--
+- decodebin 接 probe 看輸出發現一秒一幀
+	- 在 ts
