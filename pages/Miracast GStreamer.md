@@ -1,0 +1,5 @@
+- decodebin -> videoconvert -> capsfilter -> glimagesink 黑畫面
+	- 看 native windows 尺寸是 1*1 => 先在 Surface 設定尺寸後再傳入
+- render 完第一個畫面後就卡住
+	- decodebin 也沒有再產出，應該是 glimagesink
+	-
