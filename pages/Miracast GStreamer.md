@@ -1,9 +1,9 @@
 - pipeline
   ```
   udpsrc -> rtpbin -> rtpmp2tdepay -> tsparse -> tsdemux 
-  tsdemux 同時接 audio 跟 video
-  tsdemux -> (audio) queue -> aacparse -> avdec_aac -> audioconvert -> audioresample -> openslessink
-  tsdemux -> (video) queue -> decodebin -> videoconvert -> capsfilter -> queue -> glimagesink
+  tsdemux
+  |_> (audio) queue -> aacparse -> avdec_aac -> audioconvert -> audioresample -> openslessink
+  |_> (video) queue -> decodebin -> videoconvert -> capsfilter -> queue -> glimagesink
   ```
 - decodebin -> videoconvert -> capsfilter -> glimagesink 黑畫面
 	- 看 native windows 尺寸是 1*1 => 先在 Surface 設定尺寸後再傳入
@@ -25,4 +25,5 @@
 		  •	畫面掉幀（因為 PTS 過期）
 		  •	視訊嚴重卡頓，但音訊正常
 - decodebin 接 probe 看輸出發現一秒一幀
-	- 在 ts
+	- 在 tsdemux 發現每 33ms 就有一幀、也有 PTS
+	- 使用 tsdemux -> queue -> h264parse -> capsfilter -> filesink 產出 h264
