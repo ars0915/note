@@ -27,4 +27,5 @@
 - decodebin 接 probe 看輸出發現一秒一幀
 	- 在 tsdemux 發現每 33ms 就有一幀、也有 PTS
 	- 使用 tsdemux -> queue -> h264parse -> capsfilter -> filesink 產出 h264 檔案可以播放
+	- 改用 avdec_h264
 -
