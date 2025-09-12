@@ -38,7 +38,7 @@ tags:: Multicast, GStreamer
 	- 抓流量的 App 不一定準確
 	- 檢查 JAVA 層是否有接到封包
 	  
-	  ```
+	  ```java
 	  // ✅ Acquire multicast lock to enable multicast packet reception
 	  WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 	  multicastLock = wifi.createMulticastLock("gst-rtp");
@@ -247,7 +247,7 @@ tags:: Multicast, GStreamer
 		- ⚠️ 注意：
 		  •	需要改 pipeline 結構（可能造成 caps negotiation 行為改變）
 		  •	identity 只會印出部分內容，較難調整格式
-	- ```
+	- ```cpp
 	  const char* elements_to_probe[] = {"mysrc", "h264parse", "avdec_h264", "videoconvert"};
 	  
 	      for (const char* name : elements_to_probe) {
