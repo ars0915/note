@@ -104,10 +104,12 @@ tags:: Multicast, GStreamer
 		- 📌 影響：
 		  •	GStreamer 播放器會根據它與其他元素（如 demuxer）計算 latency。
 		  •	如果低於 source 實際提供資料的時間，就會造成掉幀、跳音。
-	- 實時直播 / Miracast 的場景
-		- **latency-time**：200~300ms
-		- **buffer-time**： 400~600ms
-	- 🔇 沒聲音 / 一直 resync： latency-time 太小，資料還沒來就要播放
-	- 📉 延遲太高：buffer-time 太大，sink 保留太久再播
-	- 🔁 jitter 不穩導致聲音斷裂：latency-time 太短，buffer 不夠吸收抖動
-	- ⛔ GStreamer 拒絕 pipeline 播放：latency 無法滿足 source/demux 的要求
+	- 實測結果
+- "buffer-time", G_GINT64_CONSTANT(200000),
+               "latency-time", G_GINT64_CONSTANT(20000),
+  時聲音正常，video很卡
+	- 但
+	     "buffer-time", 300 * GST_MSECOND,
+	                "latency-time", 200 * GST_MSECOND,
+	  時 video 很順暢，audio 會一直 resync 沒聲音
+	-
