@@ -35,12 +35,12 @@ tags:: Multicast, GStreamer
 	- 查看 element 輸出 PTS
 	  ```cpp
 	  gst_pad_add_probe(
-	        pad,
+	        gst_element_get_static_pad(self->video_sink_, "sink"), // element, sink/src
 	        GST_PAD_PROBE_TYPE_BUFFER,
 	        [](GstPad* pad, GstPadProbeInfo* info, gpointer) -> GstPadProbeReturn {
 	          GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
 	          GstClockTime pts = GST_BUFFER_PTS(buffer);
-	          g_print("[%s] : PTS = %" GST_TIME_FORMAT "\n", GST_TIME_ARGS(pts));
+	          g_print("[%s] : PTS = %" GST_TIME_FORMAT "\n", GST_ELEMENT_NAME(GST_PAD_PARENT(pad)), GST_TIME_ARGS(pts));
 	          static GstClockTime last_time = GST_CLOCK_TIME_NONE;
 	          GstClockTime now = gst_util_get_timestamp();
 	          if (last_time != GST_CLOCK_TIME_NONE) {
