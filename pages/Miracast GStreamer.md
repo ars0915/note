@@ -89,4 +89,18 @@ tags:: Multicast, GStreamer
 	- 當 queue 滿了時，要「丟棄」哪邊的 buffer：0 = 不丟（預設）1 = upstream（丟舊的 input）2 = downstream（丟新的 output）
 	- upstream: **適合低延遲場景**：視訊監控、即時通訊
 	- downstream: 不建議用在 video，會增加延遲
--
+- openslessink 參數
+	- buffer-time
+		- ✅ 定義：
+		  •	sink 內部的總 buffer 大小（以時間表示）。
+		  •	GStreamer 播放音訊前，最多會累積這麼多資料進入 sink。
+		- 📌 影響：
+		  •	越大 → 播放越穩定（耐 jitter），但延遲變高。
+		  •	越小 → 播放延遲變低，但更容易出現「聲音斷裂」、「resync」。
+	- latency-time
+		- ✅ 定義：
+		  •	從 buffer 開始接收資料到實際播放的延遲時間。
+		  •	是這個 sink 對 pipeline 提出的最小 latency 要求。
+		- 📌 影響：
+		  •	GStreamer 播放器會根據它與其他元素（如 demuxer）計算 latency。
+		  •	如果低於 source 實際提供資料的時間，就會造成掉幀、跳音。
