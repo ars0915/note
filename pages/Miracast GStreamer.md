@@ -77,6 +77,14 @@ tags:: Multicast, GStreamer
 	  decodebin added element: h264parse0 (factory: h264parse)
 	  decodebin added element: capsfilter0 (factory: capsfilter)
 	  decodebin added element: avdec_h264-0 (factory: avdec_h264)
+	- 輸出到檔案看看
+	  ```
+	  self->video_sink_ = gst_element_factory_make("filesink", "video_sink");
+	      if (self->video_sink_) {
+	        g_object_set(self->video_sink_,
+	                     "location", "/sdcard/test_output.yuv",
+	                     NULL);
+	  ```
 - queue 的 "leaky" 屬性
 	- 當 queue 滿了時，要「丟棄」哪邊的 buffer：0 = 不丟（預設）1 = upstream（丟舊的 input）2 = downstream（丟新的 output）
 	- upstream: **適合低延遲場景**：視訊監控、即時通訊
