@@ -1,3 +1,5 @@
+public:: true
+
 - pipeline
   ```
   udpsrc -> rtpbin -> rtpmp2tdepay -> tsparse -> tsdemux 
