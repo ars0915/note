@@ -105,11 +105,7 @@ tags:: Multicast, GStreamer
 		  •	GStreamer 播放器會根據它與其他元素（如 demuxer）計算 latency。
 		  •	如果低於 source 實際提供資料的時間，就會造成掉幀、跳音。
 	- 實測結果
-- "buffer-time", G_GINT64_CONSTANT(200000),
-               "latency-time", G_GINT64_CONSTANT(20000),
-  時聲音正常，video很卡
-	- 但
-	     "buffer-time", 300 * GST_MSECOND,
-	                "latency-time", 200 * GST_MSECOND,
+	  buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
+	  buffer-time: 300ms, latency-time", 200 * GST_MSECOND,
 	  時 video 很順暢，audio 會一直 resync 沒聲音
-	-
+		-
