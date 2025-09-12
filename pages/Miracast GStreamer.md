@@ -77,5 +77,6 @@ tags:: Multicast, GStreamer
 	  decodebin added element: h264parse0 (factory: h264parse)
 	  decodebin added element: capsfilter0 (factory: capsfilter)
 	  decodebin added element: avdec_h264-0 (factory: avdec_h264)
+- glimagesink / appsink 的參數解釋
 	-
 -
