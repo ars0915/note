@@ -106,6 +106,5 @@ tags:: Multicast, GStreamer
 		  •	如果低於 source 實際提供資料的時間，就會造成掉幀、跳音。
 	- 實測結果
 	  buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
-	  buffer-time: 300ms, latency-time", 200 * GST_MSECOND,
-	  時 video 很順暢，audio 會一直 resync 沒聲音
-		-
+	  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
+	-
