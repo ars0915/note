@@ -108,4 +108,6 @@ tags:: Multicast, GStreamer
 		- **latency-time**：200~300ms
 		- **buffer-time**： 400~600ms
 	- 🔇 沒聲音 / 一直 resync： latency-time 太小，資料還沒來就要播放
-	-
+	- 📉 延遲太高：buffer-time 太大，sink 保留太久再播
+	- 🔁 jitter 不穩導致聲音斷裂：latency-time 太短，buffer 不夠吸收抖動
+	- ⛔ GStreamer 拒絕 pipeline 播放：latency 無法滿足 source/demux 的要求
