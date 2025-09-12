@@ -1,4 +1,5 @@
 public:: true
+tags:: Multicast, GStreamer
 
 - pipeline
   ```

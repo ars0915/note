@@ -1,5 +1,5 @@
 public:: true
-tags:: Multicast
+tags:: Multicast, GStreamer
 
 - # Introduction
 	- GStreamer是一個基於管道的多媒體框架，用於創建流媒體應用程序。它具有以下基本概念：
