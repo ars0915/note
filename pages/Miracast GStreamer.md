@@ -32,7 +32,29 @@ tags:: Multicast, GStreamer
 	- 使用 tsdemux -> queue -> h264parse -> capsfilter -> filesink 產出 h264 檔案可以播放
 	- 加了 probe 發現 tsdemux 和 h264parse PTS 都是幾乎 33ms 差距
 	- 改用 avdec_h264: queue ! h264parse ! avdec_h264 ! videoconvert ! render_queue ! glimagesink 只有一幀就卡住了
-	- 查看 pad
+	- 查看 element 輸出 PTS
+	  ```cpp
+	  gst_pad_add_probe(
+	        pad,
+	        GST_PAD_PROBE_TYPE_BUFFER,
+	        [](GstPad* pad, GstPadProbeInfo* info, gpointer) -> GstPadProbeReturn {
+	          GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
+	          GstClockTime pts = GST_BUFFER_PTS(buffer);
+	          g_print("[%s] : PTS = %" GST_TIME_FORMAT "\n", GST_TIME_ARGS(pts));
+	          static GstClockTime last_time = GST_CLOCK_TIME_NONE;
+	          GstClockTime now = gst_util_get_timestamp();
+	          if (last_time != GST_CLOCK_TIME_NONE) {
+	            GstClockTime diff = now - last_time;
+	            double sec = GST_TIME_AS_SECONDS(diff);
+	            if (sec > 0.01) {  // 避免太短一堆 0.000
+	              g_print("[%s]  interval: %" GST_TIME_FORMAT "\n", GST_ELEMENT_NAME(GST_PAD_PARENT(pad)), GST_TIME_ARGS(diff));
+	            }
+	          }
+	          last_time = now;
+	          return GST_PAD_PROBE_OK;
+	        },
+	        nullptr, nullptr);
+	  ```
 - decodebin PTS 33ms
 	- 查看 decodebin 選用什麼解碼器
 	  ```cpp
