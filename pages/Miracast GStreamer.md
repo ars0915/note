@@ -77,6 +77,8 @@ tags:: Multicast, GStreamer
 	  decodebin added element: h264parse0 (factory: h264parse)
 	  decodebin added element: capsfilter0 (factory: capsfilter)
 	  decodebin added element: avdec_h264-0 (factory: avdec_h264)
-- glimagesink / appsink 的參數解釋
-	-
+- queue 的 "leaky" 屬性
+	- 當 queue 滿了時，要「丟棄」哪邊的 buffer：0 = 不丟（預設）1 = upstream（丟舊的 input）2 = downstream（丟新的 output）
+	- upstream: **適合低延遲場景**：視訊監控、即時通訊
+	- downstream: 不建議用在 video，會增加延遲
 -
