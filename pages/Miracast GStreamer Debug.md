@@ -126,4 +126,19 @@ tags:: Multicast, GStreamer
 		  誤差範圍: ±50-150ms
 		  ```
 	- ### Buffer Offset 計算的累積誤差
-	- ###
+	- ### Clock Skew 的影響
+	  ```
+	  // 時鐘偏移在大緩衝區中被放大
+	  real_sample_rate = 44100.0;
+	  actual_sample_rate = 44099.8;  // 硬體時鐘稍微慢了
+	  
+	  // 小緩衝區 (20ms = 882 samples)
+	  drift_20ms = (882 * (44100.0 - 44099.8) / 44100.0) * GST_SECOND;
+	  // ≈ 4 microseconds drift
+	  
+	  // 大緩衝區 (300ms = 13230 samples)  
+	  drift_300ms = (13230 * (44100.0 - 44099.8) / 44100.0) * GST_SECOND;
+	  // ≈ 60 microseconds drift
+	  
+	  ```
+	-
