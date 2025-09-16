@@ -167,4 +167,56 @@ tags:: Multicast, GStreamer
 	  }
 	  ```
 - 排查過程
-	-
+	- 寫檔案
+	  ```cpp
+	  void RtpMpegTsPlayerGst::ConnectVideoPad(GstPad* pad) {
+	    GstElement* queue = gst_element_factory_make("queue", "h264_dump_queue");
+	    GstElement* h264parse = gst_element_factory_make("h264parse", "h264parse");
+	    GstElement* capsfilter = gst_element_factory_make("capsfilter", "capsfilter");
+	    GstElement* filesink = gst_element_factory_make("filesink", "h264sink");
+	  
+	    if (!queue || !h264parse || !capsfilter || !filesink) {
+	      ALOGE("Failed to create h264 dump elements");
+	      return;
+	    }
+	  
+	    g_object_set(filesink, "location", "/sdcard/dump.h264", NULL);
+	  
+	    // 🔧 確保插入 SPS/PPS + 強制 parse
+	    g_object_set(h264parse,
+	                 "config-interval", 1,
+	                 "disable-passthrough", TRUE,
+	                 NULL);
+	  
+	    // 🔧 設定輸出為合法 AVC (MP4/H.264) stream
+	    GstCaps* caps = gst_caps_new_simple("video/x-h264",
+	                                        "stream-format", G_TYPE_STRING, "byte-stream",
+	                                        "alignment", G_TYPE_STRING, "au",
+	                                        NULL);
+	    g_object_set(capsfilter, "caps", caps, NULL);
+	    g_object_set(capsfilter, "caps", caps, NULL);
+	    gst_caps_unref(caps);
+	  
+	    gst_bin_add_many(GST_BIN(pipeline_), queue, h264parse, capsfilter, filesink, NULL);
+	  
+	    if (!gst_element_link_many(queue, h264parse, capsfilter, filesink, NULL)) {
+	      ALOGE("Failed to link h264 dump elements");
+	      return;
+	    }
+	  
+	    GstPad* queue_sink = gst_element_get_static_pad(queue, "sink");
+	    if (gst_pad_link(pad, queue_sink) != GST_PAD_LINK_OK) {
+	      ALOGE("Failed to link video pad to h264 dump queue");
+	    }
+	    gst_object_unref(queue_sink);
+	  
+	    gst_element_sync_state_with_parent(queue);
+	    gst_element_sync_state_with_parent(h264parse);
+	    gst_element_sync_state_with_parent(capsfilter);
+	    gst_element_sync_state_with_parent(filesink);
+	  }
+	  ```
+	- 列出可用 decoder
+	  ```cpp
+	  
+	  ```
