@@ -29,6 +29,16 @@ tags:: Multicast, GStreamer
 - ## Latency Query 機制
 	- **`min-latency`**：pipeline 中的最小延遲，意味著同步到時鐘的下游元素必須等待的最小時間，以確保收到當前運行時間的所有數據
 	- **`max-latency`**：pipeline 中的最大延遲，意味著同步到時鐘的元素允許等待接收當前運行時間所有數據的最大時間
+	  ```
+	  假設現在時鐘 = 10.0 秒，要播放這個時間點的音頻
+	  
+	  Max-latency = 100ms 意思是：
+	  "我最多等到 10.1 秒，如果到時候還沒收到 10.0 秒的音頻數據，
+	  我就放棄了（可能播靜音或重複前一個 sample）"
+	  
+	  Max-latency = 500ms 意思是：
+	  "我可以等到 10.5 秒，給更多時間讓 10.0 秒的數據到達"
+	  ```
 	- 計算規則
 	  ```c
 	  // 對於非 leaky buffering 元素：
@@ -71,4 +81,5 @@ tags:: Multicast, GStreamer
 		  MAX(20, 33) = 33ms
 		  MIN(50, 40) = 40ms >= 33ms → latency = 33ms ✅
 		  ```
+-
 -
