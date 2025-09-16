@@ -107,7 +107,8 @@ tags:: Multicast, GStreamer
 	- 實測結果 當 pipeline clock provider 是 audio sink 時
 		- buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
 		  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
-		- ```
+		- 大 Latency (300ms) 的嚴格調度
+		  ```
 		  設定 latency = 300ms
 		  GStreamer 預期：每個 buffer 應該提前 300ms 到達
 		  
@@ -120,5 +121,20 @@ tags:: Multicast, GStreamer
 		  
 		  判定：「這個 buffer 嚴重遲到！」
 		  動作：Drop buffer + Resync
+		  ```
+		- 小 Latency (20ms) 的寬鬆調度
+		  ```
+		  設定 latency = 20ms  
+		  GStreamer 預期：每個 buffer 應該提前 20ms 到達
+		  
+		  實際情況：
+		  Clock = 20ms 時，收到 PTS = 0 的 buffer
+		  GStreamer 計算：
+		  - 預期送達時間 = PTS - latency = 0 - 20 = -20ms
+		  - 實際送達時間 = 20ms
+		  - 遲到程度 = 20ms - (-20ms) = 40ms
+		  
+		  判定：「稍微遲到，但在可接受範圍」
+		  動作：正常播放 ✅
 		  ```
 -
