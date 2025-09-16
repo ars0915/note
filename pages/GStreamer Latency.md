@@ -24,7 +24,7 @@ tags:: Multicast, GStreamer
 	  解決方案：
 	  - 總 latency 必須 >= 33ms（取最大值）
 	  - Audio 需要額外 13ms 緩衝（33-20=13ms）
-	  - 否則 audio source 會 underrun
+	  - 否則 audio source 會 underrun (音頻設備要播放時，發現緩衝區是空的)
 	  ```
 - ## Latency Query 機制
 	- **`min-latency`**：pipeline 中的最小延遲，意味著同步到時鐘的下游元素必須等待的最小時間，以確保收到當前運行時間的所有數據
