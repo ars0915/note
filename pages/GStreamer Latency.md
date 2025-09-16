@@ -30,7 +30,7 @@ tags:: Multicast, GStreamer
 	- **`min-latency`**：pipeline 中的最小延遲，意味著同步到時鐘的下游元素必須等待的最小時間，以確保收到當前運行時間的所有數據
 	- **`max-latency`**：pipeline 中的最大延遲，意味著同步到時鐘的元素允許等待接收當前運行時間所有數據的最大時間
 	- 計算規則
-	  ```
+	  ```c
 	  // 對於非 leaky buffering 元素：
 	  min_latency = upstream_min_latency + own_min_latency;
 	  
@@ -57,8 +57,8 @@ tags:: Multicast, GStreamer
 	- example
 	  ```
 	  範例 1: sink1: [20-20ms], sink2: [33-40ms]
-	  MAX(20, 33) = 33ms
-	  MIN(20, 40) = 20ms < 33ms → 不可能！❌
+	  MAX(20, 33) = 33ms						// 全域最小需要 33ms
+	  MIN(20, 40) = 20ms < 33ms → 不可能！❌	//
 	  
 	  範例 2: sink1: [20-50ms], sink2: [33-40ms]  
 	  MAX(20, 33) = 33ms
