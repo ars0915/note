@@ -110,24 +110,18 @@ tags:: Multicast, GStreamer
 	- 大緩衝區會導致時間戳計算不準
 		- 大 Latency (300ms) 
 		  ```
+		  Hardware Buffer: [████████████████████████████████] 300ms
+		                   ↑        ↑         ↑        ↑
+		             可能位置1   可能位置2   可能位置3   寫入點
+		             
+		  Hardware 回報的 position 可能指向緩衝區中的任何位置
+		  誤差範圍: ±50-150ms
+		  ```
+		- 小 Latency (20ms) 
+		  ```
 		  Hardware Buffer: [████████] 20ms
 		                   ↑
 		              精確的播放位置報告
 		              誤差範圍: ±1-2ms
-		  ```
-		- 小 Latency (20ms) 
-		  ```
-		  設定 latency = 20ms  
-		  GStreamer 預期：每個 buffer 應該提前 20ms 到達
-		  
-		  實際情況：
-		  Clock = 20ms 時，收到 PTS = 0 的 buffer
-		  GStreamer 計算：
-		  - 預期送達時間 = PTS - latency = 0 - 20 = -20ms
-		  - 實際送達時間 = 20ms
-		  - 遲到程度 = 20ms - (-20ms) = 40ms
-		  
-		  判定：「稍微遲到，但在可接受範圍」
-		  動作：正常播放 ✅
 		  ```
 -
