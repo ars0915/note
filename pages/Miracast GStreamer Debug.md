@@ -233,3 +233,19 @@ tags:: Multicast, GStreamer
 	    gst_plugin_feature_list_free(decoders);
 	  }
 	  ```
+	- 查看 decodebin 用什麼 element
+	  ```cpp
+	  static void on_element_added(GstBin* bin, GstElement* element, gpointer user_data) {
+	    const gchar* element_name = gst_element_get_name(element);
+	    const gchar* factory_name = gst_plugin_feature_get_name(
+	        GST_PLUGIN_FEATURE(gst_element_get_factory(element)));
+	  
+	    ALOGI("decodebin added element: %s (factory: %s)", element_name, factory_name);
+	  
+	    // 特別留意解碼器
+	    if (strstr(factory_name, "dec") || strstr(factory_name, "decoder")) {
+	      ALOGI("*** DECODER SELECTED: %s ***", factory_name);
+	    }
+	  }
+	  ```
+-
