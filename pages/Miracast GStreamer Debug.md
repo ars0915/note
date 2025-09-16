@@ -218,5 +218,18 @@ tags:: Multicast, GStreamer
 	  ```
 	- 列出可用 decoder
 	  ```cpp
+	  void ListAvailableDecoders() {
+	    GList* decoders = gst_element_factory_list_get_elements(
+	        GST_ELEMENT_FACTORY_TYPE_DECODER, GST_RANK_NONE);
 	  
+	    ALOGI("Available decoders:");
+	    for (GList* l = decoders; l; l = l->next) {
+	      GstElementFactory* factory = GST_ELEMENT_FACTORY(l->data);
+	      const gchar* name = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+	      const gchar* description = gst_element_factory_get_description(factory);
+	      ALOGI("  %s - %s", name, description);
+	    }
+	  
+	    gst_plugin_feature_list_free(decoders);
+	  }
 	  ```
