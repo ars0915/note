@@ -126,4 +126,4 @@ tags:: Multicast, GStreamer
 		  誤差範圍: ±50-150ms
 		  ```
 	- ### Buffer Offset 計算的累積誤差
-		-
+	- ###
