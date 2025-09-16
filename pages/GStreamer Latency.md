@@ -40,6 +40,7 @@ tags:: Multicast, GStreamer
 	      max_latency = upstream_max_latency + own_max_latency;
 	  
 	  // 對於 leaky buffering 元素（如 audio sink）：
+	  // Leaky buffer 不會讓數據累積，它會主動丟棄，所以總延遲受限於最小的那個環節
 	  max_latency = MIN(upstream_max_latency, own_max_latency);
 	  ```
 - ## 全域 Latency 計算
