@@ -15,4 +15,6 @@ tags:: Multicast, GStreamer
 	  沒有 latency 補償 = 所有 buffer 都會被丟棄！
 	  ```
 - ## 複雜場景下的 Latency 挑戰
+	- 音視頻同步 capture
+	-
 	-
