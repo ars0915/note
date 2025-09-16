@@ -55,13 +55,17 @@ tags:: Multicast, GStreamer
   }
   ```
 	- example
-	  ```
-	  範例 1: sink1: [20-20ms], sink2: [33-40ms]
-	  MAX(20, 33) = 33ms						// 全域最小需要 33ms
-	  MIN(20, 40) = 20ms < 33ms → 不可能！❌	//
-	  
-	  範例 2: sink1: [20-50ms], sink2: [33-40ms]  
-	  MAX(20, 33) = 33ms
-	  MIN(50, 40) = 40ms >= 33ms → latency = 33ms ✅
-	  ```
--
+		- ```
+		  範例 1: sink1: [20-20ms], sink2: [33-40ms]
+		  MAX(20, 33) = 33ms						// 全域最小需要 33ms
+		  MIN(20, 40) = 20ms < 33ms → 不可能！❌	//
+		  ```
+		  Pipeline 需要：至少 33ms 延遲才能正常運作
+		  Pipeline 限制：最多只能承受 20ms 延遲
+		  → 這個 pipeline 無法同時滿足所有元素的需求
+		- ```
+		  範例 2: sink1: [20-50ms], sink2: [33-40ms]  
+		  MAX(20, 33) = 33ms
+		  MIN(50, 40) = 40ms >= 33ms → latency = 33ms ✅
+		  ```
+	-
