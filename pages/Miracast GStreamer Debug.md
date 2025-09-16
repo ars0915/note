@@ -107,7 +107,8 @@ tags:: Multicast, GStreamer
 	- 實測結果 當 pipeline clock provider 是 audio sink 時
 		- buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
 		  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
-	- 大緩衝區會導致時間戳計算不準
+- ## Audio sink 大緩衝區造成不準確的幾個原因
+	- ### Hardware Position 報告的不確定性
 		- 大 Latency (300ms) 
 		  ```
 		  Hardware Buffer: [████████████████████████████████] 300ms
