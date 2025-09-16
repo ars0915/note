@@ -29,4 +29,17 @@ tags:: Multicast, GStreamer
 - ## Latency Query 機制
 	- **`min-latency`**：pipeline 中的最小延遲，意味著同步到時鐘的下游元素必須等待的最小時間，以確保收到當前運行時間的所有數據
 	- **`max-latency`**：pipeline 中的最大延遲，意味著同步到時鐘的元素允許等待接收當前運行時間所有數據的最大時間
-	-
+	- 計算規則
+	  ```
+	  // 對於非 leaky buffering 元素：
+	  min_latency = upstream_min_latency + own_min_latency;
+	  
+	  if (upstream_max_latency == NONE || own_max_latency == NONE)
+	      max_latency = NONE;
+	  else
+	      max_latency = upstream_max_latency + own_max_latency;
+	  
+	  // 對於 leaky buffering 元素（如 audio sink）：
+	  max_latency = MIN(upstream_max_latency, own_max_latency);
+	  ```
+-
