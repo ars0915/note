@@ -108,6 +108,7 @@ tags:: Multicast, GStreamer
 		- buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
 		  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
 - ## Audio sink 大緩衝區造成不準確的幾個原因
+  大緩衝區 = 位置不確定性大 = 對任何誤差都很敏感 = 容易 resync
 	- ### Hardware Position 報告的不確定性
 		- 小 Latency (20ms) 
 		  ```
@@ -165,4 +166,5 @@ tags:: Multicast, GStreamer
 	      // - 最終的 current_time 就不準了
 	  }
 	  ```
-	-
+-
+-
