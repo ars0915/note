@@ -42,4 +42,16 @@ tags:: Multicast, GStreamer
 	  // 對於 leaky buffering 元素（如 audio sink）：
 	  max_latency = MIN(upstream_max_latency, own_max_latency);
 	  ```
--
+- ## 全域 Latency 計算
+	- Pipeline 的 Latency 決定
+	  ```
+	  // Pipeline 收集所有 sink 的 latency 資訊：
+	  latency = MAX(all min latencies);  // 取最大的最小延遲
+	  
+	  // 檢查是否可行：
+	  if (MIN(all max latencies) < latency) {
+	      // 不可能的情況！需要增加 buffering
+	      error("Pipeline cannot be played");
+	  }
+	  ```
+	-
