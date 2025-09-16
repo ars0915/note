@@ -109,6 +109,13 @@ tags:: Multicast, GStreamer
 		  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
 - ## Audio sink 大緩衝區造成不準確的幾個原因
 	- ### Hardware Position 報告的不確定性
+		- 小 Latency (20ms) 
+		  ```
+		  Hardware Buffer: [████████] 20ms
+		                   ↑
+		              精確的播放位置報告
+		              誤差範圍: ±1-2ms
+		  ```
 		- 大 Latency (300ms) 
 		  ```
 		  Hardware Buffer: [████████████████████████████████] 300ms
@@ -118,11 +125,5 @@ tags:: Multicast, GStreamer
 		  Hardware 回報的 position 可能指向緩衝區中的任何位置
 		  誤差範圍: ±50-150ms
 		  ```
-		- 小 Latency (20ms) 
-		  ```
-		  Hardware Buffer: [████████] 20ms
-		                   ↑
-		              精確的播放位置報告
-		              誤差範圍: ±1-2ms
-		  ```
--
+	- ### Buffer Offset 計算的累積誤差
+		-
