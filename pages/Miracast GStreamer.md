@@ -104,7 +104,7 @@ tags:: Multicast, GStreamer
 		- 📌 影響：
 		  •	GStreamer 播放器會根據它與其他元素（如 demuxer）計算 latency。
 		  •	如果低於 source 實際提供資料的時間，就會造成掉幀、跳音。
-	- 實測結果
+	- 實測結果 當 pipeline clock provider 是 audio sink 時
 	  buffer-time: 200ms, latency-time: 20ms => 聲音正常，video很卡
 	  buffer-time: 300ms, latency-time: 200ms => video 很順暢，audio 會一直 resync 沒聲音
-	-
+-
