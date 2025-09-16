@@ -126,6 +126,26 @@ tags:: Multicast, GStreamer
 		  誤差範圍: ±50-150ms
 		  ```
 	- ### Buffer Offset 計算的累積誤差
+		- **小緩衝區 (20ms = 882 samples)**：
+		  ```
+		  時間線：
+		  T0: write 882, played 0    → offset = 882
+		  T10ms: write 882, played 441  → offset = 1323  
+		  T20ms: write 882, played 882  → offset = 882
+		  T30ms: write 882, played 1323 → offset = 882
+		  
+		  Buffer offset 在 440-880 範圍內波動
+		  ```
+		- **大緩衝區 (300ms = 13230 samples)**：
+		  ```
+		  時間線：  
+		  T0: write 13230, played 0     → offset = 13230
+		  T50ms: write 13230, played 2205  → offset = 24255
+		  T100ms: write 13230, played 4410 → offset = 35475
+		  ...
+		  
+		  Buffer offset 在 6000-13000+ 範圍內波動
+		  ```
 	- ### Clock Skew 的影響
 	  ```
 	  // 小緩衝區：時鐘基準更新頻繁，誤差來不及累積
