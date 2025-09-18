@@ -251,4 +251,21 @@ tags:: Multicast, GStreamer
 - PacketLost 事件
 	- ![image.png](../assets/image_1758098929770_0.png)
 	- ![image.png](../assets/image_1758101852180_0.png)
-	-
+- Static Pads vs Request Pads
+	- ![image.png](../assets/image_1758176575168_0.png)
+	- ```
+	  // === Static Pads ===
+	  GstPad* static_pad = gst_element_get_static_pad(element, "src");
+	  // 使用完後只需要 unref，不需要 release
+	  if (static_pad) {
+	      gst_object_unref(static_pad);  // 只需要這個
+	  }
+	  
+	  // === Request Pads ===
+	  GstPad* request_pad = gst_element_get_request_pad(element, "src_%u");
+	  // 使用完後需要先 release 再 unref
+	  if (request_pad) {
+	      gst_element_release_request_pad(element, request_pad);  // 先釋放
+	      gst_object_unref(request_pad);                          // 再 unref
+	  }
+	  ```
