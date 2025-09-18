@@ -269,5 +269,7 @@ tags:: Multicast, GStreamer
 	      gst_object_unref(request_pad);                          // 再 unref
 	  }
 	  ```
-	- 在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接。
+	- **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
+	-
+	-
 	-
