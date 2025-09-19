@@ -45,13 +45,15 @@ tags:: Multicast, GStreamer
 		- ### Ghost pad
 		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 		  ![image.png](../assets/image_1745560608388_0.png)
-		- ### Static Pads vs Request Pads
-			- ### Static Pads
-				- 元件創建時就已經存在
-				- 數量是預定義的，不會動態增減
-				- 名稱是固定的，如 `src`, `sink`
-			- ### Request Pads
-				- 在請求時才會建立 ``
+		- ### Static Pads
+			- 元件創建時就已經存在
+			- 數量是預定義的，不會動態增減
+			- 名稱是固定的，如 `src`, `sink`
+		- ### Request Pads
+			- 在請求時才會建立 `gst_element_get_request_pad`
+			- 可以建立多個
+			- 動態命名，如`gst_element_get_request_pad(rtpbin_, "recv_rtp_sink_0")`
+			-
 			- ![image.png](../assets/image_1758176575168_0.png){:height 594, :width 837}
 			- ```
 			  // === Static Pads ===
