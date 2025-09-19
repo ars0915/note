@@ -49,28 +49,26 @@ tags:: Multicast, GStreamer
 			- 元件創建時就已經存在
 			- 數量是預定義的，不會動態增減
 			- 名稱是固定的，如 `src`, `sink`
+			- 使用完後只需要 unref，不需要 release
+			  ```
+			  GstPad* static_pad = gst_element_get_static_pad(element, "src");
+			  if (static_pad) {
+			      gst_object_unref(static_pad);  // 只需要這個
+			  }
+			  ```
 		- ### Request Pads
 			- 在請求時才會建立 `gst_element_get_request_pad`
 			- 可以建立多個
 			- 動態命名，如`gst_element_get_request_pad(rtpbin_, "recv_rtp_sink_0")`
-			-
-			- ![image.png](../assets/image_1758176575168_0.png){:height 594, :width 837}
+			- 使用完後需要先 release 再 unref
 			- ```
-			  // === Static Pads ===
-			  GstPad* static_pad = gst_element_get_static_pad(element, "src");
-			  // 使用完後只需要 unref，不需要 release
-			  if (static_pad) {
-			      gst_object_unref(static_pad);  // 只需要這個
-			  }
-			  
-			  // === Request Pads ===
 			  GstPad* request_pad = gst_element_get_request_pad(element, "src_%u");
-			  // 使用完後需要先 release 再 unref
 			  if (request_pad) {
-			      gst_element_release_request_pad(element, request_pad);  // 先釋放
-			      gst_object_unref(request_pad);                          // 再 unref
+			    gst_element_release_request_pad(element, request_pad);  // 先釋放
+			    gst_object_unref(request_pad);                          // 再 unref
 			  }
 			  ```
+			-
 			- **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
 - # 資料結構
 	- ## Buffer
