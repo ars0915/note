@@ -51,8 +51,16 @@ tags:: Multicast, GStreamer
 	- 沿著管線元素的 pads（pads 是元素間的連接點） 從 src pad → sink pad 傳遞。
 	- 可以用 pad probe 攔截、修改或丟棄
 - ## Event
-  通知 pipeline 中的元素發生了某些控制性動作像是
-	-
+  通知 pipeline 中的元素發生了某些控制性動作
+	- 像是
+	      •	定位（seek）
+	  	•	EOS（End Of Stream）
+	  	•	Flush（清除 buffer）
+	  	•	Stream Start
+	  	•	Caps（媒體格式）變更
+	- 流向
+	  	•	下行（downstream）：從 source 元素往 sink 傳（大部分事件）
+	  	•	上行（upstream）：從 sink 元素往 source 傳（如 flush-start, seek）
 - ## Message
 -
 - # Tools
