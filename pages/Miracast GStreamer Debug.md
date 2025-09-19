@@ -249,7 +249,7 @@ tags:: Multicast, GStreamer
 	  }
 	  ```
 - PacketLost 事件
-	- ![image.png](../assets/image_1758098929770_0.png)
+	- 攔截 GstRTPPacketLost Event
 	- ![image.png](../assets/image_1758101852180_0.png)
 - Static Pads vs Request Pads
 	- ![image.png](../assets/image_1758176575168_0.png)
