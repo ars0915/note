@@ -49,6 +49,7 @@ tags:: Multicast, GStreamer
 - ## Buffer
   傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
 	- 沿著管線元素的 pads（pads 是元素間的連接點） 從 src pad → sink pad 傳遞。
+	- 流向：downstream
 	- 可以用 pad probe 攔截、修改或丟棄
 - ## Event
   通知 pipeline 中的元素發生了某些控制性動作
@@ -62,7 +63,8 @@ tags:: Multicast, GStreamer
 	  	•	下行（downstream）：從 source 元素往 sink 傳（大部分事件）
 	  	•	上行（upstream）：從 sink 元素往 source 傳（如 flush-start, seek）
 - ## Message
--
+  讓元素把狀態或事件報告給應用程式（例如錯誤、警告、狀態改變等）
+	- 不經由 pads 傳遞，而是透過 GStreamer Bus 機制回送給主線程應用程式
 - # Tools
 	- ## Bus
 	  用來監聽 runtime event 像是
