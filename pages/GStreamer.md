@@ -70,6 +70,14 @@ tags:: Multicast, GStreamer
 			  ```
 			  **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
 			- rtpbin 支援多路 RTP session，所以它的 sink pad 是設計成「按需請求」，每一路 stream 對應一組 pad
+				- 驗證方法：gst-inspect-1.0 rtpbin
+				  ```
+				  Pad Templates:
+				    request sink pad: 'recv_rtp_sink_%u'
+				      Availability: request
+				      Capabilities:
+				        application/x-rtp
+				  ```
 		- ### Dynamic Pads
 			- 需等待條件成立才會自動建立，例如：`decodebin`, `tsdemux`
 			- 無法手動創建，但可監聽 `g_signal_connect(decodebin, "pad-added", G_CALLBACK(on_pad_added), your_data);`
