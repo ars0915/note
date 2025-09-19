@@ -70,9 +70,8 @@ tags:: Multicast, GStreamer
 			  ```
 			- **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
 		- ### Dynamic Pads
-			- 需等待條件成立才會自動建立，例如：
+			- 需等待條件成立才會自動建立，例如：`decodebin`, `tsdemux`
 			- 無法手動創建，但可監聽 `g_signal_connect(decodebin, "pad-added", G_CALLBACK(on_pad_added), your_data);`
-			-
 - # 資料結構
 	- ## Buffer
 	  傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
