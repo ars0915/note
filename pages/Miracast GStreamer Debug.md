@@ -27,7 +27,7 @@ tags:: Multicast, GStreamer
 		  •	若 render（例如 GPU 或 Surface）太慢，或是上游 PTS 很跳躍，就會：
 		  •	畫面掉幀（因為 PTS 過期）
 		  •	視訊嚴重卡頓，但音訊正常
-- decodebin 接 probe 看輸出發現一秒一幀
+- decodebin 接 probe 看 PTS
 	- 在 tsdemux 發現每 33ms 就有一幀、也有 PTS
 	- 使用 tsdemux -> queue -> h264parse -> capsfilter -> filesink 產出 h264 檔案可以播放
 	- 加了 probe 發現 tsdemux 和 h264parse PTS 都是幾乎 33ms 差距
