@@ -65,11 +65,6 @@ tags:: Multicast, GStreamer
 		- 流向
 			- 下行（downstream）：從 source 元素往 sink 傳（大部分事件）
 			- 上行（upstream）：從 sink 元素往 source 傳（如 flush-start, seek）
-		- 攔截位置
-			- Downstream: src pad
-			  `gst_pad_add_probe(srcpad, GST_PAD_PROBE_TYPE_EVENT_DOWNSTREAM, ...)`
-			- Upstream: sink pad
-			  `gst_pad_add_probe(sinkpad, GST_PAD_PROBE_TYPE_EVENT_UPSTREAM, ...)`
 	- ## Message
 	  id:: 68cd1b57-1cba-4075-969e-9b9eb37de518
 	  讓元素把狀態或事件報告給應用程式（例如錯誤、警告、狀態改變等）
