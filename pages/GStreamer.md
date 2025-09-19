@@ -49,8 +49,10 @@ tags:: Multicast, GStreamer
 - ## Buffer
   傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
 	- 沿著管線元素的 pads（pads 是元素間的連接點） 從 src pad → sink pad 傳遞。
-	- 可以用 pad probe 攔截\
+	- 可以用 pad probe 攔截、修改或丟棄
 - ## Event
+  通知 pipeline 中的元素發生了某些控制性動作像是
+	-
 - ## Message
 -
 - # Tools
