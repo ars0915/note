@@ -68,8 +68,9 @@ tags:: Multicast, GStreamer
 			    gst_object_unref(request_pad);                          // 再 unref
 			  }
 			  ```
-			-
 			- **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
+		- ### Dynamic Pads
+			- 需等待條件成立才會建立
 - # 資料結構
 	- ## Buffer
 	  傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
