@@ -252,7 +252,9 @@ tags:: Multicast, GStreamer
 	- 攔截 GstRTPPacketLost ((68cd1b55-a892-4cae-b5f2-67b271d6dbe8))
 	- ![image.png](../assets/image_1758101852180_0.png)
 	- rtpbin
-		- do-lost: 在封包遺失時送出 GstEvent Downstream
+		- do-lost: 在封包遺失時送出 GstRTPPacketLost ((68cd1b55-a892-4cae-b5f2-67b271d6dbe8)) 給下游
+	- rtpjitterbuffer
+		- post-drop-messages: 在封包遺失時送出 Gst
 - Static Pads vs Request Pads
 	- ![image.png](../assets/image_1758176575168_0.png)
 	- ```
