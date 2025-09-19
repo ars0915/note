@@ -46,7 +46,12 @@ tags:: Multicast, GStreamer
 		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 		  ![image.png](../assets/image_1745560608388_0.png)
 - # 資料結構
--
+- ## Buffer
+  傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
+	- 沿著管線元素的 pads（pads 是元素間的連接點） 從 src pad → sink pad 傳遞。
+	- 可以用 pad probe 攔截\
+- ## Event
+- ## Message
 -
 - # Tools
 	- ## Bus
