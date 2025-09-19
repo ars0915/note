@@ -73,10 +73,11 @@ tags:: Multicast, GStreamer
 				- 驗證方法：gst-inspect-1.0 rtpbin
 				  ```
 				  Pad Templates:
-				    request sink pad: 'recv_rtp_sink_%u'
-				      Availability: request
-				      Capabilities:
-				        application/x-rtp
+				     SINK template: 'recv_rtp_sink_%u'
+				       Availability: On request
+				       Capabilities:
+				         application/x-rtp
+				         application/x-srtp
 				  ```
 		- ### Dynamic Pads
 			- 需等待條件成立才會自動建立，例如：`decodebin`, `tsdemux`
