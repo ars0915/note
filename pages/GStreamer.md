@@ -49,8 +49,9 @@ tags:: Multicast, GStreamer
 			- ### Static Pads
 				- 元件創建時就已經存在
 				- 數量是預定義的，不會動態增減
+				- 名稱是固定的，如 `src`, `sink`
 			- ### Request Pads
-			-
+				- 在請求時才會建立 ``
 			- ![image.png](../assets/image_1758176575168_0.png){:height 594, :width 837}
 			- ```
 			  // === Static Pads ===
