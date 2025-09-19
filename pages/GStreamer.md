@@ -53,15 +53,14 @@ tags:: Multicast, GStreamer
 	- 可以用 pad probe 攔截、修改或丟棄
 - ## Event
   通知 pipeline 中的元素發生了某些控制性動作
-	- 像是
-	      •
-		- 定位（seek）
-			- 使用者拖動播放條 → seek event。
-			                           App 呼叫 gst_element_seek(...)，GStreamer 產生 seek event，沿 pipeline 傳送讓元素跳轉。
-		- EOS（End Of Stream）
-		- Flush（清除 buffer）
-		- Stream Start
-		- Caps（媒體格式）變更
+	-
+	- 定位（seek）：使用者拖動播放條 → seek event
+	- App 呼叫 gst_element_seek(...)，GStreamer 產生 seek event，沿 pipeline 傳送讓元素跳轉。
+	- EOS（End Of Stream）：資料播放完 → EOS event + message
+	- source 發送 EOS event 下行 → pipeline 最尾端收到 → 發送 GST_MESSAGE_EOS 到應用層
+	- Flush（清除 buffer）
+	- Stream Start
+	- Caps（媒體格式）變更
 	- 流向
 	  	•	下行（downstream）：從 source 元素往 sink 傳（大部分事件）
 	  	•	上行（upstream）：從 sink 元素往 source 傳（如 flush-start, seek）
