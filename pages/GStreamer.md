@@ -12,16 +12,16 @@ tags:: Multicast, GStreamer
 - # 組件的基本定義和功能
 	- 容器中包含組件，以pads相連(Bins containing Elements, linked by Pads)
 	  ![image.png](../assets/image_1745560230416_0.png)
-	- **pipeline**
+	- ## pipeline
 		- GStreamer 的主要數據結構，用於建構元素的容器
 		- 管理元素的流程和同步，提供播放、暫停、停止等控制功能
-	- **bin**
+	- ## bin
 		- 特殊的 element，可以包含其他的 element 和 bin (子容器)
 		- 管理其內部的元素，提供元素間的連接和數據流動
-	- **element**
+	- ## element
 		- GStreamer 的基本組件，處理媒體數據的物件
 		- 執行特定的媒體處理任務，如解碼、編碼、播放、捕獲等
-	- **pad**
+	- ## pad
 		- 連接 element 的接口，允許數據在 element 之間流動
 		- 提供元素間的數據傳輸可以動態創建和釋放
 			- 靜態Pad是在元素創建時就存在的，可以通過gst_element_get_static_pad()方法獲取
@@ -45,6 +45,25 @@ tags:: Multicast, GStreamer
 		- Ghost pad
 		  由於bin沒有pad，所以實際上仍得借助element的pad，這個過程就是建立ghost pad
 		  ![image.png](../assets/image_1745560608388_0.png)
+		- ### Static Pads vs Request Pads
+			- ![image.png](../assets/image_1758176575168_0.png){:height 594, :width 837}
+			- ```
+			  // === Static Pads ===
+			  GstPad* static_pad = gst_element_get_static_pad(element, "src");
+			  // 使用完後只需要 unref，不需要 release
+			  if (static_pad) {
+			      gst_object_unref(static_pad);  // 只需要這個
+			  }
+			  
+			  // === Request Pads ===
+			  GstPad* request_pad = gst_element_get_request_pad(element, "src_%u");
+			  // 使用完後需要先 release 再 unref
+			  if (request_pad) {
+			      gst_element_release_request_pad(element, request_pad);  // 先釋放
+			      gst_object_unref(request_pad);                          // 再 unref
+			  }
+			  ```
+			- **在播放期間調用 `gst_element_release_request_pad` 會自動 unlink 該 pad 的所有連接**
 - # 資料結構
 	- ## Buffer
 	  傳遞實際的媒體資料（例如視訊畫面、音訊樣本）。
