@@ -71,6 +71,7 @@ tags:: Multicast, GStreamer
 			- Upstream: sink pad
 			  `gst_pad_add_probe(sinkpad, GST_PAD_PROBE_TYPE_EVENT_UPSTREAM, ...)`
 	- ## Message
+	  id:: 68cd1b57-1cba-4075-969e-9b9eb37de518
 	  讓元素把狀態或事件報告給應用程式（例如錯誤、警告、狀態改變等）
 		- 不經由 pads 傳遞，而是透過 GStreamer Bus 機制回送給主線程應用程式
 - # Tools
