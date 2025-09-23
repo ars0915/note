@@ -36,12 +36,12 @@ tags:: GStreamer
 		- 如果發一個 seek_event(10 * GST_SECOND)，這裡的 10s 就是 stream-time。
 		  GStreamer 會根據這個 stream-time 找出實際該從哪個 buffer 開始播放。
 		- stream-time 可以被用來對某些屬性做動畫同步，例如："音量在第 5 秒到 10 秒之間慢慢變大"
-		- ❌ stream-time ≠ 播放時間點
-		  不管 stream-time 是多少，真正決定 buffer 什麼時候被播放的，是 running-time。
+	- ## stream-time ≠ 播放時間點
+	  不管 stream-time 是多少，真正決定 buffer 什麼時候被播放的，是 running-time。
 - # Time overview
 	- ![image.png](../assets/image_1758616350739_0.png)
 		- 上圖表示在 base time = 50ms 時播放 一個 100ms 的 stream，並重播 50ms ~ 100ms 的部份
-		- running time 一直都是 clock time - base time
+		- running time 一直都是`clock time - base time`
 		- stream time 代表 stream 的位置
 - # Clock Provider
 	- pipeline 中的某些 element 內建自己的 clock（例如 audio sink / audio source）。
