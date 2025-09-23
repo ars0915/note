@@ -15,6 +15,18 @@ tags:: GStreamer
 	  
 	  沒有 latency 補償 = 所有 buffer 都會被丟棄！
 	  ```
+- ## Latency Compensation（延遲補償）
+  用來同步播放 & 避免 drop 掉剛進來但 timestamp 很早的 buffer
+	- 計算 latency：
+		- 在進入 PLAYING 之前
+		- 向所有 sink 發出 LATENCY QUERY
+		- 回傳每條 path 的 latency 值（由 element 報告）
+		- pipeline 取 最大 latency
+	- 廣播 LATENCY event：
+		- 將這個 latency 值透過 LATENCY 事件廣播給所有 element（尤其是 sink）
+	- sink 等待播放：
+		- 每個 sink 都延後播放這個時間
+		- 這樣所有 sink 播放時間同步
 - ## 複雜場景下的 Latency 挑戰
 	- 音視頻同步 capture
 	  ```
@@ -82,14 +94,3 @@ tags:: GStreamer
 		  MAX(20, 33) = 33ms
 		  MIN(50, 40) = 40ms >= 33ms → latency = 33ms ✅
 		  ```
-- ## Latency Compensation（延遲補償）
-	- 計算 latency：
-		- 在進入 PLAYING 之前
-		- 向所有 sink 發出 LATENCY QUERY
-		- 回傳每條 path 的 latency 值（由 element 報告）
-		- pipeline 取 最大 latency
-	- 廣播 LATENCY event：
-		- 將這個 latency 值透過 LATENCY 事件廣播給所有 element（尤其是 sink）
-	- sink 等待播放：
-		- 每個 sink 都延後播放這個時間
-		- 這樣所有 sink 播放時間同步
