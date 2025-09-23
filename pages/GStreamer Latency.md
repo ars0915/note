@@ -43,14 +43,17 @@ tags:: GStreamer
 	- **`min-latency`**：pipeline 中的最小延遲，下游必須延後多久，才能保證 upstream 的資料來得及
 	- **`max-latency`**：pipeline 中的最大延遲，最多能等多久來接收一個特定時間點的資料
 	- ```
-	  假設現在時鐘 = 10.0 秒，要播放這個時間點的音頻
+	  假設：
+	  - sink 的 running-time 現在為 10.0 秒
+	  - 它想播放 timestamp = 10.0 的音訊 buffer
 	  
-	  Max-latency = 100ms 意思是：
-	  "我最多等到 10.1 秒，如果到時候還沒收到 10.0 秒的音頻數據，
-	  我就放棄了（可能播靜音或重複前一個 sample）"
+	  情況 1：max-latency = 100ms
+	  → sink 最多等到 clock-time = base-time + 10.1 秒
+	  → 如果 buffer 還沒來，就 drop 或播放空白
 	  
-	  Max-latency = 500ms 意思是：
-	  "我可以等到 10.5 秒，給更多時間讓 10.0 秒的數據到達"
+	  情況 2：max-latency = 500ms
+	  → sink 最多等到 clock-time = base-time + 10.5 秒
+	  → 有更多緩衝時間等待這個 buffer
 	  ```
 	- 計算規則
 	  ```c
