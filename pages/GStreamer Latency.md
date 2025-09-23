@@ -2,7 +2,8 @@ public:: true
 tags:: GStreamer
 
 - ## 什麼時 Latency
-	- latency 是指一個在時間戳 0 被捕獲的樣本到達 sink 所需的時間，這個時間是相對於 pipeline 的時鐘測量的
+	- latency 是指一個在時間戳 0 被捕獲的樣本到達 sink 所需的時間，這個時間是相對於 pipeline 的時鐘測量的。
+	- 這是 處理延遲，不是網路延遲或播放延遲。
 - ## 為什麼需要 Latency 補償？
 	- ### Live Source 的時間問題：
 	  ```
