@@ -40,7 +40,7 @@ tags:: GStreamer
 	  - 否則 audio source 會 underrun (音頻設備要播放時，發現緩衝區是空的)
 	  ```
 - ## Latency Query 機制
-	- **`min-latency`**：pipeline 中的最小延遲，意味著同步到時鐘的下游元素必須等待的最小時間，以確保收到當前運行時間的所有數據
+	- **`min-latency`**：pipeline 中的最小延遲，下游必須延後多久，才能保證 upstream 的資料來得及
 	- **`max-latency`**：pipeline 中的最大延遲，意味著同步到時鐘的元素允許等待接收當前運行時間所有數據的最大時間
 	  ```
 	  假設現在時鐘 = 10.0 秒，要播放這個時間點的音頻
