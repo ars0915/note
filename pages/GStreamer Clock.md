@@ -11,7 +11,12 @@ tags:: GStreamer
 		- 每次重新進入 PLAYING 時，pipeline 會更新 base-time，使 running-time 是連續的。
 		- 這樣可以確保時間同步正確，並避免例如 seek 或暫停後時間錯亂的情況。
 - # Buffer running-time
-	-
+	- ## 為什麼要知道 buffer 的 running-time？
+		- 用來同步播放
+		  pipeline 裡所有元件（尤其是 sink）都會根據 clock 的當前時間減掉 base-time 得到「現在的 running-time」
+			- 如果 buffer 的 running-time 小於這個值，表示它「應該已經播過了」。
+			- 如果大於，表示「還沒到播放時間，要等一下」。
+			-
 	-
 	-
 	-
