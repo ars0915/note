@@ -38,7 +38,7 @@ tags:: GStreamer
 		- stream-time 可以被用來對某些屬性做動畫同步，例如："音量在第 5 秒到 10 秒之間慢慢變大"
 		- ❌ stream-time ≠ 播放時間點
 		  不管 stream-time 是多少，真正決定 buffer 什麼時候被播放的，是 running-time。
-	-
+-
 	-
 	-
 	-
