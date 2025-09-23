@@ -11,6 +11,7 @@ tags:: GStreamer
 		- 每次重新進入 PLAYING 時，pipeline 會更新 base-time，使 running-time 是連續的。
 		- 這樣可以確保時間同步正確，並避免例如 seek 或暫停後時間錯亂的情況。
 - # Buffer running-time
+	-
 	- ## 為什麼要知道 buffer 的 running-time？
 		- 用來同步播放
 		  pipeline 裡所有元件（尤其是 sink）都會根據 clock 的當前時間減掉 base-time 得到「現在的 running-time」
@@ -22,8 +23,8 @@ tags:: GStreamer
 		- 從檔案讀取影片的情境，第一個 buffer 通常 timestamp 是 0。
 		- 若使用者做了 flushing seek（例如跳到 30 秒位置），新的 SEGMENT 會重新定義時間區段，buffer running-time 會從 0 開始。
 	- ## 即時 (live) source 的行為
-		-
-	-
+		- 把 capture 時刻對應的 pipeline running-time 設為 buffer 的 timestamp。
+		  這樣 playback 才能與現實世界對齊（例如直播畫面必須延遲固定幾百 ms，但不能隨便亂跳時間）。
 	-
 	-
 	-
