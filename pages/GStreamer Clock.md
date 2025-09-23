@@ -33,7 +33,12 @@ tags:: GStreamer
 	  可以透過 `gst_segment_to_stream_time()` 取得
 	- ## 用途
 		- 如果你對 pipeline 做 GST_QUERY_POSITION，得到的時間是 stream-time。顯示目前播到哪
-		-
+		- 如果發一個 seek_event(10 * GST_SECOND)，這裡的 10s 就是 stream-time。
+		  GStreamer 會根據這個 stream-time 找出實際該從哪個 buffer 開始播放。
+		- stream-time 可以被用來對某些屬性做動畫同步，例如："音量在第 5 秒到 10 秒之間慢慢變大"
+		- ❌ stream-time ≠ 播放時間點
+		  不管 stream-time 是多少，真正決定 buffer 什麼時候被播放的，是 running-time。
+	-
 	-
 	-
 	-
