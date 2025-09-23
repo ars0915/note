@@ -56,6 +56,12 @@ tags:: GStreamer
 		- 如果 pipeline 已經選定某個 clock 作為 pipeline clock，而一個 element 有自己內建的 clock，那這個 element 就需要「對齊」或「跟隨（slave to）」 pipeline 的 clock。
 		- 這需要某種演算法去估算：「當 pipeline clock 到 t 時，我的 internal clock 應該是什麼狀態？」
 		- 如果 pipeline 就直接選擇了該 element 的 internal clock，那它就 不需要同步自己，直接用就行（這樣更快，也更準）
+	- ## pipeline 怎麼選 clock provider
+		- pipeline 會從 sink 到 source 倒著查詢每個 element。
+		- 找出最後一個可以提供 clock 的 element → 它會成為 clock provider。
+		- 偏好：
+			- 播放型 pipeline：偏好使用 audio sink 的 clock（因為播放是以 audio 為基準）
+			- 擷取型 pipeline（例如錄音）：偏好 source 的 clock（以 capture 為基準）
 	-
 	-
 	-
