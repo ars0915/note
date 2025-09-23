@@ -41,8 +41,17 @@ tags:: GStreamer
 	  ```
 - ## Latency Query 機制
 	- **`min-latency`**：pipeline 中的最小延遲，下游必須延後多久，才能保證 upstream 的資料來得及
+	  ```
+	  假設：
+	  	•	base-time = 0
+	  	•	clock-time = 10.0 秒 → running-time = 10.0 秒
+	  	•	sink 準備播放 timestamp = 10.0 的音訊資料
+	  
+	  min-latency = 100ms
+	  
+	  ```
 	- **`max-latency`**：pipeline 中的最大延遲，最多能等多久來接收一個特定時間點的資料
-	- ```
+	  ```
 	  假設：
 	  - sink 的 running-time 現在為 10.0 秒
 	  - 它想播放 timestamp = 10.0 的音訊 buffer
