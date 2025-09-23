@@ -41,8 +41,8 @@ tags:: GStreamer
 	  ```
 - ## Latency Query 機制
 	- **`min-latency`**：pipeline 中的最小延遲，下游必須延後多久，才能保證 upstream 的資料來得及
-	- **`max-latency`**：pipeline 中的最大延遲，意味著同步到時鐘的元素允許等待接收當前運行時間所有數據的最大時間
-	  ```
+	- **`max-latency`**：pipeline 中的最大延遲，最多能等多久來接收一個特定時間點的資料
+	- ```
 	  假設現在時鐘 = 10.0 秒，要播放這個時間點的音頻
 	  
 	  Max-latency = 100ms 意思是：
