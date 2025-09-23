@@ -18,7 +18,7 @@ tags:: GStreamer
 - ## Latency Compensation（延遲補償）
   用來同步播放 & 避免 drop 掉剛進來但 timestamp 很早的 buffer
 	- 計算 latency：
-		- 在進入 PLAYING 之前
+		- 在進入 PLYING 之前
 		- 向所有 sink 發出 LATENCY QUERY
 		- 回傳每條 path 的 latency 值（由 element 報告）
 		- pipeline 取 最大 latency
