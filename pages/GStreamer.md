@@ -11,6 +11,7 @@ tags:: Multicast, GStreamer
 	- 通過組合不同的元素、設定管道和狀態，開發者可以使用GStreamer來實現各種多媒體應用程序，包括音頻回放、音頻和視頻播放、錄音、流媒體和音頻編輯等功能
 - # 組件的基本定義和功能
 	- 容器中包含組件，以pads相連(Bins containing Elements, linked by Pads)
+	  id:: 680b2288-7ec0-4ab8-b994-f283d49ef306
 	  ![image.png](../assets/image_1745560230416_0.png)
 	- ## pipeline
 		- GStreamer 的主要數據結構，用於建構元素的容器
