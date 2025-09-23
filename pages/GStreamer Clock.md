@@ -28,6 +28,9 @@ tags:: GStreamer
 		- 把 capture 時刻對應的 pipeline running-time 設為 buffer 的 timestamp。
 		  這樣 playback 才能與現實世界對齊（例如直播畫面必須延遲固定幾百 ms，但不能隨便亂跳時間）。
 - # Buffer stream-time
+	- stream-time 是這個 buffer 在 整體 media 流程中的位置。
+	  通常從 0 開始，一直累積到 整個 media 的 duration。
+	  可以透過 `gst_segment_to_stream_time()`
 	-
 	-
 	-
