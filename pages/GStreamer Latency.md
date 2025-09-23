@@ -104,5 +104,5 @@ tags:: GStreamer
 		- 應用程式（App）收到後 可以選擇：
 			- 重新做 latency query
 			- 廣播新的 LATENCY event
-		-
--
+	- latency 重算可能導致聲音／畫面「跳動」或「短暫卡頓」
+	  所以通常只會在「允許中斷」的情境下（例如使用者暫停時）去更新 latency。
