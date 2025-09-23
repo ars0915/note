@@ -45,11 +45,14 @@ tags:: GStreamer
 		- stream time 代表 stream 的位置
 - # Clock Provider
 	- pipeline 中的某些 element 內建自己的 clock（例如 audio sink / audio source）。
-	  	•	這些 element 可以「提供」這個 clock 給整條 pipeline。
-	  	•	提供出來的 clock 必須：
-	  	•	單調遞增（monotonically increasing）
-	  	•	在 PLAYING 狀態下準確推進
-	  	•	可以在 PAUSED 時暫停不動（避免時間跳動）
+	  這些 element 可以「提供」這個 clock 給整條 pipeline。
+	  提供出來的 clock 必須：
+		- 單調遞增（monotonically increasing）
+		- 在 PLAYING 狀態下準確推進
+		- 可以在 PAUSED 時暫停不動（避免時間跳動）
+	-
+	- clock provider 是用來對應 實際設備的播放速率（設備時鐘），比用系統時間還要準確。
+	-
 	-
 	-
 	-
