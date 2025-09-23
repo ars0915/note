@@ -10,7 +10,8 @@ tags:: GStreamer
 		- 在 PAUSED 狀態下，running-time 是靜止的（即便時鐘還在走）。
 		- 每次重新進入 PLAYING 時，pipeline 會更新 base-time，使 running-time 是連續的。
 		- 這樣可以確保時間同步正確，並避免例如 seek 或暫停後時間錯亂的情況。
--
+- # Buffer running-time
+	-
 	-
 	-
 	-
