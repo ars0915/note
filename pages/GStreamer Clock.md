@@ -43,7 +43,13 @@ tags:: GStreamer
 		- 上圖表示在 base time = 50ms 時播放 一個 100ms 的 stream，並重播 50ms ~ 100ms 的部份
 		- running time 一直都是 clock time - base time
 		- stream time 代表 stream 的位置
--
+- # Clock Provider
+	- pipeline 中的某些 element 內建自己的 clock（例如 audio sink / audio source）。
+	  	•	這些 element 可以「提供」這個 clock 給整條 pipeline。
+	  	•	提供出來的 clock 必須：
+	  	•	單調遞增（monotonically increasing）
+	  	•	在 PLAYING 狀態下準確推進
+	  	•	可以在 PAUSED 時暫停不動（避免時間跳動）
 	-
 	-
 	-
