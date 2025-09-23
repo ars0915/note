@@ -40,9 +40,11 @@ tags:: GStreamer
 		  不管 stream-time 是多少，真正決定 buffer 什麼時候被播放的，是 running-time。
 - # Time overview
 	- ![image.png](../assets/image_1758616350739_0.png)
-		- 上圖表示在 base time = 50ms 時播放 一個 100ms 的 stream，並重播 50ms ~ ~
+		- 上圖表示在 base time = 50ms 時播放 一個 100ms 的 stream，並重播 50ms ~ 100ms 的部份
 		- running time 一直都是 clock time - base time
-		-
+		- stream time 代表 stream 的位置
+-
+	-
 	-
 	-
 	-
