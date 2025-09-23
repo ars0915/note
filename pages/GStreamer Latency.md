@@ -43,9 +43,9 @@ tags:: GStreamer
 	- **`min-latency`**：pipeline 中的最小延遲，下游必須延後多久，才能保證 upstream 的資料來得及
 	  ```
 	  假設：
-	  	- base-time = 0
-	  	- clock-time = 10.0 秒 → running-time = 10.0 秒
-	  	- sink 準備播放 timestamp = 10.0 的音訊資料
+	  - base-time = 0
+	  - clock-time = 10.0 秒 → running-time = 10.0 秒
+	  - sink 準備播放 timestamp = 10.0 的音訊資料
 	  
 	  min-latency = 100ms
 	  sink 至少要比 running-time 晚 100ms 再播，資料才保證來得及
