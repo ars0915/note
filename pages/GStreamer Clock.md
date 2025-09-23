@@ -30,7 +30,10 @@ tags:: GStreamer
 - # Buffer stream-time
 	- stream-time 是這個 buffer 在 整體 media 流程中的位置。
 	  通常從 0 開始，一直累積到 整個 media 的 duration。
-	  可以透過 `gst_segment_to_stream_time()`
+	  可以透過 `gst_segment_to_stream_time()` 取得
+	- ## 用途
+		- 如果你對 pipeline 做 GST_QUERY_POSITION，得到的時間是 stream-time。顯示目前播到哪
+		-
 	-
 	-
 	-
