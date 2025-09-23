@@ -12,7 +12,8 @@ tags:: GStreamer
 		- 這樣可以確保時間同步正確，並避免例如 seek 或暫停後時間錯亂的情況。
 - # Buffer running-time
 	- 在 GStreamer 裡，每個 buffer 都有一個 timestamp，但這是 stream-time，不是 running-time。
-	  要計算出 running-time，需要使用 `SEGMENT` 事件中攜帶的資訊。可以透過 GStreamer 的 API gst_segment_to_running_time()取得
+	  要計算出 running-time，需要使用 `SEGMENT` 事件中攜帶的資訊。
+	  可以透過 GStreamer 的 API `gst_segment_to_running_time()` 取得
 	- ## 為什麼要知道 buffer 的 running-time？
 		- 用來同步播放
 		  pipeline 裡所有元件（尤其是 sink）都會根據 clock 的當前時間減掉 base-time 得到「現在的 running-time」
@@ -26,7 +27,7 @@ tags:: GStreamer
 	- ## 即時 (live) source 的行為
 		- 把 capture 時刻對應的 pipeline running-time 設為 buffer 的 timestamp。
 		  這樣 playback 才能與現實世界對齊（例如直播畫面必須延遲固定幾百 ms，但不能隨便亂跳時間）。
-	-
+-
 	-
 	-
 	-
