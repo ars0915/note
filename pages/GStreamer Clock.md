@@ -18,7 +18,10 @@ tags:: GStreamer
 			- 如果大於，表示「還沒到播放時間，要等一下」。
 		- 實際播放時間 = buffer.running_time + pipeline.latency
 		  Sink 元件會用這個計算來決定 buffer 要不要丟掉、延遲或立即播放。
-	-
+	- ## 非即時 (non-live) source 的行為
+		- 從檔案讀取影片的情境，第一個 buffer 通常 timestamp 是 0。
+		- 若使用者做了 flushing seek（例如跳到 30 秒位置），新的 SEGMENT 會重新定義時間區段，buffer running-time 會從 0 開始。
+	- ## 即時 (live) source 的行為
 		-
 	-
 	-
