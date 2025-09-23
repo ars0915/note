@@ -16,7 +16,10 @@ tags:: GStreamer
 		  pipeline 裡所有元件（尤其是 sink）都會根據 clock 的當前時間減掉 base-time 得到「現在的 running-time」
 			- 如果 buffer 的 running-time 小於這個值，表示它「應該已經播過了」。
 			- 如果大於，表示「還沒到播放時間，要等一下」。
-			-
+		- 實際播放時間 = buffer.running_time + pipeline.latency
+		  Sink 元件會用這個計算來決定 buffer 要不要丟掉、延遲或立即播放。
+	-
+		-
 	-
 	-
 	-
