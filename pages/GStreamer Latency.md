@@ -94,3 +94,15 @@ tags:: GStreamer
 		  MAX(20, 33) = 33ms
 		  MIN(50, 40) = 40ms >= 33ms → latency = 33ms ✅
 		  ```
+- ## Dynamic Latency
+	- 什麼情況會改變 latency：
+		- 新增編碼器、轉碼器
+		- 調整 properties（例如 buffer-size）
+		- 切換 source
+	- 怎麼應對：
+		- 某個 element 發出 LATENCY bus message
+		- 應用程式（App）收到後 可以選擇：
+			- 重新做 latency query
+			- 廣播新的 LATENCY event
+		-
+-
