@@ -50,8 +50,13 @@ tags:: GStreamer
 		- 單調遞增（monotonically increasing）
 		- 在 PLAYING 狀態下準確推進
 		- 可以在 PAUSED 時暫停不動（避免時間跳動）
+	- ## 為什麼需要 Clock Provider
+		- clock provider 是用來對應 實際設備的播放速率（設備時鐘），比用系統時間還要準確。
+	- ## clock slaving 是什麼
+		- 如果 pipeline 已經選定某個 clock 作為 pipeline clock，而一個 element 有自己內建的 clock，那這個 element 就需要「對齊」或「跟隨（slave to）」 pipeline 的 clock。
+		- 這需要某種演算法去估算：「當 pipeline clock 到 t 時，我的 internal clock 應該是什麼狀態？」
+		- 如果 pipeline 就直接選擇了該 element 的 internal clock，那它就 不需要同步自己，直接用就行（這樣更快，也更準）
 	-
-	- clock provider 是用來對應 實際設備的播放速率（設備時鐘），比用系統時間還要準確。
 	-
 	-
 	-
