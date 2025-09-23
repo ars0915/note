@@ -27,7 +27,8 @@ tags:: GStreamer
 	- ## 即時 (live) source 的行為
 		- 把 capture 時刻對應的 pipeline running-time 設為 buffer 的 timestamp。
 		  這樣 playback 才能與現實世界對齊（例如直播畫面必須延遲固定幾百 ms，但不能隨便亂跳時間）。
--
+- # Buffer stream-time
+	-
 	-
 	-
 	-
