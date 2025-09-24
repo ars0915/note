@@ -245,8 +245,8 @@ tags:: Multicast, GStreamer
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
 			- ### Pad Capabilities
-			  定義了Pad所支持的數據類型和格式
-			  通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
+				- 定義了Pad所支持的數據類型和格式
+				  通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
 				- #### Set Caps on udpsrc
 					- ```
 					  udpsrc caps="application/x-rtp, media=video, encoding-name=H264, payload=96, clock-rate=90000" ! ...
@@ -254,7 +254,7 @@ tags:: Multicast, GStreamer
 					  	•	The output pad of udpsrc will produce buffers with these caps.
 					  	•	These caps are not a filter, they are an assertion: “This is the type of data I will emit.”
 			- #### Filter with Caps on a Link
-			  用來要求某個格式，告訴 GSteamer 去協商
+				- 用來要求某個格式，告訴 GSteamer 去協商
 				- You add a caps filter as an element between stages:
 				  
 				  ```
@@ -279,14 +279,11 @@ tags:: Multicast, GStreamer
 				  描述了該 pad 可以處理哪些格式（media type / properties）。
 				  可用於幫助 GStreamer 執行 caps negotiation（協商媒體格式時作為依據）。
 				- #### 查詢方式：
-				  
 				  ```
 				  GstCaps *template_caps = gst_pad_template_get_caps(pad_template);
 				  ```
-				  
 				  或用 gst-inspect-1.0 查看 gst-inspect-1.0 {element}
 				  輸出會是
-				  
 				  ```
 				  Pad Templates:
 				  SINK template: 'sink'
@@ -294,7 +291,6 @@ tags:: Multicast, GStreamer
 				    Capabilities:
 				      video/x-raw
 				  ```
-				  
 				  意思是這個 pad 可以接受所有 video/x-raw 類型的資料（不限格式、解析度等）。
 			- ### **Pad Current Caps（Negotiated Caps）**
 				- 當 pipeline 被建立並進入 PLAYING 等狀態後，Pad 之間協商出來的實際使用格式。
