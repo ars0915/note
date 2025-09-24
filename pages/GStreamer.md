@@ -269,6 +269,45 @@ tags:: Multicast, GStreamer
 				  g_object_set(appsink, "caps", sink_caps, NULL);
 				  gst_caps_unref(sink_caps);
 				  ```
+			- ### **Pad Template Caps**
+			  在元件還沒建立 pipeline 時，每個 pad prototype 所宣告的「支援格式清單」。
+			  是 static 的、由元件作者在設計 plugin 時定義的。
+			  描述了該 pad 可以處理哪些格式（media type / properties）。
+			  可用於幫助 GStreamer 執行 caps negotiation（協商媒體格式時作為依據）。
+				- #### 查詢方式：
+				  
+				  ```
+				  GstCaps *template_caps = gst_pad_template_get_caps(pad_template);
+				  ```
+				  
+				  或用 gst-inspect-1.0 查看 gst-inspect-1.0 {element}
+				  輸出會是
+				  
+				  ```
+				  Pad Templates:
+				  SINK template: 'sink'
+				    Availability: Always
+				    Capabilities:
+				      video/x-raw
+				  ```
+				  
+				  意思是這個 pad 可以接受所有 video/x-raw 類型的資料（不限格式、解析度等）。
+			- ### **Pad Current Caps（Negotiated Caps）**
+			  
+			  當 pipeline 被建立並進入 PLAYING 等狀態後，Pad 之間協商出來的實際使用格式。
+			  
+			  是 *dynamic* 的，通常在 pad link 之後才會產生。
+			  
+			  它代表了這個 pad **實際上會處理的資料格式**（比如 exact resolution, format 等）。
+			  
+			  這是最終資料的 **精確格式**，由 GStreamer 透過協商決定，也可能是你手動指定。
+				- #### 查詢方式：
+				  
+				  ```
+				  GstCaps *current_caps = gst_pad_get_current_caps(pad);
+				  ```
+				  
+				  若兩個 elements pad link 失敗，常見原因就是 **兩邊的 Pad Template Caps 沒有交集**。
 		- ### appsink
 		  Pulls data from the pipeline into your application
 		  Lets you intercept and analyze/decode frames manually
