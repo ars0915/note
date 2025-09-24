@@ -244,13 +244,17 @@ tags:: Multicast, GStreamer
 				  	•	stream-format=avc → length-prefixed NALUs ([length][NALU data]), used in MP4.
 		- ### caps
 		  id:: 680ae796-1125-444d-a1f5-a8ba62cd6468
-			- #### Set Caps on udpsrc
-				- ```
-				  udpsrc caps="application/x-rtp, media=video, encoding-name=H264, payload=96, clock-rate=90000" ! ...
-				  ```
-				  	•	The output pad of udpsrc will produce buffers with these caps.
-				  	•	These caps are not a filter, they are an assertion: “This is the type of data I will emit.”
+			- ### Pad Capabilities
+			  定義了Pad所支持的數據類型和格式
+			  通過定義Capabilities，Pad可以指定其所能處理的數據種類，如圖像格式、視頻分辨率、音頻采樣率等
+				- #### Set Caps on udpsrc
+					- ```
+					  udpsrc caps="application/x-rtp, media=video, encoding-name=H264, payload=96, clock-rate=90000" ! ...
+					  ```
+					  	•	The output pad of udpsrc will produce buffers with these caps.
+					  	•	These caps are not a filter, they are an assertion: “This is the type of data I will emit.”
 			- #### Filter with Caps on a Link
+			  用來要求某個格式，告訴 GSteamer 去協商
 				- You add a caps filter as an element between stages:
 				  
 				  ```
@@ -270,10 +274,10 @@ tags:: Multicast, GStreamer
 				  gst_caps_unref(sink_caps);
 				  ```
 			- ### **Pad Template Caps**
-			  在元件還沒建立 pipeline 時，每個 pad prototype 所宣告的「支援格式清單」。
-			  是 static 的、由元件作者在設計 plugin 時定義的。
-			  描述了該 pad 可以處理哪些格式（media type / properties）。
-			  可用於幫助 GStreamer 執行 caps negotiation（協商媒體格式時作為依據）。
+				- 在元件還沒建立 pipeline 時，每個 pad prototype 所宣告的「支援格式清單」。
+				  是 static 的、由元件作者在設計 plugin 時定義的。
+				  描述了該 pad 可以處理哪些格式（media type / properties）。
+				  可用於幫助 GStreamer 執行 caps negotiation（協商媒體格式時作為依據）。
 				- #### 查詢方式：
 				  
 				  ```
@@ -293,14 +297,10 @@ tags:: Multicast, GStreamer
 				  
 				  意思是這個 pad 可以接受所有 video/x-raw 類型的資料（不限格式、解析度等）。
 			- ### **Pad Current Caps（Negotiated Caps）**
-			  
-			  當 pipeline 被建立並進入 PLAYING 等狀態後，Pad 之間協商出來的實際使用格式。
-			  
-			  是 *dynamic* 的，通常在 pad link 之後才會產生。
-			  
-			  它代表了這個 pad **實際上會處理的資料格式**（比如 exact resolution, format 等）。
-			  
-			  這是最終資料的 **精確格式**，由 GStreamer 透過協商決定，也可能是你手動指定。
+				- 當 pipeline 被建立並進入 PLAYING 等狀態後，Pad 之間協商出來的實際使用格式。
+				  是 *dynamic* 的，通常在 pad link 之後才會產生。
+				  它代表了這個 pad **實際上會處理的資料格式**（比如 exact resolution, format 等）。
+				  這是最終資料的 **精確格式**，由 GStreamer 透過協商決定，也可能是你手動指定。
 				- #### 查詢方式：
 				  
 				  ```
