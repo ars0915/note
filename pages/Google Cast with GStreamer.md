@@ -4,8 +4,10 @@
 	- JNI
 		- **flutter_mirror** startGoogleCastNative pass `openscreen::cast::CastReceiver::Config`
 	- Cpp
-		- **MirrorReceiver** StartGooglecast -> **GooglecastReceiver** Start with `openscreen::cast::CastReceiver::Config`
-		- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
+		- **MirrorReceiver** StartGooglecast
+			- -> create **GooglecastReceiver** with listener `MirrorReceiver`
+			- ->**GooglecastReceiver** Start with `openscreen::cast::CastReceiver::Config`
+				- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
 - OnMirrorStart
 	- Cpp
 		- **openscreen::cast::CreateReceiver**
