@@ -15,7 +15,7 @@
 			- -> call listener **MirrorReceiver** OnMirrorStart with `GooglecastMirrorSession`
 				- -> get **MirrorSession** from `GooglecastMirrorSession`
 				- -> create **MediaSessionPtr**
-				- -> **MirrorSession** StartMirror with `MediaSessionPtr`
+				- -> **GooglecastMirrorSession** StartMirror with `MediaSessionPtr`
 					- ->
 				- -> **jni::MirrorReceiver** OnMirrorStart
 					- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
