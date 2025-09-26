@@ -1,6 +1,8 @@
 - Java
-	- FlutterMirrorPlugin startGooglecast -> MirrorReceiver startGooglecast -> startGooglecastNative
+	- **FlutterMirrorPlugin** startGooglecast -> **MirrorReceiver** startGooglecast -> startGooglecastNative
 - JNI
-	- flutter_mirror startGoogleCastNative -> pass openscreen::cast::CastReceiver
+	- *** startGoogleCastNative pass `openscreen::cast::CastReceiver::Config`
 - Cpp
-	- MirrorReceiver StartGooglecast
+	- MirrorReceiver StartGooglecast -> GooglecastReceiver with `openscreen::cast::CastReceiver::Config`
+-
+-
