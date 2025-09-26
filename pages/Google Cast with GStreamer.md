@@ -6,4 +6,6 @@
 	- Cpp
 		- **MirrorReceiver** StartGooglecast -> **GooglecastReceiver** Start with `openscreen::cast::CastReceiver::Config`
 		- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
--
+- OnMirrorStart
+	- Cpp
+		- **openscreen::cast::CreateReceiver**
