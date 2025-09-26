@@ -12,5 +12,7 @@
 	- Cpp
 		- **GooglecastReceiver** OnMirrorStart with `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
 			- -> create **GooglecastMirrorSession** with `mirror_id`, `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
-			- -> call listener **MirrorReceiver** OnMirrorStart with ``
+			- -> call listener **MirrorReceiver** OnMirrorStart with `GooglecastMirrorSession`
+				- get **MirrorSession** from `GooglecastMirrorSession`
+				-
 			-
