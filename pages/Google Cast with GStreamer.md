@@ -17,5 +17,6 @@
 				- -> create **MediaSessionPtr**
 				- -> **MirrorSession** StartMirror with `MediaSessionPtr`
 					- ->
-				- -> **jni::MirrorReceiverMirrorReceiverPtr** OnMirrorStart
+				- -> **jni::MirrorReceiver** OnMirrorStart
+					- ->
 			-
