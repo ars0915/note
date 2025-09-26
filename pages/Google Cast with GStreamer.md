@@ -10,4 +10,5 @@
 				- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
 - OnMirrorStart
 	- Cpp
-		- **GooglecastReceiver::OnMirrorStart**
+		- **GooglecastReceiver** OnMirrorStart with `openscreen::cast::CastMirrorSessionPtr`
+			- -> create **GooglecastMirrorSession** with `mirror_id`
