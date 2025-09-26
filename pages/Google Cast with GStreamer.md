@@ -18,5 +18,5 @@
 				- -> **MirrorSession** StartMirror with `MediaSessionPtr`
 					- ->
 				- -> **jni::MirrorReceiver** OnMirrorStart
-					- ->
+					- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
 			-
