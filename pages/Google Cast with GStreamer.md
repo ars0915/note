@@ -1,2 +1,6 @@
-- FlutterMirrorPlugin startGooglecast -> MirrorReceiver startGooglecast -> startGooglecastNative
-- flutter_mirror.cpp
+- Java
+	- FlutterMirrorPlugin startGooglecast -> MirrorReceiver startGooglecast -> startGooglecastNative
+- JNI
+	- flutter_mirror startGoogleCastNative
+- Cpp
+	-
