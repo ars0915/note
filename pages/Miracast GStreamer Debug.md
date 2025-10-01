@@ -267,17 +267,14 @@ tags:: Multicast, GStreamer
 			- 適用：用在 frame-rate 穩定的情境，例如每秒 30 frame，10 buffer ≈ 333ms
 			- 預設值：200（若沒指定）
 		- max-size-bytes
-		- 意思：queue 最多允許多少 byte 的資料
-		  •	單位：位元組（bytes），例如 1048576 = 1MB
-		  •	適用：用在 bitrate 高低浮動的場景，例如壓縮影像大小變化大
-		  •	預設值：10MB（10485760）
-		- ⸻
-		- ✅ max-size-time
-		  •	意思：queue 最多允許多久時間的 buffer 資料
-		  •	單位：nanoseconds（GStreamer 的時間單位）
-		  •	例如 1 * GST_SECOND = 1_000_000_000 = 1 秒
-		  •	適用：你想明確限制延遲時（例如低延遲應用）
-		- ⸻
-		- 🧠 如何一起運作？
-		- GStreamer queue 是「任一條件達到就觸發 queue 滿」：
+			- 意思：queue 最多允許多少 byte 的資料
+			- 單位：位元組（bytes），例如 1048576 = 1MB
+			- 適用：用在 bitrate 高低浮動的場景，例如壓縮影像大小變化大
+			- 預設值：10MB（10485760）
+		- max-size-time
+			- 意思：queue 最多允許多久時間的 buffer 資料
+			- 單位：nanoseconds（GStreamer 的時間單位）
+			- 例如 1 * GST_SECOND = 1_000_000_000 = 1 秒
+			- 適用：你想明確限制延遲時（例如低延遲應用）
+	- GStreamer queue 是「任一條件達到就觸發 queue 滿」依 leaky 設定決定如何應對
 	-
