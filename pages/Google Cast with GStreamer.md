@@ -33,6 +33,9 @@
 				- **openscreen::cast::CreateConnection** OnVideo
 					- -> listener **GooglecastMirrorSession** OnVideoFrame
 						- -> **MediaSessionPtr** OnVideoFrame
-						-
+							- -> **MediaSessionImpl** OnVideoFrame
+								- -> HandleVideoCsd
+								- -> ResetVideoDecoder
+								-
 				-
 				-
