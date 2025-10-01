@@ -262,7 +262,7 @@ tags:: Multicast, GStreamer
 - # Decoder Qos
 	- queue 參數
 		- max-size-buffers
-			- 意思：queue 最多允許多少個 buffer（frame）
+			- 意思：queue 最多允許多少個 buffer，這個數量不等於幀數
 			- 單位：個數（例如 10 = 最多緩衝 10 個 buffer）
 			- 適用：用在 frame-rate 穩定的情境，例如每秒 30 frame，10 buffer ≈ 333ms
 			- 預設值：200（若沒指定）
