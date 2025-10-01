@@ -20,7 +20,10 @@
 						- -> **MediaSessionPtr** Start with listener `GooglecastMirrorSession` and codec format
 							- -> create **AudioDecoderPtr** by codec type
 							- -> **AudioDecoderPtr** Init
-							- **AudioDecoderPtr** Start
+							- -> **AudioDecoderPtr** Start
+								- -> **AudioDecoderPtr** DeliverDecodedFrame
+								-
+							-
 							-
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
