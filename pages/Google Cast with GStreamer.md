@@ -30,5 +30,7 @@
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
 		- OnVideo
 			- Cpp
-				- **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
+				- **openscreen::cast::CreateConnection** OnVideo
+				- -> listener **GooglecastReceiver** OnVideoFrame
+				-
 				-
