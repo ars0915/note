@@ -28,4 +28,7 @@
 										- -> stream_ **oboe::AudioStream** write
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
+		- OnVideo
+			- Cpp
+				- **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
 				-
