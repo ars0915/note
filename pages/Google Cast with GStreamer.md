@@ -55,6 +55,7 @@
 				- -> **MediaSessionImpl** Start
 					- -> CreateVideoDecoder
 						- -> create **VideoDecoderGStreamer**
-					- -> Start
+					- -> **VideoDecoderPtr** Start
+					-
 			-
 		-
