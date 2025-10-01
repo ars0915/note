@@ -42,4 +42,7 @@
 	- Start
 		- **FlutterMirrorPlugin** startGooglecast
 		- -> create **GooglecastReceiver** with listener `FlutterMirrorPlugin`
+		- -> **GooglecastReceiver** Start
+			- create **openscreen::cast::CreateReceiver**
+			- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
 		-
