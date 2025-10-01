@@ -53,5 +53,8 @@
 			- -> create **MediaSessionImpl** with `TextureRegistrar` and codec
 			- -> **MirrorSession** StartMirror with `MediaSessionImpl`
 				- -> **MediaSessionImpl** Start
+					- -> CreateVideoDecoder
+						- -> create **VideoDecoderGStreamer**
+					- -> Start
 			-
 		-
