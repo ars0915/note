@@ -58,15 +58,8 @@
 						- -> **VideoDecoderGStreamer** Init
 					- -> **VideoDecoderPtr** Start
 	- OnVideo
-		- Cpp
-			- **openscreen::cast::CreateConnection** OnVideo
-				- -> listener **GooglecastMirrorSession** OnVideoFrame
-					- -> **MediaSessionPtr** OnVideoFrame
-						- -> **MediaSessionImpl** OnVideoFrame
-							- -> HandleVideoCsd
-							- -> ResetVideoDecoder
-								- -> InitVideoDecoder
-									- -> CreateVideoDecoder
-	-
-		-
-		-
+		- **openscreen::cast::CreateConnection** OnVideo
+		- ->listener **GooglecastMirrorSession** OnVideoFrame
+			-
+			-
+			-
