@@ -45,4 +45,7 @@
 		- -> **GooglecastReceiver** Start
 			- create **openscreen::cast::CreateReceiver**
 			- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
+	- OnMirrorStart
+		- **GooglecastReceiver** OnMirrorStart
+		- -> create **GooglecastMirrorSession**
 		-
