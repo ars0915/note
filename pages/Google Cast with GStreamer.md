@@ -23,8 +23,8 @@
 							- -> **AudioDecoderPtr** Start
 								- -> **AudioDecoderPtr** DeliverDecodedFrame while running
 									- -> dequeue from MediaCodec
-									- -> audio_sink_ **AudioSinkOboe** Write
-										- -> stream_ **AudioStream** write
+									- -> audio_sink_ **oboe::AudioSinkOboe** Write
+										- -> stream_ **oboe::AudioStream** write
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
 				-
