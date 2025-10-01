@@ -1,4 +1,4 @@
-# Google cast to Windows
+#
 	- Start
 		- Java
 			- **FlutterMirrorPlugin** startGooglecast -> **MirrorReceiver** startGooglecast -> startGooglecastNative
@@ -23,7 +23,7 @@
 							- -> **AudioDecoderPtr** Start
 								- -> **AudioDecoderPtr** DeliverDecodedFrame while running
 									- -> dequeue from MediaCodec
-									- -> audio_sink_ **oboe::AudioSinkOboe** Write
+									- -> audio_sink_ **AudioSinkOboe** Write
 										- -> stream_ **oboe::AudioStream** write
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
