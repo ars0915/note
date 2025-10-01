@@ -247,6 +247,8 @@ tags:: Multicast, GStreamer
 	      ALOGI("*** DECODER SELECTED: %s ***", factory_name);
 	    }
 	  }
+	  
+	  g_signal_connect(decodebin, "element-added", G_CALLBACK(on_element_added), nullptr);
 	  ```
 - ## PacketLost 事件
 	- 攔截 GstRTPPacketLost ((68cd1b55-a892-4cae-b5f2-67b271d6dbe8))
