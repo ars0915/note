@@ -57,6 +57,6 @@
 						- -> create **VideoDecoderGStreamer**
 						- -> **VideoDecoderGStreamer** Init
 					- -> **VideoDecoderPtr** Start
-					-
+				-
 			-
 		-
