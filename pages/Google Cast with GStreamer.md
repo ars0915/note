@@ -1,4 +1,4 @@
-#
+# Main
 	- Start
 		- Java
 			- **FlutterMirrorPlugin** startGooglecast -> **MirrorReceiver** startGooglecast -> startGooglecastNative
@@ -36,6 +36,7 @@
 							- -> **MediaSessionImpl** OnVideoFrame
 								- -> HandleVideoCsd
 								- -> ResetVideoDecoder
-								-
-				-
-				-
+									- -> InitVideoDecoder
+										- -> CreateVideoDecoder
+- # On
+	-
