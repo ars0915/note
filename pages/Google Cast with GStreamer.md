@@ -31,6 +31,6 @@
 		- OnVideo
 			- Cpp
 				- **openscreen::cast::CreateConnection** OnVideo
-				- -> listener **GooglecastReceiver** OnVideoFrame
+				- -> listener **openscreen::cast::CastMirrorSession** OnVideoFrame
 				-
 				-
