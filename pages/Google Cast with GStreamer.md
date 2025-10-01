@@ -39,4 +39,7 @@
 								- -> InitVideoDecoder
 									- -> CreateVideoDecoder
 - # Windows
-	-
+	- Start
+		- **FlutterMirrorPlugin** startGooglecast
+		- -> create **GooglecastReceiver** with listener `FlutterMirrorPlugin`
+		-
