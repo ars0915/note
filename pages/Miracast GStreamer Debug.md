@@ -259,5 +259,25 @@ tags:: Multicast, GStreamer
 		- post-drop-messages: 在封包遺失時送出 GstRTPPacketLost ((68cd1b57-1cba-4075-969e-9b9eb37de518)) 到 Bus
 		- drop-messages-interval: 控制 post-drop-messages 的頻率
 		- drop-on-latency: 封包太晚來就直接 drop，否則不會觸發 drop 邏輯
-- ![image.png](../assets/image_1759303771951_0.png)
--
+- # Decoder Qos
+	- queue 參數
+		- max-size-buffers
+			- 意思：queue 最多允許多少個 buffer（frame）
+			- 單位：個數（例如 10 = 最多緩衝 10 個 buffer）
+			- 適用：用在 frame-rate 穩定的情境，例如每秒 30 frame，10 buffer ≈ 333ms
+			- 預設值：200（若沒指定）
+		- max-size-bytes
+		- 意思：queue 最多允許多少 byte 的資料
+		  •	單位：位元組（bytes），例如 1048576 = 1MB
+		  •	適用：用在 bitrate 高低浮動的場景，例如壓縮影像大小變化大
+		  •	預設值：10MB（10485760）
+		- ⸻
+		- ✅ max-size-time
+		  •	意思：queue 最多允許多久時間的 buffer 資料
+		  •	單位：nanoseconds（GStreamer 的時間單位）
+		  •	例如 1 * GST_SECOND = 1_000_000_000 = 1 秒
+		  •	適用：你想明確限制延遲時（例如低延遲應用）
+		- ⸻
+		- 🧠 如何一起運作？
+		- GStreamer queue 是「任一條件達到就觸發 queue 滿」：
+	-
