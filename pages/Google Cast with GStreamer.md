@@ -21,10 +21,8 @@
 							- -> create **AudioDecoderPtr** by codec type
 							- -> **AudioDecoderPtr** Init
 							- -> **AudioDecoderPtr** Start
-								- -> **AudioDecoderPtr** DeliverDecodedFrame
-								-
-							-
-							-
+								- -> **AudioDecoderPtr** DeliverDecodedFrame while running
+									- ->
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
 				-
