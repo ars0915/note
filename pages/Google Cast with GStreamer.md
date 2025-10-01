@@ -38,6 +38,6 @@
 								- -> ResetVideoDecoder
 									- -> InitVideoDecoder
 										- -> CreateVideoDecoder
-- # to Windows
+- # Windows
 	-
 	-
