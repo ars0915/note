@@ -257,3 +257,5 @@ tags:: Multicast, GStreamer
 		- post-drop-messages: 在封包遺失時送出 GstRTPPacketLost ((68cd1b57-1cba-4075-969e-9b9eb37de518)) 到 Bus
 		- drop-messages-interval: 控制 post-drop-messages 的頻率
 		- drop-on-latency: 封包太晚來就直接 drop，否則不會觸發 drop 邏輯
+- ![image.png](../assets/image_1759303771951_0.png)
+-
