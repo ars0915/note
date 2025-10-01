@@ -28,16 +28,15 @@
 										- -> stream_ **oboe::AudioStream** write
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
-		- OnVideo
-			- Cpp
-				- **openscreen::cast::CreateConnection** OnVideo
-					- -> listener **GooglecastMirrorSession** OnVideoFrame
-						- -> **MediaSessionPtr** OnVideoFrame
-							- -> **MediaSessionImpl** OnVideoFrame
-								- -> HandleVideoCsd
-								- -> ResetVideoDecoder
-									- -> InitVideoDecoder
-										- -> CreateVideoDecoder
+	- OnVideo
+		- Cpp
+			- **openscreen::cast::CreateConnection** OnVideo
+				- -> listener **GooglecastMirrorSession** OnVideoFrame
+					- -> **MediaSessionPtr** OnVideoFrame
+						- -> **MediaSessionImpl** OnVideoFrame
+							- -> HandleVideoCsd
+							- -> ResetVideoDecoder
+								- -> InitVideoDecoder
+									- -> CreateVideoDecoder
 - # Windows
-	-
 	-
