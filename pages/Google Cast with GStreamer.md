@@ -49,7 +49,9 @@
 		- **GooglecastReceiver** OnMirrorStart
 		- -> create **GooglecastMirrorSession** with listener `FlutterMirrorPlugin`
 		- -> **FlutterMirrorPlugin** OnMirrorStart
+			- -> get **MirrorSession** from `MirrorSessionPtr`
 			- -> create **MediaSessionImpl** with `TextureRegistrar` and codec
-			- ->
+			- -> **MirrorSession** StartMirror with `MediaSessionImpl`
+			-
 			-
 		-
