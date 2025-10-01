@@ -18,6 +18,7 @@
 					- -> create **MediaSessionPtr**
 					- -> **GooglecastMirrorSession** StartMirror with `MediaSessionPtr`
 						- -> **MediaSessionPtr** Start with listener `GooglecastMirrorSession` and codec format
+							- ->
 					- -> **jni::MirrorReceiver** OnMirrorStart
 						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
 				-
