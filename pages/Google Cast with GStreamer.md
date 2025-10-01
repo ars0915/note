@@ -68,5 +68,7 @@
 							- -> CreateVideoDecoder
 					- -> **VideoDecoderGStreamer** Decode
 						- -> appsrc_ push buffer
-						-
-			-
+	- GStreamer appsink callback
+		- **VideoDecoderGStreamer** onNewSample
+		-
+		-
