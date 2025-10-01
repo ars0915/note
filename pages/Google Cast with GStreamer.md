@@ -47,5 +47,7 @@
 			- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
 	- OnMirrorStart
 		- **GooglecastReceiver** OnMirrorStart
-		- -> create **GooglecastMirrorSession**
+		- -> create **GooglecastMirrorSession** with listener `FlutterMirrorPlugin`
+		- -> **FlutterMirrorPlugin** OnMirrorStart
+			-
 		-
