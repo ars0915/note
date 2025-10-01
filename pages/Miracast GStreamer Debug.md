@@ -276,6 +276,8 @@ tags:: Multicast, GStreamer
 			- 單位：nanoseconds（GStreamer 的時間單位）
 			- 例如 1 * GST_SECOND = 1_000_000_000 = 1 秒
 			- 適用：你想明確限制延遲時（例如低延遲應用）
-	- GStreamer queue 是「任一條件達到就觸發 queue 滿」依 leaky 設定決定如何應對
+		- GStreamer queue 是「任一條件達到就觸發 queue 滿」依 leaky 設定決定如何應對
 	- rtpbin latency 控制的是 rtpjitterbuffer 的 最小等待時間
+		- rtpjitterbuffer → 等待 latency 毫秒 → 再送給 depayloader
+		-
 		-
