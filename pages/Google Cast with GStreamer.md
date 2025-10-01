@@ -52,6 +52,6 @@
 			- -> get **MirrorSession** from `MirrorSessionPtr`
 			- -> create **MediaSessionImpl** with `TextureRegistrar` and codec
 			- -> **MirrorSession** StartMirror with `MediaSessionImpl`
-			-
+				- -> **MediaSessionImpl** Start
 			-
 		-
