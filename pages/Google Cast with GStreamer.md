@@ -18,6 +18,7 @@
 					- -> create **MediaSessionPtr**
 					- -> **GooglecastMirrorSession** StartMirror with `MediaSessionPtr`
 						- -> **MediaSessionPtr** Start with listener `GooglecastMirrorSession` and codec format
+							- -> CreateSurfaceTexture
 							- -> create **AudioDecoderPtr** by codec type
 							- -> **AudioDecoderPtr** Init
 							- -> **AudioDecoderPtr** Start
