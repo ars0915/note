@@ -1,22 +1,23 @@
-- Start
-	- Java
-		- **FlutterMirrorPlugin** startGooglecast -> **MirrorReceiver** startGooglecast -> startGooglecastNative
-	- JNI
-		- **flutter_mirror** startGoogleCastNative pass `openscreen::cast::CastReceiver::Config`
-	- Cpp
-		- **MirrorReceiver** StartGooglecast
-			- -> create **GooglecastReceiver** with listener `MirrorReceiver`
-			- -> **GooglecastReceiver** Start with `openscreen::cast::CastReceiver::Config`
-				- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
-- OnMirrorStart
-	- Cpp
-		- **GooglecastReceiver** OnMirrorStart with `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
-			- -> create **GooglecastMirrorSession** with `mirror_id`, `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
-			- -> call listener **MirrorReceiver** OnMirrorStart with `GooglecastMirrorSession`
-				- -> get **MirrorSession** from `GooglecastMirrorSession`
-				- -> create **MediaSessionPtr**
-				- -> **GooglecastMirrorSession** StartMirror with `MediaSessionPtr`
-					- ->
-				- -> **jni::MirrorReceiver** OnMirrorStart
-					- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
-			-
+# Google cast to Windows
+	- Start
+		- Java
+			- **FlutterMirrorPlugin** startGooglecast -> **MirrorReceiver** startGooglecast -> startGooglecastNative
+		- JNI
+			- **flutter_mirror** startGoogleCastNative pass `openscreen::cast::CastReceiver::Config`
+		- Cpp
+			- **MirrorReceiver** StartGooglecast
+				- -> create **GooglecastReceiver** with listener `MirrorReceiver`
+				- -> **GooglecastReceiver** Start with `openscreen::cast::CastReceiver::Config`
+					- -> **openscreen::cast::CreateReceiver** Start with listener `GooglecastReceiver`
+	- OnMirrorStart
+		- Cpp
+			- **GooglecastReceiver** OnMirrorStart with `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
+				- -> create **GooglecastMirrorSession** with `mirror_id`, `openscreen::cast::CastMirrorSessionPtr`, `openscreen::cast::MediaFormats`
+				- -> call listener **MirrorReceiver** OnMirrorStart with `GooglecastMirrorSession`
+					- -> get **MirrorSession** from `GooglecastMirrorSession`
+					- -> create **MediaSessionPtr**
+					- -> **GooglecastMirrorSession** StartMirror with `MediaSessionPtr`
+						- ->
+					- -> **jni::MirrorReceiver** OnMirrorStart
+						- -> **jni::ScopedEnv** CallVoidMethod onMirrorStart
+				-
