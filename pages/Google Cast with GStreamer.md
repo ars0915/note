@@ -67,4 +67,6 @@
 						- -> InitVideoDecoder
 							- -> CreateVideoDecoder
 					- -> **VideoDecoderGStreamer** Decode
+						- -> appsrc push buffer
+						-
 			-
