@@ -35,25 +35,34 @@ tags:: Multicast, GStreamer
 	- 查看 element 輸出 PTS
 	  ```cpp
 	  gst_pad_add_probe(
-	        gst_element_get_static_pad(self->video_sink_, "sink"), // element, sink/src
+	        gst_element_get_static_pad(self->video_sink_, "sink"),
 	        GST_PAD_PROBE_TYPE_BUFFER,
 	        [](GstPad* pad, GstPadProbeInfo* info, gpointer) -> GstPadProbeReturn {
 	          GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
-	          GstClockTime pts = GST_BUFFER_PTS(buffer);
-	          g_print("[%s] : PTS = %" GST_TIME_FORMAT "\n", GST_ELEMENT_NAME(GST_PAD_PARENT(pad)), GST_TIME_ARGS(pts));
-	          static GstClockTime last_time = GST_CLOCK_TIME_NONE;
-	          GstClockTime now = gst_util_get_timestamp();
-	          if (last_time != GST_CLOCK_TIME_NONE) {
-	            GstClockTime diff = now - last_time;
-	            double sec = GST_TIME_AS_SECONDS(diff);
-	            if (sec > 0.01) {  // 避免太短一堆 0.000
-	              g_print("[%s]  interval: %" GST_TIME_FORMAT "\n", GST_ELEMENT_NAME(GST_PAD_PARENT(pad)), GST_TIME_ARGS(diff));
+	          static GstClockTime last_pts = GST_CLOCK_TIME_NONE;
+	  
+	          if (buffer && GST_BUFFER_PTS_IS_VALID(buffer)) {
+	            GstClockTime pts = GST_BUFFER_PTS(buffer);
+	  
+	            // 印 PTS
+	            g_print("[glsink] PTS = %" GST_TIME_FORMAT "\n", GST_TIME_ARGS(pts));
+	  
+	            // 計算與上一幀的差異
+	            if (last_pts != GST_CLOCK_TIME_NONE) {
+	              GstClockTime diff = (pts > last_pts) ? (pts - last_pts) : 0;
+	              if (diff > (EXPECTED_FRAME_INTERVAL * 3 / 2)) {  // 超過 1.5× 正常幀間隔
+	                g_print("[glsink] Non-contiguous frame! Interval = %" GST_TIME_FORMAT "\n",
+	                        GST_TIME_ARGS(diff));
+	              }
 	            }
+	  
+	            last_pts = pts;
 	          }
-	          last_time = now;
+	  
 	          return GST_PAD_PROBE_OK;
 	        },
-	        nullptr, nullptr);
+	        nullptr,
+	        nullptr);
 	  ```
 - decodebin PTS 33ms
 	- 查看 decodebin 選用什麼解碼器
