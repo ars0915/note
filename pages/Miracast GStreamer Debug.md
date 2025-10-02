@@ -290,5 +290,81 @@ tags:: Multicast, GStreamer
 		- rtpjitterbuffer → 等待 latency 毫秒 → 再送給 depayloader
 		- 為了解決「網路 jitter 造成的 frame 不完整、解碼錯誤、播放破圖或卡頓」問題 -> 把 packet 缓衝一段時間，等東西都到齊再送下去
 		-
+	-
+		- # GStreamer Pipeline 效能優化測試總結
+		- ## 初始問題
+		- **現象**：畫面卡頓，FPS 約 15fps，期望 30fps
+		- **Pipeline**：`udpsrc → rtpbin → rtpmp2tdepay → tsparse → tsdemux → queue → decodebin → videoconvert → capsfilter(RGBA) → queue → glimagesink`
+		- **觀察**：從 queue 的 sink 和 src pad 看到 PTS 經常有 66ms+ 的間隔
+		- ## 測試過程與發現
+		- ### 1. 網路層優化
+		  
+		  **測試**：
+		- 增加 `rtpbin latency` 從 200ms → 500ms → 1000ms
+		- 增加 `udpsrc buffer-size` 到 4MB
+		  
+		  **結果**：
+		- ✅ tsdemux_video 的 PTS 跳躍明顯減少
+		- ✅ 大部分情況下 PTS 間隔穩定在 33ms 左右
+		- **結論**：網路抖動問題得到緩解
+		- ### 2. Decode Queue 優化
+		  
+		  **測試**：
+		- 將 decode_queue (tsdemux 和 decodebin 之間) 的 `max-size-time` 從 300ms → 1000ms
+		  
+		  **結果**：
+		- ✅ 減少了 buffer 積壓
+		- **結論**：300ms 對於 jitterbuffer latency=500ms 來說太小
+		- ### 3. Fakesink 測試
+		  
+		  **配置**：`videoconvert → capsfilter(RGBA) → queue → fakesink`
+		  
+		  **測試 A**：fakesink `sync=true`
+		- ❌ 還是約 15fps
+		- Queue_src 仍有大間隔
+		  
+		  **測試 B**：fakesink `sync=false`
+		- ✅ Queue_sink 和 queue_src 都穩定
+		- **結論**：Buffer 產生速度正常，問題在 sink 的處理
+		- ### 4. Glimagesink 測試
+		  
+		  **配置**：`videoconvert → capsfilter(RGBA) → queue → glimagesink`
+		  
+		  **結果**：
+		- ❌ Queue_sink 穩定，但 queue_src 出現大量跳躍（100ms, 133ms, 200ms+）
+		- ❌ 甚至影響到上游，連 tsdemux_video 也開始卡頓（背壓效應）
+		- **結論**：Glimagesink 渲染速度是瓶頸
+		- ### 5. Capsfilter 作用驗證
+		  
+		  **測試 A**：移除 capsfilter
+		- ❌ Videoconvert 輸出就不到 30fps
+		- **原因**：Caps negotiation 不穩定
+		  
+		  **測試 B**：加回 capsfilter (只設 RGBA)
+		- ✅ Tsdemux_video 穩定
+		- ✅ Queue_sink 穩定
+		- ❌ Queue_src 仍然卡頓
+		- **結論**：Capsfilter 穩定了 caps negotiation，問題確定在 glimagesink
+		- ### 6. 降解析度測試
+		  
+		  **測試 A**：1280x720 (加 videoscale)
+		- ❌ 更卡，有明顯跳幀感
+		- **原因**：Videoscale 的 CPU 縮放成為新瓶頸
+		  
+		  **測試 B**：960x540 (加 videoscale)
+		- ✅ 畫面看起來比較順暢
+		- ⚠️ Log 顯示 queue_src 仍有間隔，但主觀感受改善
+		- **結論**：降低解析度減輕了 GPU 渲染負擔
+		- ### 7. 其他嘗試
+		- `sync=false` on glimagesink → ❌ 情況更糟
+		- `glupload` → ❌ 無改善
+		- 調整 queue 參數 (leaky, max-size) → ⚠️ 有限改善
+		- ## 根本原因分析
+		- **解碼器**：使用硬體解碼 `amcviddec-omxgoogleh264decoder`，解碼速度正常
+		- **網路傳輸**：透過調整 jitterbuffer 已優化
+		- **主要瓶頸**：**Glimagesink 的 OpenGL 渲染無法以 30fps 處理原解析度的 RGBA 影像**
+			- 裝置 GPU 性能限制
+			- RGBA 格式 (32-bit) 記憶體頻寬需求高
+			- 渲染造成背壓，影響整個 pipeline
 		-
 		-
