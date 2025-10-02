@@ -64,6 +64,42 @@ tags:: Multicast, GStreamer
 	        nullptr,
 	        nullptr);
 	  ```
+	- 整合到 function
+	  ```
+	  struct ProbeData {
+	    const char* name;
+	    GstClockTime last_pts;
+	    GstClockTime expected_interval;
+	  };
+	  
+	  static GstPadProbeReturn buffer_pts_probe(GstPad* pad,
+	                                            GstPadProbeInfo* info,
+	                                            gpointer user_data) {
+	    ProbeData* data = (ProbeData*)user_data;
+	    GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
+	  
+	    if (buffer && GST_BUFFER_PTS_IS_VALID(buffer)) {
+	      GstClockTime pts = GST_BUFFER_PTS(buffer);
+	  
+	      // 印 PTS
+	      g_print("[%s] PTS = %" GST_TIME_FORMAT "\n",
+	              data->name, GST_TIME_ARGS(pts));
+	  
+	      // 計算與上一幀的差異
+	      if (data->last_pts != GST_CLOCK_TIME_NONE) {
+	        GstClockTime diff = (pts > data->last_pts) ? (pts - data->last_pts) : 0;
+	        if (diff > (data->expected_interval * 3 / 2)) {
+	          g_print("[%s] Non-contiguous frame! Interval = %" GST_TIME_FORMAT "\n",
+	                  data->name, GST_TIME_ARGS(diff));
+	        }
+	      }
+	  
+	      data->last_pts = pts;
+	    }
+	  
+	    return GST_PAD_PROBE_OK;
+	  }
+	  ```
 - decodebin PTS 33ms
 	- 查看 decodebin 選用什麼解碼器
 	  ```cpp
