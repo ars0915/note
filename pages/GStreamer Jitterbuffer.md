@@ -13,25 +13,24 @@ tags:: Miracast, GStreamer
   };
   ```
 - ### SLAVE Mode (模式 1) - 推薦用於低延遲
-  
-  **特性：**
-- Jitterbuffer **跟隨 pipeline 的 clock**
-- 根據 pipeline 當前時間決定何時輸出封包
-- 如果封包太舊（相對於 pipeline clock），可以主動丟棄
-- **適合實時串流**，延遲較低
-  **運作方式：**
-  
-  ```
-  Pipeline Clock: -----|-------------|-------------|----->
-                   現在時間
-  
-             
-  
-  Jitterbuffer:  [舊封包] [當前] [未來封包]
-  
-                 ↓
-  
-              可能被丟棄
-  
-  ```
+	- **特性：**
+		- Jitterbuffer **跟隨 pipeline 的 clock**
+		- 根據 pipeline 當前時間決定何時輸出封包
+		- 如果封包太舊（相對於 pipeline clock），可以主動丟棄
+	- **適合實時串流**，延遲較低
+	  **運作方式：**
+	  ```
+	  Pipeline Clock: -----|-------------|-------------|----->
+	                   現在時間
+	  
+	  Jitterbuffer:  [舊封包] [當前] [未來封包]
+	                 ↓
+	              可能被丟棄
+	  ```
+- ## BUFFER Mode (模式 2) - 不推薦用於實時
+	- **特性：**
+		- Jitterbuffer **自主決定**何時輸出
+		- 會盡量保持 buffer 滿，不管 pipeline clock
+		- 追求**平滑播放**而非低延遲
+		- 可能累積大量延遲
 -
