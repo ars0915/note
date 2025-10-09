@@ -333,5 +333,11 @@ tags:: Multicast, GStreamer
 	                                                  ├── audio: queue → aacparse → avdec_aac → volume → convert → resample → openslessink
 	                                                  └── video: queue → h264parse → capsfilter → decoder → glimagesink
 	  ```
+	- ## 元件參數
+		- RTPbin: latency=50ms, do-lost=TRUE
+		- Jitterbuffer: latency=50ms, do-lost=TRUE, rtx-max-retries=0
+		- Queue: max-size-buffers=20, leaky=0 (不自動丟棄), slient=FALSE (監聽 queue 送出的 overrun 信號用來寫 log)
+		- Decoder: qos=FALSE (禁用 QoS frame dropping 不處理下游送回來的 QoS 事件)
+		- Video Sink: sync=TRUE, qos=TRUE, max-lateness=-1 (永不 drop late buffers), provide-clock=TRUE
 	-
 	-
