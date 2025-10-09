@@ -339,5 +339,14 @@ tags:: Multicast, GStreamer
 		- Queue: max-size-buffers=20, leaky=0 (不自動丟棄), slient=FALSE (監聽 queue 送出的 overrun 信號用來寫 log)
 		- Decoder: qos=FALSE (禁用 QoS frame dropping 不處理下游送回來的 QoS 事件)
 		- Video Sink: sync=TRUE, qos=TRUE, max-lateness=-1 (永不 drop late buffers), provide-clock=TRUE
-	-
+	- ## Probes
+		- Queue Sink Probe (OnQueueSinkProbe): Keyframe 檢測、智能丟幀、Backlog 監控
+		- Decoder Input Probe (OnDecoderInput): 記錄進入 decoder 的 buffer PTS
+		- Decoder Output Probe (OnDecoderOutput): 監控 QoS events、計算 FPS
+		- Sink Input Probe (OnSinkInput): 監控 sink FPS
+	- ## Queue Sink Probe
+		- Event 處理:
+		- FLUSH_START → 重置 backlog tracker (外部 flush，交給 GStreamer 處理)
+		- FLUSH_STOP → 重置 backlog tracker
+		- SEGMENT → 重置 backlog tracker
 	-
