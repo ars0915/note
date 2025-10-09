@@ -168,26 +168,15 @@ tags:: Miracast, GStreamer
 		- **沒有 SLAVE mode（問題）：**
 		  
 		  ```
-		  
 		  Jitterbuffer: mode=0, latency=100 ms, pushed=500, late=0
-		  
 		  Jitterbuffer: mode=0, latency=100 ms, pushed=1500, late=0
-		  
 		  ```
 			- `mode=0` 表示沒有特定模式
 			- `late=0` 表示從不丟棄過舊封包，導致堆積
 - ## 總結
-  
-  | 特性 | 沒有 SLAVE | 使用 SLAVE |
-  
+- | 特性 | 沒有 SLAVE | 使用 SLAVE |
   |------|-----------|-----------|
-  
   | 延遲 | 持續增加 | 固定在 latency 值 |
-  
   | Buffer 大小 | 越來越大 | 保持穩定 |
-  
   | 丟包處理 | 累積問題 | 主動清理 |
-  
   | 適用場景 | 檔案播放 | **實時串流** |
-  
-  對於你的 Miracast 應用，**SLAVE mode 是必須的**，它能確保延遲不會無限增長。
