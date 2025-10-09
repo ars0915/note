@@ -157,11 +157,8 @@ tags:: Miracast, GStreamer
 		- ### 預期 Log
 		  **SLAVE mode 正常工作：**
 		  ```
-		  
 		  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=3000, late=15
-		  
 		  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=6000, late=28
-		  
 		  ```
 			- `mode=1` 確認是 SLAVE
 			- `late` 數字表示有些封包因為太晚而被標記（這是正常的）
