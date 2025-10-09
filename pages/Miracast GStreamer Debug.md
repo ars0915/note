@@ -375,5 +375,5 @@ tags:: Multicast, GStreamer
 		- Decoder 開始初始化
 		- 此時 running_time ≈ keyframe PTS (沒有累積延遲)
 		- Deadline ≈ 0 或小量負值 (可接受範圍)
-	- 5. 後續 buffers 順暢流入，deadline 正常
+	- 後續 buffers 順暢流入，deadline 正常
 	-
