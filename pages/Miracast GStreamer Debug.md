@@ -366,14 +366,14 @@ tags:: Multicast, GStreamer
 				- 計算 backlog = current_pts - first_pts
 				- 如果 backlog > 500ms → 發出警告 (每 30 次記錄一次)
 	- ## 流程
-	- Pipeline 進入 PLAYING → base_time 設定 (例如 T=100s)
-	- Buffer 直接流向 decoder (沒有累積)
-	- 等待第一個 keyframe
-		- Queue sink probe 會 DROP 所有 delta units
-		- 只讓第一個 keyframe 通過
-	- 第一個 keyframe 到達 decoder
-		- Decoder 開始初始化
-		- 此時 running_time ≈ keyframe PTS (沒有累積延遲)
-		- Deadline ≈ 0 或小量負值 (可接受範圍)
-	- 後續 buffers 順暢流入，deadline 正常
+		- Pipeline 進入 PLAYING → base_time 設定 (例如 T=100s)
+		- Buffer 直接流向 decoder (沒有累積)
+		- 等待第一個 keyframe
+			- Queue sink probe 會 DROP 所有 delta units
+			- 只讓第一個 keyframe 通過
+		- 第一個 keyframe 到達 decoder
+			- Decoder 開始初始化
+			- 此時 running_time ≈ keyframe PTS (沒有累積延遲)
+			- Deadline ≈ 0 或小量負值 (可接受範圍)
+		- 後續 buffers 順暢流入，deadline 正常
 	-
