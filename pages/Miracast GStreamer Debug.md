@@ -357,7 +357,13 @@ tags:: Multicast, GStreamer
 				- Delta Unit → DROP
 				- Keyframe
 					- 記錄 pts_offset (第一個 keyframe PTS)
-				- ├── ExitKeyframeWait() (waiting_for_keyframe_ = false)
-			- ├── ResetBacklogTracker()
-			- └── 開始正常播放
+					- ExitKeyframeWait() (waiting_for_keyframe_ = false)
+					- ResetBacklogTracker()
+					- 開始正常播放
+			- Keyframe 重置 Backlog
+			- Backlog 監控
+				- 記錄 first_pts (首個非 keyframe buffer PTS)
+				- 計算 backlog = current_pts - first_pts
+				- 如果 backlog > 500ms → 發出警告 (每 30 次記錄一次)
+		-
 	-
