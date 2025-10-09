@@ -88,126 +88,79 @@ tags:: Miracast, GStreamer
 - ## 完整的低延遲配置
   
   ```cpp
-  
   // RTpbin 設定
-  
   g_object_set(rtpbin_,
-  
              "latency", 50,              // 目標延遲 50ms
-  
              "buffer-mode", 1,           // SLAVE mode
-  
              "drop-on-latency", FALSE,   // 不在 RTP 層丟（避免 broken NAL）
-  
              NULL);
   
   // Jitterbuffer 設定（透過 new-jitterbuffer 信號）
-  
   static void OnNewJitterBuffer(GstElement* rtpbin, GstElement* jitterbuffer, 
-  
                               guint session, guint ssrc, gpointer user_data) {
-  
-  g_object_set(jitterbuffer,
-  
-               "latency", 50,            // 50ms 緩衝
-  
-               "mode", 1,                // SLAVE mode - 跟隨 pipeline clock
-  
-               "do-lost", TRUE,          // 偵測丟包
-  
-               "drop-on-latency", FALSE, // 不直接丟包
-  
-               NULL);
-  
+    g_object_set(jitterbuffer,
+                 "latency", 50,            // 50ms 緩衝
+                 "mode", 1,                // SLAVE mode - 跟隨 pipeline clock
+                 "do-lost", TRUE,          // 偵測丟包
+                 "drop-on-latency", FALSE, // 不直接丟包
+                 NULL);
   }
   
   ```
 - ## 如何驗證 SLAVE mode 是否生效
-- ### 添加監控代碼
-  
-  ```cpp
-  
-  static gboolean CheckJitterBufferMode(gpointer user_data) {
-  
-  RtpMpegTsPlayerGst* self = static_cast<RtpMpegTsPlayerGst*>(user_data);
-  
-  if (!self || !self->rtpbin_) {
-  
-    return G_SOURCE_REMOVE;
-  
-  }
-  
-  // 獲取 jitterbuffer
-  
-  GValue val = G_VALUE_INIT;
-  
-  g_value_init(&val, GST_TYPE_ELEMENT);
-  
-  g_signal_emit_by_name(self->rtpbin_, "get-internal-session", 0, &val);
-  
-  GstElement* session = GST_ELEMENT(g_value_get_object(&val));
-  
-  
-  
-  if (session) {
-  
-    gint mode = 0;
-  
-    guint latency = 0;
-  
-    guint64 num_pushed = 0;
-  
-    guint64 num_late = 0;
-  
-    
-  
-    g_object_get(session, 
-  
-                 "mode", &mode,
-  
-                 "latency", &latency,
-  
-                 NULL);
-  
-    
-  
-    // 獲取統計
-  
-    GstStructure* stats = NULL;
-  
-    g_object_get(session, "stats", &stats, NULL);
-  
-    if (stats) {
-  
-      gst_structure_get_uint64(stats, "num-pushed", &num_pushed);
-  
-      gst_structure_get_uint64(stats, "num-late", &num_late);
-  
-      gst_structure_free(stats);
-  
-    }
-  
-    
-  
-    ALOGI("Jitterbuffer: mode=%d (1=SLAVE), latency=%u ms, pushed=%llu, late=%llu",
-  
-          mode, latency, num_pushed, num_late);
-  
-    
-  
-    gst_object_unref(session);
-  
-  }
-  
-  g_value_unset(&val);
-  
-  
-  
-  return G_SOURCE_CONTINUE;
-  
-  }
-  
-  ```
+	- ### 添加監控代碼
+	  ```cpp
+	  static gboolean CheckJitterBufferMode(gpointer user_data) {
+	  RtpMpegTsPlayerGst* self = static_cast<RtpMpegTsPlayerGst*>(user_data);
+	  if (!self || !self->rtpbin_) {
+	    return G_SOURCE_REMOVE;
+	  }
+	  
+	  // 獲取 jitterbuffer
+	  GValue val = G_VALUE_INIT;
+	  g_value_init(&val, GST_TYPE_ELEMENT);
+	  g_signal_emit_by_name(self->rtpbin_, "get-internal-session", 0, &val);
+	  GstElement* session = GST_ELEMENT(g_value_get_object(&val));
+	  
+	  if (session) {
+	    gint mode = 0;
+	    guint latency = 0;
+	    guint64 num_pushed = 0;
+	    guint64 num_late = 0;
+	  
+	    g_object_get(session, 
+	                 "mode", &mode,
+	                 "latency", &latency,
+	                 NULL);
+	  
+	    // 獲取統計
+	  
+	    GstStructure* stats = NULL;
+	    g_object_get(session, "stats", &stats, NULL);
+	    if (stats) {
+	      gst_structure_get_uint64(stats, "num-pushed", &num_pushed);
+	      gst_structure_get_uint64(stats, "num-late", &num_late);
+	      gst_structure_free(stats);
+	    }
+	  
+	    ALOGI("Jitterbuffer: mode=%d (1=SLAVE), latency=%u ms, pushed=%llu, late=%llu",
+	          mode, latency, num_pushed, num_late);
+	  
+	    
+	  
+	    gst_object_unref(session);
+	  
+	  }
+	  
+	  g_value_unset(&val);
+	  
+	  
+	  
+	  return G_SOURCE_CONTINUE;
+	  
+	  }
+	  
+	  ```
 - ### 預期 Log
   
   **SLAVE mode 正常工作：**
