@@ -1,5 +1,5 @@
 public:: true
-tags:: Multicast, GStreamer
+tags:: Miracast, GStreamer
 
 - pipeline
   ```
@@ -384,4 +384,5 @@ tags:: Multicast, GStreamer
 			- 此時 running_time ≈ keyframe PTS (沒有累積延遲)
 			- Deadline ≈ 0 或小量負值 (可接受範圍)
 		- 後續 buffers 順暢流入，deadline 正常
+-
 	-
