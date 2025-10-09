@@ -352,26 +352,12 @@ tags:: Multicast, GStreamer
 			- SEGMENT → 重置 backlog tracker
 		- #### Event 處理的原因：
 			- FLUSH events（外部觸發）
-				- MPEG-TS discontinuity → tsdemux 發出 FLUSH → 清空所有 buffers
-				- Flush 後，buffers 都被丟棄
-				- 如果不重置 backlog_first_pts_，會用舊的 PTS 計算新的 backlog
-				- 結果：backlog 數值會錯誤
-				  
-				  當 tsdemux 偵測到 MPEG-TS 封包的 discontinuity indicator 被設置，或者 continuity counter 有跳號時，它會自動發出
-				  
-				  FLUSH_START/FLUSH_STOP 事件來清空下游的 buffers，確保時間軸重新同步。
-				  
-				  這個行為是 tsdemux 為了處理網路串流中的封包遺失或時間軸跳躍而設計的自動保護機制。你可以在日誌中看到的 FLUSH_START 和
-				  
-				  FLUSH_STOP 事件，就是 tsdemux 偵測到 discontinuity 後自動觸發的。
-				  
-				  你的程式碼中的 OnQueueSinkProbe 會捕捉到這些事件並呼叫 ResetBacklogTracker()，這是正確的做法，因為 FLUSH 會清空所有
-				  
-				  buffers，backlog 計算需要重新開始。
-				  
-				  (2) SEGMENT event
-				  
-				  新的時間段開始 → PTS 可能重新計數或跳躍
+				- 當 tsdemux 偵測到 MPEG-TS 封包的 discontinuity indicator 被設置，或者 continuity counter 有跳號時，它會自動發出 FLUSH_START/FLUSH_STOP 事件來清空下游的 buffers，確保時間軸重新同步。
+				  這個行為是 tsdemux 為了處理網路串流中的封包遺失或時間軸跳躍而設計的自動保護機制。你可以在日誌中看到的 FLUSH_START 和 FLUSH_STOP 事件，就是 tsdemux 偵測到 discontinuity 後自動觸發的。
+				  因為 FLUSH 會清空所有 buffers，backlog 計算需要重新開始。
+			- SEGMENT event
+			  
+			  新的時間段開始 → PTS 可能重新計數或跳躍
 				- SEGMENT 表示新的時間軸開始
 				- 舊的 backlog_first_pts_ 不再有效
 				- 需要重新記錄新時間軸的第一個 PTS
