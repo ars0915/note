@@ -2,58 +2,53 @@ public:: true
 tags:: Miracast, GStreamer
 
 - # RTP Jitterbuffer 的 Buffer Mode
-- ## 模式類型
-  ```cpp
-  // GStreamer 定義的模式
-  enum {
-    BUFFER_MODE_NONE = 0,     // 不使用特定模式
-    BUFFER_MODE_SLAVE = 1,    // Slave 模式 - 跟隨 pipeline clock
-    BUFFER_MODE_BUFFER = 2,   // Buffer 模式 - 自主緩衝
-    BUFFER_MODE_SYNCED = 4    // Synced 模式 - RTP 時間戳同步
-  };
-  ```
-- ### SLAVE Mode (模式 1) - 推薦用於低延遲
-	- Jitterbuffer **跟隨 pipeline 的 clock**
-	- 根據 pipeline 當前時間決定何時輸出封包
-	- 如果封包太舊（相對於 pipeline clock），可以主動丟棄
-	- **適合實時串流**，延遲較低
-	  **運作方式：**
+	- ## 模式類型
+	  ```cpp
+	  // GStreamer 定義的模式
+	  enum {
+	    BUFFER_MODE_NONE = 0,     // 不使用特定模式
+	    BUFFER_MODE_SLAVE = 1,    // Slave 模式 - 跟隨 pipeline clock
+	    BUFFER_MODE_BUFFER = 2,   // Buffer 模式 - 自主緩衝
+	    BUFFER_MODE_SYNCED = 4    // Synced 模式 - RTP 時間戳同步
+	  };
 	  ```
-	  Pipeline Clock: -----|-------------|-------------|----->
-	                   現在時間
-	  
-	  Jitterbuffer:  [舊封包] [當前] [未來封包]
-	                 ↓
-	              可能被丟棄
-	  ```
-- ## BUFFER Mode (模式 2) - 不推薦用於實時
-	- Jitterbuffer **自主決定**何時輸出
-	- 會盡量保持 buffer 滿，不管 pipeline clock
-	- 追求**平滑播放**而非低延遲
-	- 可能累積大量延遲
-- ## SYNCED Mode (模式 4)
-	- 使用 **RTP 時間戳**和 **SR (Sender Report)** 同步
-	- 需要 RTCP 支援
-	- 精確但較複雜
-- # 實際範例比較
-- ### 不設定 mode（預設行為）
-  
-  ```cpp
-  
-  g_object_set(jitterbuffer,
-  
-             "latency", 100,
-  
-             // 沒有設定 mode
-  
-             NULL);
-  
-  ```
-  
-  **結果：**
-- Jitterbuffer 可能累積大量封包
-- 延遲可能達到數秒
-- 你之前看到的 500+ packets 就是這個問題
+		- ### SLAVE Mode (模式 1) - 推薦用於低延遲
+			- Jitterbuffer **跟隨 pipeline 的 clock**
+			- 根據 pipeline 當前時間決定何時輸出封包
+			- 如果封包太舊（相對於 pipeline clock），可以主動丟棄
+			- **適合實時串流**，延遲較低
+			  **運作方式：**
+			  ```
+			  Pipeline Clock: -----|-------------|-------------|----->
+			                   現在時間
+			  
+			  Jitterbuffer:  [舊封包] [當前] [未來封包]
+			                 ↓
+			              可能被丟棄
+			  ```
+		- ### BUFFER Mode (模式 2) - 不推薦用於實時
+			- Jitterbuffer **自主決定**何時輸出
+			- 會盡量保持 buffer 滿，不管 pipeline clock
+			- 追求**平滑播放**而非低延遲
+			- 可能累積大量延遲
+		- ### SYNCED Mode (模式 4)
+			- 使用 **RTP 時間戳**和 **SR (Sender Report)** 同步
+			- 需要 RTCP 支援
+			- 精確但較複雜
+	- ## 實際範例比較
+		- ### 不設定 mode（預設行為）
+		  
+		  ```cpp
+		  g_object_set(jitterbuffer,
+		             "latency", 100,
+		             // 沒有設定 mode
+		             NULL);
+		  ```
+		  
+		  **結果：**
+			- Jitterbuffer 可能累積大量封包
+			- 延遲可能達到數秒
+			- 你之前看到的 500+ packets 就是這個問題
 - ### SLAVE mode（推薦）
   
   ```cpp
