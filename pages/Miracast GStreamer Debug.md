@@ -356,11 +356,7 @@ tags:: Multicast, GStreamer
 				  這個行為是 tsdemux 為了處理網路串流中的封包遺失或時間軸跳躍而設計的自動保護機制。你可以在日誌中看到的 FLUSH_START 和 FLUSH_STOP 事件，就是 tsdemux 偵測到 discontinuity 後自動觸發的。
 				  因為 FLUSH 會清空所有 buffers，backlog 計算需要重新開始。
 			- SEGMENT event
-			  
-			  新的時間段開始 → PTS 可能重新計數或跳躍
-				- SEGMENT 表示新的時間軸開始
-				- 舊的 backlog_first_pts_ 不再有效
-				- 需要重新記錄新時間軸的第一個 PTS
+				- 新的時間段開始 → PTS 可能重新計數或跳躍，SEGMENT 表示新的時間軸開始，舊的 backlog_first_pts_ 不再有效，需要重新記錄新時間軸的第一個 PTS
 		- ### Buffer 處理流程:
 			- 智能丟幀 (Queue 填充率 > 70%)
 				- Keyframe → 保留 (記錄日誌)
