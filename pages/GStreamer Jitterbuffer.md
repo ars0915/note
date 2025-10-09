@@ -111,81 +111,71 @@ tags:: Miracast, GStreamer
 	- ### 添加監控代碼
 	  ```cpp
 	  static gboolean CheckJitterBufferMode(gpointer user_data) {
-	  RtpMpegTsPlayerGst* self = static_cast<RtpMpegTsPlayerGst*>(user_data);
-	  if (!self || !self->rtpbin_) {
-	    return G_SOURCE_REMOVE;
-	  }
-	  
-	  // 獲取 jitterbuffer
-	  GValue val = G_VALUE_INIT;
-	  g_value_init(&val, GST_TYPE_ELEMENT);
-	  g_signal_emit_by_name(self->rtpbin_, "get-internal-session", 0, &val);
-	  GstElement* session = GST_ELEMENT(g_value_get_object(&val));
-	  
-	  if (session) {
-	    gint mode = 0;
-	    guint latency = 0;
-	    guint64 num_pushed = 0;
-	    guint64 num_late = 0;
-	  
-	    g_object_get(session, 
-	                 "mode", &mode,
-	                 "latency", &latency,
-	                 NULL);
-	  
-	    // 獲取統計
-	  
-	    GstStructure* stats = NULL;
-	    g_object_get(session, "stats", &stats, NULL);
-	    if (stats) {
-	      gst_structure_get_uint64(stats, "num-pushed", &num_pushed);
-	      gst_structure_get_uint64(stats, "num-late", &num_late);
-	      gst_structure_free(stats);
+	    RtpMpegTsPlayerGst* self = static_cast<RtpMpegTsPlayerGst*>(user_data);
+	    if (!self || !self->rtpbin_) {
+	      return G_SOURCE_REMOVE;
 	    }
 	  
-	    ALOGI("Jitterbuffer: mode=%d (1=SLAVE), latency=%u ms, pushed=%llu, late=%llu",
-	          mode, latency, num_pushed, num_late);
+	    // 獲取 jitterbuffer
+	    GValue val = G_VALUE_INIT;
+	    g_value_init(&val, GST_TYPE_ELEMENT);
+	    g_signal_emit_by_name(self->rtpbin_, "get-internal-session", 0, &val);
+	    GstElement* session = GST_ELEMENT(g_value_get_object(&val));
 	  
-	    
+	    if (session) {
+	      gint mode = 0;
+	      guint latency = 0;
+	      guint64 num_pushed = 0;
+	      guint64 num_late = 0;
 	  
-	    gst_object_unref(session);
+	      g_object_get(session, 
+	                   "mode", &mode,
+	                   "latency", &latency,
+	                   NULL);
 	  
+	      // 獲取統計
+	  
+	      GstStructure* stats = NULL;
+	      g_object_get(session, "stats", &stats, NULL);
+	      if (stats) {
+	        gst_structure_get_uint64(stats, "num-pushed", &num_pushed);
+	        gst_structure_get_uint64(stats, "num-late", &num_late);
+	        gst_structure_free(stats);
+	      }
+	  
+	      ALOGI("Jitterbuffer: mode=%d (1=SLAVE), latency=%u ms, pushed=%llu, late=%llu",
+	            mode, latency, num_pushed, num_late);
+	  
+	      gst_object_unref(session);
+	    }
+	  
+	      g_value_unset(&val);
+	  
+	      return G_SOURCE_CONTINUE;
 	  }
-	  
-	  g_value_unset(&val);
-	  
-	  
-	  
-	  return G_SOURCE_CONTINUE;
-	  
-	  }
-	  
 	  ```
-- ### 預期 Log
-  
-  **SLAVE mode 正常工作：**
-  
-  ```
-  
-  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=3000, late=15
-  
-  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=6000, late=28
-  
-  ```
-- `mode=1` 確認是 SLAVE
-- `late` 數字表示有些封包因為太晚而被標記（這是正常的）
-  
-  **沒有 SLAVE mode（問題）：**
-  
-  ```
-  
-  Jitterbuffer: mode=0, latency=100 ms, pushed=500, late=0
-  
-  Jitterbuffer: mode=0, latency=100 ms, pushed=1500, late=0
-  
-  ```
-- `mode=0` 表示沒有特定模式
-- `late=0` 表示從不丟棄過舊封包，導致堆積
+		- ### 預期 Log
+		  **SLAVE mode 正常工作：**
+		  ```
+		  
+		  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=3000, late=15
+		  
+		  Jitterbuffer: mode=1 (1=SLAVE), latency=50 ms, pushed=6000, late=28
+		  
+		  ```
+			- `mode=1` 確認是 SLAVE
+			- `late` 數字表示有些封包因為太晚而被標記（這是正常的）
+		- **沒有 SLAVE mode（問題）：**
+		  
+		  ```
+		  
+		  Jitterbuffer: mode=0, latency=100 ms, pushed=500, late=0
+		  
+		  Jitterbuffer: mode=0, latency=100 ms, pushed=1500, late=0
+		  
+		  ```
+			- `mode=0` 表示沒有特定模式
+			- `late=0` 表示從不丟棄過舊封包，導致堆積
 - ## 總結
   
   | 特性 | 沒有 SLAVE | 使用 SLAVE |
