@@ -345,8 +345,19 @@ tags:: Multicast, GStreamer
 		- Decoder Output Probe (OnDecoderOutput): 監控 QoS events、計算 FPS
 		- Sink Input Probe (OnSinkInput): 監控 sink FPS
 	- ## Queue Sink Probe
-		- Event 處理:
-		- FLUSH_START → 重置 backlog tracker (外部 flush，交給 GStreamer 處理)
-		- FLUSH_STOP → 重置 backlog tracker
-		- SEGMENT → 重置 backlog tracker
+		- ### Event 處理:
+			- FLUSH_START → 重置 backlog tracker (外部 flush，交給 GStreamer 處理)
+			- FLUSH_STOP → 重置 backlog tracker
+			- SEGMENT → 重置 backlog tracker
+		- ### Buffer 處理流程:
+			- 智能丟幀 (Queue 填充率 > 70%)
+				- Keyframe → 保留 (記錄日誌)
+				- Delta Unit → 丟棄 (每 10 幀記錄一次)
+			- 等待第一個 Keyframe
+				- Delta Unit → DROP
+				- Keyframe
+					- 記錄 pts_offset (第一個 keyframe PTS)
+				- ├── ExitKeyframeWait() (waiting_for_keyframe_ = false)
+			- ├── ResetBacklogTracker()
+			- └── 開始正常播放
 	-
