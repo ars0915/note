@@ -326,4 +326,4 @@ tags:: Multicast, GStreamer
 		- rtpjitterbuffer → 等待 latency 毫秒 → 再送給 depayloader
 		- 為了解決「網路 jitter 造成的 frame 不完整、解碼錯誤、播放破圖或卡頓」問題 -> 把 packet 缓衝一段時間，等東西都到齊再送下去
 - # Hardware decode 卡在第一幀
-	-
+	- hardware decode 需要初始化約1秒多的時間設定，等它初始化完
