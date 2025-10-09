@@ -327,6 +327,7 @@ tags:: Multicast, GStreamer
 		- 為了解決「網路 jitter 造成的 frame 不完整、解碼錯誤、播放破圖或卡頓」問題 -> 把 packet 缓衝一段時間，等東西都到齊再送下去
 - # Hardware decode 卡在第一幀
 	- hardware decode 需要初始化約1秒多的時間設定，等它初始化完再處理 frame 都會認為 too late 要 drop
+	  [amcvideodec] Frame is too late, dropping (deadline -0:00:00.939177778)
 	- ## Pipeline
 	  ```
 	  udpsrc → rtpbin → rtpmp2tdepay → tsparse → tsdemux
