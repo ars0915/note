@@ -131,7 +131,7 @@ tags:: Miracast, GStreamer
 	                     NULL);
 	  ```
 - queue 的 "leaky" 屬性
-	- 當 queue 滿了時，要「丟棄」哪邊的 buffer：0 = 不丟（預設）1 = upstream（丟新的 input）2 = downstream（丟舊的 output）
+	- 當 queue 滿了時，要「丟棄」哪邊的 buffer：0 = 不丟（預設）1 = upstream（丟新的 input）2 = downstream（丟舊的 input）
 	- downstream: **適合低延遲場景**：視訊監控、即時通訊
 	- upstream: 不建議用在 video，會增加延遲
 - openslessink 參數
