@@ -337,7 +337,6 @@ tags:: Miracast, GStreamer
 	- ## 元件參數
 		- RTPbin: latency=50ms, do-lost=TRUE
 		- Jitterbuffer: latency=50ms, do-lost=TRUE, rtx-max-retries=0
-		- Decoder: qos=FALSE (禁用 QoS frame dropping 不處理下游送回來的 QoS 事件，用來監控 sink 的丟幀壓力（proportion < 1.0 表示需要加速）)
 		- Video Sink: sync=TRUE, qos=TRUE, max-lateness=-1 (永不 drop late buffers), provide-clock=TRUE
 -
 	-
