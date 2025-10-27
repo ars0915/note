@@ -334,9 +334,8 @@ tags:: Miracast, GStreamer
 	                                                  ├── audio: queue → aacparse → avdec_aac → volume → convert → resample → openslessink
 	                                                  └── video: queue → h264parse → capsfilter → decoder → glimagesink
 	  ```
-	- ## 元件參數
+	- ## 調整參數
 		- RTPbin: latency=50ms, do-lost=TRUE
 		- Jitterbuffer: latency=50ms, do-lost=TRUE, rtx-max-retries=0
-		- Video Sink: sync=TRUE, qos=TRUE, max-lateness=-1 (永不 drop late buffers), provide-clock=TRUE
 -
 	-
