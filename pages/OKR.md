@@ -56,3 +56,7 @@
 - ## Successfully design, develop, and release 2 new streaming features by the end of each quarter
 - Miracast integrate GStreamer with hardware decoder
 - Miracast auto upload log if connection less than 2 minutes
+-
+-
+- # excel
+- https://viewsonic0-my.sharepoint.com/:x:/g/personal/loren_chang_viewsonic_com/Efi9AdnXQA1CpqswkvjafwYBLwvWQKZQR6toM2GIAJ-uMw?email=vladka.yt.huang%40viewsonic.com&e=q0PjMr&wdLOR=cF4F54D01-2850-7445-9860-3E852BCF9062
