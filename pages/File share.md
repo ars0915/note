@@ -33,6 +33,7 @@ public:: true
 	- WebTorrent
 	- ![image.png](../assets/image_1743577154099_0.png)
 - ## 參考產品
+  collapsed:: true
 	- LocalSend
 		- 開源
 		  使用 TCP, UDP
@@ -155,3 +156,4 @@ public:: true
 		- App 執行時及定期清理
 		- 監聽系統廣播
 		- 文件放在 cache directory，系統會在存儲空間不足時自動清理
+-
