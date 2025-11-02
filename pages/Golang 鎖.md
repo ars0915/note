@@ -1,4 +1,7 @@
-## sync.Mutex
+public:: true
+tags:: golang
+
+- ## sync.Mutex
 	- 互斥鎖，同時只能一個 goroutine 持有
 	- Lock/Unlock 必須成對
 - ## sync.RWMutex
@@ -81,7 +84,7 @@
 	- Thread-safe 的 map
 	- 內部已經處理好同步
 	- 適用於讀多寫少的場景
-- ## 選擇建議：**
+- ## 選擇建議:
 	- 簡單計數器 → atomic
 	- 保護單一資源 → Mutex
 	- 讀多寫少 → RWMutex
