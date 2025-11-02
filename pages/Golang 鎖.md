@@ -89,3 +89,13 @@ tags:: golang
 	- 保護單一資源 → Mutex
 	- 讀多寫少 → RWMutex
 	- 優先考慮用 channel 來設計（"share memory by communicating"）
+- ## 使用 channel
+	- **Mutex 方式：** Share memory by communicating（共享記憶體）→ 需要加鎖保護
+	  **Channel 方式：** Communicate by sharing memory（透過通信共享）→ 只有一個 goroutine 擁有資料
+	- ## 實際對比例子
+	- 例子 1：計數器
+	  **❌ 用 Mutex（傳統方式）：**
+	  ```go
+	  
+	  ```
+	-
