@@ -121,6 +121,43 @@ tags:: golang
 		  ```
 		- ✅ 用 Channel（Go 方式）：
 		  ```go
+		  type Counter struct {
+		      requests chan func(int) int
+		      value    int
+		  }
+		  
+		  func NewCounter() *Counter {
+		      c := &Counter{
+		          requests: make(chan func(int) int),
+		      }
+		      go c.run() // 只有這個 goroutine 能修改 value
+		      return c
+		  }
+		  
+		  func (c *Counter) run() {
+		      for fn := range c.requests {
+		          c.value = fn(c.value)
+		      }
+		  }
+		  
+		  func (c *Counter) Increment() {
+		      c.requests <- func(v int) int { return v + 1 }
+		  }
+		  
+		  func (c *Counter) Get() int {
+		      result := make(chan int)
+		      c.requests <- func(v int) int {
+		          result <- v
+		          return v
+		      }
+		      return <-result
+		  }
+		  
+		  // 使用
+		  counter := NewCounter()
+		  go counter.Increment()
+		  go counter.Increment()
+		  fmt.Println(counter.Get())
 		  ```
 		- **差異：**
 			- Mutex：多個 goroutine 共享記憶體，用鎖保護
@@ -128,9 +165,58 @@ tags:: golang
 	- 例子 2：Connection Pool（更實際）
 		- ❌ 用 Mutex：
 		  ```go
+		  type Pool struct {
+		      mu    sync.Mutex
+		      conns []*Conn
+		  }
+		  
+		  func (p *Pool) Get() *Conn {
+		      p.mu.Lock()
+		      defer p.mu.Unlock()
+		      
+		      if len(p.conns) == 0 {
+		          return nil
+		      }
+		      conn := p.conns[0]
+		      p.conns = p.conns[1:]
+		      return conn
+		  }
+		  
+		  func (p *Pool) Put(conn *Conn) {
+		      p.mu.Lock()
+		      defer p.mu.Unlock()
+		      p.conns = append(p.conns, conn)
+		  }
 		  ```
 		- ✅ 用 Channel：
 		  ```go
+		  type Pool struct {
+		      conns chan *Conn
+		  }
+		  
+		  func NewPool(size int) *Pool {
+		      return &Pool{
+		          conns: make(chan *Conn, size),
+		      }
+		  }
+		  
+		  func (p *Pool) Get() *Conn {
+		      select {
+		      case conn := <-p.conns:
+		          return conn
+		      default:
+		          return nil
+		      }
+		  }
+		  
+		  func (p *Pool) Put(conn *Conn) {
+		      select {
+		      case p.conns <- conn:
+		      default:
+		          // pool 滿了，丟棄
+		          conn.Close()
+		      }
+		  }
 		  ```
 		- **優勢：**
 			- 更簡潔，不需要 defer unlock
@@ -140,6 +226,42 @@ tags:: golang
 	  場景：處理多個 streaming connection
 		- ✅ Channel 方式（推薦）：
 		  ```go
+		  type Task struct {
+		      ConnID int
+		      Data   []byte
+		  }
+		  
+		  func worker(id int, tasks <-chan Task, results chan<- Result) {
+		      for task := range tasks {
+		          // 處理任務
+		          result := process(task)
+		          results <- result
+		      }
+		  }
+		  
+		  func main() {
+		      tasks := make(chan Task, 100)
+		      results := make(chan Result, 100)
+		      
+		      // 啟動 10 個 worker
+		      for i := 0; i < 10; i++ {
+		          go worker(i, tasks, results)
+		      }
+		      
+		      // 發送任務
+		      go func() {
+		          for _, task := range getTasks() {
+		              tasks <- task
+		          }
+		          close(tasks) // 重要：關閉通知 workers 結束
+		      }()
+		      
+		      // 收集結果
+		      for i := 0; i < totalTasks; i++ {
+		          result := <-results
+		          handleResult(result)
+		      }
+		  }
 		  ```
 		- **為什麼這裡用 channel 更好：**
 			- 自然的 producer-consumer 模式
@@ -149,6 +271,56 @@ tags:: golang
 	  假設你在處理 streaming connection 的狀態：
 		- ✅ Channel 方式：
 		  ```go
+		  type ConnState int
+		  
+		  const (
+		      StateIdle ConnState = iota
+		      StateConnecting
+		      StateStreaming
+		      StateClosed
+		  )
+		  
+		  type StateEvent struct {
+		      Event string
+		      Reply chan error
+		  }
+		  
+		  type Connection struct {
+		      state  ConnState
+		      events chan StateEvent
+		  }
+		  
+		  func (c *Connection) run() {
+		      for event := range c.events {
+		          err := c.handleEvent(event.Event)
+		          if event.Reply != nil {
+		              event.Reply <- err
+		          }
+		      }
+		  }
+		  
+		  func (c *Connection) handleEvent(event string) error {
+		      switch c.state {
+		      case StateIdle:
+		          if event == "connect" {
+		              c.state = StateConnecting
+		              return c.doConnect()
+		          }
+		      case StateConnecting:
+		          if event == "connected" {
+		              c.state = StateStreaming
+		              return nil
+		          }
+		      // ...
+		      }
+		      return fmt.Errorf("invalid transition")
+		  }
+		  
+		  func (c *Connection) Connect() error {
+		      reply := make(chan error)
+		      c.events <- StateEvent{Event: "connect", Reply: reply}
+		      return <-reply
+		  }
 		  ```
 		- **優勢：**
 			- 所有狀態變更都在一個 goroutine，不會有 race condition
