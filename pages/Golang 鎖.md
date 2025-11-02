@@ -325,4 +325,8 @@ tags:: golang
 		- **優勢：**
 			- 所有狀態變更都在一個 goroutine，不會有 race condition
 			- 事件順序天然保證（channel 是 FIFO）
-	-
+- ## 什麼時候用 Channel vs Mutex？
+	- ### 用 Channel：
+		- ✅ **所有權轉移**（ownership transfer）
+		  ```
+		  ```
