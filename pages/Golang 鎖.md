@@ -96,7 +96,28 @@ tags:: golang
 	- 例子 1：計數器
 		- **❌ 用 Mutex（傳統方式）：**
 		  ```go
+		  type Counter struct {
+		      mu    sync.Mutex
+		      value int
+		  }
 		  
+		  func (c *Counter) Increment() {
+		      c.mu.Lock()
+		      c.value++
+		      c.mu.Unlock()
+		  }
+		  
+		  func (c *Counter) Get() int {
+		      c.mu.Lock()
+		      defer c.mu.Unlock()
+		      return c.value
+		  }
+		  
+		  // 使用
+		  counter := &Counter{}
+		  go counter.Increment()
+		  go counter.Increment()
+		  fmt.Println(counter.Get())
 		  ```
 		- ✅ 用 Channel（Go 方式）：
 		  ```go
@@ -121,7 +142,15 @@ tags:: golang
 		  ```go
 		  ```
 		- **為什麼這裡用 channel 更好：**
-		- 自然的 producer-consumer 模式
-		- 不需要管理 worker 的同步
-		- close(tasks) 可以優雅地通知所有 worker 結束
-		-
+			- 自然的 producer-consumer 模式
+			- 不需要管理 worker 的同步
+			- close(tasks) 可以優雅地通知所有 worker 結束
+	- 例子 4：State Machine（狀態機）
+	  假設你在處理 streaming connection 的狀態：
+		- ✅ Channel 方式：
+		  ```go
+		  ```
+		- **優勢：**
+			- 所有狀態變更都在一個 goroutine，不會有 race condition
+			- 事件順序天然保證（channel 是 FIFO）
+	-
