@@ -101,4 +101,16 @@ public:: true
 		  ```
 	- ### CAS 自旋 = CAS + 迴圈重試
 	  結合起來就是：用 CAS 操作，失敗就在迴圈中重試。
+- ## Mutex 也用了 CAS
+	- `sync.Mutex` 的 `Lock()` 實現：
+	  ```go
+	  func (m *Mutex) Lock() {
+	      // 快速路徑：嘗試用 CAS 獲取鎖
+	      if atomic.CompareAndSwapInt32(&m.state, 0, mutexLocked) {
+	          return  // 成功就直接返回
+	      }
+	      // 失敗才進入慢速路徑
+	      m.lockSlow()
+	  }
+	  ```
 	-
