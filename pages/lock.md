@@ -117,4 +117,5 @@ public:: true
 -
 -
 - # Reference
--
+	- omegaatt, "golang 樂觀鎖、悲觀鎖 學習筆記與實驗," **, Available: [link_to_page](https://www.omegaatt.com/blogs/develop/2023/golang_lock_practice/). 
+	  type:: [[Web Page]]
