@@ -103,7 +103,7 @@ tags:: golang
 		  ```
 		- **差異：**
 			- Mutex：多個 goroutine 共享記憶體，用鎖保護
-		- Channel：只有一個 goroutine 擁有資料，其他透過 channel 發送請求
+			- Channel：只有一個 goroutine 擁有資料，其他透過 channel 發送請求
 	- 例子 2：Connection Pool（更實際）
 		- ❌ 用 Mutex：
 		  ```go
@@ -111,4 +111,17 @@ tags:: golang
 		- ✅ 用 Channel：
 		  ```go
 		  ```
+		- **優勢：**
+			- 更簡潔，不需要 defer unlock
+			- Buffered channel 自帶容量限制
+			- Select 可以處理 timeout
+	- 例子 3：Worker Pool（你可能實際遇到）
+	  場景：處理多個 streaming connection
+		- ✅ Channel 方式（推薦）：
+		  ```go
+		  ```
+		- **為什麼這裡用 channel 更好：**
+		- 自然的 producer-consumer 模式
+		- 不需要管理 worker 的同步
+		- close(tasks) 可以優雅地通知所有 worker 結束
 		-
