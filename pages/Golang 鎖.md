@@ -1,5 +1,5 @@
 public:: true
-tags:: golang
+tags:: golang, lock
 
 - ## sync.Mutex
 	- 互斥鎖，同時只能一個 goroutine 持有
