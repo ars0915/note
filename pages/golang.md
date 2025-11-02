@@ -1,4 +1,27 @@
 - TODO:
 	- goroutine GMP
+		- **基本概念要能說出來：**
+			- **G (Goroutine)**：用戶態的輕量級執行緒
+			- **M (Machine)**：OS 執行緒
+			- **P (Processor)**：邏輯處理器，持有 G 的佇列
+		- **核心優勢**：M:N 調度模型，一個 M 可以執行多個 G
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- Context
+	- **Goroutine Leak 怎麼避免？**
+		- channel 沒關閉
+		- context 沒取消
+		- 死鎖情況
+	- **Channel 的使用與原理**
+		- buffered vs unbuffered
+		- close 的時機
+		- select 的使用
+	- **sync 包的使用**
+		- WaitGroup、Mutex、RWMutex
+		- Once、Pool
+		- 什麼時候用 channel，什麼時候用 mutex？
+	- **Context 的傳遞與取消**
+		- 超時控制
+		- 優雅關閉
+	- **常見並發問題**
+		- Race condition 怎麼 debug？
+		- 如何控制 goroutine 數量？（worker pool）
