@@ -1,0 +1,3 @@
+- TODO:
+	- goroutine GMP
+	- https://geektutu.com/post/hpg-sync-cond.html
