@@ -329,9 +329,27 @@ tags:: golang
 	- ### 用 Channel：
 		- 所有權轉移（ownership transfer）
 		  ```go
-		  
+		  // 傳遞 connection 給 worker
+		  workerCh <- conn
 		  ```
 		- 分發任務（distributing work）
+		  ```go
+		  // Worker pool
+		  tasks := make(chan Task, 100)
+		  ```
 		- 聚合結果（aggregating results）
+		  ```go
+		  // 從多個 goroutine 收集結果
+		  results := make(chan Result, numWorkers)
+		  ```
 		- 通知訊號（signaling）
+		  ```go
+		  // 通知 goroutine 該停止了
+		  done := make(chan struct{})
+		  close(done)
+		  ```
 	- ### 用 Mutex：
+		- 簡單的共享狀態
+		- Caching
+		- 短暫的臨界區
+	-
