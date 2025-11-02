@@ -113,4 +113,8 @@ public:: true
 	      m.lockSlow()
 	  }
 	  ```
-	-
+	- 純 CAS 自旋非常慢，因為浪費 CPU 在重試
+-
+-
+- # Reference
+-
