@@ -101,3 +101,14 @@ tags:: golang
 		- ✅ 用 Channel（Go 方式）：
 		  ```go
 		  ```
+		- **差異：**
+			- Mutex：多個 goroutine 共享記憶體，用鎖保護
+		- Channel：只有一個 goroutine 擁有資料，其他透過 channel 發送請求
+	- 例子 2：Connection Pool（更實際）
+		- ❌ 用 Mutex：
+		  ```go
+		  ```
+		- ✅ 用 Channel：
+		  ```go
+		  ```
+		-
