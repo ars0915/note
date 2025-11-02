@@ -111,7 +111,7 @@ tags:: golang, allocate
 		  $ go test -bench . -benchmem
 		  BenchmarkStackIt3-8  705347884  1.62 ns/op  0 B/op  0 allocs/op
 		  ```
-	- **我們可以從中推斷出一個一般規則：共享 stack 上的 pointer 會導致 `allocation`，而共享 stack 下的 pointer 則不會**。但是，這並不能保證，因此您仍然需要使用 `gcflags` 或 `benchmark` 驗證才能確定。我們可以肯定地說，任何減少`allocs/op` 的嘗試都將涉及尋找任性的指標。
+	- **我們可以從中推斷出一個一般規則：共享 heap 上的 pointer 會導致 `allocation`，而共享 stack 下的 pointer 則不會**。但是，這並不能保證，因此您仍然需要使用 `gcflags` 或 `benchmark` 驗證才能確定。我們可以肯定地說，任何減少`allocs/op` 的嘗試都將涉及尋找任性的指標。
 - ## Why do we care about heap allocations?
 	- 儘管 Go 的 GC 越來越高效，但這個過程 process 有時會完全停止。 
 	  copy value 時因為所有的 BigStruct 實例都保留在 stack 上， GC 幾乎沒有什麼可做的，就不會有上面的情況發生。
