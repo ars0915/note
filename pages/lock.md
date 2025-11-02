@@ -76,4 +76,29 @@ public:: true
 	                                   8. COMMIT
 	  ```
 	  **關鍵：** 用戶 B 必須等待用戶 A 完成（或超時）。
--
+- # Golang CAS 自旋
+	- ### CAS (Compare-And-Swap)
+		- 原子操作：比較記憶體值，如果相等就交換。
+		  ```go
+		  *// 偽代碼*
+		  func CompareAndSwap(addr *int32, old, new int32) bool {
+		    if *addr == old {
+		        *addr = new
+		        return true  *// 成功*
+		    }
+		    return false     *// 失敗（值已被其他人改過）*
+		  }
+		  ```
+	- ### 自旋 (Spin)
+		- 在 **迴圈** 中不斷重試，直到成功為止。
+		  ```go
+		  for {
+		    if CAS成功 {
+		        break  *// 跳出迴圈*
+		    }
+		    *// 失敗就繼續重試（自旋）*
+		  }
+		  ```
+	- ### CAS 自旋 = CAS + 迴圈重試
+	  結合起來就是：用 CAS 操作，失敗就在迴圈中重試。
+	-
