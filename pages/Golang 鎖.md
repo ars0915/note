@@ -327,6 +327,11 @@ tags:: golang
 			- 事件順序天然保證（channel 是 FIFO）
 - ## 什麼時候用 Channel vs Mutex？
 	- ### 用 Channel：
-		- ✅ **所有權轉移**（ownership transfer）
+		- 所有權轉移（ownership transfer）
+		  ```go
+		  
 		  ```
-		  ```
+		- 分發任務（distributing work）
+		- 聚合結果（aggregating results）
+		- 通知訊號（signaling）
+	- ### 用 Mutex：
