@@ -94,8 +94,10 @@ tags:: golang
 	  **Channel 方式：** Communicate by sharing memory（透過通信共享）→ 只有一個 goroutine 擁有資料
 	- ## 實際對比例子
 	- 例子 1：計數器
-	  **❌ 用 Mutex（傳統方式）：**
-	  ```go
-	  
-	  ```
-	-
+		- **❌ 用 Mutex（傳統方式）：**
+		  ```go
+		  
+		  ```
+		- ✅ 用 Channel（Go 方式）：
+		  ```go
+		  ```
