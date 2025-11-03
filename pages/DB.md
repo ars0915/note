@@ -178,7 +178,19 @@
 		  即使其他交易提交了新版本，B 還是讀舊版本
 		  ```
 			- **問題：幻讀（Phantom Read）**
-		-
+			  ```sql
+			  -- Transaction A
+			  BEGIN;
+			  SELECT COUNT(*) FROM account WHERE balance > 100;  -- 結果：10 筆
+			  
+			  -- Transaction B（同時進行）
+			  BEGIN;
+			  INSERT INTO account (id, balance) VALUES (11, 200);
+			  COMMIT;
+			  
+			  -- Transaction A
+			  SELECT COUNT(*) FROM account WHERE balance > 100;  -- 結果：11 筆？
+			  ```
 		- **Serializable**     → 效能最差但最安全
 		  ```sql
 		  ```
