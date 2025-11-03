@@ -117,13 +117,116 @@ ZSet    → 排行榜（score 排序）
 				  ```
 			- 永不過期 + 非同步更新
 			  ```go
+			  func GetProduct(productID string) (*Product, error) {
+			      key := "product:" + productID
+			      
+			      // 1. 查 Redis（永不過期）
+			      data, err := redis.Get(key)
+			      if err == nil {
+			          product := parseProduct(data)
+			          
+			          // 2. 檢查邏輯過期時間
+			          if product.ExpireTime.Before(time.Now()) {
+			              // 過期了，非同步更新
+			              go func() {
+			                  newProduct, _ := db.GetProduct(productID)
+			                  newProduct.ExpireTime = time.Now().Add(10 * time.Minute)
+			                  redis.Set(key, newProduct, 0)  // 永不過期
+			              }()
+			          }
+			          
+			          // 3. 先返回舊資料（避免查DB）
+			          return product, nil
+			      }
+			      
+			      // 4. 首次查詢，同步查DB
+			      product, err := db.GetProduct(productID)
+			      if err != nil {
+			          return nil, err
+			      }
+			      
+			      product.ExpireTime = time.Now().Add(10 * time.Minute)
+			      redis.Set(key, product, 0)  // 永不過期
+			      return product, nil
+			  }
 			  ```
 	- 3. **快取雪崩（Cache Avalanche）**
 		- 問題：大量 key 同時過期
 		- 解法：
 			- 過期時間加隨機值
+			  ```go
+			  func SetCache(key string, value interface{}, baseExpire time.Duration) {
+			      // 基礎過期時間 + 隨機值（0-5分鐘）
+			      randomExpire := baseExpire + time.Duration(rand.Intn(300))*time.Second
+			      redis.Set(key, value, randomExpire)
+			  }
+			  
+			  // 使用範例
+			  SetCache("product:1", product1, 30*time.Minute)  // 30-35分鐘
+			  SetCache("product:2", product2, 30*time.Minute)  // 30-35分鐘
+			  // → 避免大量 key 同時過期
+			  ```
 			- 多層快取
+			  ```go
+			  // L1: 本地快取（進程內記憶體）
+			  // L2: Redis
+			  // L3: DB
+			  
+			  var localCache = cache.New(5*time.Minute, 10*time.Minute)
+			  
+			  func GetProduct(productID string) (*Product, error) {
+			      // 1. 查本地快取（最快）
+			      if product, found := localCache.Get(productID); found {
+			          return product.(*Product), nil
+			      }
+			      
+			      // 2. 查 Redis
+			      product, err := redis.Get("product:" + productID)
+			      if err == nil {
+			          localCache.Set(productID, product, cache.DefaultExpiration)
+			          return product, nil
+			      }
+			      
+			      // 3. 查 DB
+			      product, err = db.GetProduct(productID)
+			      if err != nil {
+			          return nil, err
+			      }
+			      
+			      // 4. 寫入兩層快取
+			      localCache.Set(productID, product, cache.DefaultExpiration)
+			      redis.Set("product:" + productID, product, 30*time.Minute)
+			      
+			      return product, nil
+			  }
+			  ```
 			- 熔斷降級
+			  ```go
+			  func GetProduct(productID string) (*Product, error) {
+			      // 檢查熔斷器狀態
+			      if circuitBreaker.IsOpen() {
+			          // 熔斷開啟，返回降級資料
+			          return getFallbackProduct(productID), nil
+			      }
+			      
+			      product, err := getProductFromDB(productID)
+			      if err != nil {
+			          circuitBreaker.RecordFailure()
+			          return getFallbackProduct(productID), nil
+			      }
+			      
+			      circuitBreaker.RecordSuccess()
+			      return product, nil
+			  }
+			  
+			  func getFallbackProduct(productID string) *Product {
+			      // 返回靜態資料或預設值
+			      return &Product{
+			          ID:   productID,
+			          Name: "商品暫時無法查詢",
+			      }
+			  }
+			  ```
 - ## Redis 持久化：
 	- RDB：快照，fork 子進程，適合備份
 	- AOF：記錄每個寫命令，更安全但檔案大
