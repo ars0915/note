@@ -107,7 +107,7 @@
 		- **沒有隔離**：效能最好，但會有各種問題（髒讀、不可重複讀、幻讀）
 		- **完全隔離**：最安全，但效能最差（所有交易排隊執行）
 	- ### 四種隔離級別（從低到高）：
-		- Read Uncommitted → 可以讀到其他交易「未提交」的資料
+		- **Read Uncommitted** → 可以讀到其他交易「未提交」的資料
 		  ```sql
 		  -- Transaction A
 		  BEGIN;
@@ -119,7 +119,8 @@
 		  SELECT balance FROM account WHERE id = 1;
 		  -- 讀到 1000（Transaction A 還沒提交！）
 		  ```
-		- Read Committed   → **只能讀到已提交的資料**，可能不可重複讀（PostgreSQL 預設）
+		  問題：髒讀（Dirty Read）
+		- **Read Committed**   → **只能讀到已提交的資料**，可能不可重複讀（PostgreSQL 預設）
 		  ```sql
 		  -- Transaction A
 		  BEGIN;
@@ -138,8 +139,13 @@
 		  SELECT balance FROM account WHERE id = 1;
 		  -- 現在讀到 1000
 		  ```
-		- Repeatable Read  → 可能幻讀（MySQL 預設）
-		- Serializable     → 效能最差但最安全
+		  **解決了：髒讀** ✅
+		- **Repeatable Read**  → 可能幻讀（MySQL 預設）
+		  ```sql
+		  ```
+		- **Serializable**     → 效能最差但最安全
+		  ```sql
+		  ```
 - 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
 	- 答：MVCC + Gap Lock
 - **正規化：**
