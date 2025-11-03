@@ -44,7 +44,55 @@ ZSet    → 排行榜（score 排序）
 		  ```
 		- 策略：
 			- **Cache Aside (最常用)**
+			  ```go
+			  // 讀
+			  func Get(key string) (value string, err error) {
+			      // 1. 先讀 cache
+			      value, err = redis.Get(key)
+			      if err == nil {
+			          return value, nil
+			      }
+			      
+			      // 2. cache miss，讀 DB
+			      value, err = db.Get(key)
+			      if err != nil {
+			          return "", err
+			      }
+			      
+			      // 3. 寫入 cache
+			      redis.Set(key, value, 10*time.Minute)
+			      return value, nil
+			  }
+			  
+			  // 寫
+			  func Update(key, value string) error {
+			      // 1. 先更新 DB
+			      err := db.Update(key, value)
+			      if err != nil {
+			          return err
+			      }
+			      
+			      // 2. 刪除 cache（不是更新！）
+			      redis.Del(key)
+			      return nil
+			  }
+			  ```
+				- **為什麼刪除而不是更新 Cache？**
+					- 更新可能失敗，導致不一致
+					- 更新複雜（如果有計算邏輯）
+					- 刪除簡單，下次讀取時自然更新
 			- **Read/Write Through（較少用）**
+			  ```
+			  應用層 ←→ Cache ←→ DB
+			           (Cache 負責同步)
+			  ```
 			- **Write Behind（非同步，最終一致性）**
+			  ```
+			  寫入 Cache → 回傳成功
+			              ↓
+			           (非同步)
+			              ↓
+			            寫入 DB
+			  ```
 	- ### 多個 Cache 節點的一致性
 	-
