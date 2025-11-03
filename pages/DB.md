@@ -120,6 +120,12 @@
 		  -- 讀到 1000（Transaction A 還沒提交！）
 		  ```
 		  問題：髒讀（Dirty Read）
+		  ```sql
+		  Transaction A: UPDATE balance = 1000
+		  Transaction B: 讀到 1000
+		  Transaction A: ROLLBACK（回滾了！）
+		  Transaction B: 以為 balance 是 1000，但其實不是
+		  ```
 		- **Read Committed**   → **只能讀到已提交的資料**，可能不可重複讀（PostgreSQL 預設）
 		  ```sql
 		  -- Transaction A
@@ -147,8 +153,29 @@
 		  第二次讀到 1000（因為 A 提交了）
 		  → 同一個交易內，兩次讀取結果不一樣！
 		  ```
-		- **Repeatable Read**  → 可能幻讀（MySQL 預設）
+		- **Repeatable Read**  → 同一個交易內，多次讀取結果一致（MySQL 預設）
 		  ```sql
+		  -- Transaction B
+		  BEGIN;
+		  SELECT balance FROM account WHERE id = 1;  -- 讀到 500
+		  
+		  -- Transaction A（同時進行）
+		  BEGIN;
+		  UPDATE account SET balance = 1000 WHERE id = 1;
+		  COMMIT;
+		  
+		  -- Transaction B
+		  SELECT balance FROM account WHERE id = 1;  -- 還是讀到 500！
+		  COMMIT;
+		  ```
+		  
+		  **解決了：不可重複讀** ✅
+		  
+		  **如何實現？MVCC（Multi-Version Concurrency Control）**
+		  ```
+		  Transaction B 開始時，會記錄一個「版本號」
+		  之後的讀取都讀這個版本的資料
+		  即使其他交易提交了新版本，B 還是讀舊版本
 		  ```
 		- **Serializable**     → 效能最差但最安全
 		  ```sql
