@@ -43,5 +43,8 @@ ZSet    → 排行榜（score 排序）
 		  → Cache 裡是舊資料！
 		  ```
 		- 策略：
-			- **Cache Aside**
-			-
+			- **Cache Aside (最常用)**
+			- **Read/Write Through（較少用）**
+			- **Write Behind（非同步，最終一致性）**
+	- ### 多個 Cache 節點的一致性
+	-
