@@ -95,4 +95,15 @@ ZSet    → 排行榜（score 排序）
 			            寫入 DB
 			  ```
 	- ### 多個 Cache 節點的一致性
+		- **一致性 Hash（Consistent Hashing）：**
+		  ```
+		  Problem: 普通 Hash
+		  node = hash(key) % 3  *// 3 個節點*
+		  
+		  - 增加一個節點變 4 個
+		    → 大量 key 要重新分配 → Cache 全部失效！  
+		  - Solution: 一致性 Hash
+		    → 增加節點只影響相鄰節點  
+		    → 大部分 key 不需要重新分配
+		  ```
 	-
