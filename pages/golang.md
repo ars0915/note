@@ -1,16 +1,16 @@
 public:: true
 
-- goroutine GMP
+- ## goroutine GMP
 	- **基本概念要能說出來：**
 		- **G (Goroutine)**：用戶態的輕量級執行緒
 		- **M (Machine)**：OS 執行緒
 		- **P (Processor)**：邏輯處理器，持有 G 的佇列
 	- **核心優勢**：M:N 調度模型，一個 M 可以執行多個 G
-- Goroutine Leak 怎麼避免？
+- ## Goroutine Leak 怎麼避免？
 	- channel 沒關閉
 	- context 沒取消
 	- 死鎖情況
-- Channel 的使用與原理
+- ## Channel 的使用與原理
   id:: 8ca97253-f228-4ce0-8605-ca9e51f24c3d
 	- buffered vs unbuffered
 	- close 的時機
