@@ -216,6 +216,17 @@
 		  INSERT INTO account (id, balance) VALUES (11, 200);
 		  -- 會被 Block，等 A 結束
 		  ```
+- ### 實戰技巧
+  
+  **如何選擇隔離級別？**
+- **一般 Web 應用**：Read Committed 足夠
+	- 例如：部落格、論壇
+- **需要一致性讀取**：Repeatable Read
+	- 例如：報表生成、資料分析
+- **金融交易**：Serializable
+	- 例如：銀行轉帳、訂單支付
+- **高並發讀取**：Read Committed + 樂觀鎖
+	- 例如：秒殺系統
 - **正規化：**
 	- 1NF：每個欄位不可再分
 	- 2NF：消除部分依賴（非主鍵欄位完全依賴主鍵）
