@@ -43,37 +43,60 @@ ZSet    → 排行榜（score 排序）
 		  → Cache 裡是舊資料！
 		  ```
 		- 策略：
-			- **Cache Aside (最常用)**
+			- **Cache Aside (最常用)** 記得讀 DB 時加鎖
 			  ```go
-			  // 讀
-			  func Get(key string) (value string, err error) {
+			  func Get(key string) (string, error) {
 			      // 1. 先讀 cache
+			      value, err := redis.Get(key)
+			      if err == nil {
+			          return value, nil
+			      }
+			      
+			      // 2. Cache miss，加鎖
+			      lockKey := "lock:" + key
+			      lock := redis.SetNX(lockKey, "1", 10*time.Second)
+			      if !lock {
+			          // 沒搶到鎖，等一下重試
+			          time.Sleep(50 * time.Millisecond)
+			          return Get(key)  // 重試
+			      }
+			      defer redis.Del(lockKey)
+			      
+			      // 3. Double check（可能其他 thread 已經寫入了）
 			      value, err = redis.Get(key)
 			      if err == nil {
 			          return value, nil
 			      }
 			      
-			      // 2. cache miss，讀 DB
+			      // 4. 讀 DB
 			      value, err = db.Get(key)
 			      if err != nil {
 			          return "", err
 			      }
 			      
-			      // 3. 寫入 cache
+			      // 5. 寫 Cache
 			      redis.Set(key, value, 10*time.Minute)
+			      
 			      return value, nil
 			  }
 			  
-			  // 寫
 			  func Update(key, value string) error {
-			      // 1. 先更新 DB
+			      // 1. 加鎖（防止讀操作同時進行）
+			      lockKey := "lock:" + key
+			      for !redis.SetNX(lockKey, "1", 10*time.Second) {
+			          time.Sleep(10 * time.Millisecond)
+			      }
+			      defer redis.Del(lockKey)
+			      
+			      // 2. 更新 DB
 			      err := db.Update(key, value)
 			      if err != nil {
 			          return err
 			      }
 			      
-			      // 2. 刪除 cache（不是更新！）
+			      // 3. 刪除 Cache
 			      redis.Del(key)
+			      
 			      return nil
 			  }
 			  ```
