@@ -29,7 +29,6 @@ public:: true
 		- Medium:
 		  133. Clone Graph ⭐ (圖的遍歷)
 		  207. Course Schedule ⭐ (拓撲排序，遊戲常考)
-		  994. Rotting Oranges (BFS 經典)
 	- Sliding Window
 		- Medium:
 		  424. Longest Repeating Character Replacement
