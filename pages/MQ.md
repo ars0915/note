@@ -5,7 +5,6 @@ public:: true
 	  "RabbitMQ 是傳統 message broker，適合複雜路由和保證送達；Kafka 是 distributed streaming platform，適合高吞吐量和 event sourcing。"
 - ## 詳細對比
 	- #### A. 設計理念
-	  collapsed:: true
 		- | 特性 | RabbitMQ | Kafka |
 		  |------|----------|-------|
 		  | **定位** | Message Broker | Distributed Log |
@@ -14,7 +13,6 @@ public:: true
 		  | **訊息保留** | 消費後刪除 | 保留一段時間（可設定） |
 		  | **順序保證** | Queue level | Partition level |
 	- #### B. 架構差異
-	  collapsed:: true
 		- **RabbitMQ:**
 		  collapsed:: true
 		  ```
@@ -34,9 +32,7 @@ public:: true
 			- **Partition = ordered log**
 			- **Replication** 內建
 	- #### C. 使用場景對比
-	  collapsed:: true
 		- **RabbitMQ 適合：**
-		  collapsed:: true
 			- collapsed:: true
 			  1. **Task Queue**
 				- Worker pattern
@@ -53,7 +49,6 @@ public:: true
 			  4. **低延遲優先**
 				- Sub-millisecond latency
 		- **Kafka 適合：**
-		  collapsed:: true
 			- collapsed:: true
 			  1. **High Throughput**
 				- 每秒處理百萬級訊息
@@ -70,7 +65,6 @@ public:: true
 				- Real-time analytics
 				- Data transformation
 	- #### D. 核心技術差異
-	  collapsed:: true
 		- **1. Message 保留**
 		  collapsed:: true
 		  ```
@@ -89,7 +83,7 @@ public:: true
 		  ```
 		  RabbitMQ - Push:
 		  Broker 主動推給 Consumer
-		  → Consumer 需要處理 back pressure
+		  → Consumer 需要處理 back pressure (如果 Consumer 處理太慢 → 訊息堆積在 Consumer 端)
 		  
 		  Kafka - Pull:
 		  Consumer 主動拉取
@@ -157,3 +151,4 @@ public:: true
 		- Consumer acknowledgments
 		- Durable queues
 		- Persistent messages
+- # [[Kafka]]
