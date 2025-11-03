@@ -46,6 +46,14 @@ ZSet    → 排行榜（score 排序）
 			      return user, nil
 			  }
 			  ```
+				- **Singleflight 如何運作：**
+				  ```
+				  Request 1: Cache miss → 開始查DB
+				  Request 2: Cache miss → 等待 Request 1 的結果
+				  Request 3: Cache miss → 等待 Request 1 的結果
+				  ...
+				  Request 1: 查DB完成 → 所有請求共享這個結果
+				  ```
 			- 快取空值（設短過期時間）
 			  ```go
 			  func GetUser(userID string) (*User, error) {
@@ -74,8 +82,6 @@ ZSet    → 排行榜（score 排序）
 	- 2. **快取擊穿（Cache Breakdown）**
 		- 問題：熱點 key 過期，瞬間大量請求打到 DB
 		- 解法：
-			- 互斥鎖（singleflight）
-			- 永不過期 + 非同步更新
 	- 3. **快取雪崩（Cache Avalanche）**
 		- 問題：大量 key 同時過期
 		- 解法：
