@@ -1,12 +1,12 @@
-- **Redis 資料結構與使用場景：**
-  ```
-  String  → 簡單 key-value、計數器、session
-  Hash    → 物件儲存（user:{id}:name, user:{id}:level）
-  List    → 佇列、最新消息列表
-  Set     → 去重、共同好友
-  ZSet    → 排行榜（score 排序）
-  ```
-- **快取三大問題（面試必考）：**
+## Redis 資料結構與使用場景：
+```
+String  → 簡單 key-value、計數器、session
+Hash    → 物件儲存（user:{id}:name, user:{id}:level）
+List    → 佇列、最新消息列表
+Set     → 去重、共同好友
+ZSet    → 排行榜（score 排序）
+```
+- ## 快取三大問題（面試必考）：
 	- 1. **快取穿透（Cache Penetration）**
 		- 問題：查詢不存在的資料，繞過快取直擊 DB
 		- 解法：
@@ -23,12 +23,17 @@
 			- 過期時間加隨機值
 			- 多層快取
 			- 熔斷降級
-- **Redis 持久化：**
+- ## Redis 持久化：
 	- RDB：快照，fork 子進程，適合備份
 	- AOF：記錄每個寫命令，更安全但檔案大
-- **面試陷阱題：「Redis 是單執行緒為什麼還這麼快？」**
+- ## 面試陷阱題：「Redis 是單執行緒為什麼還這麼快？」
 	- IO 多路複用（epoll）
 	- 純記憶體操作
 	- 高效的資料結構
 	- 單執行緒避免 context switch
-- **分散式快取的一致性問題**
+- ## 分散式快取的一致性問題
+	- 這是**實務問題**，focus 在：
+	  1. **Cache 和 DB 的一致性**
+	  2. **多個 Cache 節點的一致性**
+	- ### Cache 和 DB 的一致性
+		-
