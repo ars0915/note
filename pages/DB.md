@@ -65,6 +65,17 @@
 			  SELECT * FROM users WHERE a = 1 AND c = 3;
 			  -- MySQL 會用 a 的索引定位，然後逐行檢查 c
 			  ```
+- ### 面試常見問題
+	- **Q1: `WHERE a = 1 AND c = 3` 能用到索引嗎？**
+		- A: 只能用到 `a` 的索引，`c` 無法用索引。
+			- MySQL 會用 `a=1` 定位到一組資料
+			- 然後逐行檢查 `c` 是否等於 3（table scan）
+	- **Q2: 為什麼要遵守最左匹配？**
+		- A: 因為聯合索引是**按順序排序**的。跳過前面的欄位，後面的就不是有序的，無法用索引。
+	- **Q3: 如何優化 `WHERE b = 2` 的查詢？**
+		- A: 兩種方式：
+			- 建立單獨的索引：`CREATE INDEX idx_b ON users (b);`
+			- 建立新的聯合索引：`CREATE INDEX idx_bc ON users (b, c);`
 - 交易隔離級別：
 	- Read Uncommitted → 可能髒讀
 	- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
