@@ -46,14 +46,6 @@ ZSet    → 排行榜（score 排序）
 			      return user, nil
 			  }
 			  ```
-				- **Singleflight 如何運作：**
-				  ```
-				  Request 1: Cache miss → 開始查DB
-				  Request 2: Cache miss → 等待 Request 1 的結果
-				  Request 3: Cache miss → 等待 Request 1 的結果
-				  ...
-				  Request 1: 查DB完成 → 所有請求共享這個結果
-				  ```
 			- 快取空值（設短過期時間）
 			  ```go
 			  func GetUser(userID string) (*User, error) {
@@ -82,6 +74,50 @@ ZSet    → 排行榜（score 排序）
 	- 2. **快取擊穿（Cache Breakdown）**
 		- 問題：熱點 key 過期，瞬間大量請求打到 DB
 		- 解法：
+			- 互斥鎖（singleflight）
+			  ```go
+			  import "golang.org/x/sync/singleflight"
+			  
+			  var sg singleflight.Group
+			  
+			  func GetProduct(productID string) (*Product, error) {
+			      // 1. 查 Redis
+			      product, err := redis.Get("product:" + productID)
+			      if err == nil {
+			          return product, nil
+			      }
+			      
+			      // 2. Cache miss，用 singleflight 確保只有一個請求查 DB
+			      key := "product:" + productID
+			      value, err, _ := sg.Do(key, func() (interface{}, error) {
+			          // 只有第一個請求會執行這裡
+			          product, err := db.GetProduct(productID)
+			          if err != nil {
+			              return nil, err
+			          }
+			          
+			          // 寫入 Cache
+			          redis.Set(key, product, 10*time.Minute)
+			          return product, nil
+			      })
+			      
+			      if err != nil {
+			          return nil, err
+			      }
+			      return value.(*Product), nil
+			  }
+			  ```
+				- **Singleflight 如何運作：**
+				  ```
+				  Request 1: Cache miss → 開始查DB
+				  Request 2: Cache miss → 等待 Request 1 的結果
+				  Request 3: Cache miss → 等待 Request 1 的結果
+				  ...
+				  Request 1: 查DB完成 → 所有請求共享這個結果
+				  ```
+			- 永不過期 + 非同步更新
+			  ```go
+			  ```
 	- 3. **快取雪崩（Cache Avalanche）**
 		- 問題：大量 key 同時過期
 		- 解法：
