@@ -11,7 +11,66 @@ ZSet    → 排行榜（score 排序）
 		- 問題：查詢不存在的資料，繞過快取直擊 DB
 		- 解法：
 			- 布隆過濾器（Bloom Filter）
+			  ```go
+			  // 初始化時，把所有存在的 user_id 加入布隆過濾器
+			  func Init() {
+			      bf := bloom.New(1000000, 5) // 100萬個元素，5個hash函數
+			      
+			      // 從DB讀取所有user_id
+			      userIDs := db.GetAllUserIDs()
+			      for _, id := range userIDs {
+			          bf.Add([]byte(id))
+			      }
+			  }
+			  
+			  func GetUser(userID string) (*User, error) {
+			      // 1. 先用布隆過濾器檢查
+			      if !bf.Test([]byte(userID)) {
+			          return nil, errors.New("user not found")  // 直接返回，不查DB
+			      }
+			      
+			      // 2. 查 Redis
+			      user, err := redis.Get("user:" + userID)
+			      if err == nil {
+			          return user, nil
+			      }
+			      
+			      // 3. 查 DB
+			      user, err = db.GetUser(userID)
+			      if err != nil {
+			          return nil, err
+			      }
+			      
+			      // 4. 寫入 Cache
+			      redis.Set("user:" + userID, user, 10*time.Minute)
+			      return user, nil
+			  }
+			  ```
 			- 快取空值（設短過期時間）
+			  ```go
+			  func GetUser(userID string) (*User, error) {
+			      // 1. 查 Redis
+			      value, err := redis.Get("user:" + userID)
+			      if err == nil {
+			          if value == "null" {  // 之前查過，不存在
+			              return nil, errors.New("user not found")
+			          }
+			          return parseUser(value), nil
+			      }
+			      
+			      // 2. 查 DB
+			      user, err := db.GetUser(userID)
+			      if err != nil {
+			          // DB 也沒有，快取空值
+			          redis.Set("user:" + userID, "null", 5*time.Minute)  // 短過期時間
+			          return nil, errors.New("user not found")
+			      }
+			      
+			      // 3. 寫入正常值
+			      redis.Set("user:" + userID, user, 30*time.Minute)
+			      return user, nil
+			  }
+			  ```
 	- 2. **快取擊穿（Cache Breakdown）**
 		- 問題：熱點 key 過期，瞬間大量請求打到 DB
 		- 解法：
