@@ -15,17 +15,17 @@ public:: true
 	- buffered vs unbuffered
 	- close 的時機
 	- select 的使用
-- sync 包的使用
+- ## sync 包的使用
 	- WaitGroup、Mutex、RWMutex
 	- Once、Pool
 	- 什麼時候用 channel，什麼時候用 mutex？
-- Context 的傳遞與取消
+- ## Context 的傳遞與取消
 	- 超時控制
 	- 優雅關閉
-- 常見並發問題
+- ## 常見並發問題
 	- Race condition 怎麼 debug？
 	- 如何控制 goroutine 數量？（worker pool）
-- panic
+- ## panic
 	- `recover()` **必須**在 `defer` 函數中呼叫
 	  ```go
 	  func wrong2() {
@@ -55,7 +55,7 @@ public:: true
 		- **業務邏輯錯誤**
 	- **面試標準答案：**
 		- "Go 提倡用 error 處理錯誤，panic 應該只用在真正無法恢復的異常情況。在函式庫開發中，幾乎不應該讓 panic 傳播給呼叫者，應該 recover 後轉成 error 回傳。"
-- channel
+- ## channel
 	- Unbuffered Channel
 		- 在每次要傳送或接收前都必需進行等待
 		  對於一個沒有 buffer 的 channel ，channel 上一次只能有一個值，前一個傳完，才能傳下一個，不能允許一次上傳超過一個
@@ -63,7 +63,7 @@ public:: true
 		- 如果是有 buffer 的 channel 那麼就 **不必在意對方是否接收到** ，只要在以是否仍有足夠的緩充空間，如果沒有空間了才會進行等待。
 	- 接收不確定個數的 channel
 		- 因此可以利用 `for + range` 來接收 channel 上的值，但是要注意一點，傳送最後一個值後必需利用 `close()` 將 channel 關閉，golang 才知道這是最後一個值
-- TODO:
+- ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
 	- ### ✅  **必看** （直接影響面試表現）
