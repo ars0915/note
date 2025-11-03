@@ -15,4 +15,18 @@
 	- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
 	- Repeatable Read  → 可能幻讀（MySQL 預設）
 	- Serializable     → 效能最差但最安全
--
+- 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
+	- 答：MVCC + Gap Lock
+- **正規化：**
+	- 1NF：每個欄位不可再分
+	- 2NF：消除部分依賴（非主鍵欄位完全依賴主鍵）
+	- 3NF：消除傳遞依賴
+	- 反正規化：為了效能犧牲一些正規化（常見於遊戲後端）
+- **MySQL vs PostgreSQL：**
+  | 特性 | MySQL | PostgreSQL |
+  |------|-------|------------|
+  | ACID | InnoDB 支援 | 完整支援 |
+  | 複雜查詢 | 較弱 | 強大（支援 window function, CTE）|
+  | JSON | 5.7+ 支援 | 原生支援且功能更強 |
+  | 複製 | Master-Slave | Streaming Replication |
+  | 預設隔離級別 | Repeatable Read | Read Committed |
