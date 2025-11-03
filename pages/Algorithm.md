@@ -20,7 +20,6 @@ public:: true
 		- Medium:
 		  152. Maximum Product Subarray
 		  5. Longest Palindromic Substring
-		  72. Edit Distance (如果時間夠)
 	- Backtracking
 		- 46. Permutations ⭐ (排列，必考)
 		  78. Subsets ⭐ (子集，必考)
