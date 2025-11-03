@@ -117,6 +117,12 @@ ZSet    → 排行榜（score 排序）
 			              ↓
 			            寫入 DB
 			  ```
+		- | 策略 | 讀 | 寫 | 一致性 | 效能 | 複雜度 |
+		  | ---- | ---- | ---- |
+		  | **Cache Aside** | App 自己讀 | 更新 DB + 刪 Cache | 最終一致 | 好 | 低 |
+		  | **Read Through** | Cache 代理讀 | App 自己寫 | 最終一致 | 好 | 中 |
+		  | **Write Through** | Cache 代理讀 | Cache 同步寫 | 強一致 | 寫慢 | 中 |
+		  | **Write Behind** | Cache 代理讀 | Cache 非同步寫 | 最終一致 | 極快 | 高 |
 	- ### 多個 Cache 節點的一致性
 		- **一致性 Hash（Consistent Hashing）：**
 		  ```
