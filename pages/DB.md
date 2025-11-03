@@ -126,7 +126,7 @@
 		  Transaction A: ROLLBACK（回滾了！）
 		  Transaction B: 以為 balance 是 1000，但其實不是
 		  ```
-		- **Read Committed**   → **只能讀到已提交的資料***（PostgreSQL 預設）
+		- **Read Committed**   → **只能讀到已提交的資料***（PostgreSQL 預設 可以改成用其他）
 		  ```sql
 		  -- Transaction A
 		  BEGIN;
