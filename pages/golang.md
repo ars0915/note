@@ -1,3 +1,68 @@
+public:: true
+
+- goroutine GMP
+	- **基本概念要能說出來：**
+		- **G (Goroutine)**：用戶態的輕量級執行緒
+		- **M (Machine)**：OS 執行緒
+		- **P (Processor)**：邏輯處理器，持有 G 的佇列
+	- **核心優勢**：M:N 調度模型，一個 M 可以執行多個 G
+- Goroutine Leak 怎麼避免？
+	- channel 沒關閉
+	- context 沒取消
+	- 死鎖情況
+- Channel 的使用與原理
+  id:: 8ca97253-f228-4ce0-8605-ca9e51f24c3d
+	- buffered vs unbuffered
+	- close 的時機
+	- select 的使用
+- sync 包的使用
+	- WaitGroup、Mutex、RWMutex
+	- Once、Pool
+	- 什麼時候用 channel，什麼時候用 mutex？
+- Context 的傳遞與取消
+	- 超時控制
+	- 優雅關閉
+- 常見並發問題
+	- Race condition 怎麼 debug？
+	- 如何控制 goroutine 數量？（worker pool）
+- panic
+	- `recover()` **必須**在 `defer` 函數中呼叫
+	  ```go
+	  func wrong2() {
+	      defer recover() // ❌ 無效！recover 必須在「函數呼叫」中
+	      panic("test")
+	  }
+	  
+	  // 正確寫法
+	  func correct() {
+	      defer func() {
+	          recover() // ✅ 在匿名函數中呼叫
+	      }()
+	      panic("test")
+	  }
+	  ```
+	- panic 發生後，當前函數會立即停止，開始執行 defer 棧
+	- recover 要跟 panic 在同一個 goroutine 才會被觸發
+	- 如果沒有 recover，panic 會向上傳播直到程式崩潰
+	- defer 是 **LIFO（後進先出）** 棧
+	- 適合用 panic 的場景：
+		- **初始化階段的致命錯誤**（如設定檔載入失敗）
+		- **程式設計錯誤**（如除以零、陣列越界）
+		- **不可恢復的錯誤**（如記憶體分配失敗）
+	- 不應該用 panic 的場景：
+		- **正常的錯誤處理**（應該用 `error` 回傳）
+		- **可預期的失敗**（如網路請求失敗、檔案不存在）
+		- **業務邏輯錯誤**
+	- **面試標準答案：**
+		- "Go 提倡用 error 處理錯誤，panic 應該只用在真正無法恢復的異常情況。在函式庫開發中，幾乎不應該讓 panic 傳播給呼叫者，應該 recover 後轉成 error 回傳。"
+- channel
+	- Unbuffered Channel
+		- 在每次要傳送或接收前都必需進行等待
+		  對於一個沒有 buffer 的 channel ，channel 上一次只能有一個值，前一個傳完，才能傳下一個，不能允許一次上傳超過一個
+	- buffered Channel
+		- 如果是有 buffer 的 channel 那麼就 **不必在意對方是否接收到** ，只要在以是否仍有足夠的緩充空間，如果沒有空間了才會進行等待。
+	- 接收不確定個數的 channel
+		- 因此可以利用 `for + range` 來接收 channel 上的值，但是要注意一點，傳送最後一個值後必需利用 `close()` 將 channel 關閉，golang 才知道這是最後一個值
 - TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
