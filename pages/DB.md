@@ -37,6 +37,34 @@
 		- 隱式類型轉換
 	- 聯合索引的最左匹配原則
 		- `(a, b, c)` 的索引只能用於 `a`、`a,b`、`a,b,c` 的查詢
+		- **規則：索引只能從最左邊開始連續使用**
+			- 能用到索引的查詢：
+			  ```sql
+			  -- Case 1: 用 a （✅ 用到索引）
+			  SELECT * FROM users WHERE a = 1;
+			  
+			  -- Case 2: 用 a, b （✅ 用到索引）
+			  SELECT * FROM users WHERE a = 1 AND b = 2;
+			  
+			  -- Case 3: 用 a, b, c （✅ 用到索引）
+			  SELECT * FROM users WHERE a = 1 AND b = 2 AND c = 3;
+			  
+			  -- Case 4: 順序無關 （✅ 用到索引）
+			  SELECT * FROM users WHERE b = 2 AND a = 1;  -- MySQL 會優化
+			  ```
+			- 不能用到索引的查詢：
+			  ```sql
+			  -- Case 1: 跳過 a，直接用 b （❌ 不能用索引）
+			  SELECT * FROM users WHERE b = 2;
+			  -- 原因：索引先按 a 排序，沒有 a 條件就無法定位
+			  
+			  -- Case 2: 跳過 a，用 c （❌ 不能用索引）
+			  SELECT * FROM users WHERE c = 3;
+			  
+			  -- Case 3: 用 a 和 c，跳過 b （⚠️ 只能用到 a 的索引）
+			  SELECT * FROM users WHERE a = 1 AND c = 3;
+			  -- MySQL 會用 a 的索引定位，然後逐行檢查 c
+			  ```
 - 交易隔離級別：
 	- Read Uncommitted → 可能髒讀
 	- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
