@@ -191,6 +191,20 @@
 			  -- Transaction A
 			  SELECT COUNT(*) FROM account WHERE balance > 100;  -- 結果：11 筆？
 			  ```
+			- 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
+				- 答：MySQL 用 Next-Key Lock 避免
+				  ```sql
+				  -- Transaction A
+				  BEGIN;
+				  SELECT * FROM account WHERE id > 10 FOR UPDATE;
+				  -- MySQL 會鎖定：
+				  -- 1. 所有 id > 10 的現有資料（Record Lock）
+				  -- 2. id > 10 的「間隙」（Gap Lock）
+				  
+				  -- Transaction B
+				  INSERT INTO account (id, balance) VALUES (15, 200);
+				  -- 被 Block！因為 15 在被鎖定的間隙內
+				  ```
 		- **Serializable** → 完全隔離，就像交易排隊執行一樣
 		  ```sql
 		  -- Transaction A
@@ -202,8 +216,6 @@
 		  INSERT INTO account (id, balance) VALUES (11, 200);
 		  -- 會被 Block，等 A 結束
 		  ```
-- 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
-	- 答：MVCC + Gap Lock
 - **正規化：**
 	- 1NF：每個欄位不可再分
 	- 2NF：消除部分依賴（非主鍵欄位完全依賴主鍵）
