@@ -126,7 +126,7 @@
 		  Transaction A: ROLLBACK（回滾了！）
 		  Transaction B: 以為 balance 是 1000，但其實不是
 		  ```
-		- **Read Committed**   → **只能讀到已提交的資料**（PostgreSQL 預設）
+		- **Read Committed**   → **只能讀到已提交的資料***（PostgreSQL 預設）
 		  ```sql
 		  -- Transaction A
 		  BEGIN;
@@ -146,13 +146,13 @@
 		  -- 現在讀到 1000
 		  ```
 		  **解決了：髒讀** ✅
-		  問題：不可重複讀（Non-Repeatable Read）
-		  ```sql
-		  Transaction B 在同一個交易中讀了兩次
-		  第一次讀到 500
-		  第二次讀到 1000（因為 A 提交了）
-		  → 同一個交易內，兩次讀取結果不一樣！
-		  ```
+			- **問題：不可重複讀（Non-Repeatable Read）**
+			  ```sql
+			  Transaction B 在同一個交易中讀了兩次
+			  第一次讀到 500
+			  第二次讀到 1000（因為 A 提交了）
+			  → 同一個交易內，兩次讀取結果不一樣！
+			  ```
 		- **Repeatable Read**  → 同一個交易內，多次讀取結果一致（MySQL 預設）
 		  ```sql
 		  -- Transaction B
@@ -177,6 +177,8 @@
 		  之後的讀取都讀這個版本的資料
 		  即使其他交易提交了新版本，B 還是讀舊版本
 		  ```
+			- **問題：幻讀（Phantom Read）**
+		-
 		- **Serializable**     → 效能最差但最安全
 		  ```sql
 		  ```
