@@ -191,8 +191,16 @@
 			  -- Transaction A
 			  SELECT COUNT(*) FROM account WHERE balance > 100;  -- 結果：11 筆？
 			  ```
-		- **Serializable**     → 效能最差但最安全
+		- **Serializable** → 完全隔離，就像交易排隊執行一樣
 		  ```sql
+		  -- Transaction A
+		  BEGIN;
+		  SELECT * FROM account WHERE balance > 100;
+		  
+		  -- Transaction B（想插入資料）
+		  BEGIN;
+		  INSERT INTO account (id, balance) VALUES (11, 200);
+		  -- 會被 Block，等 A 結束
 		  ```
 - 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
 	- 答：MVCC + Gap Lock
