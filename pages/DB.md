@@ -76,6 +76,17 @@
 		- A: 兩種方式：
 			- 建立單獨的索引：`CREATE INDEX idx_b ON users (b);`
 			- 建立新的聯合索引：`CREATE INDEX idx_bc ON users (b, c);`
+- ### 實戰技巧
+	- **如何選擇聯合索引的順序？**
+		- 等於條件放前面，範圍條件放後面
+		  ```sql
+		  -- 如果查詢是：WHERE a = 1 AND b > 2
+		  -- 索引應該建：(a, b) 而不是 (b, a)
+		  ```
+		- 選擇性高的放前面
+		  ```
+		  ```
+		- 常用查詢模式決定順序
 - 交易隔離級別：
 	- Read Uncommitted → 可能髒讀
 	- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
