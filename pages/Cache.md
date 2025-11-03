@@ -36,4 +36,12 @@ ZSet    → 排行榜（score 排序）
 	  1. **Cache 和 DB 的一致性**
 	  2. **多個 Cache 節點的一致性**
 	- ### Cache 和 DB 的一致性
-		-
+		- **常見問題：**
+		  ```
+		  Thread 1: 更新 DB → 刪除 Cache
+		  Thread 2: 讀 Cache miss → 讀舊的 DB → 寫入 Cache
+		  → Cache 裡是舊資料！
+		  ```
+		- 策略：
+			- **Cache Aside**
+			-
