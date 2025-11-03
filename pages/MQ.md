@@ -110,43 +110,35 @@ public:: true
 		  ```
 - ## 面試回答模板
 	- ### 什麼時候用 RabbitMQ，什麼時候用 Kafka
-	  collapsed:: true
 		- 用 RabbitMQ：
-		  collapsed:: true
 			- Task queue（worker pattern）
 			- 需要複雜 routing
 			- RPC pattern
 			- 低延遲更重要
 		- 用 Kafka：
-		  collapsed:: true
 			- High throughput（百萬 msg/sec）
 			- 需要 replay events
 			- Event sourcing
 			- Log aggregation
 			- Data pipeline
 	- ### Kafka 的 Consumer Group 是什麼？
-	  collapsed:: true
 		- Consumer Group 讓多個 consumer 共同消費一個 topic。
 		- Key 概念：
-		  collapsed:: true
 			- 同一個 group 內，每個 partition 只能被一個 consumer 消費
 			- 不同 group 可以獨立消費同一個 topic
 			- 用來做 horizontal scaling
 			  
 			  比如有 Topic 有 4 個 partitions，Consumer Group 有 2 個 consumers，那麼每個 consumer 會負責 2 個 partitions。"
 	- ### RabbitMQ 的 Exchange 類型？
-	  collapsed:: true
 		- 1. Direct: 完全匹配 routing key
 		  2. Topic: Pattern 匹配 `(用 * 和 #)`
 		  3. Fanout: 廣播給所有綁定的 queue
 		  4. Headers: 根據 message headers 路由
 	- ### Kafka 的 replication 怎麼運作？
-	  collapsed:: true
 		- Leader/Follower
 		- ISR (In-Sync Replicas)
 		- 保證 durability
 	- ### RabbitMQ 怎麼保證訊息不丟？
-	  collapsed:: true
 		- Publisher confirms
 		- Consumer acknowledgments
 		- Durable queues
