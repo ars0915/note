@@ -103,10 +103,14 @@
 	  | **C**onsistency 一致性 | 資料保持邏輯正確 | 轉帳前後，總金額不變 |
 	  | **I**solation 隔離性 | 並發交易互不影響 | 兩個人同時轉帳，不會互相干擾 |
 	  | **D**urability 持久性 | 提交後永久保存 | 交易成功後，即使斷電也不會丟失 |
-	- Read Uncommitted → 可能髒讀
-	- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
-	- Repeatable Read  → 可能幻讀（MySQL 預設）
-	- Serializable     → 效能最差但最安全
+	- **為什麼需要隔離級別？**
+		- **沒有隔離**：效能最好，但會有各種問題（髒讀、不可重複讀、幻讀）
+		- **完全隔離**：最安全，但效能最差（所有交易排隊執行）
+	- ### 四種隔離級別（從低到高）：
+		- Read Uncommitted → 可能髒讀
+		- Read Committed   → 可能不可重複讀（PostgreSQL 預設）
+		- Repeatable Read  → 可能幻讀（MySQL 預設）
+		- Serializable     → 效能最差但最安全
 - 面試常問：「MySQL 的 Repeatable Read 是怎麼避免幻讀的？」
 	- 答：MVCC + Gap Lock
 - **正規化：**
