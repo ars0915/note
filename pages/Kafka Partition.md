@@ -58,11 +58,11 @@ tags:: Kafka
 				  ```
 				  同一個玩家的更新還是在同一個 partition（保證順序）
 				  但不同玩家會分散到更多 partition
-				- **應用層聚合**
-				-
-				-
-				-
-				-
+				- **應用層聚合** 在發送前，先在記憶體中聚合同一個玩家的多次更新
+				- **接受 Trade-off**
+				  對於排行榜這種場景，**順序性 > 負載均衡**，所以熱點問題可能是可接受的。只要：
+					- 監控熱點 partition 的 lag
+					- 必要時增加該 partition 的 consumer 處理能力
 	- ### 由 kafka 決定
 		- 如果沒有使用 `Partition Key`，[[Kafka]] 就會使用輪詢的方式來決定寫入哪個 `Partition`。
 		  這樣，消息會均衡的寫入各個 `Partition`。
