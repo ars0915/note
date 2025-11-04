@@ -160,7 +160,41 @@ public:: true
 			  - Leader 掛了，可以被選為新 Leader
 			  ```
 		- ISR (In-Sync Replicas)
-		  ISR = 跟得上 Leader 的 Followers
+			- **ISR = 跟得上 Leader 的 Followers**
+			  ```
+			  Partition 0:
+			    Leader: Broker 1 (offset: 1000)
+			    ISR: [Broker 1, Broker 2, Broker 3]  ← 都跟得上
+			    
+			    Broker 2 (offset: 1000)  ← 完全同步
+			    Broker 3 (offset: 998)   ← 稍微落後，但在容忍範圍內
+			  ```
+			- ### ISR 的判斷標準
+			  兩個條件**都要滿足**才算 In-Sync：
+				- 1. **replica.lag.time.max.ms**（預設 10 秒）
+				  ```
+				   如果 Follower 超過 10 秒沒向 Leader 發送 fetch request
+				   → 踢出 ISR
+				  ```
+				  
+				  2. **Follower 的 offset 不能落後太多**
+				  ```
+				   Leader offset: 1000
+				   Follower offset: 990  ← 如果這個差距在容忍範圍內，就算 In-Sync
+				  ```
+			- ### ISR 動態變化的例子
+			  ```
+			  初始狀態：
+			  ISR: [Broker 1(L), Broker 2, Broker 3]
+			  
+			  Broker 3 網路變慢：
+			  → 超過 10 秒沒 fetch
+			  → ISR: [Broker 1(L), Broker 2]  ← Broker 3 被踢出
+			  
+			  Broker 3 網路恢復：
+			  → 追上進度
+			  → ISR: [Broker 1(L), Broker 2, Broker 3]  ← 重新加入
+			  ```
 		- 保證 durability
 	- ### RabbitMQ 怎麼保證訊息不丟？
 		- Publisher confirms
