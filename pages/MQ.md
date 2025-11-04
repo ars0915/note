@@ -216,7 +216,25 @@ public:: true
 			  Producer 收到確認
 			  ```
 		- Consumer acknowledgments
-			-
+			- ```
+			  RabbitMQ → Consumer
+			             ↓
+			             開始處理
+			             ↓
+			             ┌─ 成功 → msg.Ack() → RabbitMQ 刪除訊息 ✅
+			             │
+			             └─ 失敗 → msg.Nack() → RabbitMQ 重新入列 🔄
+			                     → msg.Reject(false) → 進入 DLQ ⚠️
+			  ```
 		- Durable queues
+			- durable = false:
+			  Queue 只存在記憶體
+			  → RabbitMQ 重啟 → Queue 消失 ❌
+			- durable = true:
+			  Queue 定義寫入磁碟
+			  → RabbitMQ 重啟 → Queue 還在 ✅
+			- ⚠️ 注意：只有 Queue 存在，訊息還是可能丟！
+			  還需要配合 Persistent Messages
 		- Persistent messages
+			-
 - # [[Kafka]]
