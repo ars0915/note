@@ -95,6 +95,7 @@ public:: true
 		  RabbitMQ:
 		  在 single queue 內保證順序
 		  Multiple consumers 可能打亂
+		  
 		  - Kafka:
 		  在 single partition 內保證順序
 		  Partition key 決定哪個 partition
@@ -104,6 +105,7 @@ public:: true
 		  RabbitMQ:
 		  Vertical scaling (單機效能)
 		  Clustering 有限
+		  
 		  - Kafka:
 		  Horizontal scaling (加 broker)
 		  Partition 分散負載
