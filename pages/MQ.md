@@ -169,7 +169,7 @@ public:: true
 			    Broker 2 (offset: 1000)  ← 完全同步
 			    Broker 3 (offset: 998)   ← 稍微落後，但在容忍範圍內
 			  ```
-			- ### ISR 的判斷標準
+			- ISR 的判斷標準
 			  兩個條件**都要滿足**才算 In-Sync：
 				- 1. **replica.lag.time.max.ms**（預設 10 秒）
 				  ```
@@ -182,7 +182,7 @@ public:: true
 				   Leader offset: 1000
 				   Follower offset: 990  ← 如果這個差距在容忍範圍內，就算 In-Sync
 				  ```
-			- ### ISR 動態變化的例子
+			- ISR 動態變化的例子
 			  ```
 			  初始狀態：
 			  ISR: [Broker 1(L), Broker 2, Broker 3]
