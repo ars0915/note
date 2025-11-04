@@ -204,7 +204,19 @@ public:: true
 			-
 	- ### RabbitMQ 怎麼保證訊息不丟？
 		- Publisher confirms
+			- ```
+			  Producer → RabbitMQ
+			             ↓
+			             Exchange 路由
+			             ↓
+			             寫入 Queue（或持久化到磁碟）
+			             ↓
+			             回覆 Ack/Nack ✅
+			             ↓
+			  Producer 收到確認
+			  ```
 		- Consumer acknowledgments
+			-
 		- Durable queues
 		- Persistent messages
 - # [[Kafka]]
