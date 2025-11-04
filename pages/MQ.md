@@ -3,6 +3,7 @@ public:: true
 - ## RabbitMQ 跟 kafka 差異
 	- **一句話回答：**
 	  "RabbitMQ 是傳統 message broker，適合複雜路由和保證送達；Kafka 是 distributed streaming platform，適合高吞吐量和 event sourcing。"
+		- **Event Sourcing** 是一種架構模式，核心概念是：**不儲存資料的最終狀態，而是儲存所有改變資料的事件（events）**
 - ## 詳細對比
 	- #### A. 設計理念
 		- | 特性 | RabbitMQ | Kafka |
@@ -52,8 +53,7 @@ public:: true
 			- collapsed:: true
 			  1. **High Throughput**
 				- 每秒處理百萬級訊息
-			- collapsed:: true
-			  2. **Event Sourcing**
+			- 2. **Event Sourcing**
 				- 需要保留所有 events
 				- Event replay
 			- collapsed:: true
