@@ -236,5 +236,15 @@ public:: true
 			- ⚠️ 注意：只有 Queue 存在，訊息還是可能丟！
 			  還需要配合 Persistent Messages
 		- Persistent messages
-			-
+			- ```
+			  訊息進入 Queue
+			  ↓
+			  DeliveryMode = Persistent?
+			     ├─ No  → 只存記憶體 ❌
+			     └─ Yes → 寫入磁碟 ✅
+			             ↓
+			             RabbitMQ 重啟後
+			             ↓
+			             訊息還在 ✅
+			  ```
 - # [[Kafka]]
