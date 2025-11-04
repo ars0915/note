@@ -34,34 +34,27 @@ public:: true
 			- **Replication** 內建
 	- #### C. 使用場景對比
 		- **RabbitMQ 適合：**
-			- collapsed:: true
-			  1. **Task Queue**
+			- 1. **Task Queue**
 				- Worker pattern
 				- 保證 exactly-once processing（搭配 acknowledgment）
-			- collapsed:: true
-			  2. **複雜 Routing**
+			- 2. **複雜 Routing**
 				- 需要根據 routing key 送到不同 queue
 				- Topic exchange 做靈活的訂閱
-			- collapsed:: true
-			  3. **RPC Pattern**
+			- 3. **RPC Pattern**
 				- Request-reply 模式
 				- 需要回覆的場景
-			- collapsed:: true
-			  4. **低延遲優先**
+			- 4. **低延遲優先**
 				- Sub-millisecond latency
 		- **Kafka 適合：**
-			- collapsed:: true
-			  1. **High Throughput**
+			- 1. **High Throughput**
 				- 每秒處理百萬級訊息
 			- 2. **Event Sourcing**
 				- 需要保留所有 events
 				- Event replay
-			- collapsed:: true
-			  3. **Log Aggregation**
+			- 3. **Log Aggregation**
 				- 收集大量 logs
 				- 數據 pipeline
-			- collapsed:: true
-			  4. **Stream Processing**
+			- 4. **Stream Processing**
 				- Real-time analytics
 				- Data transformation
 	- #### D. 核心技術差異
