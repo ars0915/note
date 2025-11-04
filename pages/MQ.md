@@ -131,7 +131,36 @@ public:: true
 		  4. Headers: 根據 message headers 路由
 	- ### Kafka 的 replication 怎麼運作？
 		- Leader/Follower
+		   ```
+		  Topic: user-events (3 partitions, replication factor = 3)
+		  
+		  Partition 0:
+		    Leader: Broker 1  ← 處理所有讀寫
+		    Follower: Broker 2  ← 複製 Leader 的資料
+		    Follower: Broker 3  ← 複製 Leader 的資料
+		  
+		  Partition 1:
+		    Leader: Broker 2
+		    Follower: Broker 1
+		    Follower: Broker 3
+		  
+		  Partition 2:
+		    Leader: Broker 3
+		    Follower: Broker 1
+		    Follower: Broker 2
+		  ```
+			- 只有 Leader 處理讀寫請求
+			  ```
+			  Producer → 只能寫到 Leader
+			  Consumer → 只能從 Leader 讀（Kafka 2.4+ 可以從 Follower 讀）
+			  
+			  Follower 的工作：
+			  - 從 Leader 拉取資料（像個 Consumer）
+			  - 保持資料同步
+			  - Leader 掛了，可以被選為新 Leader
+			  ```
 		- ISR (In-Sync Replicas)
+		  ISR = 跟得上 Leader 的 Followers
 		- 保證 durability
 	- ### RabbitMQ 怎麼保證訊息不丟？
 		- Publisher confirms
