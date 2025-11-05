@@ -56,7 +56,7 @@ tags:: Kafka
 				  ```
 				  partitionKey := fmt.Sprintf("%s:%d", userID, userID % 10)
 				  ```
-				  同一個玩家的更新還是在同一個 partition（保證順序）
+				  同一個玩家的更新還是在同一個 partition
 				  但不同玩家會分散到更多 partition
 				- **應用層聚合** 在發送前，先在記憶體中聚合同一個玩家的多次更新
 				- **接受 Trade-off**
