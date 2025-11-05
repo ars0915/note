@@ -46,6 +46,31 @@ tags:: Kafka, Kafka Partition
 - ## 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
 	- 最常見的 3 個原因
 		- Consumer 處理時間太長
+		  ```go
+		  // 問題：Consumer 處理一批訊息超過 max.poll.interval.ms（預設 5 分鐘）
+		  for msg := range messages {
+		      processMessage(msg)  // 如果這個很慢...
+		  }
+		  // → Coordinator 認為 Consumer 掛了 → 觸發 rebalance
+		  
+		  // 解決方案：
+		  props.put("max.poll.interval.ms", 600000)  // 增加到 10 分鐘
+		  props.put("max.poll.records", 100)         // 減少每次拉取的數量
+		  ```
 		- session.timeout.ms 設定太短
+		  ```go
+		  // 問題：Consumer 的心跳超時
+		  props.put("session.timeout.ms", 10000)  // 10 秒太短
+		  
+		  // 解決方案：
+		  props.put("session.timeout.ms", 30000)      // 增加到 30 秒
+		  props.put("heartbeat.interval.ms", 3000)    // 心跳間隔 3 秒
+		  ```
 		- Consumer 實例頻繁啟動/關閉
+		  ```go
+		  // 問題：部署、擴縮容觸發 rebalance
+		  
+		  // 解決方案（你提到的）：
+		  props.put("group.instance.id", "consumer-1")  // Static Membership
+		  ```
 -
