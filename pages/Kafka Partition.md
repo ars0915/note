@@ -57,7 +57,7 @@ tags:: Kafka
 				  partitionKey := fmt.Sprintf("%s:%d", userID, userID % 10)
 				  ```
 				  同一個玩家的更新還是在同一個 partition
-				  但不同玩家會分散到更多 partition
+				  但不同玩家會分散到更多 partition (不保證順序)
 				- **應用層聚合** 在發送前，先在記憶體中聚合同一個玩家的多次更新
 				- **接受 Trade-off**
 				  對於排行榜這種場景，**順序性 > 負載均衡**，所以熱點問題可能是可接受的。只要：
