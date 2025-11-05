@@ -43,3 +43,9 @@ tags:: Kafka, Kafka Partition
 	- 使用 `static membership` 的兩個條件是：
 		- `Consumer` 客戶端新增設定：**props.put("group.instance.id", "con1")**
 		- 設定 `session.timeout.ms` 為一個合理的時間，這個參數受限於 `group.min.session.timeout.ms`（6 sec）和`group.max.session.timeout.ms`（30 min），即大小不能超過這個上下限。但是調的過大也可能造成 `broker` 不斷等待掛掉的消費者客戶端的情況。
+- ## 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
+	- 最常見的 3 個原因
+		- Consumer 處理時間太長
+		- session.timeout.ms 設定太短
+		- Consumer 實例頻繁啟動/關閉
+-
