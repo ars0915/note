@@ -28,6 +28,16 @@ public:: true
 		  	done <- true
 		  }
 		  
+		  // 或是使用 select 尝试向信道 done 发送信号，如果发送失败，则说明缺少接收者(receiver)，即超时了，那么直接退出即可。
+		  func doGoodthing(done chan bool) {
+		  	time.Sleep(time.Second)
+		  	select {
+		  	case done <- true:
+		  	default:
+		  		return
+		  	}
+		  }
+		  
 		  func timeout(f func(chan bool)) error {
 		  	done := make(chan bool, 1) // 创建channel done 时，缓冲区设置为 1，即使没有接收方，发送方也不会发生阻塞。
 		  	go f(done)
@@ -42,7 +52,7 @@ public:: true
 		  
 		  // timeout(doBadthing)
 		  ```
-		  我们仔细阅读这段代码，其实是非常容易发现问题所在的。`done` 是一个无缓冲区的 channel，如果没有超时，`doBadthing` 中会向 done 发送信号，`select` 中会接收 done 的信号，因此 `doBadthing` 能够正常退出，子协程也能够正常退出。
+		  如果 done 是一个无缓冲区的 channel，如果没有超时，`doBadthing` 中会向 done 发送信号，`select` 中会接收 done 的信号，因此 `doBadthing` 能够正常退出，子协程也能够正常退出。
 		  但是，当超时发生时，select 接收到 `time.After` 的超时信号就返回了，`done` 没有了接收方(receiver)，而 `doBadthing` 在执行 1s 后向 `done` 发送信号，由于没有接收者且无缓存区，发送者(sender)会一直阻塞，导致协程不能退出。
 		-
 		-
