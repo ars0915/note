@@ -64,7 +64,8 @@ public:: true
 	- 接收不確定個數的 channel
 		- 因此可以利用 `for + range` 來接收 channel 上的值，但是要注意一點，傳送最後一個值後必需利用 `close()` 將 channel 關閉，golang 才知道這是最後一個值
 - ## array
-	- array 的長度是固定的，兩個長度不同的 array 不能
+	- array 的長度是固定的，兩個長度不同的 array 不能互相賦值
+	- C 語言的 array 是指向第一個元素的指針， Go 不是。Go 的 array 被
 	-
 -
 -
