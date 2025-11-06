@@ -154,23 +154,20 @@ public:: true
 		  尾部删除元素，复杂度 O(1)
 		  ![image.png](../assets/image_1762430372145_0.png)
 		  头部删除元素，如果使用切片方式，复杂度为 O(1)。但是需要注意的是，底层数组没有发生改变，第 0 个位置的内存仍旧没有释放。如果有大量这样的操作，头部的内存会一直被占用。
-	- ### 性能陷阱
-		- #### 大量内存得不到释放
-			- 在已有切片的基础上进行切片，不会创建新的底层数组。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组。因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放。比较推荐的做法，使用 `copy` 替代 `re-slice`。
-			- ```go
-			  func lastNumsBySlice(origin []int) []int {
-			  	return origin[len(origin)-2:]
-			  }
-			  
-			  func lastNumsByCopy(origin []int) []int {
-			  	result := make([]int, 2)
-			  	copy(result, origin[len(origin)-2:])
-			  	return result
-			  }
-			  ```
-		-
--
--
+	- ### 性能陷阱 大量内存得不到释放
+		- 在已有切片的基础上进行切片，不会创建新的底层数组。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组。因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放。比较推荐的做法，使用 `copy` 替代 `re-slice`。
+		- ```go
+		  func lastNumsBySlice(origin []int) []int {
+		  	return origin[len(origin)-2:]
+		  }
+		  
+		  func lastNumsByCopy(origin []int) []int {
+		  	result := make([]int, 2)
+		  	copy(result, origin[len(origin)-2:])
+		  	return result
+		  }
+		  ```
+		  `lastNumsBySlice` 耗费了 100.14 MB 内存，也就是说，申请的 100 个 1 MB 大小的内存没有被回收。因为切片虽然只使用了最后 2 个元素，但是因为与原来 1M 的切片引用了相同的底层数组，底层数组得不到释放，因此，最终 100 MB 的内存始终得不到释放。而 `lastNumsByCopy` 仅消耗了 3.14 MB 的内存。这是因为，通过 `copy`，指向了一个新的底层数组，当 origin 不再被引用后，内存会被垃圾回收(garbage collector, GC)。
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
@@ -183,6 +180,5 @@ public:: true
 	- ✅ 並發控制（**必看**，WaitGroup、Context、ErrGroup）
 	  
 	  **第二章：常用資料結構**
-	- ✅ slice 陷阱（**必看**，面試愛考 append、擴容、切片共享底層陣列）
 	- ⚠️ string/[]byte 轉換（**選看**，知道零拷貝的概念即可）
 	- ⚠️ for-range（**選看**，知道閉包陷阱即可）
