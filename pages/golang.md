@@ -62,6 +62,40 @@ public:: true
 		  | 关闭 | panic | panic | 成功关闭 |
 		  | 发送数据 | 永久阻塞 | panic | 阻塞或成功发送 |
 		  | 接收数据 | 永久阻塞 | 永不阻塞 | 阻塞或者成功接收 |
+		- ```go
+		  func doCheckClose(taskCh chan int) {
+		  	for {
+		  		select {
+		  		case t, beforeClosed := <-taskCh:
+		  			if !beforeClosed {
+		  				fmt.Println("taskCh has been closed")
+		  				return
+		  			}
+		  			time.Sleep(time.Millisecond)
+		  			fmt.Printf("task %d is done\n", t)
+		  		}
+		  	}
+		  }
+		  
+		  func sendTasksCheckClose() {
+		  	taskCh := make(chan int, 10)
+		  	go doCheckClose(taskCh)
+		  	for i := 0; i < 1000; i++ {
+		  		taskCh <- i
+		  	}
+		  	close(taskCh)
+		  }
+		  
+		  func TestDoCheckClose(t *testing.T) {
+		  	t.Log(runtime.NumGoroutine())
+		  	sendTasksCheckClose()
+		  	time.Sleep(time.Second)
+		  	runtime.GC()
+		  	t.Log(runtime.NumGoroutine())
+		  }
+		  ```
+		  t, beforeClosed := <-taskCh 判断 channel 是否已经关闭，beforeClosed 为 false 表示信道已被关闭。若关闭，则不再阻塞等待，直接返回，对应的协程随之退出。
+		  sendTasks 函数中，任务发送结束之后，使用 close(taskCh) 将 channel taskCh 关闭。
 		-
 - ## 常見並發問題
 	- Race condition 怎麼 debug？
