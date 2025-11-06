@@ -313,7 +313,49 @@ public:: true
 		  3  ← 全部都是 3！
 		  ```
 		- Go 1.22 起，for-range 循環變量在每次迭代都是新的！
-		-
+		  ```go
+		  // Go 1.22+
+		  func main() {
+		      nums := []int{1, 2, 3}
+		      var funcs []func()
+		      
+		      for _, n := range nums {
+		          funcs = append(funcs, func() {
+		              fmt.Println(n)  // ✅ 現在正常了！
+		          })
+		      }
+		      
+		      for _, f := range funcs {
+		          f()
+		      }
+		  }
+		  ```
+		  
+		  **輸出（Go 1.22+）：**
+		  ```
+		  1
+		  2
+		  3  ← 符合預期！
+		  ```
+			- goroutine 中的陷阱
+			  ```go
+			  // ❌ 即使在 Go 1.22，這樣也有問題
+			  for _, url := range urls {
+			      go func() {
+			          fetch(url)  // url 是外部變量
+			      }()
+			  }
+			  
+			  // ✅ 正確做法：作為參數傳入
+			  for _, url := range urls {
+			      go func(u string) {
+			          fetch(u)
+			      }(url)
+			  }
+			  ```
+			- 指針陷阱
+			  ```go
+			  ```
 	-
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
