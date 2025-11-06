@@ -68,6 +68,7 @@ public:: true
 		  		select {
 		  		case t, beforeClosed := <-taskCh:
 		  			if !beforeClosed {
+		  				// beforeClosed 为 false 表示信道已被关闭。若关闭，则不再阻塞等待，直接返回，对应的协程随之退出。
 		  				fmt.Println("taskCh has been closed")
 		  				return
 		  			}
@@ -83,6 +84,7 @@ public:: true
 		  	for i := 0; i < 1000; i++ {
 		  		taskCh <- i
 		  	}
+		  	// sendTasks 函数中，任务发送结束之后，使用 close(taskCh) 将 channel taskCh 关闭。
 		  	close(taskCh)
 		  }
 		  
@@ -94,7 +96,6 @@ public:: true
 		  	t.Log(runtime.NumGoroutine())
 		  }
 		  ```
-		  t, beforeClosed := <-taskCh 判断 channel 是否已经关闭，beforeClosed 为 false 表示信道已被关闭。若关闭，则不再阻塞等待，直接返回，对应的协程随之退出。
 		  sendTasks 函数中，任务发送结束之后，使用 close(taskCh) 将 channel taskCh 关闭。
 		-
 - ## 常見並發問題
