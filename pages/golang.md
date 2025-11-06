@@ -73,7 +73,8 @@ public:: true
 	  fmt.Println(a, b) // [100 2 3] [1 2 3]
 	  ```
 - ## slice
-	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會
+	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會分配內存來增大。當小於 2048 時是以 2 的倍數新增。
+	- slice 操作
 	-
 -
 -
