@@ -116,6 +116,13 @@ public:: true
 		- **Insert**
 		  ![image.png](../assets/image_1762430007707_0.png)
 		  insert 和 append 类似。即在某个位置添加一个元素后，将该位置后面的元素再 append 回去。复杂度为 O(N)。因此，不适合大量随机插入的场景。
+		- **Filter**
+		  ![image.png](../assets/image_1762430136420_0.png)
+		  当原切片不会再被使用时，就地 filter 方式是比较推荐的，可以节省内存空间。
+			- `a = a[:n]` 的作用：
+				- **截斷 slice**，讓長度變成實際保留的元素數量
+				- ✅ **丟棄後面的舊元素**，讓 slice 只包含過濾後的數據
+				- 這是一種**零分配（zero allocation）** 的高效過濾方式，不需要創建新 slice。
 		-
 		-
 -
