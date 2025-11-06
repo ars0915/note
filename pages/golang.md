@@ -382,6 +382,8 @@ public:: true
 			  ```
 			- 使用靜態分析工具
 			  ```
+			  go install github.com/nishanths/exhaustive/cmd/exhaustive@latest
+			  exhaustive ./...
 			  ```
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
