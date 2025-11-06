@@ -146,6 +146,15 @@ public:: true
 		  ```go
 		  a = append(a, x)
 		  ```
+		  在末尾追加元素，不考虑内存拷贝的情况，复杂度为 O(1)。
+		  ![image.png](../assets/image_1762430302016_0.png)
+		  在头部追加元素，时间和空间复杂度均为 O(N)，不推荐。
+		- **Pop**
+		  ![image.png](../assets/image_1762430334902_0.png)
+		  ![image.png](../assets/image_1762430339472_0.png)
+		-
+		-
+		-
 		-
 		-
 -
