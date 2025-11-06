@@ -55,6 +55,13 @@ public:: true
 		  如果 done 是一个无缓冲区的 channel，如果没有超时，`doBadthing` 中会向 done 发送信号，`select` 中会接收 done 的信号，因此 `doBadthing` 能够正常退出，子协程也能够正常退出。
 		  但是，当超时发生时，select 接收到 `time.After` 的超时信号就返回了，`done` 没有了接收方(receiver)，而 `doBadthing` 在执行 1s 后向 `done` 发送信号，由于没有接收者且无缓存区，发送者(sender)会一直阻塞，导致协程不能退出。
 	- 優雅關閉
+		- ### channel 的三种状态和三种操作结果
+		  
+		  | 操作 | 空值(nil) | 非空已关闭 | 非空未关闭 |
+		  | ---- | ---- | ---- |
+		  | 关闭 | panic | panic | 成功关闭 |
+		  | 发送数据 | 永久阻塞 | panic | 阻塞或成功发送 |
+		  | 接收数据 | 永久阻塞 | 永不阻塞 | 阻塞或者成功接收 |
 		-
 - ## 常見並發問題
 	- Race condition 怎麼 debug？
