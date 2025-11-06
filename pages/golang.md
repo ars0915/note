@@ -287,7 +287,32 @@ public:: true
 				  buf.WriteString("world")
 				  result := buf.String()  // 最後才轉成 string
 				  ```
-		-
+	- ### for-range 閉包陷阱
+		- 經典陷阱（Go 1.21 及之前）
+		  ```go
+		  func main() {
+		      nums := []int{1, 2, 3}
+		      var funcs []func()
+		      
+		      for _, n := range nums {
+		          funcs = append(funcs, func() {
+		              fmt.Println(n)  // ⚠️ n 是同一個變量！
+		          })
+		      }
+		      
+		      for _, f := range funcs {
+		          f()
+		      }
+		  }
+		  ```
+		  
+		  **輸出（Go 1.21）：**
+		  ```
+		  3
+		  3
+		  3  ← 全部都是 3！
+		  ```
+		- Go 1.22 起，for-range 循環變量在每次迭代都是新的！
 		-
 	-
 - ## TODO:
