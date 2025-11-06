@@ -49,7 +49,7 @@ public:: true
 		  ```
 		  如果 done 是一个无缓冲区的 channel，如果没有超时，`doBadthing` 中会向 done 发送信号，`select` 中会接收 done 的信号，因此 `doBadthing` 能够正常退出，子协程也能够正常退出。
 		  但是，当超时发生时，select 接收到 `time.After` 的超时信号就返回了，`done` 没有了接收方(receiver)，而 `doBadthing` 在执行 1s 后向 `done` 发送信号，由于没有接收者且无缓存区，发送者(sender)会一直阻塞，导致协程不能退出。
-	- 優雅關閉
+	- ### 優雅關閉
 		- ### channel 的三种状态和三种操作结果
 		  
 		  | 操作 | 空值(nil) | 非空已关闭 | 非空未关闭 |
@@ -91,8 +91,14 @@ public:: true
 		  	t.Log(runtime.NumGoroutine())
 		  }
 		  ```
-	- 通道关闭原则
-		-
+	- ### 通道关闭原则
+		- 如果 channel 已经被关闭，再次关闭会产生 panic，这时通过 recover 使程序恢复正常。
+		- 礼貌的方式
+			- 使用 sync.Once 或互斥锁(sync.Mutex)确保 channel 只被关闭一次。
+		- 优雅的方式
+			- 情形一：M个接收者和一个发送者，发送者通过关闭用来传输数据的通道来传递发送结束信号。
+			- 情形二：一个接收者和N个发送者，此唯一接收者通过关闭一个额外的信号通道来通知发送者不要再发送数据了。
+			- 情形三：M个接收者和N个发送者，它们中的任何协程都可以让一个中间调解协程帮忙发出停止数据传送的信号。
 - ## sync 包的使用
 	- WaitGroup、Mutex、RWMutex
 	- Once、Pool
