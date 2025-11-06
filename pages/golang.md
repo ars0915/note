@@ -395,7 +395,49 @@ public:: true
 		- ✅ 等待一組 goroutine 完成（類似 `sync.WaitGroup`）
 		- ✅ 收集第一個錯誤並取消其他 goroutine
 		- ✅ 自動管理 Context 取消
-	-
+	- WithContext
+	  ```go
+	  func fetchAllWithCancel(ctx context.Context, urls []string) error {
+	      // 創建帶 Context 的 ErrGroup
+	      g, ctx := errgroup.WithContext(ctx)
+	      
+	      for _, url := range urls {
+	          url := url
+	          g.Go(func() error {
+	              // 使用 ctx，當任一任務失敗時自動取消
+	              return fetchWithContext(ctx, url)
+	          })
+	      }
+	      
+	      return g.Wait()
+	  }
+	  
+	  func fetchWithContext(ctx context.Context, url string) error {
+	      req, _ := http.NewRequestWithContext(ctx, "GET", url, nil)
+	      
+	      resp, err := http.DefaultClient.Do(req)
+	      if err != nil {
+	          return fmt.Errorf("fetch %s failed: %w", url, err)
+	      }
+	      defer resp.Body.Close()
+	      
+	      // 檢查是否被取消
+	      if ctx.Err() != nil {
+	          return ctx.Err()
+	      }
+	      
+	      // 處理響應...
+	      return nil
+	  }
+	  ```
+	  
+	  **工作原理：**
+	  ```
+	  goroutine 1: ✅ 成功
+	  goroutine 2: ❌ 失敗 → 觸發 ctx.Cancel()
+	  goroutine 3: 🛑 檢測到 ctx.Done()，提前退出
+	  goroutine 4: 🛑 檢測到 ctx.Done()，提前退出
+	  ```
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
