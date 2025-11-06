@@ -88,7 +88,8 @@ public:: true
 	  printLenCap(nums2) // len: 4, cap: 6 [3 4 50 60]
 	  ```
 		- nums2 把 num 拿來切片，底層指的是同一個 array
-		- nums2
+		- nums2 新增 50, 60 將底層 [4] 的位置改成 50，[5] 改成 60
+		-
 	-
 -
 -
