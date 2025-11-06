@@ -267,6 +267,26 @@ public:: true
 		  ```
 		  因為 string 是不可變的，[]byte 是可變的
 		- 零拷貝技術
+			- 使用 `unsafe` 包（不安全但高效）
+			- 標準庫的零拷貝方案
+				- `strings.Builder`（推薦）
+				  ```go
+				  func concatBuilder(strs []string) string {
+				      var builder strings.Builder
+				      for _, s := range strs {
+				          builder.WriteString(s)  // 只在容量不足時才擴容
+				      }
+				      return builder.String()  // 最後一次轉換
+				  }
+				  ```
+				- `bytes.Buffer`
+				  ```go
+				  var buf bytes.Buffer
+				  buf.WriteString("hello")
+				  buf.WriteByte(' ')
+				  buf.WriteString("world")
+				  result := buf.String()  // 最後才轉成 string
+				  ```
 		-
 		-
 	-
