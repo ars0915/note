@@ -66,7 +66,7 @@ public:: true
 - ## array
 	- array 的長度是固定的，兩個長度不同的 array 不能互相賦值
 	- C 語言的 array 是指向第一個元素的指針， Go 不是。**Go 的 array 被傳遞時是複製一個。**
-	  ```
+	  ```go
 	  a := [...]int{1, 2, 3}
 	  b := a
 	  a[0] = 100
@@ -76,6 +76,17 @@ public:: true
 	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會分配內存來增大。當小於 2048 時是以 2 的倍數新增。
 	- slice 操作不複製元素，
 	  ![image.png](../assets/image_1762429535751_0.png)
+	  ```go
+	  nums := make([]int, 0, 8)
+	  nums = append(nums, 1, 2, 3, 4, 5)
+	  nums2 := nums[2:4]
+	  printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 5]
+	  printLenCap(nums2) // len: 2, cap: 6 [3 4]
+	  
+	  nums2 = append(nums2, 50, 60)
+	  printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 50]
+	  printLenCap(nums2) // len: 4, cap: 6 [3 4 50 60]
+	  ```
 	-
 -
 -
