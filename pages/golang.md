@@ -102,6 +102,12 @@ public:: true
 		- Copy
 		  ![image.png](../assets/image_1762429852485_0.png)
 		- append
+		  ![image.png](../assets/image_1762429867927_0.png)
+		  切片有三个属性，指针(ptr)、长度(len) 和容量(cap)。append 时有两种场景：
+			- 当 append 之后的长度小于等于 cap，将会直接利用原底层数组剩余的空间。
+			- 当 append 后的长度大于 cap 时，则会分配一块更大的区域来容纳新的底层数组。
+			  因此，为了避免内存发生拷贝，如果能够知道最终的切片的大小，预先设置 cap 的值能够获得最好的性能。
+		- **Delete**
 -
 -
 - ## TODO:
