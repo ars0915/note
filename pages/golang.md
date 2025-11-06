@@ -257,6 +257,12 @@ public:: true
 		  }
 		  ```
 		  `lastNumsBySlice` 耗费了 100.14 MB 内存，也就是说，申请的 100 个 1 MB 大小的内存没有被回收。因为切片虽然只使用了最后 2 个元素，但是因为与原来 1M 的切片引用了相同的底层数组，底层数组得不到释放，因此，最终 100 MB 的内存始终得不到释放。而 `lastNumsByCopy` 仅消耗了 3.14 MB 的内存。这是因为，通过 `copy`，指向了一个新的底层数组，当 origin 不再被引用后，内存会被垃圾回收(garbage collector, GC)。
+- ## Go 進階陷阱
+	- ### string/[]byte 轉換
+	  **string 和 []byte 互轉會發生記憶體拷貝**，在高性能場景下可能成為瓶頸。
+	-
+	-
+	-
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
@@ -267,6 +273,3 @@ public:: true
 	- ✅ sync.Once（**必看**，單例模式，初始化場景）
 	- ⚠️ sync.Cond（**選看**，面試較少考，但看一次搞懂概念就好）
 	- ✅ 並發控制（**必看**，WaitGroup、Context、ErrGroup）
-	  
-	  **第二章：常用資料結構*
-	- ⚠️ string/[]byte 轉換（**選看**，知道零拷貝的概
