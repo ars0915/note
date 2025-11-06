@@ -74,7 +74,7 @@ public:: true
 	  ```
 - ## slice
 	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會分配內存來增大。當小於 2048 時是以 2 的倍數新增。
-	- slice 操作不複製元素，
+	- slice 操作不複製元素
 	  ![image.png](../assets/image_1762429535751_0.png)
 	  ```go
 	  nums := make([]int, 0, 8)
@@ -87,6 +87,8 @@ public:: true
 	  printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 50]
 	  printLenCap(nums2) // len: 4, cap: 6 [3 4 50 60]
 	  ```
+		- nums2 把 num 拿來切片，底層指的是同一個 array
+		- nums2
 	-
 -
 -
