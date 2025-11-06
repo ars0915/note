@@ -355,8 +355,34 @@ public:: true
 			  ```
 			- 指針陷阱
 			  ```go
+			  type User struct {
+			      Name string
+			  }
+			  
+			  users := []User{{"Alice"}, {"Bob"}}
+			  var userPtrs []*User
+			  
+			  // ❌ 即使 Go 1.22 也有問題
+			  for _, u := range users {
+			      userPtrs = append(userPtrs, &u)  // u 的地址在每次迭代會變
+			  }
+			  
+			  // 結果：可能都指向最後一個元素
+			  
+			  // ✅ 正確做法
+			  for i := range users {
+			      userPtrs = append(userPtrs, &users[i])
+			  }
 			  ```
-	-
+		- 檢測工具
+			- 使用  `go vet`
+			  ```
+			  *# 會檢測常見的閉包陷阱*
+			  go vet ./...
+			  ```
+			- 使用靜態分析工具
+			  ```
+			  ```
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
