@@ -73,6 +73,14 @@ public:: true
 	  fmt.Println(a, b) // [100 2 3] [1 2 3]
 	  ```
 - ## slice
+	- struct
+	  ```go
+	  struct {
+	      ptr *[]T
+	      len int
+	      cap int
+	  }
+	  ```
 	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會分配內存來增大。當小於 2048 時是以 2 的倍數新增。
 	- slice 操作不複製元素
 	  ![image.png](../assets/image_1762429535751_0.png)
@@ -87,10 +95,10 @@ public:: true
 	  printLenCap(nums)  // len: 5, cap: 8 [1 2 3 4 50]
 	  printLenCap(nums2) // len: 4, cap: 6 [3 4 50 60]
 	  ```
-		- nums2 把 num 拿來切片，底層指的是同一個 array
+		- nums2 把 nums 拿來切片，底層指的是同一個 array
 		- nums2 新增 50, 60 將底層 [4] 的位置改成 50，[5] 改成 60
-		-
-	-
+		- 因為 nums 和 nums2 是指向同一個 array 所以也被改了值
+-
 -
 -
 - ## TODO:
