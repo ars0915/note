@@ -21,6 +21,29 @@ public:: true
 	- 什麼時候用 channel，什麼時候用 mutex？
 - ## Context 的傳遞與取消
 	- 超時控制
+		- time.After
+		  ```go
+		  func doBadthing(done chan bool) {
+		  	time.Sleep(time.Second)
+		  	done <- true
+		  }
+		  
+		  func timeout(f func(chan bool)) error {
+		  	done := make(chan bool)
+		  	go f(done)
+		  	select {
+		  	case <-done:
+		  		fmt.Println("done")
+		  		return nil
+		  	case <-time.After(time.Millisecond):
+		  		return fmt.Errorf("timeout")
+		  	}
+		  }
+		  
+		  // timeout(doBadthing)
+		  ```
+		-
+		-
 	- 優雅關閉
 - ## 常見並發問題
 	- Race condition 怎麼 debug？
