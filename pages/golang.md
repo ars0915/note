@@ -63,7 +63,9 @@ public:: true
 		- 如果是有 buffer 的 channel 那麼就 **不必在意對方是否接收到** ，只要在以是否仍有足夠的緩充空間，如果沒有空間了才會進行等待。
 	- 接收不確定個數的 channel
 		- 因此可以利用 `for + range` 來接收 channel 上的值，但是要注意一點，傳送最後一個值後必需利用 `close()` 將 channel 關閉，golang 才知道這是最後一個值
-- ## array & slice
+- ## array
+	- array 的長度是固定的，兩個長度不同的 array 不能
+	-
 -
 -
 - ## TODO:
