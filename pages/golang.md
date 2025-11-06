@@ -447,4 +447,3 @@ public:: true
 	- ✅ sync.Pool（**必看**，面試常考，Redis 連線池等場景）
 	- ✅ sync.Once（**必看**，單例模式，初始化場景）
 	- ⚠️ sync.Cond（**選看**，面試較少考，但看一次搞懂概念就好）
-	- ✅ 並發控制（**必看**，WaitGroup、Context、ErrGroup）
