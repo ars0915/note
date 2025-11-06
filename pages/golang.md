@@ -15,11 +15,6 @@ public:: true
 	- buffered vs unbuffered
 	- close 的時機
 	- select 的使用
-- ## sync 包的使用
-	- WaitGroup、Mutex、RWMutex
-	- Once、Pool
-	- 什麼時候用 channel，什麼時候用 mutex？
-- ## Context 的傳遞與取消
 	- 超時控制
 		- time.After
 		  ```go
@@ -96,8 +91,12 @@ public:: true
 		  	t.Log(runtime.NumGoroutine())
 		  }
 		  ```
-		  sendTasks 函数中，任务发送结束之后，使用 close(taskCh) 将 channel taskCh 关闭。
-		-
+- ## sync 包的使用
+	- WaitGroup、Mutex、RWMutex
+	- Once、Pool
+	- 什麼時候用 channel，什麼時候用 mutex？
+- ## Context 的傳遞與取消
+	-
 - ## 常見並發問題
 	- Race condition 怎麼 debug？
 	- 如何控制 goroutine 數量？（worker pool）
