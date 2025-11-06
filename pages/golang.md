@@ -73,7 +73,7 @@ public:: true
 	  fmt.Println(a, b) // [100 2 3] [1 2 3]
 	  ```
 - ## slice
-	- struct
+	- ### struct
 	  ```go
 	  struct {
 	      ptr *[]T
@@ -82,7 +82,7 @@ public:: true
 	  }
 	  ```
 	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會分配內存來增大。當小於 2048 時是以 2 的倍數新增。
-	- slice 操作不複製元素
+	- ### slice 操作不複製元素
 	  ![image.png](../assets/image_1762429535751_0.png)
 	  ```go
 	  nums := make([]int, 0, 8)
@@ -98,7 +98,10 @@ public:: true
 		- nums2 把 nums 拿來切片，底層指的是同一個 array
 		- nums2 新增 50, 60 將底層 [4] 的位置改成 50，[5] 改成 60
 		- 因為 nums 和 nums2 是指向同一個 array 所以也被改了值
--
+	- ### slice 操作
+		- Copy
+		  ![image.png](../assets/image_1762429852485_0.png)
+		- append
 -
 -
 - ## TODO:
