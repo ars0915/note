@@ -392,9 +392,10 @@ public:: true
   import "golang.org/x/sync/errgroup"
   ```
 	- **核心功能：**
-	- ✅ 等待一組 goroutine 完成（類似 `sync.WaitGroup`）
-	- ✅ 收集第一個錯誤並取消其他 goroutine
-- ✅ 自動管理 Context 取消
+		- ✅ 等待一組 goroutine 完成（類似 `sync.WaitGroup`）
+		- ✅ 收集第一個錯誤並取消其他 goroutine
+		- ✅ 自動管理 Context 取消
+	-
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
 	- ## 我的建議：針對面試準備
