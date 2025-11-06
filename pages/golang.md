@@ -104,8 +104,8 @@ public:: true
 	- Once、Pool
 	- 什麼時候用 channel，什麼時候用 mutex？
 - ## Context 的傳遞與取消
-	- 超時控制
-	- 優雅關閉
+  Context 是 Go 用來在 goroutine 之間傳遞**取消信號、超時控制、截止時間和請求範圍值**的標準方式。
+	-
 - ## 常見並發問題
 	- Race condition 怎麼 debug？
 	- 如何控制 goroutine 數量？（worker pool）
