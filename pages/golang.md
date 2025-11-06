@@ -72,7 +72,8 @@ public:: true
 	  a[0] = 100
 	  fmt.Println(a, b) // [100 2 3] [1 2 3]
 	  ```
-	-
+- ## slice
+	- 新增元素到 slice 時, 如果超過了 cap 的大小, 會
 	-
 -
 -
