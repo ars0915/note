@@ -99,15 +99,22 @@ public:: true
 		- nums2 新增 50, 60 將底層 [4] 的位置改成 50，[5] 改成 60
 		- 因為 nums 和 nums2 是指向同一個 array 所以也被改了值
 	- ### slice 操作
-		- Copy
+		- **Copy**
 		  ![image.png](../assets/image_1762429852485_0.png)
-		- append
+		- **append**
 		  ![image.png](../assets/image_1762429867927_0.png)
 		  切片有三个属性，指针(ptr)、长度(len) 和容量(cap)。append 时有两种场景：
 			- 当 append 之后的长度小于等于 cap，将会直接利用原底层数组剩余的空间。
 			- 当 append 后的长度大于 cap 时，则会分配一块更大的区域来容纳新的底层数组。
 			  因此，为了避免内存发生拷贝，如果能够知道最终的切片的大小，预先设置 cap 的值能够获得最好的性能。
 		- **Delete**
+		  ![image.png](../assets/image_1762429942293_0.png)
+		  切片的底层是数组，因此删除意味着后面的元素需要逐个向前移位。每次删除的复杂度为 O(N)，因此切片不合适大量随机删除的场景，这种场景下适合使用链表。
+		- **Delete(GC)**
+		  ![image.png](../assets/image_1762429973856_0.png)
+		  删除后，将空余的位置置空，有助于垃圾回收。
+		-
+		-
 -
 -
 - ## TODO:
