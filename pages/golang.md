@@ -113,6 +113,9 @@ public:: true
 		- **Delete(GC)**
 		  ![image.png](../assets/image_1762429973856_0.png)
 		  删除后，将空余的位置置空，有助于垃圾回收。
+		- **Insert**
+		  ![image.png](../assets/image_1762430007707_0.png)
+		  insert 和 append 类似。即在某个位置添加一个元素后，将该位置后面的元素再 append 回去。复杂度为 O(N)。因此，不适合大量随机插入的场景。
 		-
 		-
 -
