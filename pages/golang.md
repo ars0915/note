@@ -493,6 +493,10 @@ public:: true
 		  ```
 		- Pool 裡存了帶狀態的物件
 - ## sync.Once
+  保證某個函數在併發環境下只執行一次
+	- **執行一次**：無論多少個 goroutine 同時呼叫，函數只會被執行一次
+	- **併發安全**：內部使用 atomic + mutex 實現
+	- **阻塞等待**：第一個 goroutine 執行時，其他 goroutine 會等待它完成
 - ## sync.Cond
 -
 -
