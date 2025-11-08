@@ -440,7 +440,7 @@ public:: true
 	- **併發安全**：多個 goroutine 可以安全地存取
 	- **自動清理**：GC 時會清空 Pool（每兩次 GC 之間清一次）
 	- ### 為什麼需要 sync.Pool
-		- 減少記憶體分配次數
+		- **減少記憶體分配次數**
 		  ```go
 		  // ❌ 不好的做法：頻繁分配記憶體
 		  func handleRequest() {
@@ -462,8 +462,8 @@ public:: true
 		      // ... 使用 buf
 		  }
 		  ```
-		- 降低 GC 壓力
-		- 提升效能（特別是高併發場景）
+		- **降低 GC 壓力**
+		- **提升效能（特別是高併發場景）**
 	- 常用場景
 		- Buffer Pool（最常見）
 		- 格式化工具（fmt.Sprintf 內部用法）
@@ -471,7 +471,27 @@ public:: true
 	- 常見陷阱
 		- 忘記 Reset
 		  ```go
+		  // ❌ 錯誤：不 reset
+		  buf := bufferPool.Get().(*bytes.Buffer)
+		  buf.WriteString("old data")
+		  bufferPool.Put(buf)
+		  
+		  buf2 := bufferPool.Get().(*bytes.Buffer)
+		  // buf2 可能包含 "old data"！
+		  
+		  // ✅ 正確：使用前 reset
+		  buf := bufferPool.Get().(*bytes.Buffer)
+		  buf.Reset()  // 清空舊資料
+		  buf.WriteString("new data")
 		  ```
+		- 把 Pool 當永久儲存
+		  ```go
+		  // ❌ 錯誤：期待物件永遠存在
+		  pool.Put(importantData)
+		  // GC 發生...
+		  data := pool.Get()  // 可能是 nil！
+		  ```
+		- Pool 裡存了帶狀態的物件
 - ## sync.Once
 - ## sync.Cond
 -
