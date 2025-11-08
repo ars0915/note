@@ -657,6 +657,72 @@ public:: true
 		  ```
 		- 等待所有 goroutine 準備好
 		  ```go
+		  type Barrier struct {
+		      mu      sync.Mutex
+		      cond    *sync.Cond
+		      count   int      // 當前等待數量
+		      target  int      // 目標數量
+		      round   int      // 輪次（防止重複使用）
+		  }
+		  
+		  func NewBarrier(n int) *Barrier {
+		      b := &Barrier{
+		          target: n,
+		      }
+		      b.cond = sync.NewCond(&b.mu)
+		      return b
+		  }
+		  
+		  // 等待所有人到齊
+		  func (b *Barrier) Wait() {
+		      b.mu.Lock()
+		      defer b.mu.Unlock()
+		      
+		      b.count++
+		      currentRound := b.round
+		      
+		      if b.count < b.target {
+		          // 還沒到齊，等待
+		          for b.round == currentRound {
+		              b.cond.Wait()
+		          }
+		      } else {
+		          // 到齊了，喚醒所有人
+		          b.count = 0
+		          b.round++
+		          b.cond.Broadcast()
+		      }
+		  }
+		  
+		  // 使用範例：賽馬比賽
+		  func main() {
+		      barrier := NewBarrier(3)
+		      
+		      for i := 1; i <= 3; i++ {
+		          go func(id int) {
+		              fmt.Printf("賽馬 %d: 準備中...\n", id)
+		              time.Sleep(time.Duration(id*200) * time.Millisecond)
+		              
+		              fmt.Printf("賽馬 %d: 就位！\n", id)
+		              barrier.Wait()  // 等待所有馬就位
+		              
+		              fmt.Printf("賽馬 %d: 出發！🏇\n", id)
+		          }(i)
+		      }
+		      
+		      time.Sleep(3 * time.Second)
+		  }
+		  
+		  // 輸出：
+		  // 賽馬 1: 準備中...
+		  // 賽馬 2: 準備中...
+		  // 賽馬 3: 準備中...
+		  // 賽馬 1: 就位！
+		  // 賽馬 2: 就位！
+		  // 賽馬 3: 就位！
+		  // 賽馬 3: 出發！🏇
+		  // 賽馬 1: 出發！🏇
+		  // 賽馬 2: 出發！🏇
 		  ```
 		-
 -
