@@ -183,6 +183,12 @@
 		  查詢 Top 100：
 		  ZREVRANGE checkin:leaderboard 0 99 WITHSCORES
 		  ```
-	-
+		- | 需求 | 方案 | Redis 命令 |
+		  | ---- | ---- | ---- |
+		  | **「本週每天都簽到的人」** | ✅ SINTERSTORE | `SINTERSTORE result day1 day2 ... day7` |
+		  | **「連續簽到 7 天的人」（任意時段）** | ❌ SINTERSTORE 做不到 | 需要 Bitmap 或 String 方案 |
+		  | **「今天簽到的人」** | ✅ Set | `SMEMBERS checkin:2024-11-03` |
+		  | **「連續簽到排行榜」** | ❌ Set 做不到 | 需要 ZSet |
+		-
 	-
 -
