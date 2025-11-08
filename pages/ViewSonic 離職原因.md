@@ -39,6 +39,21 @@
 		- 缺乏技術成長空間
 		  比較像是 AI 傳聲筒，解決問題靠經驗跟運氣
 		- 想要更系統化的技術挑戰
+		- 我喜歡的
+		  Server-side streaming infrastructure:
+		  ├── P2P signaling server (Mlytics) 
+		  ├── SFU server 除錯 (ViewSonic)
+		  ├── WebRTC protocols
+		  ├── Real-time connection management
+		  ├── Scalability challenges (100K connections)
+		  └── Distributed systems design
+		- 不喜歡的
+		  Client-side implementation:
+		  ├── MediaCodec/MediaProjection 處理
+		  ├── OpenGL rendering pipeline
+		  ├── Platform API 限制和 workaround
+		  ├── 硬體整合問題
+		  └── 各種板子的 bug
 		-
 	-
 	-
