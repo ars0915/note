@@ -159,4 +159,86 @@
 		  - 發生時無法排查
 		  - 事後沒有 log
 		  ```
--
+	- ### 解決方案：主動檢測 + 自動收集 Log
+		- #### 檢測機制
+		  **Receiver 端檢測（接收端）：**
+		  ```
+		  偵測邏輯：
+		  1. 持續監控收到的 FPS
+		  2. 如果 FPS = 0 持續超過 N 秒
+		   → 判定為「黑屏」
+		   
+		  3. 或者檢測到斷線
+		   → 也可能是黑屏的原因
+		  
+		  觸發條件：
+		  - 連續 10 秒 FPS = 0
+		  - 或 ionSFU connection lost
+		  
+		  排除誤判：
+		  - 剛開始連線時不檢測（給 buffer time）
+		  - Sender 主動 pause 時不檢測
+		  ```
+		  
+		  **Sender 端檢測（發送端）：**
+		  ```
+		  偵測邏輯：
+		  1. 監控 encode FPS
+		  2. 如果 encode FPS = 0 持續超過 N 秒
+		   → 可能是 MediaProjection 被 release
+		  
+		  觸發條件：
+		  - 連續 10 秒 encode FPS = 0
+		  
+		  原因：
+		  - MediaProjection 被系統回收
+		  - App 失去前景
+		  - 其他 App 搶走 screen capture 權限
+		  ```
+		- #### 自動上傳 Log
+		  **流程：**
+		  ```
+		  1. Receiver 檢測到黑屏
+		   ↓
+		  2. Receiver 上傳自己的 log
+		   ↓
+		  3. Receiver 透過 WebSocket 通知 Sender
+		   "我這邊黑屏了，請上傳你的 log"
+		   ↓
+		  4. Sender 收到通知後上傳系統 log
+		   ↓
+		  5. 兩邊的 log 都有 timestamp 和 session ID
+		   → 方便後續排查
+		  
+		  Rate Limiting:
+		  - 每小時只觸發一次
+		  - 避免頻繁上傳浪費資源
+		  - 避免同一個問題重複上傳
+		  ```
+- ## 案例 4: MediaProjection 被 Release 的問題
+- ### 問題深入分析
+	- **現象：**
+	  
+	  ```
+	  Sender 畫面突然黑屏
+	  Encode FPS 變成 0
+	  但沒有 error message
+	  ```
+	  
+	  **根本原因：**
+	  ```
+	  Android MediaProjection API 的行為：
+	  1. 當 App 失去前景時
+	   → System 可能 release MediaProjection
+	   
+	  2. 當有其他 App 請求 screen capture
+	   → System 會 release 當前的 MediaProjection
+	   
+	  3. 當用戶點選通知欄的「停止投屏」
+	   → MediaProjection 被 release
+	  
+	  問題：
+	  - MediaProjection 被 release 後
+	  - 不會有明確的 callback
+	  - 只能從 encode FPS = 0 推斷
+	  ```
