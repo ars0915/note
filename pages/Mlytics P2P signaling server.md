@@ -41,7 +41,43 @@
 		- 透過 Redis Pub/Sub 做 event notification
 - ### 3. Redis Cluster（State Layer）
 	- **為什麼用 Cluster：**
-- 單台 Redis 有記憶體限制
-- 100K peers 的 state 需要大量記憶體
-- High availability（master-slave replication）
-- Data sharding（自動分散資料）
+		- 單台 Redis 有記憶體限制
+		- 100K peers 的 state 需要大量記憶體
+		- High availability（master-slave replication）
+		- Data sharding（自動分散資料）
+- ## 為什麼這樣設計能處理 400K msg/sec
+	- ### 職責分離
+	  
+	  ```
+	  Centrifugo Layer:
+	  - 只負責 WebSocket I/O
+	  - 高度優化的 connection handling
+	  - 用 Golang 寫的，原生支援高併發
+	  
+	  Backend Layer:
+	  - 只負責業務邏輯
+	  - Stateless，可以平行處理
+	  - 不被 I/O blocking
+	  
+	  Redis Layer:
+	  - 高效能的 in-memory 操作
+	  - Pipelined 批次操作
+	  - Cluster 分散負載
+	  ```
+	- ### Horizontal Scaling
+	  
+	  ```
+	  遇到效能瓶頸時：
+	  
+	  - Centrifugo 慢？
+	  → 加 Centrifugo nodes
+	  
+	  - Backend 慢？
+	  → 加 Backend nodes
+	  
+	  - Redis 慢？
+	  → 加 Redis shards
+	  
+	  各層獨立 scale，不互相影響
+	  ```
+	-
