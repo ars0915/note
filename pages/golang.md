@@ -655,7 +655,12 @@ public:: true
 		      time.Sleep(3 * time.Second)
 		  }
 		  ```
+		- 等待所有 goroutine 準備好
+		  ```go
+		  ```
 		-
+-
+-
 - ## Reference
 	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
 	  type:: [[Web Page]]
