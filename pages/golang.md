@@ -552,7 +552,38 @@ public:: true
 		  }
 		  ```
 	- 三個核心方法
-		-
+		- Wait() - 等待
+		  ```go
+		  cond.Wait()
+		  ```
+		  
+		  **做了三件事：**
+		  1. 自動釋放鎖（unlock）
+		  2. 阻塞等待（block）
+		  3. 被喚醒後，重新獲得鎖（lock）
+		  
+		  **執行流程：**
+		  ```
+		  goroutine 持有鎖
+		      ↓
+		  呼叫 cond.Wait()
+		      ↓
+		  自動釋放鎖（其他 goroutine 可以進來）
+		      ↓
+		  阻塞等待...
+		      ↓
+		  被 Signal/Broadcast 喚醒
+		      ↓
+		  自動重新獲得鎖
+		      ↓
+		  從 Wait() 返回
+		  ```
+		- Signal() - 喚醒一個
+		  ```go
+		  ```
+		- Broadcast() - 喚醒所有
+		  ```go
+		  ```
 - ## Reference
 	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
 	  type:: [[Web Page]]
