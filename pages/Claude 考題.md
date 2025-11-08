@@ -6,10 +6,14 @@
 		- 查詢 Top 10 玩家（從高到低）
 		- 查詢玩家 `player:123` 的排名
 		- 查詢分數在 8000-10000 之間的玩家數量
-		- A:
-			- ZADD leaderboard 9527 player:123
-			- ZREVRANGE leaderboard 0 9
-			- ZREVRANK leaderboard player:123
-			- ZCOUNT leaderboard 8000 10000
+	- A:
+		- ZADD leaderboard 9527 player:123
+		- ZREVRANGE leaderboard 0 9 (`ZREVRANGE leaderboard 0 10` - 會回傳 **11 個元素**（0, 1, 2...10）)
+		- ZREVRANK leaderboard player:123 (`ZSCORE` 會回傳分數)
+		- ZCOUNT leaderboard 8000 10000
+	- ## Q: 你的排行榜系統上線後，發現有個問題：
+		- 排行榜有 100 萬玩家
+		  每秒有 10,000 次查詢 Top 100
+		  Redis 開始出現效能問題
 	-
 -
