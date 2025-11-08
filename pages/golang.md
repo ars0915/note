@@ -464,6 +464,14 @@ public:: true
 		  ```
 		- 降低 GC 壓力
 		- 提升效能（特別是高併發場景）
+	- 常用場景
+		- Buffer Pool（最常見）
+		- 格式化工具（fmt.Sprintf 內部用法）
+		- 連線池相關（Redis, DB）
+	- 常見陷阱
+		- 忘記 Reset
+		  ```go
+		  ```
 - ## sync.Once
 - ## sync.Cond
 -
