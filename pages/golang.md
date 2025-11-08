@@ -436,9 +436,10 @@ public:: true
 	  ```
 - ## sync.Pool
   臨時物件池，主要用來減少 GC 壓力和提升效能。
-	- **臨時性**：Pool 裡的物件隨時可能被 GC 回收（不保證一定存在）
-	- **併發安全**：多個 goroutine 可以安全地存取
-	- **自動清理**：GC 時會清空 Pool（每兩次 GC 之間清一次）
+	- 特性
+		- **臨時性**：Pool 裡的物件隨時可能被 GC 回收（不保證一定存在）
+		- **併發安全**：多個 goroutine 可以安全地存取
+		- **自動清理**：GC 時會清空 Pool（每兩次 GC 之間清一次）
 	- ### 為什麼需要 sync.Pool
 		- **減少記憶體分配次數**
 		  ```go
@@ -499,10 +500,12 @@ public:: true
 	- **阻塞等待**：第一個 goroutine 執行時，其他 goroutine 會等待它完成
 - ## sync.Cond
   條件變數（Condition Variable），用於 goroutine 之間的等待/通知機制
-	- **等待條件**：goroutine 可以等待某個條件成立
-	- **通知機制**：其他 goroutine 可以通知等待者條件已成立
-	- **必須配合鎖**：所有操作必須在持有 Mutex 的情況下進行
-	-
+	- 特性
+		- **等待條件**：goroutine 可以等待某個條件成立
+		- **通知機制**：其他 goroutine 可以通知等待者條件已成立
+		- **必須配合鎖**：所有操作必須在持有 Mutex 的情況下進行
+	- 為什麼需要 sync.Cond？
+		- 不好的做法：忙等待（Busy-waiting）
 -
 -
 - ## Reference
