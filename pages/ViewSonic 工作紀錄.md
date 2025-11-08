@@ -55,4 +55,4 @@
 	- 大傳大功能黑屏檢測，從接收端偵測一段時間收到的 fps 是不是0，或是斷線時觸發檢查，當成立時自己上傳 log 也透過 webSocket 通知發送端上傳系統 log 用來排查，一樣每小時只觸發一次
 	- 大傳大功能黑屏因為發送端 MediaProjection 被 release 的解決方式，從發送端偵測一段時間 encode fps 是不是0，發生時停止現在的 track，並再次 getDisplayMedia，需要處理：
 		- App 不在前景或前面有視窗擋住時，記錄需要重新 getDisplayMedia 的要求，在 App 回到前景時請求權限
-		- SFU server 在 track stop 時
+		- SFU server 在 track stop 時透過 RTCP bye 去停止轉發給 subscriber
