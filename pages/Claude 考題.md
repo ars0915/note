@@ -171,7 +171,18 @@
 			  | 需要補簽功能 | ❌ 做不到 | ✅ 推薦 |
 			  | 空間效率 | 普通 | ✅ 極高 |
 	- ## Q: 如果要做「連續簽到排行榜」呢？
-		-
-		-
+	- A:
+		- 需要再加一個 ZSet
+		  ```
+		  Key: checkin:leaderboard
+		  Value: ZSet {member: userID, score: streakDays}
+		  
+		  ZADD checkin:leaderboard 7 user:123
+		  ZADD checkin:leaderboard 10 user:456
+		  
+		  查詢 Top 100：
+		  ZREVRANGE checkin:leaderboard 0 99 WITHSCORES
+		  ```
+	-
 	-
 -
