@@ -484,7 +484,7 @@ public:: true
 		  buf.Reset()  // 清空舊資料
 		  buf.WriteString("new data")
 		  ```
-		- 把 Pool 當永久儲存
+		- 把 Pool 當永久儲存 **sync.Pool 在 GC 發生時會被清空**
 		  ```go
 		  // ❌ 錯誤：期待物件永遠存在
 		  pool.Put(importantData)
