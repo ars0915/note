@@ -724,6 +724,44 @@ public:: true
 		  // 賽馬 1: 出發！🏇
 		  // 賽馬 2: 出發！🏇
 		  ```
+		- 讀寫分離的緩存更新通知
+		  ```go
+		  type Cache struct {
+		      mu      sync.RWMutex
+		      cond    *sync.Cond
+		      data    map[string]string
+		      version int
+		  }
+		  
+		  func NewCache() *Cache {
+		      c := &Cache{
+		          data: make(map[string]string),
+		      }
+		      c.cond = sync.NewCond(c.mu.RLocker())  // ⚠️ 注意：用 RLocker
+		      return c
+		  }
+		  
+		  // 寫入數據並通知
+		  func (c *Cache) Set(key, value string) {
+		      c.mu.Lock()
+		      defer c.mu.Unlock()
+		      
+		      c.data[key] = value
+		      c.version++
+		      
+		      c.cond.Broadcast()  // 通知所有等待者
+		  }
+		  
+		  // 等待特定版本
+		  func (c *Cache) WaitForVersion(targetVersion int) {
+		      c.mu.RLock()
+		      defer c.mu.RUnlock()
+		      
+		      for c.version < targetVersion {
+		          c.cond.Wait()
+		      }
+		  }
+		  ```
 		-
 -
 -
