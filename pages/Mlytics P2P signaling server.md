@@ -80,4 +80,18 @@
 	  
 	  各層獨立 scale，不互相影響
 	  ```
+	- ### 批次處理
+	  
+	  ```
+	  不是每個 message 都要：
+	  - 立即寫 DB
+	  - 立即計算 score
+	  - 立即通知所有人
+	  
+	  而是：
+	  - Message 先在 Centrifugo buffer
+	  - Backend 批次處理（每 100ms）
+	  - Redis 用 pipeline 批次寫入
+	  - Score 定期批次更新（每 10s）
+	  ```
 	-
