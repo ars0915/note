@@ -189,6 +189,7 @@
 		  | **「連續簽到 7 天的人」（任意時段）** | ❌ SINTERSTORE 做不到 | 需要 Bitmap 或 String 方案 |
 		  | **「今天簽到的人」** | ✅ Set | `SMEMBERS checkin:2024-11-03` |
 		  | **「連續簽到排行榜」** | ❌ Set 做不到 | 需要 ZSet |
-		-
-	-
+- # MQ & Kafka
+- # Golang
+-
 -
