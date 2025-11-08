@@ -439,7 +439,31 @@ public:: true
 	- **臨時性**：Pool 裡的物件隨時可能被 GC 回收（不保證一定存在）
 	- **併發安全**：多個 goroutine 可以安全地存取
 	- **自動清理**：GC 時會清空 Pool（每兩次 GC 之間清一次）
-	-
+	- ### 為什麼需要 sync.Pool
+		- 減少記憶體分配次數
+		  ```go
+		  // ❌ 不好的做法：頻繁分配記憶體
+		  func handleRequest() {
+		      buf := make([]byte, 64*1024)  // 每次都分配 64KB
+		      // ... 使用 buf
+		      // buf 用完就被丟棄 → GC 壓力大
+		  }
+		  
+		  // ✅ 好的做法：重複使用物件
+		  var bufferPool = sync.Pool{
+		      New: func() interface{} {
+		          return make([]byte, 64*1024)
+		      },
+		  }
+		  
+		  func handleRequest() {
+		      buf := bufferPool.Get().([]byte)
+		      defer bufferPool.Put(buf)  // 用完放回
+		      // ... 使用 buf
+		  }
+		  ```
+		- 降低 GC 壓力
+		- 提升效能（特別是高併發場景）
 - ## sync.Once
 - ## sync.Cond
 -
