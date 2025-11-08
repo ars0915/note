@@ -577,12 +577,14 @@ public:: true
 			  從 Wait() 返回
 			  ```
 		- Signal() - 喚醒一個
-		  ```go
-		  ```
 			- 喚醒**一個**等待的 goroutine
 			- 如果沒有等待者，什麼都不做
 			- **必須在持有鎖的情況下呼叫**
 		- Broadcast() - 喚醒所有
+			- 喚醒**所有**等待的 goroutine
+			- 如果沒有等待者，什麼都不做
+			- **必須在持有鎖的情況下呼叫**
+		-
 - ## Reference
 	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
 	  type:: [[Web Page]]
