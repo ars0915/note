@@ -49,7 +49,9 @@
 			- 如果用 `Read Committed`，會發生什麼問題？
 			- 怎麼用樂觀鎖實現這個場景？（寫出關鍵的 SQL）
 	- A：
-		- 隔離級別
+		- 隔離級別 Repeatable Read + SELECT FOR UPDATE
+		- 如果用 Read Committed 會拿到其他筆交易扣款前的金額而可能扣到負數
+		- 樂觀鎖 **UPDATE 時檢查 version**：
 		-
 	-
 -
