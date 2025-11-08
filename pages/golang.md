@@ -584,6 +584,77 @@ public:: true
 			- 喚醒**所有**等待的 goroutine
 			- 如果沒有等待者，什麼都不做
 			- **必須在持有鎖的情況下呼叫**
+	- 常用場景
+		- 生產者-消費者模型
+		  ```go
+		  type Queue struct {
+		      mu    sync.Mutex
+		      cond  *sync.Cond
+		      queue []int
+		  }
+		  
+		  func NewQueue() *Queue {
+		      q := &Queue{
+		          queue: make([]int, 0),
+		      }
+		      q.cond = sync.NewCond(&q.mu)
+		      return q
+		  }
+		  
+		  // 生產者：加入元素
+		  func (q *Queue) Enqueue(item int) {
+		      q.mu.Lock()
+		      defer q.mu.Unlock()
+		      
+		      q.queue = append(q.queue, item)
+		      fmt.Printf("生產: %d (queue size: %d)\n", item, len(q.queue))
+		      
+		      q.cond.Signal()  // 通知一個消費者
+		  }
+		  
+		  // 消費者：取出元素
+		  func (q *Queue) Dequeue() int {
+		      q.mu.Lock()
+		      defer q.mu.Unlock()
+		      
+		      // ⚠️ 必須用 for 循環
+		      for len(q.queue) == 0 {
+		          fmt.Println("消費者等待...")
+		          q.cond.Wait()  // 隊列為空，等待
+		      }
+		      
+		      item := q.queue[0]
+		      q.queue = q.queue[1:]
+		      fmt.Printf("消費: %d (queue size: %d)\n", item, len(q.queue))
+		      
+		      return item
+		  }
+		  
+		  // 使用範例
+		  func main() {
+		      q := NewQueue()
+		      
+		      // 啟動 3 個消費者
+		      for i := 1; i <= 3; i++ {
+		          go func(id int) {
+		              for j := 0; j < 3; j++ {
+		                  item := q.Dequeue()
+		                  fmt.Printf("消費者 %d 得到: %d\n", id, item)
+		                  time.Sleep(500 * time.Millisecond)
+		              }
+		          }(i)
+		      }
+		      
+		      // 生產者：每 200ms 生產一個
+		      time.Sleep(1 * time.Second)
+		      for i := 1; i <= 9; i++ {
+		          q.Enqueue(i)
+		          time.Sleep(200 * time.Millisecond)
+		      }
+		      
+		      time.Sleep(3 * time.Second)
+		  }
+		  ```
 		-
 - ## Reference
 	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
