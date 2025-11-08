@@ -239,6 +239,72 @@
 	  
 	  問題：
 	  - MediaProjection 被 release 後
-	  - 不會有明確的 callback
+	  - 不會有明確的 callback (跟客戶手動從 android 通知列 stop record 無法區分)
 	  - 只能從 encode FPS = 0 推斷
 	  ```
+	- ### 解決方案
+		- #### 1. 主動檢測
+		  
+		  ```
+		  監控機制：
+		  1. 持續監控 encode FPS
+		  2. 如果 FPS = 0 持續 5 秒
+		   → 判定 MediaProjection 可能被 release
+		  3. 自動觸發重新獲取流程
+		  ```
+		- #### 2. 重新獲取 MediaProjection
+		  
+		  **流程：**
+		  ```
+		  檢測到 MediaProjection 失效：
+		  1. Stop 當前的 track
+		   → 通知 ionSFU server (RTCP BYE)
+		   → ionSFU 停止轉發給 subscribers
+		   
+		  2. 檢查 App 狀態
+		   - 如果在前景 → 立即重新請求權限
+		   - 如果在背景 → 記錄需要重新請求
+		   
+		  3. 當 App 回到前景時
+		   → 自動重新 getDisplayMedia()
+		   → 重新建立 track
+		   → 恢復投屏
+		  ```
+		  
+		  **前景/背景處理：**
+		  ```
+		  問題：
+		  Android 不允許在背景請求 MediaProjection 權限
+		  
+		  解決：
+		  1. App 進入背景時
+		   - 記錄狀態：needsReacquire = true
+		   - 不立即請求權限
+		   
+		  2. App 回到前景時
+		   - 檢查 needsReacquire
+		   - 如果 true → 自動請求權限
+		   - 用戶同意後恢復投屏
+		  
+		  3. 用戶體驗：
+		   - App 回到前景時顯示提示
+		   - 「投屏已中斷，點擊恢復」
+		   - 自動化但給用戶控制權
+		  ```
+		- #### 3. SFU Server 端處理
+		  
+		  **RTCP BYE 機制：**
+		  ```
+		  當 Sender track stop 時：
+		  1. Sender 發送 RTCP BYE packet
+		  2. ionSFU server 收到後
+		   → 停止轉發給所有 subscribers
+		   → 通知 subscribers: "sender stopped"
+		  3. Subscribers 顯示「投屏已停止」
+		   而不是「黑屏」
+		  
+		  好處：
+		  - 明確告知用戶狀態
+		  - 不浪費頻寬傳黑畫面
+		  - 可以做 UI 提示
+		  ```
