@@ -435,11 +435,15 @@ public:: true
 	  goroutine 4: 🛑 檢測到 ctx.Done()，提前退出
 	  ```
 - ## sync.Pool
+  臨時物件池，主要用來減少 GC 壓力和提升效能。
+	- **臨時性**：Pool 裡的物件隨時可能被 GC 回收（不保證一定存在）
+	- **併發安全**：多個 goroutine 可以安全地存取
+	- **自動清理**：GC 時會清空 Pool（每兩次 GC 之間清一次）
+	-
 - ## sync.Once
 - ## sync.Cond
 -
-- ## TODO:
-	- https://geektutu.com/post/hpg-sync-cond.html
 -
 - ## Reference
--
+	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
+	  type:: [[Web Page]]
