@@ -5,49 +5,48 @@
 	- **MediaProjection 被 release** 的處理
 - ## 案例 1: Signaling Race Condition
 - ### 問題描述
-- **現象：**
-  
-  ```
-  場景：Sender 要開始 screen sharing
-  問題：Sender 發送的 signal messages 沒有傳到 ionSFU server
-  
-  用戶體驗：
-  - Sender 按下「開始投屏」
-  - Receiver 端沒有畫面
-  - 沒有任何錯誤訊息
-  ```
-- **根本原因：**
-- ```
-  時序問題：
-  - 正常流程應該是：
-  1. Receiver 建立 ionSFU peer connection
-  2. Receiver 註冊 signal handler
-  3. Sender 發送 signal messages
-  4. Receiver 收到並處理
-  - 實際發生的：
-  1. Sender 發送 joinDisplay
-  2. Sender 立即發送 start remote screen message
-  3. Receiver 的 ionSFU peer 還沒建立完成
-  4. Receiver 的 signal handler 還沒註冊
-  5. ❌ Sender 的訊息全部丟失
-  ```
-- **技術細節：**
-- ```
-  Sender side (發送端):
-  joinDisplay() 
-  → 立即 sendRemoteScreenInfo()  ← 太快了！
-  
-  Receiver side (接收端):
-  收到 joinDisplay
-  → 開始建立 ionSFU connection (非同步)
-    → 建立 peer connection
-    → 註冊 signal handler  ← 還沒完成
-    
-  結果：message 在 handler 註冊前就到了
-  ```
+	- **現象：**
+	  
+	  ```
+	  場景：Sender 要開始 screen sharing
+	  問題：Sender 發送的 signal messages 沒有傳到 ionSFU server
+	  
+	  用戶體驗：
+	  - Sender 按下「開始投屏」
+	  - Receiver 端沒有畫面
+	  - 沒有任何錯誤訊息
+	  ```
+	- **根本原因：**
+	  ```
+	  時序問題：
+	  - 正常流程應該是：
+	  1. Receiver 建立 ionSFU peer connection
+	  2. Receiver 註冊 signal handler
+	  3. Sender 發送 signal messages
+	  4. Receiver 收到並處理
+	  - 實際發生的：
+	  1. Sender 發送 joinDisplay
+	  2. Sender 立即發送 start remote screen message
+	  3. Receiver 的 ionSFU peer 還沒建立完成
+	  4. Receiver 的 signal handler 還沒註冊
+	  5. ❌ Sender 的訊息全部丟失
+	  ```
+	- **技術細節：**
+	  ```
+	  Sender side (發送端):
+	  joinDisplay() 
+	  → 立即 sendRemoteScreenInfo()  ← 太快了！
+	  
+	  Receiver side (接收端):
+	  收到 joinDisplay
+	  → 開始建立 ionSFU connection (非同步)
+	    → 建立 peer connection
+	    → 註冊 signal handler  ← 還沒完成
+	    
+	  結果：message 在 handler 註冊前就到了
+	  ```
 - ### 解決方案
-  
-  **方案 1: 使用 Completer 確保順序**
+- **方案 1: 使用 Completer 確保順序**
   
   ```
   概念：
