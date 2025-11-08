@@ -145,51 +145,18 @@
 		  - Members 需要知道 Host 已經重連
 		  - 使用 session version 避免舊訊息
 		  ```
-		- ## Scenario 2: Member 已斷線但 Host 重連
-- **問題：**
-  
-  ```
-  時序：
-  1. Member 斷線（Host 不知道）
-  2. Host 也斷線
-  3. Host 重連成功
-  4. Host 發送訊息給所有 "在線" 的 Members
-  5. Member 這時候才重連
-  6. ❌ Member 收到的是舊 session 的訊息
-  ```
-  
-  **解決：**
-  
-  ```
-  Member side:
-  1. Member 檢測到自己已經斷線
-  2. Member 重連時告訴 Host：
-   "我之前斷線了，請重新初始化"
-   
-  3. Host 收到這個訊息
-   → 清理舊 session
-   → 建立新 session
-   → 重新發送初始化訊息
-  
-  避免：
-  - 不要讓 Member 處理舊 session 的訊息
-  - Session ID mismatch → 要求 Host 重建
-  ```
-  
-  **實現重點：**
-  
-  ```
-  Session Version Control:
-  - 每次重連都有新的 session ID
-  - 所有訊息都帶 session ID
-  - 收到不匹配的 session ID → 忽略或要求重連
-  
-  Lock Management:
-  - 重連過程要加鎖
-  - 避免多個 goroutines 同時重連
-  - 確保 state transition 是 atomic
-  
-  Timeout Handling:
-  - 設定 reconnection timeout
-  - 超時後放棄重連，通知用戶
-  ```
+- ## 案例 3: 黑屏檢測和自動上傳 Log
+	- ### 問題背景
+		- **用戶抱怨：**
+		  
+		  ```
+		  「畫面黑屏，不知道發生什麼事」
+		  「支援人員也不知道原因」
+		  「需要客戶手動提供 log」
+		  
+		  問題：
+		  - 黑屏原因很多（網路、編碼、解碼、權限...）
+		  - 發生時無法排查
+		  - 事後沒有 log
+		  ```
+-
