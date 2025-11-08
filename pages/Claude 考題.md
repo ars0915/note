@@ -1,9 +1,15 @@
 # DB & Cache
 	- ## Q: 你在設計一個遊戲的排行榜系統，需要即時更新玩家分數並顯示 Top 100。你會選擇 Redis 的哪種資料結構？為什麼？
-		-
+		- A: 用 ZSET 計分數和排序
 	- ## Q: 如果我現在要實現以下功能，你會用什麼 Redis 命令？
 		- 更新玩家 `player:123` 的分數為 9527
 		- 查詢 Top 10 玩家（從高到低）
 		- 查詢玩家 `player:123` 的排名
 		- 查詢分數在 8000-10000 之間的玩家數量
+		- A:
+			- ZADD leaderboard 9527 player:123
+			- ZREVRANGE leaderboard 0 9
+			- ZREVRANK leaderboard player:123
+			- ZCOUNT leaderboard 8000 10000
+	-
 -
