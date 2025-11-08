@@ -498,6 +498,11 @@ public:: true
 	- **併發安全**：內部使用 atomic + mutex 實現
 	- **阻塞等待**：第一個 goroutine 執行時，其他 goroutine 會等待它完成
 - ## sync.Cond
+  條件變數（Condition Variable），用於 goroutine 之間的等待/通知機制
+	- **等待條件**：goroutine 可以等待某個條件成立
+	- **通知機制**：其他 goroutine 可以通知等待者條件已成立
+	- **必須配合鎖**：所有操作必須在持有 Mutex 的情況下進行
+	-
 -
 -
 - ## Reference
