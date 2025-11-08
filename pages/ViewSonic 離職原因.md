@@ -37,7 +37,7 @@
 		- 工作內容與專長不符（太多硬體整合）
 		- 缺乏技術成長空間
 		- 想要更系統化的技術挑戰
-		- Client side 的 streaming 有很多跟系統，像 mediaCodec,
+		- Client side 的 streaming 有很多跟系統高度相關的部份，想做偏向 Server-side 的部份
 	-
 	-
 	-
