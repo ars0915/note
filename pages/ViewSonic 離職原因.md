@@ -38,14 +38,14 @@
 		- WebRTC protocols 和 real-time communication
 		- Distributed systems scalability
 - ## 2. 缺乏工程實踐和可測量性
-- **現況**：
-	- 缺乏 observability 系統，無法系統化排查問題
-	- 影像品質缺乏客觀指標，難以量化優化效果
-	- Management 不支持導入 proper monitoring tools
-- **影響**：
-	- 只能靠經驗和運氣排查問題
-	- 無法從根本解決問題，一直在打補丁
-	- 無法做系統性的性能優化和改善
+	- **現況**：
+		- 缺乏 observability 系統，無法系統化排查問題
+		- 影像品質缺乏客觀指標，難以量化優化效果
+		- Management 不支持導入 proper monitoring tools
+	- **影響**：
+		- 只能靠經驗和運氣排查問題
+		- 無法從根本解決問題，一直在打補丁
+		- 無法做系統性的性能優化和改善
 - ## 3. 時程規劃和開發流程問題
 	- Sprint 規劃混亂，常中途插單或提前包版
 	- 無止盡的 P1 bugs，一直在救火
