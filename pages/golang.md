@@ -506,8 +506,53 @@ public:: true
 		- **必須配合鎖**：所有操作必須在持有 Mutex 的情況下進行
 	- 為什麼需要 sync.Cond？
 		- 不好的做法：忙等待（Busy-waiting）
--
--
+		  ```go
+		  var (
+		      mu    sync.Mutex
+		      ready bool
+		  )
+		  
+		  // ❌ 浪費 CPU
+		  func waitForReady() {
+		      for {
+		          mu.Lock()
+		          if ready {
+		              mu.Unlock()
+		              break
+		          }
+		          mu.Unlock()
+		          time.Sleep(10 * time.Millisecond)  // 輪詢，浪費 CPU
+		      }
+		      fmt.Println("條件成立，繼續執行")
+		  }
+		  ```
+		- 使用 sync.Cond：高效等待
+		  ```go
+		  var (
+		      mu    sync.Mutex
+		      cond  = sync.NewCond(&mu)
+		      ready bool
+		  )
+		  
+		  // ✅ 高效：阻塞等待，不浪費 CPU
+		  func waitForReady() {
+		      mu.Lock()
+		      for !ready {  // 循環檢查條件
+		          cond.Wait()  // 釋放鎖並阻塞，等待被喚醒
+		      }
+		      mu.Unlock()
+		      fmt.Println("條件成立，繼續執行")
+		  }
+		  
+		  func setReady() {
+		      mu.Lock()
+		      ready = true
+		      cond.Signal()  // 喚醒一個等待的 goroutine
+		      mu.Unlock()
+		  }
+		  ```
+	- 三個核心方法
+		-
 - ## Reference
 	- , "Go 语言高性能编程," *geektutu.com*, Available: [link_to_page](https://geektutu.com/post/high-performance-go.html). 
 	  type:: [[Web Page]]
