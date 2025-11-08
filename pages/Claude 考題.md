@@ -52,6 +52,34 @@
 		- 隔離級別 Repeatable Read + SELECT FOR UPDATE
 		- 如果用 Read Committed 會拿到其他筆交易扣款前的金額而可能扣到負數
 		- 樂觀鎖 **UPDATE 時檢查 version**：
+		  ```sql
+		  -- 步驟 1: 讀取（不加鎖）
+		  SELECT id, gold, version FROM users WHERE id = 123;
+		  -- 假設讀到：gold=500, version=10
+		  
+		  -- 步驟 2: 業務邏輯檢查
+		  IF gold >= 100 THEN
+		      -- 步驟 3: 更新時檢查 version（關鍵！）
+		      UPDATE users 
+		      SET gold = gold - 100, 
+		          version = version + 1
+		      WHERE id = 123 AND version = 10;  -- ← 關鍵：確保沒被改過
+		      
+		      -- 步驟 4: 檢查影響行數
+		      IF affected_rows == 0 THEN
+		          -- version 不對，表示被別人改過了，重試！
+		          ROLLBACK;
+		          RETRY;
+		      ELSE
+		          INSERT INTO inventory (user_id, item_id) VALUES (123, 456);
+		          COMMIT;
+		      END IF;
+		  END IF;
+		  ```
+	- ## Q: 樂觀鎖 vs 悲觀鎖，什麼時候用哪個？
+		- 提示：想想「衝突機率」和「重試成本」
+	- A:
+		-
 		-
 	-
 -
