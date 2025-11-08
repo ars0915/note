@@ -99,10 +99,6 @@ public:: true
 			- 情形一：M个接收者和一个发送者，发送者通过关闭用来传输数据的通道来传递发送结束信号。
 			- 情形二：一个接收者和N个发送者，此唯一接收者通过关闭一个额外的信号通道来通知发送者不要再发送数据了。
 			- 情形三：M个接收者和N个发送者，它们中的任何协程都可以让一个中间调解协程帮忙发出停止数据传送的信号。
-- ## sync 包的使用
-	- WaitGroup、Mutex、RWMutex
-	- Once、Pool
-	- 什麼時候用 channel，什麼時候用 mutex？
 - ## Context 的傳遞與取消
   Context 是 Go 用來在 goroutine 之間傳遞**取消信號、超時控制、截止時間和請求範圍值**的標準方式。
   | 功能 | 使用場景 | 函數 |
@@ -438,12 +434,10 @@ public:: true
 	  goroutine 3: 🛑 檢測到 ctx.Done()，提前退出
 	  goroutine 4: 🛑 檢測到 ctx.Done()，提前退出
 	  ```
+- ## sync.Pool
+- ## sync.Once
+- ## sync.Cond
+-
 - ## TODO:
 	- https://geektutu.com/post/hpg-sync-cond.html
-	- ## 我的建議：針對面試準備
-	- ### ✅  **必看** （直接影響面試表現）
-	  
-	  **第三章：並發編程**
-	- ✅ sync.Pool（**必看**，面試常考，Redis 連線池等場景）
-	- ✅ sync.Once（**必看**，單例模式，初始化場景）
-	- ⚠️ sync.Cond（**選看**，面試較少考，但看一次搞懂概念就好）
+-
