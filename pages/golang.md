@@ -762,7 +762,15 @@ public:: true
 		      }
 		  }
 		  ```
-		-
+	- **何時用 Channel，何時用 Cond？**
+		- | 場景 | 推薦 | 原因 |
+		  | ---- | ---- | ---- |
+		  | 傳遞數據 | Channel | Channel 天生就是為此設計 |
+		  | 單純的通知（無數據） | Channel | 更簡單直觀 |
+		  | 需要 Broadcast 多個等待者 | Cond | Channel 只能一對一 |
+		  | 與現有鎖配合使用 | Cond | 不用引入額外的同步機制 |
+		  | 複雜的條件等待 | Cond | 可以在鎖內檢查複雜條件 |
+	-
 -
 -
 - ## Reference
