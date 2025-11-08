@@ -292,7 +292,6 @@
 		   - 自動化但給用戶控制權
 		  ```
 		- #### 3. SFU Server 端處理
-		  
 		  **RTCP BYE 機制：**
 		  ```
 		  當 Sender track stop 時：
