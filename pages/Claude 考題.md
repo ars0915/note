@@ -359,4 +359,14 @@
 		- 同時管理多個 goroutine（signaling、streaming、heartbeat）
 		- 任一 goroutine 出錯時，取消其他所有 goroutine
 		- 等待所有 goroutine 清理完畢
-	- ## Q7:
+	- ## Q7: 樂觀鎖 vs 悲觀鎖 在什麼場景下你會選擇樂觀鎖（CAS + version）而不是悲觀鎖（SELECT FOR UPDATE）？
+	- ## Q8: 你需要實作一個 Connection Pool，要求：
+		- 支援 100 個連接的並發存取
+		- 連接用完要放回 pool
+		- Pool 滿了就丟棄連接
+		- **使用 Channel 實作比 Mutex 好在哪裡？**
+		- 提示：```go
+		  type Pool struct {
+		    conns chan *Conn  *// buffered channel*
+		  }
+		  ```
