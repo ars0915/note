@@ -291,6 +291,8 @@
 		      return &x
 		  }
 		  ```
+	- A:
+		- foo2 會用到 heap 因為 return 的是 x 的指標，在其他地方會引用到
 	- ## Q2: 在高併發的 streaming 場景中，你需要頻繁處理 64KB 的 buffer。以下兩種做法哪個效能更好？為什麼？
 		- ```go
 		  // 方法 A
@@ -312,6 +314,8 @@
 		      // process buf...
 		  }
 		  ```
+	- A:
+		-
 	- ## Q3: 你在開發 WebTransport signaling server，需要管理 100,000 個並發連接的狀態。以下哪個方案更合適？
 		- **方案 A：使用 sync.Map**
 		  ```go
@@ -325,6 +329,8 @@
 		  )
 		  ```
 		- 請說明你的選擇理由，以及在「讀多寫少」vs「寫多讀少」場景下的考量。
+	- A:
+		-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
 		  var rwmu sync.RWMutex
@@ -335,6 +341,8 @@
 		  W1.Lock()  ⏸ (等待 R1, R2)
 		  R3.RLock() ? // 這裡會發生什麼？
 		  ```
+	- A:
+		-
 	- ## Q5: 以下程式會輸出什麼？有什麼問題？
 		- ```go
 		  func main() {
@@ -355,18 +363,25 @@
 		      time.Sleep(time.Second)
 		  }
 		  ```
+	- A:
+		-
 	- ## Q6: 在你的 Miracast streaming 場景中，需要優雅關閉系統。請設計一個使用 `context.Context` 和 `errgroup` 的方案，能夠：
 		- 同時管理多個 goroutine（signaling、streaming、heartbeat）
 		- 任一 goroutine 出錯時，取消其他所有 goroutine
 		- 等待所有 goroutine 清理完畢
+	- A:
+		-
 	- ## Q7: 樂觀鎖 vs 悲觀鎖 在什麼場景下你會選擇樂觀鎖（CAS + version）而不是悲觀鎖（SELECT FOR UPDATE）？
+	-
 	- ## Q8: 你需要實作一個 Connection Pool，要求：
 		- 支援 100 個連接的並發存取
 		- 連接用完要放回 pool
 		- Pool 滿了就丟棄連接
 		- **使用 Channel 實作比 Mutex 好在哪裡？**
-		- 提示：```go
+		- 提示：
+		  ```go
 		  type Pool struct {
 		    conns chan *Conn  *// buffered channel*
 		  }
 		  ```
+	-
