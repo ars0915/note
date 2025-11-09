@@ -221,22 +221,22 @@
 		    - CPU 資源 (處理請求)
 		    - Page Cache (Linux 的文件快取)
 		  ```
-		- Dynamic Sharding 的概念是為高流量用戶創建獨立 topic，但僅僅創建新 topic 並不能保證資源隔離，因為 Kafka 默認會把 partitions 分散到各個 broker。
-		  
-		  要真正實現資源隔離，需要：
-			- 手動指定 replica assignment，將 VIP topics 分配到專門的 brokers
-			- 集群規模足夠大，能夠物理隔離不同類型的流量
-			- 監控和驗證隔離效果
+		- #### Dynamic Sharding 
+		  概念是為高流量用戶創建獨立 topic，但僅僅創建新 topic 並不能保證資源隔離，因為 Kafka 默認會把 partitions 分散到各個 broker。
+			- 要真正實現資源隔離，需要：
+				- 手動指定 replica assignment，將 VIP topics 分配到專門的 brokers
+				- 集群規模足夠大，能夠物理隔離不同類型的流量
+				- 監控和驗證隔離效果
+			- **Dynamic Sharding 的主要目的是「資源隔離」，不是「並行處理」**
+				- VIP topic 通常設計為 1 個 partition
+				- 重點是不讓 VIP 玩家影響普通玩家
+			- **如果單個 partition 處理不了**
+				- 先考慮優化 consumer（更快的機器、更高效的代碼）
+				- 再考慮犧牲順序性或在應用層處理
+			- **對於排行榜場景**
+				- 大多數情況下，單個 partition 足夠
+				- 如果真的不夠，考慮是否真的需要實時更新，還是可以批量處理
 		- 在實際項目中，我會先評估集群規模。如果 brokers 數量有限（<10 個），Dynamic Sharding 的成本可能大於收益，這時候應用層限流或優化 consumer 可能是更實際的方案。
-		- **Dynamic Sharding 的主要目的是「資源隔離」，不是「並行處理」**
-			- VIP topic 通常設計為 1 個 partition
-			- 重點是不讓 VIP 玩家影響普通玩家
-		- **如果單個 partition 處理不了**
-			- 先考慮優化 consumer（更快的機器、更高效的代碼）
-			- 再考慮犧牲順序性或在應用層處理
-		- **對於排行榜場景**
-			- 大多數情況下，單個 partition 足夠
-			- 如果真的不夠，考慮是否真的需要實時更新，還是可以批量處理
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
