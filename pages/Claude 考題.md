@@ -202,7 +202,8 @@
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
 		- 如果 Leader 掛掉了，Kafka 會從哪裡選新的 Leader？
--
+	- ## Q5: 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
+		- 提示：考慮 session timeout、處理時間、Static Membership 等
 - # Golang
 -
 -
