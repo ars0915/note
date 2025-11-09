@@ -326,3 +326,37 @@
 		  ```
 		- 請說明你的選擇理由，以及在「讀多寫少」vs「寫多讀少」場景下的考量。
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
+		- ```go
+		  var rwmu sync.RWMutex
+		  
+		  // 時間軸：
+		  R1.RLock() ✓ 
+		  R2.RLock() ✓ 
+		  W1.Lock()  ⏸ (等待 R1, R2)
+		  R3.RLock() ? // 這裡會發生什麼？
+		  ```
+	- ## Q5: 以下程式會輸出什麼？有什麼問題？
+		- ```go
+		  func main() {
+		      tasks := make(chan int, 10)
+		      
+		      for i := 0; i < 5; i++ {
+		          go func() {
+		              for task := range tasks {
+		                  fmt.Println("Processing:", task)
+		              }
+		          }()
+		      }
+		      
+		      for i := 0; i < 100; i++ {
+		          tasks <- i
+		      }
+		      
+		      time.Sleep(time.Second)
+		  }
+		  ```
+	- ## Q6: 在你的 Miracast streaming 場景中，需要優雅關閉系統。請設計一個使用 `context.Context` 和 `errgroup` 的方案，能夠：
+		- 同時管理多個 goroutine（signaling、streaming、heartbeat）
+		- 任一 goroutine 出錯時，取消其他所有 goroutine
+		- 等待所有 goroutine 清理完畢
+	- ## Q7:
