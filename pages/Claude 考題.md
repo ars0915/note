@@ -337,6 +337,8 @@
 		  - 連線建立/斷開很頻繁 → 可能 RWMutex 更好
 		  - 連線建立後長時間保持，主要是查詢 → sync.Map 更好
 		  ```
+		- **寫多讀少的場景下，RWMutex 反而是個糟糕選擇**
+		-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
 		  var rwmu sync.RWMutex
@@ -450,4 +452,27 @@
 		  ```
 		- vs Mutex 方案：
 		  ```go
+		  type Pool struct {
+		      mu    sync.Mutex
+		      conns []*Conn
+		      max   int
+		  }
+		  
+		  func (p *Pool) Get() *Conn {
+		      p.mu.Lock()  // ❌ 需要手動管理鎖
+		      defer p.mu.Unlock()
+		      
+		      if len(p.conns) == 0 {
+		          return nil
+		      }
+		      conn := p.conns[0]
+		      p.conns = p.conns[1:]
+		      return conn
+		  }
 		  ```
+		- **Channel 的優勢：**
+			- **程式碼更簡潔**（buffered channel 本身就是 queue）
+			- **不需要手動 Lock/Unlock**（容易忘記或死鎖）
+			- **select 語法優雅**（輕鬆處理 non-blocking、timeout）
+			- **更符合 Go 哲學**："Don't communicate by sharing memory; share memory by communicating"
+		-
