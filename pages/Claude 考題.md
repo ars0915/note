@@ -411,7 +411,6 @@
 		  ```
 		  <-ctx.Done() 是在 goroutine 內部 檢查是否被取消
 		  g.Wait() 是在 main 等待所有 goroutine 完成
-		-
 	- ## Q7: 樂觀鎖 vs 悲觀鎖 在什麼場景下你會選擇樂觀鎖（CAS + version）而不是悲觀鎖（SELECT FOR UPDATE）？
 	- A: 在大量併發的場景會使用樂觀鎖，避免所有執行緒一直在等待拿鎖
 	- ## Q8: 你需要實作一個 Connection Pool，要求：
@@ -426,4 +425,29 @@
 		  }
 		  ```
 	- A:
-		-
+		- Channel 實作 Pool 的真正優勢
+		  ```go
+		  type Pool struct {
+		      conns chan *Conn  // buffered channel = 天然的有容量限制的 queue
+		  }
+		  
+		  func (p *Pool) Get() *Conn {
+		      select {
+		      case conn := <-p.conns:  // ✅ 非阻塞取出
+		          return conn
+		      default:
+		          return nil  // Pool 空了
+		      }
+		  }
+		  
+		  func (p *Pool) Put(conn *Conn) {
+		      select {
+		      case p.conns <- conn:  // ✅ 非阻塞放入
+		      default:
+		          conn.Close()  // Pool 滿了，丟棄
+		      }
+		  }
+		  ```
+		- vs Mutex 方案：
+		  ```go
+		  ```
