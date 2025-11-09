@@ -368,6 +368,7 @@
 							- 如果寫操作集中在少數 key，sync.Map 沒優勢
 							- 如果需要遍歷所有 key，sync.Map 的 `Range` 很慢
 			- #### 3. Sharding（高並發場景）
+			  id:: 691047a7-82cb-46cb-af0f-496229fa08f7
 				- 將一個大鎖拆成多個小鎖：
 				  ```go
 				  type ShardedMap struct {
