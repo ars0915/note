@@ -376,6 +376,41 @@
 		- 任一 goroutine 出錯時，取消其他所有 goroutine
 		- 等待所有 goroutine 清理完畢
 	- A:
+		- errorGroup.WithContext, 把 context 傳入所有 goroutine, 當任何一個 return error 時 ctx.Err() 會傳出 error, 取消其他 goroutine
+		- ```go
+		  func gracefulShutdown(ctx context.Context) error {
+		      g, ctx := errgroup.WithContext(ctx)
+		      
+		      // 啟動多個 goroutine
+		      g.Go(func() error {
+		          return runSignaling(ctx)  // 傳入 ctx
+		      })
+		      
+		      g.Go(func() error {
+		          return runStreaming(ctx)
+		      })
+		      
+		      g.Go(func() error {
+		          return runHeartbeat(ctx)
+		      })
+		      
+		      // ✅ 用 g.Wait() 等待，不是 <-ctx.Done()
+		      return g.Wait()  // 任一 goroutine error → 自動取消其他 → 返回第一個 error
+		  }
+		  
+		  func runSignaling(ctx context.Context) error {
+		      for {
+		          select {
+		          case <-ctx.Done():  // ✅ 檢查是否被取消
+		              return ctx.Err()
+		          default:
+		              // do work...
+		          }
+		      }
+		  }
+		  ```
+		  <-ctx.Done() 是在 goroutine 內部 檢查是否被取消
+		  g.Wait() 是在 main 等待所有 goroutine 完成
 		-
 	- ## Q7: 樂觀鎖 vs 悲觀鎖 在什麼場景下你會選擇樂觀鎖（CAS + version）而不是悲觀鎖（SELECT FOR UPDATE）？
 	- A: 在大量併發的場景會使用樂觀鎖，避免所有執行緒一直在等待拿鎖
