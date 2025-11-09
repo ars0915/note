@@ -207,6 +207,20 @@
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
 	- A:
 		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。
+		- 在同一個 broker 上的 partition 會互相影響
+		  ```
+		  Broker 1 (共享資源：CPU, Memory, Disk, Network)
+		    ├─ Topic A, Partition 0
+		    ├─ Topic A, Partition 1  ← 熱點！
+		    ├─ Topic B, Partition 0
+		    └─ Topic C, Partition 2
+		  
+		  這些 partitions 共享：
+		    - 磁碟 I/O (寫入同一個磁碟)
+		    - 網絡帶寬 (同一個網卡)
+		    - CPU 資源 (處理請求)
+		    - Page Cache (Linux 的文件快取)
+		  ```
 		- Dynamic Sharding 的概念是為高流量用戶創建獨立 topic，但僅僅創建新 topic 並不能保證資源隔離，因為 Kafka 默認會把 partitions 分散到各個 broker。
 		  
 		  要真正實現資源隔離，需要：
