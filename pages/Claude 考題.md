@@ -207,14 +207,15 @@
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
 	- A:
 		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。
-		- **同一個 topic 的不同 partitions 確實會互相影響**，但影響的程度取決於它們是否在同一個 broker 上
-		-
 		- Dynamic Sharding 的概念是為高流量用戶創建獨立 topic，但僅僅創建新 topic 並不能保證資源隔離，因為 Kafka 默認會把 partitions 分散到各個 broker。
 		  
 		  要真正實現資源隔離，需要：
 			- 手動指定 replica assignment，將 VIP topics 分配到專門的 brokers
 			- 集群規模足夠大，能夠物理隔離不同類型的流量
 			- 監控和驗證隔離效果
+		- 如果 VIP 流量超過單個 Partition 處理能力
+			- 選擇 A：犧牲嚴格順序，改用「時間窗口順序」
+			-
 		- 在實際項目中，我會先評估集群規模。如果 brokers 數量有限（<10 個），Dynamic Sharding 的成本可能大於收益，這時候應用層限流或優化 consumer 可能是更實際的方案。
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
