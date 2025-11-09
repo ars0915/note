@@ -51,18 +51,6 @@ tags:: Kafka
 		  例如使用 User ID 作爲 `Partition Key`，那麼此 ID 的消息就都在同一個 `Partition`，這樣可以保證此類消息的有序性。
 		  這種方式需要注意 `Partition` 熱點問題。
 		  例如使用 User ID 作爲 `Partition Key`，如果某一個 User 產生的消息特別多，是一個頭部活躍用戶，那麼此用戶的消息都進入同一個 `Partition` 就會產生熱點問題，導致某個 `Partition` 極其繁忙。
-			- #### Partition 熱點解決方案
-				- **複合 Partition Key**(推薦)
-				  ```
-				  partitionKey := fmt.Sprintf("%s:%d", userID, userID % 10)
-				  ```
-				  同一個玩家的更新還是在同一個 partition
-				  但不同玩家會分散到更多 partition (不保證順序)
-				- **應用層聚合** 在發送前，先在記憶體中聚合同一個玩家的多次更新
-				- **接受 Trade-off**
-				  對於排行榜這種場景，**順序性 > 負載均衡**，所以熱點問題可能是可接受的。只要：
-					- 監控熱點 partition 的 lag
-					- 必要時增加該 partition 的 consumer 處理能力
 	- ### 由 kafka 決定
 		- 如果沒有使用 `Partition Key`，[[Kafka]] 就會使用輪詢的方式來決定寫入哪個 `Partition`。
 		  這樣，消息會均衡的寫入各個 `Partition`。
