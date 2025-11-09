@@ -353,9 +353,21 @@
 			  RWMutex 內部更複雜：需要維護 reader 計數、writer 等待隊列
 			  寫操作頻繁時，overhead 更大：每次寫都要檢查 reader、更新狀態
 			  讀操作得不到好處：因為寫太多，reader 大部分時間都在等
-		- ## **寫多讀少應該用什麼？**
-		- ### **1. sync.Mutex（最推薦）**
-		-
+		- ### 寫多讀少應該用什麼？
+			- **1. sync.Mutex（最推薦）**
+				- **實現簡單**，沒有 RWMutex 的額外 overhead
+				- **寫多讀少時，大部分操作都需要獨佔鎖**，Mutex 反而更直接
+				- **Benchmark 驗證**：寫佔 80% 以上時，Mutex 比 RWMutex 快 15-30%
+			- ### **2. sync.Map（特定場景）**
+				- **適合：不同 goroutine 操作不同 key**
+				- **sync.Map 的優勢：**
+				- **適合 key 分散的場景**（每個 key 都是獨立的，減少競爭）
+				- **兩層結構**：read map（無鎖快速路徑）+ dirty map（加鎖慢路徑）
+				- **寫入時不需要鎖整個 map**
+					- **但注意：**
+						- 如果寫操作集中在少數 key，sync.Map 沒優勢
+						- 如果需要遍歷所有 key，sync.Map 的 `Range` 很慢
+			- ### 3. Sharding（高並發場景）
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
 		  var rwmu sync.RWMutex
