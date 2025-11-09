@@ -194,7 +194,9 @@
 	  提示：從設計理念、訊息模型、保留機制來回答
 	- A:
 		- rabbitMQ 適合低延遲、保證送達和複雜路由的場景。kafka 適合高吞吐量、event sourcing、要持久化的場景。
-		-
+		- RabbitMQ 是 **Push 模型**：Broker 主動推給 Consumer，消費後訊息就刪除
+		- Kafka 是 **Pull 模型**：Consumer 主動拉取，訊息保留在 log 中，可以 replay
+		- 這就是為什麼 Kafka 適合 event sourcing - 因為需要「重播歷史事件」。
 	- ## Q2: 假設有一個 Topic 叫 user-events，有 4 個 partitions，現在有 3 個 Consumer 在同一個 Consumer Group 中消費。請問：
 		- 每個 Consumer 會負責幾個 partition？
 		  如果新增第 4 個 Consumer，會發生什麼事？
@@ -203,15 +205,18 @@
 	- A:
 		- 每個 partition 只能被一個consumer 消費，因此會有一個 consumer 負責2個 partition，其他只負責一個。新增第四個 consumer 會讓所有 consumer 各消費一個 partition。新增第5個會有 idle consumer。在新增時會觸發 rebalance
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
-	-
+	- A:
+		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。不知道怎麼避免
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
 		- 如果 Leader 掛掉了，Kafka 會從哪裡選新的 Leader？
+	- A:
+		- 在 follower 超出時間沒像 leader fetch 或是 offset 落後太多就會被踢出。設定 acks=all 需要同步到所有 ISR follow 後才會回傳 ack。Leader 掛掉會重 follow 中選出
 	- ## Q5: 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
 	  提示：考慮 session timeout、處理時間、Static Membership 等
 	- A:
-		-
+		- 如果是分區或 topic 的數量變化，先看能不能改用 Cooperative。然後觀察 consumer 使用場景是不是經常會新增或移除，如果會的話使用 static member
 - # Golang
 -
 -
