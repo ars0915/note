@@ -279,5 +279,17 @@
 			  ```
 		- 另外，Kafka 2.4+ 可以用 Cooperative Rebalancing 減少 stop-the-world 的影響
 - # Golang
--
--
+	- ## Q1：以下兩個函數，哪個會造成 heap allocation？為什麼？
+		- ```go
+		  func foo1() int {
+		      x := 42
+		      return x
+		  }
+		  
+		  func foo2() *int {
+		      x := 42
+		      return &x
+		  }
+		  ```
+	- ## Q2: 在高併發的 streaming 場景中，你需要頻繁處理 64KB 的 buffer。以下兩種做法哪個效能更好？為什麼？
+	- ## Q3:
