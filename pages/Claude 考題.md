@@ -328,6 +328,16 @@
 		  ```
 		- 請說明你的選擇理由，以及在「讀多寫少」vs「寫多讀少」場景下的考量。
 	- A:
+		- **sync.Map 適合：**
+			- Key **只寫入一次，之後只讀取**（write-once, read-many）
+			- 多個 goroutine **讀寫不同的 key**
+		- 在你的 Signaling Server 場景
+		  ```
+		  如果：
+		  - 連線建立/斷開很頻繁 → 可能 RWMutex 更好
+		  - 連線建立後長時間保持，主要是查詢 → sync.Map 更好
+		  ```
+		-
 		-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
