@@ -292,4 +292,37 @@
 		  }
 		  ```
 	- ## Q2: 在高併發的 streaming 場景中，你需要頻繁處理 64KB 的 buffer。以下兩種做法哪個效能更好？為什麼？
-	- ## Q3:
+		- ```go
+		  // 方法 A
+		  func handleStream1() {
+		      buf := make([]byte, 64*1024)
+		      // process buf...
+		  }
+		  
+		  // 方法 B  
+		  var bufferPool = sync.Pool{
+		      New: func() interface{} {
+		          return make([]byte, 64*1024)
+		      },
+		  }
+		  
+		  func handleStream2() {
+		      buf := bufferPool.Get().([]byte)
+		      defer bufferPool.Put(buf)
+		      // process buf...
+		  }
+		  ```
+	- ## Q3: 你在開發 WebTransport signaling server，需要管理 100,000 個並發連接的狀態。以下哪個方案更合適？
+		- **方案 A：使用 sync.Map**
+		  ```go
+		  var connections sync.Map *// key: connID, value: *Connection*
+		  ```
+		- **方案 B：使用 map + RWMutex**
+		  ```go
+		  var (
+		    mu sync.RWMutex
+		    connections = make(map[string]*Connection)
+		  )
+		  ```
+		- 請說明你的選擇理由，以及在「讀多寫少」vs「寫多讀少」場景下的考量。
+	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
