@@ -190,6 +190,14 @@
 		  | **「今天簽到的人」** | ✅ Set | `SMEMBERS checkin:2024-11-03` |
 		  | **「連續簽到排行榜」** | ❌ Set 做不到 | 需要 ZSet |
 - # MQ & Kafka
+	- ## Q1: RabbitMQ 和 Kafka 的核心差異是什麼？分別適合什麼場景？
+	  提示：從設計理念、訊息模型、保留機制來回答
+	- ## Q2: 假設有一個 Topic 叫 user-events，有 4 個 partitions，現在有 3 個 Consumer 在同一個 Consumer Group 中消費。請問：
+		- 每個 Consumer 會負責幾個 partition？
+		  如果新增第 4 個 Consumer，會發生什麼事？
+		  如果新增到第 5 個 Consumer，會發生什麼事？
+		  這個過程中會觸發什麼機制？
+	-
 - # Golang
 -
 -
