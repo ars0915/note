@@ -192,18 +192,26 @@
 - # MQ & Kafka
 	- ## Q1: RabbitMQ 和 Kafka 的核心差異是什麼？分別適合什麼場景？
 	  提示：從設計理念、訊息模型、保留機制來回答
+	- A:
+		- rabbitMQ 適合低延遲、保證送達和複雜路由的場景。kafka 適合高吞吐量、event sourcing、要持久化的場景。
+		-
 	- ## Q2: 假設有一個 Topic 叫 user-events，有 4 個 partitions，現在有 3 個 Consumer 在同一個 Consumer Group 中消費。請問：
 		- 每個 Consumer 會負責幾個 partition？
 		  如果新增第 4 個 Consumer，會發生什麼事？
 		  如果新增到第 5 個 Consumer，會發生什麼事？
 		  這個過程中會觸發什麼機制？
+	- A:
+		- 每個 partition 只能被一個consumer 消費，因此會有一個 consumer 負責2個 partition，其他只負責一個。新增第四個 consumer 會讓所有 consumer 各消費一個 partition。新增第5個會有 idle consumer。在新增時會觸發 rebalance
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
+	-
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
 		- 如果 Leader 掛掉了，Kafka 會從哪裡選新的 Leader？
 	- ## Q5: 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
-		- 提示：考慮 session timeout、處理時間、Static Membership 等
+	  提示：考慮 session timeout、處理時間、Static Membership 等
+	- A:
+		-
 - # Golang
 -
 -
