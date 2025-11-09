@@ -338,6 +338,23 @@
 		  - 連線建立後長時間保持，主要是查詢 → sync.Map 更好
 		  ```
 		- **寫多讀少的場景下，RWMutex 反而是個糟糕選擇**
+		- 為什麼 RWMutex 不適合寫多讀少？
+			- ```go
+			  var rwmu sync.RWMutex
+			  
+			  // 寫多讀少的情況：
+			  W1.Lock()   ✓ 獲取鎖
+			  W2.Lock()   ⏸ 等待 W1
+			  R1.RLock()  ⏸ 等待 W1
+			  W3.Lock()   ⏸ 等待 W1
+			  R2.RLock()  ⏸ 阻塞（因為 W2 在等待）
+			  ...
+			  ```
+			  RWMutex 內部更複雜：需要維護 reader 計數、writer 等待隊列
+			  寫操作頻繁時，overhead 更大：每次寫都要檢查 reader、更新狀態
+			  讀操作得不到好處：因為寫太多，reader 大部分時間都在等
+		- ## **寫多讀少應該用什麼？**
+		- ### **1. sync.Mutex（最推薦）**
 		-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
