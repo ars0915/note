@@ -415,7 +415,49 @@
 					- **減少鎖競爭**：不同 key 可能在不同 shard，並發寫入不衝突
 					- **寫多讀少時效果明顯**：16 個 shard 可以讓 throughput 提升 10-15 倍
 			- #### 4. Channel（改變思路）
-				-
+				- 如果可以改成 queue 模式：
+				  ```go
+				  type ConnectionManager struct {
+				      updates chan Update
+				      data    map[string]*Connection
+				  }
+				  
+				  type Update struct {
+				      Key  string
+				      Conn *Connection
+				  }
+				  
+				  func (cm *ConnectionManager) Run() {
+				      for update := range cm.updates {
+				          cm.data[update.Key] = update.Conn  // ✅ 單執行緒寫，沒有鎖
+				      }
+				  }
+				  
+				  func (cm *ConnectionManager) Write(key string, conn *Connection) {
+				      cm.updates <- Update{Key: key, Conn: conn}
+				  }
+				  ```
+					- **優勢：**
+						- **完全無鎖**（只有一個 goroutine 寫 map）
+						- **適合非同步寫入**的場景
+						- **批次處理**：可以一次處理多個 update，提升效率
+				- **劣勢：**
+				- 讀操作還是需要鎖（或用 atomic.Value 存 map 的 snapshot）
+				- 延遲稍高（寫入不是立即可見）
+				  
+				  ---
+				- ## **🎯 決策樹：寫多讀少用什麼鎖？**
+				  ```
+				  寫佔比 > 80%？
+				  ├─ Yes → 簡單場景？
+				  │         ├─ Yes → sync.Mutex（最簡單）
+				  │         └─ No  → 高並發？
+				  │                   ├─ Yes → Sharding（最強）
+				  │                   └─ No  → sync.Mutex
+				  │
+				  └─ No（寫 50-80%）→ key 分散？
+				          ├─ Yes → sync.Map（自動優化）
+				          └─ No  → sync.Mutex
 				-
 			-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
