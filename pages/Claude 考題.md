@@ -291,8 +291,7 @@
 		      return &x
 		  }
 		  ```
-	- A:
-		- foo2 會用到 heap 因為 return 的是 x 的指標，在其他地方會引用到
+	- A: foo2 會用到 heap 因為 return 的是 x 的指標，在其他地方會引用到
 	- ## Q2: 在高併發的 streaming 場景中，你需要頻繁處理 64KB 的 buffer。以下兩種做法哪個效能更好？為什麼？
 		- ```go
 		  // 方法 A
@@ -314,8 +313,7 @@
 		      // process buf...
 		  }
 		  ```
-	- A:
-		-
+	- A: 使用 sync.Pool 會比較好，減少記憶體的分配
 	- ## Q3: 你在開發 WebTransport signaling server，需要管理 100,000 個並發連接的狀態。以下哪個方案更合適？
 		- **方案 A：使用 sync.Map**
 		  ```go
@@ -341,8 +339,7 @@
 		  W1.Lock()  ⏸ (等待 R1, R2)
 		  R3.RLock() ? // 這裡會發生什麼？
 		  ```
-	- A:
-		-
+	- A: R3.RLock 會等 W1.Lock 釋放後才能讀
 	- ## Q5: 以下程式會輸出什麼？有什麼問題？
 		- ```go
 		  func main() {
@@ -372,7 +369,7 @@
 	- A:
 		-
 	- ## Q7: 樂觀鎖 vs 悲觀鎖 在什麼場景下你會選擇樂觀鎖（CAS + version）而不是悲觀鎖（SELECT FOR UPDATE）？
-	-
+	- A: 在大量併發的場景會使用樂觀鎖，避免所有執行緒一直在等待拿鎖
 	- ## Q8: 你需要實作一個 Connection Pool，要求：
 		- 支援 100 個連接的並發存取
 		- 連接用完要放回 pool
@@ -384,4 +381,5 @@
 		    conns chan *Conn  *// buffered channel*
 		  }
 		  ```
-	-
+	- A:
+		-
