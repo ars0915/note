@@ -203,16 +203,19 @@
 		  如果新增到第 5 個 Consumer，會發生什麼事？
 		  這個過程中會觸發什麼機制？
 	- A:
-		- 每個 partition 只能被一個consumer 消費，因此會有一個 consumer 負責2個 partition，其他只負責一個。新增第四個 consumer 會讓所有 consumer 各消費一個 partition。新增第5個會有 idle consumer。在新增時會觸發 rebalance
+		- 每個 partition 只能被一個consumer 消費，因此會有一個 consumer 負責2個 partition，其他只負責一個。新增第四個 consumer 會讓所有 consumer 各消費一個 partition。新增第5個會有 idle consumer。在新增時會觸發 rebalance，當觸發 rebalance 時，**所有 consumer 都會停止消費**（stop-the-world），這就是為什麼 rebalance 被稱為「災難」
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
 	- A:
-		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。不知道怎麼避免
+		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。
+		-
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
 		- 如果 Leader 掛掉了，Kafka 會從哪裡選新的 Leader？
 	- A:
-		- 在 follower 超出時間沒像 leader fetch 或是 offset 落後太多就會被踢出。設定 acks=all 需要同步到所有 ISR follow 後才會回傳 ack。Leader 掛掉會重 follow 中選出
+		- 在 follower 超出時間沒像 leader fetch 或是 offset 落後太多就會被踢出。
+		- 設定 acks=all 需要同步到所有 ISR follow 後才會回傳 ack。
+		- Leader 掛掉會從 ISR 中選出新的 Leader
 	- ## Q5: 你的團隊反應 Kafka Consumer 經常發生 rebalance，導致消息處理延遲。可能的原因有哪些？你會如何優化？
 	  提示：考慮 session timeout、處理時間、Static Membership 等
 	- A:
