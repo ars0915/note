@@ -338,7 +338,7 @@
 		  - 連線建立後長時間保持，主要是查詢 → sync.Map 更好
 		  ```
 		- **寫多讀少的場景下，RWMutex 反而是個糟糕選擇**
-		- 為什麼 RWMutex 不適合寫多讀少？
+		- ### 為什麼 RWMutex 不適合寫多讀少？
 			- ```go
 			  var rwmu sync.RWMutex
 			  
