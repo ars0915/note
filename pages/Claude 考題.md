@@ -415,6 +415,13 @@
 				  ```
 					- **減少鎖競爭**：不同 key 可能在不同 shard，並發寫入不衝突
 					- **寫多讀少時效果明顯**：16 個 shard 可以讓 throughput 提升 10-15 倍
+					- ```
+					  **並發操作時：**
+					  G1: 寫 conn-001 → 計算 hash → 去 Shard 5
+					  G2: 寫 conn-002 → 計算 hash → 去 Shard 23  ← 不衝突！
+					  G3: 寫 conn-003 → 計算 hash → 去 Shard 5   ← 只跟 G1 衝突
+					  G4: 寫 conn-004 → 計算 hash → 去 Shard 42  ← 不衝突！
+					  ```
 			- #### 4. Channel（改變思路）
 				- 如果可以改成 queue 模式：
 				  ```go
