@@ -337,8 +337,6 @@
 		  - 連線建立/斷開很頻繁 → 可能 RWMutex 更好
 		  - 連線建立後長時間保持，主要是查詢 → sync.Map 更好
 		  ```
-		-
-		-
 	- ## Q4: 解釋 `sync.RWMutex` 的 "防止 Writer Starvation" 機制。以下場景會發生什麼？
 		- ```go
 		  var rwmu sync.RWMutex
@@ -371,7 +369,8 @@
 		  }
 		  ```
 	- A:
-		-
+		- **沒有 close(tasks)**，worker 會永遠 block 在 `range tasks`
+		- **用 `time.Sleep` 等待不可靠**，可能在 worker 完成前就退出
 	- ## Q6: 在你的 Miracast streaming 場景中，需要優雅關閉系統。請設計一個使用 `context.Context` 和 `errgroup` 的方案，能夠：
 		- 同時管理多個 goroutine（signaling、streaming、heartbeat）
 		- 任一 goroutine 出錯時，取消其他所有 goroutine
