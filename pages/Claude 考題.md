@@ -197,7 +197,12 @@
 		  如果新增第 4 個 Consumer，會發生什麼事？
 		  如果新增到第 5 個 Consumer，會發生什麼事？
 		  這個過程中會觸發什麼機制？
-	-
+	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
+	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
+		- 什麼情況下 Follower 會被踢出 ISR？
+		- `acks=all` 和 ISR 有什麼關係？
+		- 如果 Leader 掛掉了，Kafka 會從哪裡選新的 Leader？
+-
 - # Golang
 -
 -
