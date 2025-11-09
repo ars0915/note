@@ -207,7 +207,18 @@
 	- ## Q3: 你在開發一個遊戲後端的排行榜更新系統，需要確保「同一個玩家的分數更新」按照時間順序處理。
 	- A:
 		- 因為要按照順序處理，所以同一個玩家的分數更新要在同一個 partition 裡。這樣設計可能造成某些 partition 特別多 event。
-		-
+		- #### Partition 熱點解決方案
+			- **複合 Partition Key**(推薦)
+			  ```
+			  partitionKey := fmt.Sprintf("%s:%d", userID, userID % 10)
+			  ```
+			  同一個玩家的更新還是在同一個 partition
+			  但不同玩家會分散到更多 partition (不保證順序)
+			- **應用層聚合** 在發送前，先在記憶體中聚合同一個玩家的多次更新
+			- **接受 Trade-off**
+			  對於排行榜這種場景，**順序性 > 負載均衡**，所以熱點問題可能是可接受的。只要：
+				- 監控熱點 partition 的 lag
+				- 必要時增加該 partition 的 consumer 處理能力
 	- ## Q4: Kafka 的 ISR (In-Sync Replicas) 是什麼？請說明：
 		- 什麼情況下 Follower 會被踢出 ISR？
 		- `acks=all` 和 ISR 有什麼關係？
