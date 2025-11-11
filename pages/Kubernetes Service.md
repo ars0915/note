@@ -16,4 +16,5 @@ tags:: Kubernetes
 -
 -
 - # Reference
-	-
+	- HWCHIU, "[Kubernetes] How to Implement Kubernetes Service," *www.hwchiu.com*, Available: [link_to_page](https://www.hwchiu.com/docs/2018/kubernetes-service-ii). 
+	  type:: [[Web Page]]
